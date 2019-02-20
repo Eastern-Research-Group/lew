@@ -10,6 +10,9 @@ jobs:
       CF_SPACE: owtbx-dev
     steps:
       - checkout
+      - run:
+          name: install/update npm
+          command: 'sudo npm install -g npm@latest'
       - run: 
           name: Install Sonarqube scanner
           command: |
