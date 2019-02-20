@@ -12,7 +12,8 @@ jobs:
       - checkout
       - run:
           name: install-npm
-          command: npm install -g npm
+          command: curl -sL https://deb.nodesource.com/setup_11.x | bash -
+          command: apt-get install -y nodejs
       - run: 
           name: Install Sonarqube scanner
           command: |
