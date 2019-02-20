@@ -2,7 +2,7 @@ version: 2
 jobs:
   develop-branch:
     docker:
-      - image: buildpack-deps:trusty
+      - image: circleci/node:7.10
     environment:
       APP_NAME: lew-dev
       APP_DOMAIN: app.cloud.gov
@@ -50,7 +50,7 @@ jobs:
 
   stage-branch:
     docker:
-      - image: buildpack-deps:trusty
+      - image: circleci/node:7.10
     environment:
       APP_NAME: lew-stage
       APP_DOMAIN: app.cloud.gov
