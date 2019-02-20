@@ -2,7 +2,7 @@ version: 2
 jobs:
   develop-branch:
     docker:
-      - image: buildpack-deps:trusty
+      - image: circleci/node:7.10
     environment:
       APP_NAME: lew-dev
       APP_DOMAIN: app.cloud.gov
@@ -10,10 +10,6 @@ jobs:
       CF_SPACE: owtbx-dev
     steps:
       - checkout
-      - run:
-          name: install-npm
-          command: curl -sL https://deb.nodesource.com/setup_11.x | bash -
-          command: apt-get install -y nodejs
       - run: 
           name: Install Sonarqube scanner
           command: |
