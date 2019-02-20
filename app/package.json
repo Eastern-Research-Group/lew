@@ -1,0 +1,64 @@
+{
+  "name": "lew",
+  "version": "2.0.0",
+  "description": "Determine low erosivity waiver (LEW) factor",
+  "main": "index.html",
+  "engines": {
+    "node": "10.x"
+  },
+  "scripts": {
+    "start": "npm run start_local",
+    "start_local": "cross-env NODE_ENV=local LOGGER_LEVEL=DEBUG nodemon --inspect app/server.js",
+    "start:prod": "npm run start:fake_prod",
+    "start:fake_prod": "cross-env NODE_ENV=production LOGGER_LEVEL=DEBUG nodemon --inspect app/server.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eastern-Research-Group/lew.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Eastern-Research-Group/lew/issues"
+  },
+  "keywords": [
+    "LEW",
+    "low erosivity waiver"
+  ],
+  "author": "Brad Cooper <brad.cooper@erg.com>",
+  "license": "ISC",
+  "homepage": "https://github.com/Eastern-Research-Group/lew",
+  "devDependencies": {
+    "browser-sync": "^2.26.3",
+    "connect-browser-sync": "^2.1.0",
+    "http-server": "0.11.1",
+    "husky": "1.2.0",
+    "lint-staged": "8.1.0",
+    "nodemon": "^1.18.10",
+    "prettier": "1.14.2"
+  },
+  "dependencies": {
+    "cross-env": "^5.2.0",
+    "express": "^4.16.4",
+    "express-basic-auth": "^1.1.6",
+    "log4js": "^4.0.2",
+    "request": "^2.88.0",
+    "serve-favicon": "^2.5.0"
+  },
+  "lint-staged": {
+    "linters": {
+      "app/**/*.{js,jsx,json,css}": [
+        "prettier --write",
+        "git add"
+      ]
+    },
+    "ignore": [
+      "app/css/epa/*.css",
+      "app/css/lib/*.css",
+      "app/js/lib/*.js"
+    ]
+  }
+}

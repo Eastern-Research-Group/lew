@@ -1,0 +1,101 @@
+version: 2
+jobs:
+  develop-branch:
+    docker:
+      - image: buildpack-deps:trusty
+    environment:
+      APP_NAME: lew-dev
+      APP_DOMAIN: app.cloud.gov
+      CF_ORG: epa-surface-water
+      CF_SPACE: owtbx-dev
+    steps:
+      - checkout
+      - run: 
+          name: Install Sonarqube scanner
+          command: |
+            wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492-linux.zip
+            unzip sonar-scanner-cli-3.3.0.1492-linux.zip
+      - run:
+          name: Run Sonarqube scanner
+          command: |
+            ./sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner -Dsonar.projectKey=lew -Dsonar.host.url=$SONARQUBE_URL -Dsonar.login=$SONARQUBE_TOKEN
+      - run:
+          name: Setup Cloud Foundry CLI
+          command: |
+            curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
+            sudo dpkg -i cf-cli_amd64.deb
+            cf -v
+            cf api https://api.fr.cloud.gov  
+            cf auth "$CF_USER_DEV" "$CF_PASSWORD_DEV"
+            cf target -o "$CF_ORG" -s "$CF_SPACE"
+      - run:
+          name: Deploy application to Cloud.gov
+          command: |
+            cd app
+            cf push --no-start $APP_NAME-green -f manifest-dev.yml -p . -n green
+      - run:
+          name: Start application on Cloud.gov and clean routes
+          command: |
+            cf start $APP_NAME-green
+            cf unmap-route $APP_NAME-green $APP_DOMAIN -n green
+            cf delete-route app.cloud.gov -n green -f
+      - run:
+          name: Re-route green to blue and then remove blue
+          command: |
+            cf map-route $APP_NAME-green $APP_DOMAIN -n $APP_NAME
+            cf unmap-route $APP_NAME $APP_DOMAIN -n $APP_NAME
+            cf stop $APP_NAME
+            cf delete $APP_NAME -f
+            cf rename $APP_NAME-green $APP_NAME
+
+  stage-branch:
+    docker:
+      - image: buildpack-deps:trusty
+    environment:
+      APP_NAME: lew-stage
+      APP_DOMAIN: app.cloud.gov
+      CF_ORG: epa-surface-water
+      CF_SPACE: owtbx-staging
+    steps:
+      - checkout
+      - run:
+          name: Setup Cloud Foundry CLI
+          command: |
+            curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
+            sudo dpkg -i cf-cli_amd64.deb
+            cf -v
+            cf api https://api.fr.cloud.gov  
+            cf auth "$CF_USER_STAGING" "$CF_PASSWORD_STAGING"
+            cf target -o "$CF_ORG" -s "$CF_SPACE"
+      - run:
+          name: Deploy application to Cloud.gov
+          command: |
+            cd app
+            cf push --no-start $APP_NAME-green -f manifest-staging.yml -p . -n green
+      - run:
+          name: Start application on Cloud.gov and clean routes
+          command: |
+            cf start $APP_NAME-green
+            cf unmap-route $APP_NAME-green $APP_DOMAIN -n green
+            cf delete-route app.cloud.gov -n green -f
+      - run:
+          name: Re-route green to blue and then remove blue
+          command: |
+            cf map-route $APP_NAME-green $APP_DOMAIN -n $APP_NAME
+            cf unmap-route $APP_NAME $APP_DOMAIN -n $APP_NAME
+            cf stop $APP_NAME
+            cf delete $APP_NAME -f
+            cf rename $APP_NAME-green $APP_NAME
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - develop-branch:
+          filters:
+            branches:
+              only: develop
+      - stage-branch:
+          filters:
+            branches:
+              only: staging
