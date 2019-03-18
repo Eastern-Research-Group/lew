@@ -1,10 +1,12 @@
 const express = require('express');
+const helmet = require('helmet');
 var favicon = require('serve-favicon');
 const basicAuth = require('express-basic-auth');
 var path = require('path');
 const logger = require('./server/utilities/logger.js');
 
 const app = express();
+app.use(helmet());
 var log = logger.logger;
 var port = process.env.PORT || 9090;
 const browserSync_port = 9091;
@@ -27,28 +29,6 @@ if (isDevelopment) log.info('Environment = development');
 if (isStaging) log.info('Environment = staging');
 if (!isLocal && !isDevelopment && !isStaging)
   log.info('Environment = staging or production');
-
-/****************************************************************
- Local environment only
-****************************************************************/
-if (isLocal) {
-  var browserSync = require('browser-sync');
-
-  var bsconf = {
-    port: browserSync_port,
-    proxy: 'localhost:' + port,
-    https: false,
-    notify: false,
-    open: true,
-    online: false,
-    ui: false,
-    files: [path.join(__dirname, '/public/**')]
-  };
-
-  var bs = browserSync.create().init(bsconf);
-
-  app.use(require('connect-browser-sync')(bs));
-}
 
 /****************************************************************
  Setup basic auth for non-staging and non-production
@@ -85,13 +65,28 @@ if (port === 9090 && isLocal === false) {
 }
 
 app.listen(port, function() {
-  if (isLocal) log.info(`Application listening on port ${browserSync_port}`);
-  else log.info(`Application listening on port ${port}`);
+  if (isLocal) {
+    const browserSync = require('browser-sync');
+
+    log.info(`Application listening on port ${browserSync_port}`);
+    browserSync({
+      files: [path.join(__dirname, '/public/**')],
+      online: false,
+      open: false,
+      port: browserSync_port,
+      proxy: 'localhost:' + port,
+      ui: false
+    });
+  } else {
+    log.info(`Application listening on port ${port}`);
+  }
 });
 
 /****************************************************************
  Worse case error handling for 404 and 500 issues
 ****************************************************************/
+
+/*
 app.use(function(req, res, next) {
   res.sendFile(path.join(__dirname, 'public', '404.html'));
 });
@@ -99,3 +94,4 @@ app.use(function(req, res, next) {
 app.use(function(err, req, res, next) {
   res.sendFile(path.join(__dirname, 'public', '500.html'));
 });
+*/
