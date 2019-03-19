@@ -77,7 +77,7 @@ function sendResponse(rFactor, res) {
   return new Promise((resolve, reject) => {
     log.info('sending response');
     //res.send(rFactor)
-    var out = '{rfactor: ' + rFactor + '}';
+    var out = { rfactor: Number(rFactor) };
     res.json(out);
     resolve();
   });

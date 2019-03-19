@@ -1,5 +1,6 @@
 const express = require('express');
 const helmet = require('helmet');
+var cors = require('cors');
 var favicon = require('serve-favicon');
 const basicAuth = require('express-basic-auth');
 var path = require('path');
@@ -7,6 +8,7 @@ const logger = require('./server/utilities/logger.js');
 
 const app = express();
 app.use(helmet());
+app.use(cors());
 var log = logger.logger;
 var port = process.env.PORT || 9090;
 const browserSync_port = 9091;
