@@ -51,7 +51,8 @@
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
     "request-promise-native": "^1.0.7",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "swagger-ui-express": "^4.0.2"
   },
   "lint-staged": {
     "linters": {
