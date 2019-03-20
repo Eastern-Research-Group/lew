@@ -58,6 +58,14 @@ app.use(
 );
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
+/****************************************************************
+ Enable CORS/Preflight/OPTIONS request
+****************************************************************/
+app.options('*', cors());
+
+/****************************************************************
+ Custom application routes
+****************************************************************/
 require('./server/routes/index')(app);
 
 //For local testing of the production flow, use the same port as browersync to avoid
