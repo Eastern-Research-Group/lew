@@ -4,6 +4,10 @@
     {
       "description": "US Environmental Protection Agency",
       "url": "https://api.epa.gov/lew"
+    },
+    {
+      "description": "Cooper",
+      "url": "https://lew-dev.app.cloud.gov"
     }
   ],
   "info": {
