@@ -35,6 +35,15 @@ if (!isLocal && !isDevelopment && !isStaging)
 /****************************************************************
  Setup basic auth for non-staging and non-production
 ****************************************************************/
+if (isDevelopment || isStaging) {
+  app.use(
+    basicAuth({
+      users: { lew: 'lew12!' },
+      challenge: true,
+      unauthorizedResponse: getUnauthorizedResponse
+    })
+  );
+}
 
 function getUnauthorizedResponse(req) {
   return req.auth ? 'Invalid credentials' : 'No credentials provided';
