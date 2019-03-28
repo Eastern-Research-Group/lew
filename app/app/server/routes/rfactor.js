@@ -356,6 +356,7 @@ function calculateRFactor(EI_DAILY_AMOUNT, setYear, dayIndex) {
         }
       }
 
+      log.debug('rfactor = ' + rFactor);
       if (rFactor < 10) {
         rFactor = rFactor.toPrecision(3);
       } else if (rFactor >= 10 && rFactor < 99) {
@@ -364,7 +365,7 @@ function calculateRFactor(EI_DAILY_AMOUNT, setYear, dayIndex) {
         rFactor = Math.round(rFactor);
       }
     }
-
+    log.debug('rfactor = ' + rFactor);
     resolve(rFactor);
   });
 }
