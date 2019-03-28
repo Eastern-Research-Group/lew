@@ -6,8 +6,12 @@
       "url": "https://api.epa.gov/lew"
     },
     {
-      "description": "Cooper",
+      "description": "Development",
       "url": "https://lew-dev.app.cloud.gov"
+    },
+    {
+      "description": "Cooper",
+      "url": " http://localhost:9091"
     }
   ],
   "info": {
@@ -58,7 +62,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "example": "\\{\\\"geometry\\\":\\{\\\"type\\\":\\\"Point\\\",\\\"coordinates\\\":\\[-87.845556,42.582222\\]\\}"
+              "example": "{\"geometry\":{\"type\":\"Point\",\"coordinates\":[-87.845556,42.582222]}} "
             }
           },
           {
