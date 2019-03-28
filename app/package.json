@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "npm run start_local",
-    "start_local": "cross-env NODE_ENV=local LOGGER_LEVEL=DEBUG nodemon --inspect app/server.js",
+    "start_local": "cross-env NODE_ENV=development LOGGER_LEVEL=DEBUG nodemon --inspect app/server.js",
     "start:prod": "npm run start:fake_prod",
     "start:fake_prod": "cross-env NODE_ENV=production LOGGER_LEVEL=DEBUG node --inspect app/server.js"
   },
@@ -40,7 +40,9 @@
     "prettier": "1.14.2"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "cross-env": "^5.2.0",
+    "dayjs": "^1.8.11",
     "express": "^4.16.4",
     "express-basic-auth": "^1.1.6",
     "fast-xml-parser": "^3.12.13",
@@ -50,7 +52,8 @@
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
     "request-promise-native": "^1.0.7",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "swagger-ui-express": "^4.0.2"
   },
   "lint-staged": {
     "linters": {
