@@ -88,46 +88,6 @@
             }
           }
         }
-      },
-      "post": {
-        "tags": ["Rainfall Erosivity"],
-        "summary": "Determine your eligibility for the LEW",
-        "description": "Calculates a rainfall erosivity factor (R factor) based on a small construction site’s start date, end date and location.",
-        "operationId": "calculateRFactorPost",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "X-Api-Key",
-            "description": "Default api.epa.gov user key for access to EPA resources",
-            "schema": {
-              "type": "string",
-              "default": "yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5"
-            },
-            "required": true
-          }
-        ],
-        "requestBody": {
-          "description": "Input object to calculation",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RFactorInput"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RFactorOutput"
-                }
-              }
-            }
-          }
-        }
       }
     }
   },
