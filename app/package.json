@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "npm run start_local",
-    "start_local": "cross-env NODE_ENV=local LOGGER_LEVEL=DEBUG nodemon --inspect app/server.js",
+    "start_local": "cross-env NODE_ENV=development LOGGER_LEVEL=DEBUG nodemon --inspect app/server.js",
     "start:prod": "npm run start:fake_prod",
     "start:fake_prod": "cross-env NODE_ENV=production LOGGER_LEVEL=DEBUG node --inspect app/server.js"
   },
