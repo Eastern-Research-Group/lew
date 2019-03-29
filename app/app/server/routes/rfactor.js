@@ -113,10 +113,14 @@ module.exports = function(app) {
       Beginning code from legacy LEW
     *********************************************************/
     var setDate = [start_date.formatMMDDYYYY(), end_date.formatMMDDYYYY()];
+    log.debug('setData = ' + setDate);
+
     var setMonth = [
       Number(setDate[0].substring(0, setDate[0].indexOf('/'))) - 1,
       Number(setDate[1].substring(0, setDate[1].indexOf('/'))) - 1
     ];
+    log.debug('setMonth = ' + setMonth);
+
     var setDay = [
       Number(
         setDate[0].substring(
@@ -131,10 +135,16 @@ module.exports = function(app) {
         )
       )
     ];
+
+    log.debug('setDay = ' + setDay);
+
     var setYear = [
       Number(setDate[0].substring(setDate[0].lastIndexOf('/') + 1)),
       Number(setDate[1].substring(setDate[1].lastIndexOf('/') + 1))
     ];
+
+    log.debug('setYear = ' + setYear);
+
     var monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     var dayIndex = setDay;
     for (b = 0; b < setMonth.length; b++) {
@@ -142,6 +152,8 @@ module.exports = function(app) {
         dayIndex[b] = dayIndex[b] + monthDays[c];
       }
     }
+
+    log.debug('dayIndex = ' + dayIndex);
 
     var lon = location.geometry.coordinates[0];
     var lat = location.geometry.coordinates[1];
