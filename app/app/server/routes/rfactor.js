@@ -56,7 +56,14 @@ module.exports = function(app) {
       res.status(400).json(err_json);
       return;
     }
+
     log.debug('req.query.start_date = ' + req.query.start_date);
+    //reformat start_date to take into account UTC
+    start_date = new Date(
+      start_date.getUTCFullYear(),
+      start_date.getUTCMonth(),
+      start_date.getUTCDate()
+    );
     log.debug('start_date = ' + start_date);
 
     /********************************************************* 
@@ -79,6 +86,12 @@ module.exports = function(app) {
       return;
     }
     log.debug('req.query.end_date = ' + req.query.end_date);
+    //reformat start_date to take into account UTC
+    end_date = new Date(
+      end_date.getUTCFullYear(),
+      end_date.getUTCMonth(),
+      end_date.getUTCDate()
+    );
     log.debug('end_date = ' + end_date);
 
     /********************************************************* 
