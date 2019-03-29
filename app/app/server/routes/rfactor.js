@@ -309,6 +309,7 @@ function getCountyURL(lon, lat) {
 ***********************************************************************/
 function getClimateDataForCounty(countyURL) {
   return new Promise((resolve, reject) => {
+    log.debug('countyURL = ' + countyURL);
     request(
       {
         method: 'get',
@@ -360,10 +361,7 @@ function getClimateDataForCounty(countyURL) {
 ***********************************************************************/
 function calculateRFactor(EI_DAILY_AMOUNT, setYear, dayIndex) {
   return new Promise((resolve, reject) => {
-    log.debug('EI_DAILY_AMOUNT = ' + EI_DAILY_AMOUNT);
-
     log.debug('setYear = ' + setYear);
-
     log.debug('dayIndex = ' + dayIndex);
 
     if (EI_DAILY_AMOUNT == null) {
@@ -372,7 +370,7 @@ function calculateRFactor(EI_DAILY_AMOUNT, setYear, dayIndex) {
       );
     } else {
       var dailyEIData = EI_DAILY_AMOUNT.replace(/\n/g, ' ').split(' ');
-
+      log.debug('dailyEIData length = ' + dailyEIData.length);
       rFactor = 0;
       if (setYear[1] > setYear[0]) {
         dayIndex[1] = dayIndex[1] + 365 * (setYear[1] - setYear[0]);
