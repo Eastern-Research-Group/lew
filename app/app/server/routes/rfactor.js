@@ -327,6 +327,12 @@ function getClimateDataForCounty(countyURL) {
 ***********************************************************************/
 function calculateRFactor(EI_DAILY_AMOUNT, setYear, dayIndex) {
   return new Promise((resolve, reject) => {
+    log.debug('EI_DAILY_AMOUNT = ' + EI_DAILY_AMOUNT);
+
+    log.debug('setYear = ' + setYear);
+
+    log.debug('dayIndex = ' + dayIndex);
+
     if (EI_DAILY_AMOUNT == null) {
       reject(
         Error('15: Internal Web Service Error. [EI_DAILY_AMOUNT is empty]')
