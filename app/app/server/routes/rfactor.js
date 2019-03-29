@@ -56,6 +56,8 @@ module.exports = function(app) {
       res.status(400).json(err_json);
       return;
     }
+    log.debug('req.query.start_date = ' + req.query.start_date);
+    log.debug('start_date = ' + start_date);
 
     /********************************************************* 
       Check the existence and then validate end date
@@ -76,6 +78,8 @@ module.exports = function(app) {
       res.status(400).json(err_json);
       return;
     }
+    log.debug('req.query.end_date = ' + req.query.end_date);
+    log.debug('end_date = ' + end_date);
 
     /********************************************************* 
       GeoJSON validation
@@ -112,8 +116,12 @@ module.exports = function(app) {
     /********************************************************* 
       Beginning code from legacy LEW
     *********************************************************/
+
+    log.debug('start_date = ' + start_date);
+    log.debug('end_date = ' + end_date);
+
     var setDate = [start_date.formatMMDDYYYY(), end_date.formatMMDDYYYY()];
-    log.debug('setData = ' + setDate);
+    log.debug('setDate = ' + setDate);
 
     var setMonth = [
       Number(setDate[0].substring(0, setDate[0].indexOf('/'))) - 1,
