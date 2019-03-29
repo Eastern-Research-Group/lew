@@ -77,9 +77,6 @@ module.exports = function(app) {
       return;
     }
 
-    //console.log('start_date.formatMMDDYYYY()  ' + start_date.formatMMDDYYYY());
-    //console.log('end_date.formatMMDDYYYY()  ' + end_date.formatMMDDYYYY());
-
     /********************************************************* 
       GeoJSON validation
     *********************************************************/
@@ -146,14 +143,8 @@ module.exports = function(app) {
       }
     }
 
-    //console.log('setYear=' + setYear.toString());
-    //console.log('dayIndex=' + dayIndex.toString());
-
     var lon = location.geometry.coordinates[0];
     var lat = location.geometry.coordinates[1];
-
-    log.debug(lon);
-    log.debug(lat);
 
     new Promise(function(resolve, reject) {
       resolve();
@@ -202,8 +193,6 @@ function getCountyURL(lon, lat) {
       lon +
       '}]}';
 
-    //console.log(postData);
-
     request(
       {
         method: 'post',
@@ -214,20 +203,20 @@ function getCountyURL(lon, lat) {
       function(err, res, body) {
         if (err) {
           var err_json = {
-            error_id: 4,
-            error_msg: 'Error retrieving county URL'
+            error_id: 8,
+            error_msg: 'Error retrieving county URL. postData = ' + postData
           };
           log.error(err_json + err.toString());
-          reject(err);
+          reject('8: Error retrieving county URL');
           return;
         } else {
           if (res.statusCode != 200) {
             var err_json = {
-              error_id: 5,
+              error_id: 9,
               error_msg: 'Error calling the Colorado web service'
             };
-            log.error(err_json);
-            reject('Error retrieving county URL');
+            log.error(err_json + err.toString());
+            reject('09: Error retrieving county URL');
             return;
           }
 
@@ -236,22 +225,24 @@ function getCountyURL(lon, lat) {
             results = JSON.parse(body).result;
           } catch (err) {
             var err_json = {
-              error_id: 6,
-              error_msg: 'Error retrieving county URL'
+              error_id: 10,
+              error_msg:
+                'Error parsiing results of county data. postData = ' + postData
             };
-            log.error(err_json);
-            reject('Error retrieving county URL');
+            log.error(err_json + err.toString());
+            reject('10: Error parsiing results of county data');
             return;
           }
 
           if (results == null) {
             var err_json = {
-              error_id: 7,
+              error_id: 11,
               error_msg:
-                'Error retrieving county URL information from the results array'
+                'Error retrieving county URL information from the results array. postData = ' +
+                postData
             };
-            log.error(err_json);
-            reject('Error retrieving county URL');
+            log.error(err_json + err.toString());
+            reject('11: Error retrieving county URL');
             return;
           }
 
@@ -268,11 +259,11 @@ function getCountyURL(lon, lat) {
             }
           }
           var err_json = {
-            error_id: 8,
+            error_id: 12,
             error_msg: 'Error retrieving county URL'
           };
           log.error(err_json);
-          reject('Error retrieving county URL');
+          reject('12: Error retrieving county URL');
           return;
         }
       }
@@ -293,8 +284,13 @@ function getClimateDataForCounty(countyURL) {
       },
       function(err, res, body) {
         if (err) {
-          log.error("i'm an error");
-          reject(err);
+          var err_json = {
+            error_id: 13,
+            error_msg:
+              'Error retrieving county level data. The countyURL =' + countyURL
+          };
+          log.error(err_json + ' ' + err.toString());
+          reject('13: Error retrieving county level data');
           return;
         } else {
           var xmlData = res.body;
@@ -304,15 +300,21 @@ function getClimateDataForCounty(countyURL) {
             // find EI_DAILY_AMOUNT
             for (var i = 0, len = jsonObj.Obj.Flt.length; i < len; i++) {
               if (jsonObj.Obj.Flt[i].Name === 'EI_DAILY_AMOUNT') {
-                // console.info('EI_DAILY_AMOUNT: ' + jsonObj.Obj.Flt[i].Calc);
-                // console.info('EI_DAILY_AMOUNT: ' + jsonObj.Obj.Flt[i].Calc);
                 resolve(jsonObj.Obj.Flt[i].Calc);
                 return;
               }
             }
           }
 
-          reject('climate attribute not found.');
+          var err_json = {
+            error_id: 14,
+            error_msg:
+              'Climate attribute not found. The countyURL = ' + countyURL
+          };
+          log.error(err_json);
+          reject(
+            '14: Internal Web Service Error. [Climate attribute not found.]'
+          );
           return;
         }
       }
@@ -326,22 +328,11 @@ function getClimateDataForCounty(countyURL) {
 function calculateRFactor(EI_DAILY_AMOUNT, setYear, dayIndex) {
   return new Promise((resolve, reject) => {
     if (EI_DAILY_AMOUNT == null) {
-      reject(Error('EI_DAILY_AMOUNT is empty'));
+      reject(
+        Error('15: Internal Web Service Error. [EI_DAILY_AMOUNT is empty]')
+      );
     } else {
-      //console.info('EI_DAILY_AMOUNT Length=' + EI_DAILY_AMOUNT.length);
-      //console.info('EI_DAILY_AMOUNT=' + EI_DAILY_AMOUNT);
-
-      //console.log('EI_DAILY_AMOUNT.length=' + EI_DAILY_AMOUNT.length);
-      //console.log('setYear again=' + setYear.toString());
-      //console.log('dayIndex again=' + dayIndex.toString());
-
       var dailyEIData = EI_DAILY_AMOUNT.replace(/\n/g, ' ').split(' ');
-      for (i = 0; i < dailyEIData.length; i++) {
-        //console.log(i + '=' + dailyEIData[i]);
-      }
-
-      //console.log('dailyEIData len = ' + dailyEIData.length);
-      //console.log('dailyEIData tostring = ' + dailyEIData.toString());
 
       rFactor = 0;
       if (setYear[1] > setYear[0]) {
@@ -356,7 +347,8 @@ function calculateRFactor(EI_DAILY_AMOUNT, setYear, dayIndex) {
         }
       }
 
-      log.debug('rfactor = ' + rFactor);
+      log.debug('rFactor = ' + rFactor);
+
       if (rFactor < 10) {
         rFactor = rFactor.toPrecision(3);
       } else if (rFactor >= 10 && rFactor < 99) {
@@ -365,7 +357,7 @@ function calculateRFactor(EI_DAILY_AMOUNT, setYear, dayIndex) {
         rFactor = Math.round(rFactor);
       }
     }
-    log.debug('rfactor = ' + rFactor);
+    log.debug('rFactor = ' + rFactor);
     resolve(rFactor);
   });
 }
