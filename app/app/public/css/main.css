@@ -119,3 +119,17 @@ tr {
   margin-left: 3%;
   width: 200px;
 }
+
+.fa-twitter {
+  background: #55acee;
+  color: white;
+}
+
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 70px;
+  border-radius: 50%;
+  text-decoration: none;
+  margin: 5px 2px;
+}
