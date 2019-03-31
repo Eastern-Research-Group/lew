@@ -193,8 +193,7 @@ module.exports = function(app) {
       })
       .then((rFactor) => sendResponse(rFactor, res))
       .catch(function(err) {
-        log.error(err);
-        res.send(err);
+        res.status(400).json(err);
       });
   });
 
@@ -230,26 +229,26 @@ function getCountyURL(lon, lat) {
       {
         method: 'post',
         body: postData,
-        uri: 'http://csip.engr.colostate.edu:8088/csip-misc/d/r2climate/2.0',
+        uri: 'http://csip.engr.colostate.edu:8088/csip-misc/d/r2climate/2.01',
         timeout: 15000
       },
       function(err, res, body) {
         if (err) {
           var err_json = {
             error_id: 8,
-            error_msg: 'Error retrieving county URL. postData = ' + postData
+            error_msg: 'Error retrieving county URL'
           };
-          log.error(err_json + err.toString());
-          reject('8: Error retrieving county URL');
+          log.error(err_json + ' postData = ' + postData);
+          reject(err_json);
           return;
         } else {
           if (res.statusCode != 200) {
             var err_json = {
               error_id: 9,
-              error_msg: 'Error calling the Colorado web service'
+              error_msg: 'Error calling RUSLE web service'
             };
-            log.error(err_json + err.toString());
-            reject('09: Error retrieving county URL');
+            log.error(err_json + ' statusCode = ' + res.statusCode);
+            reject(err_json);
             return;
           }
 
@@ -259,11 +258,10 @@ function getCountyURL(lon, lat) {
           } catch (err) {
             var err_json = {
               error_id: 10,
-              error_msg:
-                'Error parsiing results of county data. postData = ' + postData
+              error_msg: 'Error parsiing results of county data'
             };
-            log.error(err_json + err.toString());
-            reject('10: Error parsiing results of county data');
+            log.error(err_json + err.toString() + '  postData = ' + postData);
+            reject(err_json);
             return;
           }
 
@@ -271,11 +269,10 @@ function getCountyURL(lon, lat) {
             var err_json = {
               error_id: 11,
               error_msg:
-                'Error retrieving county URL information from the results array. postData = ' +
-                postData
+                'Error retrieving county URL information from the results array.'
             };
-            log.error(err_json + err.toString());
-            reject('11: Error retrieving county URL');
+            log.error(err_json + err.toString() + '  postData = ' + postData);
+            reject(err_json);
             return;
           }
 
@@ -296,7 +293,7 @@ function getCountyURL(lon, lat) {
             error_msg: 'Error retrieving county URL'
           };
           log.error(err_json);
-          reject('12: Error retrieving county URL');
+          reject(err_json);
           return;
         }
       }
@@ -320,11 +317,12 @@ function getClimateDataForCounty(countyURL) {
         if (err) {
           var err_json = {
             error_id: 13,
-            error_msg:
-              'Error retrieving county level data. The countyURL =' + countyURL
+            error_msg: 'Error retrieving county level data.'
           };
-          log.error(err_json + ' ' + err.toString());
-          reject('13: Error retrieving county level data');
+          log.error(
+            err_json + ' The countyURL =' + countyURL + ' ' + err.toString()
+          );
+          reject(err_json);
           return;
         } else {
           var xmlData = res.body;
@@ -342,13 +340,10 @@ function getClimateDataForCounty(countyURL) {
 
           var err_json = {
             error_id: 14,
-            error_msg:
-              'Climate attribute not found. The countyURL = ' + countyURL
+            error_msg: 'Climate attribute not found.'
           };
-          log.error(err_json);
-          reject(
-            '14: Internal Web Service Error. [Climate attribute not found.]'
-          );
+          log.error(err_json + ' The countyURL = ' + countyURL);
+          reject(err_json);
           return;
         }
       }
@@ -365,9 +360,12 @@ function calculateRFactor(EI_DAILY_AMOUNT, setYear, dayIndex) {
     log.debug('dayIndex = ' + dayIndex);
 
     if (EI_DAILY_AMOUNT == null) {
-      reject(
-        Error('15: Internal Web Service Error. [EI_DAILY_AMOUNT is empty]')
-      );
+      var err_json = {
+        error_id: 14,
+        error_msg: '15: Internal Web Service Error. [EI_DAILY_AMOUNT is empty]'
+      };
+      log.error(err_json);
+      reject(err_json);
     } else {
       var dailyEIData = EI_DAILY_AMOUNT.replace(/\n/g, ' ').split(' ');
       log.debug('dailyEIData length = ' + dailyEIData.length);
