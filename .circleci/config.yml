@@ -12,7 +12,9 @@ jobs:
       - checkout
       - run: 
           name: Run node based tests
-          command: npm test
+          command: |
+            cd app
+            npm test
       - run: 
           name: Install Sonarqube scanner
           command: |
@@ -63,7 +65,9 @@ jobs:
       - checkout
       - run: 
           name: Run node based tests
-          command: npm test
+          command: |
+            cd app
+            npm test
       - run:
           name: Setup Cloud Foundry CLI
           command: |
