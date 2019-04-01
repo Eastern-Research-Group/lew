@@ -1,7 +1,6 @@
 version: 2
 jobs:
   develop-branch:
-    working_directory: ~/project/app
     docker:
       - image: circleci/node:7.10
     environment:
@@ -15,11 +14,14 @@ jobs:
           name: update-npm
           command: 'sudo npm install -g npm@latest'
       - restore_cache: # special step to restore the dependency cache
+          command: cd app
           # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
-          name: install-npm-wee
-          command: npm install
+          name: install npm
+          command: |
+            cd app
+            npm install
       - save_cache: # special step to save the dependency cache
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
@@ -48,6 +50,7 @@ jobs:
       - run:
           name: Deploy application to Cloud.gov
           command: |
+            cd app
             cf push --no-start $APP_NAME-green -f manifest-dev.yml -p . -n green
       - run:
           name: Start application on Cloud.gov and clean routes
