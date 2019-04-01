@@ -63,7 +63,7 @@
             "description": "Default api.epa.gov user key for access to EPA resources",
             "schema": {
               "type": "string",
-              "default": "yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5"
+              "default": "Zho0cpfq4zfV339NQRhpQmZKHKlcG6DND3cdhh6Y"
             },
             "required": true
           }
