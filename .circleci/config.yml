@@ -23,6 +23,7 @@ jobs:
             cd app
             npm install
       - save_cache: # special step to save the dependency cache
+          command: cd app
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
