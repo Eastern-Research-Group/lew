@@ -39,15 +39,18 @@ jobs:
       - run: 
           name: Install Sonarqube scanner
           command: |
+            cd ..
             wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492-linux.zip
             unzip sonar-scanner-cli-3.3.0.1492-linux.zip
       - run:
           name: Run Sonarqube scanner
           command: |
+            cd ..
             ./sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner -Dsonar.projectKey=lew -Dsonar.host.url=$SONARQUBE_URL -Dsonar.login=$SONARQUBE_TOKEN
       - run:
           name: Setup Cloud Foundry CLI
           command: |
+            cd ..
             curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
             sudo dpkg -i cf-cli_amd64.deb
             cf -v
