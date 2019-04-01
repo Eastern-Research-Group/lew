@@ -8,7 +8,8 @@
   },
   "scripts": {
     "start": "npm run start_local",
-    "start_local": "cross-env NODE_ENV=local LOGGER_LEVEL=DEBUG nodemon --inspect app/server.js",
+    "test": "cross-env NODE_ENV=local LOGGER_LEVEL=OFF mocha --timeout 5000 app/tests --recursive",
+    "start_local": "cross-env NODE_ENV=local LOGGER_LEVEL=DEBUG nodemon --ignore 'app/tests' --inspect app/server.js",
     "start:prod": "npm run start:fake_prod",
     "start:fake_prod": "cross-env NODE_ENV=production LOGGER_LEVEL=DEBUG node --inspect app/server.js"
   },
@@ -33,9 +34,12 @@
   "homepage": "https://github.com/Eastern-Research-Group/lew",
   "devDependencies": {
     "browser-sync": "^2.26.3",
+    "chai": "^4.2.0",
     "http-server": "0.11.1",
     "husky": "1.2.0",
     "lint-staged": "8.1.0",
+    "mocha": "^6.0.2",
+    "node-mocks-http": "^1.7.3",
     "nodemon": "^1.18.10",
     "prettier": "1.14.2"
   },
