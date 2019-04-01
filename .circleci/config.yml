@@ -11,6 +11,9 @@ jobs:
     steps:
       - checkout
       - run: 
+          name: Run node based tests
+          command: npm test
+      - run: 
           name: Install Sonarqube scanner
           command: |
             wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492-linux.zip
@@ -58,6 +61,9 @@ jobs:
       CF_SPACE: owtbx-staging
     steps:
       - checkout
+      - run: 
+          name: Run node based tests
+          command: npm test
       - run:
           name: Setup Cloud Foundry CLI
           command: |

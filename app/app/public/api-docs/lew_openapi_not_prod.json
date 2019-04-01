@@ -1,0 +1,154 @@
+{
+  "openapi": "3.0.0",
+  "servers": [
+    {
+      "description": "US Environmental Protection Agency",
+      "url": "https://api.epa.gov/lew"
+    },
+    {
+      "description": "Development",
+      "url": "https://lew-dev.app.cloud.gov"
+    },
+    {
+      "description": "Cooper",
+      "url": " http://localhost:9091"
+    }
+  ],
+  "info": {
+    "description": "Use this web service to calculate a rainfall erosivity factor (R factor) for small construction sites based on the construction start date, end date and location.\n  \n  If the small construction project is located in an area where EPA is the permitting authority and the R factor is less than five, then under EPA's stormwater regulation, NPDES permitting requirements can be waived for the stormwater discharges from the construction site. \n",
+    "version": "1.0.0",
+    "title": "EPA Low Erosivity Waiver Erosion Factor Calculator",
+    "termsOfService": "https://edg.epa.gov/EPA_Data_License.html",
+    "contact": {
+      "email": "cgp@epa.gov"
+    },
+    "license": {
+      "name": "Creative Commons Zero Public Domain Dedication",
+      "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  },
+  "paths": {
+    "/v1/rfactor": {
+      "get": {
+        "tags": ["Rainfall Erosivity"],
+        "summary": "Determine your eligibility for the LEW",
+        "description": "Calculates a rainfall erosivity factor (R factor) based on a small construction site’s start date, end date and location.",
+        "operationId": "calculateRFactorGet",
+        "parameters": [
+          {
+            "name": "start_date",
+            "in": "query",
+            "description": "Date of initial earth disturbance provided in ISO 8601 format",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "2019-01-15"
+            }
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "description": "Date of final stabilization provided in ISO 8601 format",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "2019-03-13"
+            }
+          },
+          {
+            "name": "location",
+            "in": "query",
+            "description": "Location to be examined for LEW eligibility provided as a GeoJSON point geometry",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "{\"geometry\":{\"type\":\"Point\",\"coordinates\":[-87.845556,42.582222]}}"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Api-Key",
+            "description": "Default api.epa.gov user key for access to EPA resources",
+            "schema": {
+              "type": "string",
+              "default": "yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RFactorOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about LEW eligibility and exceptions.",
+    "url": "https://www.epa.gov/npdes/rainfall-erosivity-factor-calculator-small-construction-sites"
+  },
+  "components": {
+    "schemas": {
+      "RFactorInput": {
+        "type": "object",
+        "title": "RFactor Input",
+        "properties": {
+          "start_date": {
+            "type": "string",
+            "example": "2019-01-15"
+          },
+          "end_date": {
+            "type": "string",
+            "example": "2019-03-13"
+          },
+          "location": {
+            "type": "object",
+            "title": "GeoJSON Point",
+            "properties": {
+              "geometry": {
+                "type": "object",
+                "title": "GeoJSON Point",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "Point"
+                  },
+                  "coordinates": {
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "example": [-87.845556, 42.582222]
+                  }
+                },
+                "required": ["type", "coordinates"]
+              }
+            },
+            "required": ["geometry"]
+          }
+        },
+        "required": ["startDate", "endDate", "location"]
+      },
+      "RFactorOutput": {
+        "type": "object",
+        "title": "RFactor Output",
+        "properties": {
+          "rfactor": {
+            "type": "number",
+            "format": "double",
+            "example": 0.476
+          }
+        },
+        "required": ["factor"]
+      }
+    }
+  }
+}

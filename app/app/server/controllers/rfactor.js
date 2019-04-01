@@ -32,16 +32,41 @@ module.exports.calculateRFactor = async (req, res) => {
   var location = null;
 
   /********************************************************* 
+    Check the existence and then validate api_key
+  *********************************************************/
+  var err_json = null;
+  if (
+    req.query.api_key === undefined &&
+    req.header('x-api-key') === undefined
+  ) {
+    err_json = { error_id: 1, error_msg: 'Missing API Key parameter' };
+    log.warn(err_json);
+  } else {
+    api_key = null;
+    if (req.query.api_key !== undefined) {
+      api_key = req.query.api_key;
+    } else if (req.header('x-api-key') !== undefined) {
+      api_key = req.header('x-api-key');
+    }
+    log.debug('API Key = ' + api_key);
+  }
+
+  if (err_json != null) {
+    res.status(400).json(err_json);
+    return;
+  }
+
+  /********************************************************* 
     Check the existence and then validate start date
   *********************************************************/
   var err_json = null;
   if (req.query.start_date === undefined) {
-    err_json = { error_id: 1, error_msg: 'Missing start date parameter' };
+    err_json = { error_id: 20, error_msg: 'Missing start date parameter' };
     log.warn(err_json);
   } else {
     start_date = new Date(req.query.start_date);
     if (start_date.isValid() == false) {
-      err_json = { error_id: 2, error_msg: 'Invalid start date parameter' };
+      err_json = { error_id: 21, error_msg: 'Invalid start date parameter' };
       log.warn(err_json);
     }
   }
@@ -65,12 +90,12 @@ module.exports.calculateRFactor = async (req, res) => {
   *********************************************************/
   err_json = null;
   if (req.query.end_date === undefined) {
-    err_json = { error_id: 3, error_msg: 'Missing end date parameter' };
+    err_json = { error_id: 30, error_msg: 'Missing end date parameter' };
     log.warn(err_json);
   } else {
     end_date = new Date(req.query.end_date);
     if (end_date.isValid() == false) {
-      err_json = { error_id: 4, error_msg: 'Invalid end date parameter' };
+      err_json = { error_id: 31, error_msg: 'Invalid end date parameter' };
       log.warn(err_json);
     }
   }
@@ -89,17 +114,35 @@ module.exports.calculateRFactor = async (req, res) => {
   log.debug('end_date = ' + end_date);
 
   /********************************************************* 
+    Start date must be before End date
+  *********************************************************/
+  err_json = null;
+  if (start_date > end_date) {
+    err_json = {
+      error_id: 35,
+      error_msg: 'Start date must occur before end date'
+    };
+    log.warn(err_json);
+  }
+
+  if (err_json != null) {
+    res.status(400).json(err_json);
+    return;
+  }
+  log.debug(err_json);
+
+  /********************************************************* 
     GeoJSON validation
   *********************************************************/
   err_json = null;
   if (req.query.location === undefined) {
-    err_json = { error_id: 5, error_msg: 'Missing location parameter' };
+    err_json = { error_id: 40, error_msg: 'Missing location parameter' };
     log.warn(err_json);
   } else {
     try {
       location = JSON.parse(req.query.location);
     } catch (err) {
-      err_json = { error_id: 6, error_msg: 'Invalid location parameter' };
+      err_json = { error_id: 41, error_msg: 'Invalid location parameter' };
       log.warn(err_json);
     }
 
@@ -110,7 +153,7 @@ module.exports.calculateRFactor = async (req, res) => {
         location.geometry.coordinates == null ||
         location.geometry.coordinates.length != 2)
     ) {
-      err_json = { error_id: 7, error_msg: 'Invalid location parameter' };
+      err_json = { error_id: 42, error_msg: 'Invalid location parameter' };
       log.warn(err_json);
     }
   }
@@ -173,13 +216,6 @@ module.exports.calculateRFactor = async (req, res) => {
   var lon = location.geometry.coordinates[0];
   var lat = location.geometry.coordinates[1];
 
-  /*
-  var url = await getCountyURL(lon, lat);
-  var EI_DAILY_AMOUNT = await getClimateDataForCounty(url);
-  var rFactor = calculateRFactor(EI_DAILY_AMOUNT, setYear, dayIndex);
-  sendResponse(rFactor, res);
-  */
-
   try {
     await new Promise(function(resolve, reject) {
       resolve();
@@ -192,9 +228,9 @@ module.exports.calculateRFactor = async (req, res) => {
       dayIndex
     );
     return await sendResponse(rFactor_1, res);
-  } catch (err_1) {
-    log.error(err_1);
-    res.send(err_1);
+  } catch (err) {
+    log.error(err);
+    res.send(err);
   }
 };
 
@@ -233,7 +269,7 @@ function getCountyURL(lon, lat) {
       function(err, res, body) {
         if (err) {
           var err_json = {
-            error_id: 8,
+            error_id: 60,
             error_msg: 'Error retrieving county URL'
           };
           log.error(err_json + ' postData = ' + postData);
@@ -242,7 +278,7 @@ function getCountyURL(lon, lat) {
         } else {
           if (res.statusCode != 200) {
             var err_json = {
-              error_id: 9,
+              error_id: 61,
               error_msg: 'Error calling RUSLE web service'
             };
             log.error(err_json + ' statusCode = ' + res.statusCode);
@@ -255,7 +291,7 @@ function getCountyURL(lon, lat) {
             results = JSON.parse(body).result;
           } catch (err) {
             var err_json = {
-              error_id: 10,
+              error_id: 62,
               error_msg: 'Error parsiing results of county data'
             };
             log.error(err_json + err.toString() + '  postData = ' + postData);
@@ -265,7 +301,7 @@ function getCountyURL(lon, lat) {
 
           if (results == null) {
             var err_json = {
-              error_id: 11,
+              error_id: 63,
               error_msg:
                 'Error retrieving county URL information from the results array.'
             };
@@ -287,7 +323,7 @@ function getCountyURL(lon, lat) {
             }
           }
           var err_json = {
-            error_id: 12,
+            error_id: 64,
             error_msg: 'Error retrieving county URL'
           };
           log.error(err_json);
@@ -314,7 +350,7 @@ function getClimateDataForCounty(countyURL) {
       function(err, res, body) {
         if (err) {
           var err_json = {
-            error_id: 13,
+            error_id: 70,
             error_msg: 'Error retrieving county level data.'
           };
           log.error(
@@ -337,7 +373,7 @@ function getClimateDataForCounty(countyURL) {
           }
 
           var err_json = {
-            error_id: 14,
+            error_id: 71,
             error_msg: 'Climate attribute not found.'
           };
           log.error(err_json + ' The countyURL = ' + countyURL);
@@ -359,7 +395,7 @@ function calculateRFactor(EI_DAILY_AMOUNT, setYear, dayIndex) {
 
     if (EI_DAILY_AMOUNT == null) {
       var err_json = {
-        error_id: 14,
+        error_id: 80,
         error_msg: '15: Internal Web Service Error. [EI_DAILY_AMOUNT is empty]'
       };
       log.error(err_json);
