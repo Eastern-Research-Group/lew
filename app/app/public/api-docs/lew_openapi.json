@@ -28,7 +28,7 @@
     }
   },
   "paths": {
-    "/rfactor": {
+    "/v1/rfactor": {
       "get": {
         "tags": ["Rainfall Erosivity"],
         "summary": "Determine your eligibility for the LEW",
@@ -62,7 +62,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "example": "{\"geometry\":{\"type\":\"Point\",\"coordinates\":[-87.845556,42.582222]}} "
+              "example": "{\"geometry\":{\"type\":\"Point\",\"coordinates\":[-87.845556,42.582222]}}"
             }
           },
           {

@@ -68,6 +68,17 @@ app.options('*', cors());
 ****************************************************************/
 require('./server/routes/index')(app);
 
+/****************************************************************
+ Worse case error handling for 404 and 500 issues
+****************************************************************/
+app.use(function(req, res, next) {
+  res.sendFile(path.join(__dirname, 'public', '404.html'));
+});
+
+app.use(function(err, req, res, next) {
+  res.sendFile(path.join(__dirname, 'public', '500.html'));
+});
+
 //For local testing of the production flow, use the same port as browersync to avoid
 //different port usage to confuse testers/developers
 if (port === 9090 && isLocal === false) {
@@ -91,17 +102,3 @@ app.listen(port, function() {
     log.info(`Application listening on port ${port}`);
   }
 });
-
-/****************************************************************
- Worse case error handling for 404 and 500 issues
-****************************************************************/
-
-/*
-app.use(function(req, res, next) {
-  res.sendFile(path.join(__dirname, 'public', '404.html'));
-});
-
-app.use(function(err, req, res, next) {
-  res.sendFile(path.join(__dirname, 'public', '500.html'));
-});
-*/
