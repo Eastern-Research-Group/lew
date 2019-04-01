@@ -120,16 +120,39 @@ tr {
   width: 200px;
 }
 
+.fa {
+  box-sizing: content-box;
+  padding: 15px;
+  font-size: 20px;
+  width: 20px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  border-radius: 50%;
+}
+
+.fa:hover {
+  opacity: 0.8;
+  color: white;
+  text-decoration: none;
+}
+
+.fa-facebook {
+  background: #3b5998;
+  color: white;
+}
+
 .fa-twitter {
   background: #55acee;
   color: white;
 }
 
-.fa {
-  padding: 20px;
-  font-size: 30px;
-  width: 70px;
-  border-radius: 50%;
-  text-decoration: none;
-  margin: 5px 2px;
+.fa-pinterest {
+  background: #cb2027;
+  color: white;
+}
+
+.fa-envelope {
+  background: #494545;
+  color: white;
 }
