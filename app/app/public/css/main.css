@@ -61,6 +61,12 @@ form {
 #viewDiv {
   padding: 0;
   margin: 0;
+  height: 5px;
+  width: 100%;
+}
+#testing {
+  padding: 0;
+  margin: 0;
   height: 500px;
   width: 100%;
 }
@@ -73,10 +79,17 @@ form {
   display: none;
 }
 
+.form-text {
+  margin-top: 0;
+}
+
+#conclusion {
+  padding-bottom: 1%;
+}
 #eContainer {
-  background-color: lightblue;
-  padding-bottom: 3%;
-  padding-top: 1%;
+  background-color: #e4fbff;
+  padding-bottom: 5%;
+  padding-top: 4%;
 }
 tr {
   background-color: white;
@@ -93,8 +106,9 @@ tr {
 #note {
   padding-left: 1%;
   padding-bottom: 1%;
+  margin-bottom: 1%;
   font-weight: 400;
-  background-color: #d2d8e0;
+  background-color: #eff0f2;
 }
 
 #startdatepicker {
@@ -120,9 +134,30 @@ tr {
   width: 200px;
 }
 
+#h3Facility {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Roboto, Arial,
+    sans-serif;
+  font-size: 140%;
+}
+#h3Results {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Roboto, Arial,
+    sans-serif;
+  font-size: 140%;
+}
+
+#tableEI {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Roboto, Arial,
+    sans-serif;
+  font-size: 110%;
+  font-weight: 400;
+}
+#contactlink {
+  color: #0071bc;
+}
+
 .fa {
   box-sizing: content-box;
-  padding: 15px;
+  padding: 4px;
   font-size: 20px;
   width: 20px;
   text-align: center;
@@ -134,25 +169,88 @@ tr {
 .fa:hover {
   opacity: 0.8;
   color: white;
+  background: #0071bc;
   text-decoration: none;
 }
 
 .fa-facebook {
-  background: #3b5998;
-  color: white;
+  background: white;
+  color: #0071bc;
+  border: 1px solid #0071bc;
 }
 
 .fa-twitter {
-  background: #55acee;
-  color: white;
+  background: white;
+  color: #0071bc;
+  border: 1px solid #0071bc;
 }
 
 .fa-pinterest {
-  background: #cb2027;
-  color: white;
+  background: white;
+  color: #0071bc;
+  border: 1px solid #0071bc;
 }
 
 .fa-envelope {
-  background: #494545;
-  color: white;
+  background: white;
+  color: #0071bc;
+  border: 1px solid #0071bc;
+}
+
+.fa:visited {
+  color: #0071bc;
+}
+
+.connect-title__link {
+  margin-left: 35%;
+}
+
+.connecting {
+  text-align: right;
+}
+.headrow {
+  margin-top: 2%;
+}
+
+@media only screen and (max-width: 700px) {
+  .menu-link {
+    display: none;
+  }
+  .menu-item {
+    display: none;
+  }
+  .fa {
+    display: none;
+  }
+  #sharing {
+    display: none;
+  }
+
+  .connect-title__link {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  #mapViewButton {
+    margin-top: 5%;
+    margin-left: 25%;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  #mapViewButton {
+    margin-top: 5%;
+    margin-left: 5%;
+  }
+}
+
+@media only screen and (max-width: 568px) {
+  #startdatepicker {
+    margin-right: 25%;
+  }
+
+  #rButton {
+    margin-left: 9%;
+  }
 }

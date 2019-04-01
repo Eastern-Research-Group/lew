@@ -103,30 +103,37 @@
 	</div>
 	
 <section id="main-content" class="main-content clearfix" role="main"><!--lang="en"-->
-  
-  
-	<h2 class="microsite-name">National Pollutant Discharge Elimination System (NPDES)</h2> 
-
-	<div class="region-preface clearfix">
+<div class="row headrow">
+<div class="col-8">
+	<h2 id="minititle">National Pollutant Discharge Elimination System (NPDES)</h2> 
+</div>
+<div class="col-4 connecting">
  
 
-	<div id="block-pane-epa-web-area-connect" class="block block-pane  block-pane-epa-web-area-connect">
 
-		<span class="connect-title"><a href="https://epa.gov/report-environment/forms/contact-us-about-report-environment" class="connect-title__link">Contact Us</a></span>  
+<a id="contactlink" href="https://epa.gov/report-environment/forms/contact-us-about-report-environment" class="connect-title__link">CONTACT US</a>
+			<ul class="share-links">
+				<span id="sharing">SHARE</span>
+					<a href="https://www.facebook.com/sharer.php?u=https://www.epa.gov/npdes/rainfall-erosivity-factor-calculator-small-construction-sites&t=Rainfall%20Erosivity%20Factor%20Calculator%20for%20%20Small%20Construction%20Sites" target="_blank" rel="noopener norefferer" class="fa fa-facebook"  title="Share this page on Facebook" aria-hidden="true"></a>
+					<a href="https://twitter.com/intent/tweet?original_referer=https://www.epa.gov/npdes/rainfall-erosivity-factor-calculator-small-construction-sites&text=Rainfall%20Erosivity%20Factor%20Calculator%20for%20%20Small%20Construction%20Sites&url=https://www.epa.gov/npdes/rainfall-erosivity-factor-calculator-small-construction-sites&via=EPA&count=none&lang=en" title="Tweet this page" target="_blank" rel="noopener norefferer" class="fa fa-twitter" aria-hidden="true"></a>
+					<a href="https://pinterest.com/pin/create/button/?url=https://www.epa.gov/npdes/rainfall-erosivity-factor-calculator-small-construction-sites&description=Rainfall%20Erosivity%20Factor%20Calculator%20for%20%20Small%20Construction%20Sites&media=https://www.epa.gov/sites/all/themes/epa/img/epa-seal.png" target="_blank" rel="noopener norefferer" title="Pin this page" class="fa fa-pinterest" aria-hidden="true" ></a>
+					<a href="mailto:%20?subject=Shared%20from%20the%20US%20EPA:%20Rainfall%20Erosivity%20Factor%20Calculator%20for%20%20Small%20Construction%20Sites&body=Rainfall%20Erosivity%20Factor%20Calculator%20for%20%20Small%20Construction%20Sites%20-%20https://www.epa.gov/npdes/rainfall-erosivity-factor-calculator-small-construction-sites" target="_blank" rel="noopener norefferer" class="fa fa-envelope"  aria-label="Email this page"></a>
+			</ul>
+
 	</div>
-	<div id="block-pane-social-sharing" class="block block-pane  block-pane-social-sharing">
 
-			<span class="connect-title">Share</span>
-		<ul class="share-links">
-				<a href="#" class="fa fa-facebook"></a>
-				<a href="#" class="fa fa-twitter"></a>
-				<a href="#" class="fa fa-pinterest"></a>
-				<a href="#" class="fa fa-envelope"></a>
-		</ul>
-		</div>
-</div>
+
+
+	
 
 </div>
+
+
+
+
+
+
+
     <div class="main-column clearfix">
 			
       <!--googleon:all-->
@@ -136,7 +143,7 @@
           </div>
 				</div>
 				<div class="row">
-					<div class="col-3">
+					<div class="col-xs-1 col-sm-3">
 						<div class="region-sidebar-first region-sidebar">  <div id="block-og-menu-og-single-menu-block" class="block block-og-menu  block-og-menu-og-single-menu-block">
 
 							<h2 class="element-invisible">National Pollutant Discharge Elimination System (NPDES)</h2>
@@ -160,7 +167,7 @@
 				</div>
 					</div>
 					</div>
-					<div class="col-9">
+					<div class="col-xs-11 col-sm-9">
 						<h1 class="page-title NPDESTitle">Rainfall Erosivity Factor Calculator for  Small Construction Sites</h1>
 
 <div class="panel-pane pane-node-content" >
@@ -198,14 +205,14 @@
 </div>
 
 						<form action="">
-							Start Date: <input type="text" id="startdatepicker" value="MM/DD/YYYY"> End Date: <input type="text" id="enddatepicker" value="MM/DD/YYYY"><br>
-							<p id="note"> NOTE: If your construction project extends beyond the estimated end date, you will need to either recalculate the R factor based on a new end date, or apply for NPDES permit coverage. </p>
+								<p id="note"><span style="font-weight: bold"> NOTE: </span>Select the start and end dates by clicking the boxes and using the dropdown calendar </p>
+							Start Date: <input type="text" readonly id="startdatepicker" value="MM-DD-YYYY"> End Date: <input readyonly type="text" id="enddatepicker" value="MM-DD-YYYY"><br>
+							<p id="note"><span style="font-weight: bold"> NOTE: </span>If your construction project extends beyond the estimated end date, you will need to either recalculate the R factor based on a new end date, or apply for NPDES permit coverage. </p>
 							Location: <input type="text" id='location' value='Enter Address'><input id="mapViewButton" value="View on map" type="button" onclick="makeMap();" />
 
 							
 		
-									<div id="viewDiv"></div>
-		
+									<div class="viewDiv" id="viewDiv"></div>
 		
 		
 		
@@ -220,28 +227,32 @@
 				
 				</div>
 				<div class="row">
-					<div class="col-3">
+					<div class="col-xs-2 col-sm-3">
 
 					</div>
 					<div class="col-9">
 						<div class="container" id="eContainer">
-							<h3 id="tableEI"> Erosivity Index:</h3>
+							<h3 id="h3Facility"> Facility Information </h3>
 							<table class="table table-bordered">
-									<tbody>
-										<tr>
-											<td id="tableStart">Start Date: </td>
-											<td id="tableEnd">End Date: </td>
-
-										</tr>
-										<tr>
-											<td id="tableLatitude">Latitude: </td>
-											<td id="tableLongitude">Longitude</td>
-
-										</tr>
-
-									</tbody>
-								</table>
+								<tbody>
+									<tr>
+										<td id="tableStart" style="font-weight: bold">Start Date:  <span id="tableStartSpan" style="font-weight: normal"></span> </td>
+										<td id="tableLatitude" style="font-weight: bold">Latitude:  <span id="tableLatitudeSpan" style="font-weight: normal"></span> </td>
+										
+									</tr>
+									<tr>
+											<td id="tableEnd" style="font-weight: bold">End Date:  <span id="tableEndSpan" style="font-weight: normal"></span></td>
+										<td id="tableLongitude" style="font-weight: bold">Longitude: <span id="tableLongitudeSpan" style="font-weight: normal"></span></td>
+										
+									</tr>
+									
+								</tbody>
+							</table>
+							<h3 id="h3Results"> Calculation Results </h3>
+							<h5 id="tableEI"> Rainfall erosivity factor (R Factor) = <span id="eiValue" style="color:red; font-weight: bold"> </span></h5>
 								<p id="conclusion"></p>
+								<p id="conclusion2" style="font-weight: bold"></p>
+
 						</div>
 					</div>
 				</div>
@@ -325,6 +336,8 @@
     </footer>
     
 	<script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+	
+
 <script>
     var picker = new Pikaday({ field: document.getElementById('startdatepicker'), format: 'DD/MM/YYYY', toString(date, format) {
 			var day = date.getDate();
@@ -371,35 +384,51 @@
 </script>
 
 <script src="https://js.arcgis.com/4.10/"></script>
+
+
+
+
+
+
+
+
+
 <script>
 function getRFactor() {
 
 	var startDate = $('#startdatepicker').val();
 	var endDate = $('#enddatepicker').val();
 	var coordx = document.getElementById('longitude').innerHTML;
+	var coordxnum = parseFloat(coordx);
+	var coordxfixed = coordxnum.toFixed(4);
 	var coordy = document.getElementById('latitude').innerHTML;
+	var coordynum = parseFloat(coordy);
+	var coordyfixed = coordynum.toFixed(4);
 	var coordinates = [coordx, coordy];
 	var locationz = 'location={"geometry":{"type":"Point","coordinates":['+coordx+','+coordy+']}}'
 
-	var webservice = 'https://api.epa.gov/lew/rfactor?start_date='+startDate+'&end_date='+endDate+'&location={"geometry":{"type":"Point","coordinates":['+coordx+','+coordy+']}}&api_key=yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5'
+	var webservice = 'https://api.epa.gov/lew/v1/rfactor?start_date='+startDate+'&end_date='+endDate+'&location={"geometry":{"type":"Point","coordinates":['+coordx+','+coordy+']}}&api_key=yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5'
 
 
 	$.getJSON(webservice, function(data) {
-		$('#tableEI').html('Erosivity Index:' + data.rfactor.toString());
-		$('#tableEnd').html('End Date:' + endDate);
-		$('#tableStart').html('Start Date: '+ startDate);
-		$('#tableLatitude').html("Latitude: " + coordx);
-		$('#tableLongitude').html("Longitude: "+coordy);
+		$('#eiValue').html(data.rfactor.toString());
+		$('#tableEndSpan').html(endDate);
+		$('#tableStartSpan').html(startDate);
+		$('#tableLatitudeSpan').html(coordxfixed);
+		$('#tableLongitudeSpan').html(coordyfixed);
 		if (data.rfactor > 5) {
-			$('#conclusion').html('A rainfall erosivity factor of 5.0 or greater has been calculated for your site and period of construction. You do NOT qualify for a waiver from NPDES permitting requirements.');
+			$('#conclusion').html("A rainfall erosivity factor of 5.0 or greater has been calculated for your site's period of construction.");
+			$('#conclusion2').html('You do NOT qualify for a waiver from NPDES permitting requirements.');
 		}
 });
 }
 
 </script>
+
 <script>
 	async function makeMap() {
 		function getCoords() {
+			
   			var location = $("#location").val();
 
   			var ws =
@@ -422,10 +451,13 @@ function getRFactor() {
 				require([
 						"esri/Map",
 						"esri/views/MapView",
-						"esri/Graphic"
+						"esri/Graphic",
+						'esri/layers/FeatureLayer'
 
 					],
-				function(Map, MapView, Graphic) {
+				function(Map, MapView, Graphic, FeatureLayer) {
+					document.getElementById("viewDiv").style.height = "500px";
+
 						var centerx = document.getElementById('longitude').innerHTML;
 					
 						var centery = document.getElementById('latitude').innerHTML;
@@ -434,7 +466,6 @@ function getRFactor() {
 						var map = new Map({
 							basemap: "topo"
 						});
-
 						// Create the MapView and reference the Map in the instance
 						var view = new MapView({
 							container: "viewDiv",
@@ -465,10 +496,11 @@ function getRFactor() {
 						symbol: markerSymbol
 						});
 
-
+						
 					// Add the graphics to the view's graphics layer
 						view.graphics.addMany([pointGraphic]);
 						});
+						
 					}
   </script>
 </body>
