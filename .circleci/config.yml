@@ -3,7 +3,7 @@ jobs:
   develop-branch:
     working_directory: ~/project/app # directory where steps will run
     docker:
-      - image: circleci/node:7.10
+      - image: circleci/node:dubnium-stretch
     environment:
       APP_NAME: lew-dev
       APP_DOMAIN: app.cloud.gov
