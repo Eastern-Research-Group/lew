@@ -10,9 +10,8 @@ jobs:
       CF_ORG: epa-surface-water
       CF_SPACE: owtbx-dev
     steps:
-      - checkout
-          paths:
-            - ~/project
+      - checkout:
+          path: ~/project
       - run:
           name: update-npm
           command: 'sudo npm install -g npm@latest'
