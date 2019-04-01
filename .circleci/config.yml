@@ -1,6 +1,7 @@
 version: 2
 jobs:
   develop-branch:
+    working_directory: ~/project/app # directory where steps will run
     docker:
       - image: circleci/node:7.10
     environment:
@@ -10,7 +11,8 @@ jobs:
       CF_SPACE: owtbx-dev
     steps:
       - checkout
-      - working_directory: ~/project/app # directory where steps will run
+          paths:
+            - ~/project
       - run:
           name: update-npm
           command: 'sudo npm install -g npm@latest'
