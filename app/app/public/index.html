@@ -48,7 +48,7 @@
 @import url("https://www.epa.gov/sites/all/themes/epa/css/design.min.css");
 
 </style>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 </head>
 <body class="html">
   <!-- Google Tag Manager -->
@@ -206,7 +206,7 @@
 
 						<form action="">
 								<p id="note"><span style="font-weight: bold"> NOTE: </span>Select the start and end dates by clicking the boxes and using the dropdown calendar </p>
-							Start Date: <input type="text" readonly id="startdatepicker" placeholder="YYYY-MM-DD"><br id="responsivebr"> End Date: <input readonly type="text" id="enddatepicker" placeholder="YYYY-MM-DD"><br>
+							Start Date: <input type="date" id="startdatepicker" placeholder="YYYY-MM-DD"><br id="responsivebr"> End Date: <input type="date" id="enddatepicker" placeholder="YYYY-MM-DD"><br>
 							<p id="note"><span style="font-weight: bold"> NOTE: </span>If your construction project extends beyond the estimated end date, you will need to either recalculate the R factor based on a new end date, or apply for NPDES permit coverage. </p>
 							Location: <input type="text" id='location' placeholder='Enter Address'><input id="mapViewButton" value="View on map" type="button" onclick="makeMap();" />
 
@@ -222,7 +222,6 @@
 							<input id="rButton" value="Determine R Factor" type="button" onclick="getRFactor();" />
 						</form>
 
-                        <!-- <div id="viewDiv" style="height: 600px; width: 500px; margin-bottom: 300px"></div> -->
 					</div>
 				
 				</div>
@@ -334,64 +333,24 @@
 			</div>
         </div>
     </footer>
-    
-	<script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+		<script type="text/javascript">
+			$(function(){
+					if(!Modernizr.inputtypes.date) {
+							console.log("The 'date' input type is not supported, so using JQueryUI datepicker instead.");
+							$("#startdatepicker").datepicker();
+					}
+			});
+	</script>
+			<script type="text/javascript">
+				$(function(){
+						if(!Modernizr.inputtypes.date) {
+								console.log("The 'date' input type is not supported, so using JQueryUI datepicker instead.");
+								$("#enddatepicker").datepicker();
+						}
+				});
+		</script>
 	
-
-<script>
-    var picker = new Pikaday({ field: document.getElementById('startdatepicker'), format: 'DD/MM/YYYY', toString(date, format) {
-			var day = date.getDate();
-			if (day < 10) {
-				day='0'+day;
-			}
-			var month = date.getMonth()+1;
-			if (month < 10) {
-				month='0'+month;
-			}
-			const year = date.getFullYear();
-			return `${year}-${month}-${day}`;
-		},
-			parse(dateString, format) {
-				const parts = dateString.split('/');
-				const day = parseInt(parts[0], 10);
-				const month = parseInt(parts[1],10)-1;
-				const year = parseInt(parts[2], 10);
-				return new Date(year+'-'+month+'-'+day);
-			} });
-
-</script>
-<script>
-    var picker = new Pikaday({ field: document.getElementById('enddatepicker'), format: 'DD/MM/YYYY', toString(date, format) {
-			var day = date.getDate();
-			if (day < 10) {
-				day='0'+day;
-			}
-			var month = date.getMonth()+1;
-			if (month < 10) {
-				month='0'+month;
-			}
-			const year = date.getFullYear();
-			return `${year}-${month}-${day}`;
-		},
-			parse(dateString, format) {
-				const parts = dateString.split('/');
-				const day = parseInt(parts[0], 10);
-				const month = parseInt(parts[1],10)-1;
-				const year = parseInt(parts[2], 10);
-				return new Date(year+'-'+month+'-'+day);
-			}
-		 });
-</script>
-
 <script src="https://js.arcgis.com/4.10/"></script>
-
-
-
-
-
-
-
-
 
 <script>
 function getRFactor() {
@@ -406,12 +365,15 @@ function getRFactor() {
 	var coordyfixed = coordynum.toFixed(4);
 	var coordinates = [coordx, coordy];
 	var locationz = 'location={"geometry":{"type":"Point","coordinates":['+coordx+','+coordy+']}}'
+	var webservice = 'localhost:9091/lew/v1/rfactor?start_date='+startDate+'&end_date='+endDate+'&location={"geometry":{"type":"Point","coordinates":['+coordx+','+coordy+']}}&api_key=K20ha4MR1Ddd7sciJQdCZlS5LsudmmtpQeeZ3J7L '
 
-	var webservice = 'https://api.epa.gov/lew/v1/rfactor?start_date='+startDate+'&end_date='+endDate+'&location={"geometry":{"type":"Point","coordinates":['+coordx+','+coordy+']}}&api_key=K20ha4MR1Ddd7sciJQdCZlS5LsudmmtpQeeZ3J7L '
-
-
+	try {
 	$.getJSON(webservice, function(data) {
 		$('#eiValue').html(data.rfactor.toString());
+	}
+	catch(err) {
+		console.log(err);
+	}
 		$('#tableEndSpan').html(endDate);
 		$('#tableStartSpan').html(startDate);
 		$('#tableLatitudeSpan').html(coordxfixed);
