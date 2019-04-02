@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "npm run start_local",
-    "test": "cross-env NODE_ENV=local LOGGER_LEVEL=OFF mocha --timeout 5000 app/tests --recursive",
+    "test": "cross-env NODE_ENV=local LOGGER_LEVEL=OFF mocha --timeout 20000 app/tests --recursive",
     "start_local": "cross-env NODE_ENV=local LOGGER_LEVEL=DEBUG nodemon --ignore 'app/tests' --inspect app/server.js",
     "start:prod": "npm run start:fake_prod",
     "start:fake_prod": "cross-env NODE_ENV=production LOGGER_LEVEL=DEBUG node --inspect app/server.js"

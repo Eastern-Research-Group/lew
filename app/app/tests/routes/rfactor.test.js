@@ -1,26 +1,26 @@
-const assert = require('assert');
-const expect = require('chai').expect;
-const should = require('chai').should();
-const httpMocks = require('node-mocks-http');
+const assert = require("assert");
+const expect = require("chai").expect;
+const should = require("chai").should();
+const httpMocks = require("node-mocks-http");
 
-var chai = require('chai');
+var chai = require("chai");
 
-const rfactorContoller = require('../../server/controllers/rfactor');
+const rfactorContoller = require("../../server/controllers/rfactor");
 
-describe('rFactor controller testing', () => {
+describe("rFactor controller testing", () => {
   /****************************************************
    *
    ****************************************************/
-  it('rFactor valid statusCode and JSON results test', function(done) {
+  it("rFactor valid statusCode and JSON results test", function(done) {
     var request = httpMocks.createRequest({
-      method: 'GET',
-      url: '/',
+      method: "GET",
+      url: "/",
       query: {
-        start_date: '2019-02-21',
-        end_date: '2019-02-28',
+        start_date: "2019-02-21",
+        end_date: "2019-02-28",
         location:
           '{"geometry":{"type":"Point","coordinates":[-87.845556,42.582222]}}',
-        api_key: 'yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5'
+        api_key: "yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5"
       }
     });
 
@@ -30,7 +30,7 @@ describe('rFactor controller testing', () => {
     rtn
       .then(function(result) {
         var data = JSON.parse(response._getData());
-        data.should.have.property('rfactor');
+        data.should.have.property("rfactor");
         data.rfactor.should.eql(0.356);
         done();
       })
@@ -40,13 +40,13 @@ describe('rFactor controller testing', () => {
   /****************************************************
    *
    ****************************************************/
-  it('Missing api-key test', function(done) {
+  it("Missing api-key test", function(done) {
     var request = httpMocks.createRequest({
-      method: 'GET',
-      url: '/',
+      method: "GET",
+      url: "/",
       query: {
-        start_date: '2019-02-21',
-        end_date: '2019-02-28',
+        start_date: "2019-02-21",
+        end_date: "2019-02-28",
         location:
           '{"geometry":{"type":"Point","coordinates":[-87.845556,42.582222]}}'
       }
@@ -61,7 +61,7 @@ describe('rFactor controller testing', () => {
         response.statusCode.should.eql(400);
         data.should.eql({
           error_id: 1,
-          error_msg: 'Missing API Key parameter'
+          error_msg: "Missing API Key parameter"
         });
         done();
       })
@@ -71,15 +71,15 @@ describe('rFactor controller testing', () => {
   /****************************************************
    *
    ****************************************************/
-  it('Missing start_date test', function(done) {
+  it("Missing start_date test", function(done) {
     var request = httpMocks.createRequest({
-      method: 'GET',
-      url: '/',
+      method: "GET",
+      url: "/",
       query: {
-        end_date: '2019-02-28',
+        end_date: "2019-02-28",
         location:
           '{"geometry":{"type":"Point","coordinates":[-87.845556,42.582222]}}',
-        api_key: 'yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5'
+        api_key: "yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5"
       }
     });
 
@@ -92,7 +92,7 @@ describe('rFactor controller testing', () => {
         response.statusCode.should.eql(400);
         data.should.eql({
           error_id: 20,
-          error_msg: 'Missing start date parameter'
+          error_msg: "Missing start date parameter"
         });
         done();
       })
@@ -102,16 +102,16 @@ describe('rFactor controller testing', () => {
   /****************************************************
    *
    ****************************************************/
-  it('Invalid start_date test', function(done) {
+  it("Invalid start_date test", function(done) {
     var request = httpMocks.createRequest({
-      method: 'GET',
-      url: '/',
+      method: "GET",
+      url: "/",
       query: {
-        start_date: 'asdfsafsa',
-        end_date: '2019-02-28',
+        start_date: "asdfsafsa",
+        end_date: "2019-02-28",
         location:
           '{"geometry":{"type":"Point","coordinates":[-87.845556,42.582222]}}',
-        api_key: 'yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5'
+        api_key: "yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5"
       }
     });
 
@@ -124,7 +124,7 @@ describe('rFactor controller testing', () => {
         response.statusCode.should.eql(400);
         data.should.eql({
           error_id: 21,
-          error_msg: 'Invalid start date parameter'
+          error_msg: "Invalid start date parameter"
         });
         done();
       })
@@ -134,15 +134,15 @@ describe('rFactor controller testing', () => {
   /****************************************************
    *
    ****************************************************/
-  it('Missing end_date test', function(done) {
+  it("Missing end_date test", function(done) {
     var request = httpMocks.createRequest({
-      method: 'GET',
-      url: '/',
+      method: "GET",
+      url: "/",
       query: {
-        start_date: '2019-02-21',
+        start_date: "2019-02-21",
         location:
           '{"geometry":{"type":"Point","coordinates":[-87.845556,42.582222]}}',
-        api_key: 'yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5'
+        api_key: "yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5"
       }
     });
 
@@ -155,7 +155,7 @@ describe('rFactor controller testing', () => {
         response.statusCode.should.eql(400);
         data.should.eql({
           error_id: 30,
-          error_msg: 'Missing end date parameter'
+          error_msg: "Missing end date parameter"
         });
         done();
       })
@@ -165,16 +165,16 @@ describe('rFactor controller testing', () => {
   /****************************************************
    *
    ****************************************************/
-  it('Invalid end_date test', function(done) {
+  it("Invalid end_date test", function(done) {
     var request = httpMocks.createRequest({
-      method: 'GET',
-      url: '/',
+      method: "GET",
+      url: "/",
       query: {
-        start_date: '2019-02-21',
-        end_date: 'asdfsdfsa',
+        start_date: "2019-02-21",
+        end_date: "asdfsdfsa",
         location:
           '{"geometry":{"type":"Point","coordinates":[-87.845556,42.582222]}}',
-        api_key: 'yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5'
+        api_key: "yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5"
       }
     });
 
@@ -187,7 +187,7 @@ describe('rFactor controller testing', () => {
         response.statusCode.should.eql(400);
         data.should.eql({
           error_id: 31,
-          error_msg: 'Invalid end date parameter'
+          error_msg: "Invalid end date parameter"
         });
         done();
       })
@@ -197,16 +197,16 @@ describe('rFactor controller testing', () => {
   /****************************************************
    *
    ****************************************************/
-  it('Start date must occur before end date test', function(done) {
+  it("Start date must occur before end date test", function(done) {
     var request = httpMocks.createRequest({
-      method: 'GET',
-      url: '/',
+      method: "GET",
+      url: "/",
       query: {
-        start_date: '2019-02-21',
-        end_date: '2019-02-20',
+        start_date: "2019-02-21",
+        end_date: "2019-02-20",
         location:
           '{"geometry":{"type":"Point","coordinates":[-87.845556,42.582222]}}',
-        api_key: 'yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5'
+        api_key: "yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5"
       }
     });
 
@@ -219,7 +219,7 @@ describe('rFactor controller testing', () => {
         response.statusCode.should.eql(400);
         data.should.eql({
           error_id: 35,
-          error_msg: 'Start date must occur before end date'
+          error_msg: "Start date must occur before end date"
         });
         done();
       })
@@ -229,14 +229,14 @@ describe('rFactor controller testing', () => {
   /****************************************************
    *
    ****************************************************/
-  it('Missing location test', function(done) {
+  it("Missing location test", function(done) {
     var request = httpMocks.createRequest({
-      method: 'GET',
-      url: '/',
+      method: "GET",
+      url: "/",
       query: {
-        start_date: '2019-02-21',
-        end_date: '2019-02-22',
-        api_key: 'yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5'
+        start_date: "2019-02-21",
+        end_date: "2019-02-22",
+        api_key: "yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5"
       }
     });
 
@@ -249,7 +249,7 @@ describe('rFactor controller testing', () => {
         response.statusCode.should.eql(400);
         data.should.eql({
           error_id: 40,
-          error_msg: 'Missing location parameter'
+          error_msg: "Missing location parameter"
         });
         done();
       })
@@ -259,15 +259,15 @@ describe('rFactor controller testing', () => {
   /****************************************************
    *
    ****************************************************/
-  it('Invalid location test', function(done) {
+  it("Invalid location test", function(done) {
     var request = httpMocks.createRequest({
-      method: 'GET',
-      url: '/',
+      method: "GET",
+      url: "/",
       query: {
-        start_date: '2019-02-21',
-        end_date: '2019-02-28',
+        start_date: "2019-02-21",
+        end_date: "2019-02-28",
         location: '{"geometry":{"type":"Po}}',
-        api_key: 'yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5'
+        api_key: "yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5"
       }
     });
 
@@ -280,7 +280,7 @@ describe('rFactor controller testing', () => {
         response.statusCode.should.eql(400);
         data.should.eql({
           error_id: 41,
-          error_msg: 'Invalid location parameter'
+          error_msg: "Invalid location parameter"
         });
         done();
       })
@@ -290,16 +290,16 @@ describe('rFactor controller testing', () => {
   /****************************************************
    *
    ****************************************************/
-  it('Climate information not available for location to calculate rFactor test', function(done) {
+  it("Climate information not available for location to calculate rFactor test", function(done) {
     var request = httpMocks.createRequest({
-      method: 'GET',
-      url: '/',
+      method: "GET",
+      url: "/",
       query: {
-        start_date: '2019-02-21',
-        end_date: '2019-02-28',
+        start_date: "2019-02-21",
+        end_date: "2019-02-28",
         location:
           '{"geometry":{"type":"Point","coordinates":[-14.062500,48.224673]}}',
-        api_key: 'yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5'
+        api_key: "yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5"
       }
     });
 
@@ -312,7 +312,7 @@ describe('rFactor controller testing', () => {
         response.statusCode.should.eql(400);
         data.should.eql({
           error_id: 63,
-          error_msg: 'rFactor information is not available for this location'
+          error_msg: "rFactor information is not available for this location"
         });
         done();
       })
