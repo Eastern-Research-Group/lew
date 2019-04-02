@@ -77,23 +77,38 @@ jobs:
             cf rename $APP_NAME-green $APP_NAME
 
   stage-branch:
+    working_directory: ~/project/app # directory where steps will run
     docker:
-      - image: circleci/node:7.10
+      - image: circleci/node:dubnium-stretch
     environment:
       APP_NAME: lew-stage
       APP_DOMAIN: app.cloud.gov
       CF_ORG: epa-surface-water
       CF_SPACE: owtbx-staging
     steps:
-      - checkout
-      - run: 
-          name: Run node based tests
+      - checkout:
+          path: ~/project
+      - run:
+          name: update-npm
+          command: 'sudo npm install -g npm@latest'
+      - run:
+          name: Check npm version
           command: |
-            cd app
-            npm test
+            npm --version
+      - run:
+          name: Check node version
+          command: |
+            node --version
+      - run:
+          name: install npm
+          command: npm install
+      - run: # run tests
+          name: test
+          command: npm test
       - run:
           name: Setup Cloud Foundry CLI
           command: |
+            cd ..
             curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
             sudo dpkg -i cf-cli_amd64.deb
             cf -v
@@ -103,7 +118,6 @@ jobs:
       - run:
           name: Deploy application to Cloud.gov
           command: |
-            cd app
             cf push --no-start $APP_NAME-green -f manifest-staging.yml -p . -n green
       - run:
           name: Start application on Cloud.gov and clean routes
