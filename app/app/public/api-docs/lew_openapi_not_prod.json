@@ -2,15 +2,15 @@
   "openapi": "3.0.0",
   "servers": [
     {
-      "description": "US Environmental Protection Agency",
-      "url": "https://api.epa.gov/lew"
+      "description": "Staging",
+      "url": "https://api.epa.gov/TEST/lew"
     },
     {
       "description": "Development",
-      "url": "https://lew-dev.app.cloud.gov"
+      "url": "https://api.epa.gov/DEV/lew"
     },
     {
-      "description": "Cooper",
+      "description": "Developer",
       "url": " http://localhost:9091"
     }
   ],
