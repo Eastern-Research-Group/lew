@@ -154,6 +154,9 @@ tr {
 #contactlink {
   color: #0071bc;
 }
+#responsivebr {
+  display: none;
+}
 
 .fa {
   box-sizing: content-box;
@@ -252,5 +255,11 @@ tr {
 
   #rButton {
     margin-left: 9%;
+  }
+}
+
+@media only screen and (max-width: 961px) {
+  #responsivebr {
+    display: inline;
   }
 }
