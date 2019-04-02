@@ -286,4 +286,36 @@ describe('rFactor controller testing', () => {
       })
       .catch(done);
   });
+
+  /****************************************************
+   *
+   ****************************************************/
+  it('Climate information not available for location to calculate rFactor test', function(done) {
+    var request = httpMocks.createRequest({
+      method: 'GET',
+      url: '/',
+      query: {
+        start_date: '2019-02-21',
+        end_date: '2019-02-28',
+        location:
+          '{"geometry":{"type":"Point","coordinates":[-14.062500,48.224673]}}',
+        api_key: 'yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5'
+      }
+    });
+
+    var response = httpMocks.createResponse();
+
+    let rtn = rfactorContoller.calculateRFactor(request, response);
+    rtn
+      .then(function(result) {
+        var data = JSON.parse(response._getData());
+        response.statusCode.should.eql(400);
+        data.should.eql({
+          error_id: 63,
+          error_msg: 'rFactor information is not available for this location'
+        });
+        done();
+      })
+      .catch(done);
+  });
 });

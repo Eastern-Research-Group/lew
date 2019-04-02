@@ -303,9 +303,14 @@ function getCountyURL(lon, lat) {
             var err_json = {
               error_id: 63,
               error_msg:
-                'Error retrieving county URL information from the results array.'
+                'rFactor information is not available for this location'
             };
-            log.error(err_json + err.toString() + '  postData = ' + postData);
+            log.error(
+              err_json +
+                'Error retrieving county URL information from the results array. ' +
+                '  postData = ' +
+                postData
+            );
             reject(err_json);
             return;
           }
