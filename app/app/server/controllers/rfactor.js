@@ -32,23 +32,21 @@ module.exports.calculateRFactor = async (req, res) => {
   var location = null;
 
   /********************************************************* 
-    Check the existence and then validate api_key
+    Check the existence and then validate api_key or X-Api-User-Id
   *********************************************************/
+
   var err_json = null;
   if (
-    req.query.api_key === undefined &&
-    req.header("x-api-key") === undefined
+    req.header("X-Api-User-Id") === undefined &&
+    (req.hostname === "localhost" &&
+      req.query.api_key === undefined &&
+      (req.hostname === "localhost" && req.header("X-Api-Key") === undefined))
   ) {
-    err_json = { error_id: 1, error_msg: "Missing API Key parameter" };
+    err_json = { error_id: 1, error_msg: "Missing API Identifier" };
     log.warn(err_json);
   } else {
-    api_key = null;
-    if (req.query.api_key !== undefined) {
-      api_key = req.query.api_key;
-    } else if (req.header("x-api-key") !== undefined) {
-      api_key = req.header("x-api-key");
-    }
-    log.debug("API Key = " + api_key);
+    var api_user_id = req.header("X-Api-User-Id");
+    log.debug("API User ID = " + api_user_id);
   }
 
   if (err_json != null) {

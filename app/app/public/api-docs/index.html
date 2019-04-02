@@ -66,8 +66,14 @@
     <script>
       window.onload = function() {
         // Begin Swagger UI call region
+        var openapi_file;
+        if (window.location.hostname.toLocaleLowerCase() == "localhost" || window.location.hostname.toLocaleLowerCase() == "lew-dev.app.cloud.gov" || window.location.hostname.toLocaleLowerCase() == "lew-stage.app.cloud.gov") {
+          openapi_file = "lew_openapi_not_prod.json";
+        } else {
+          openapi_file = "lew_openapi.json";
+        }
         const ui = SwaggerUIBundle({
-          url: window.location.protocol + "//" + window.location.host + "/api-docs/lew_openapi.json",
+          url: window.location.protocol + "//" + window.location.host + "/api-docs/" + openapi_file,
           dom_id: '#swagger-ui',
           deepLinking: true,
           presets: [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset],
