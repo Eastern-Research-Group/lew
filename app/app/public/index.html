@@ -149,7 +149,7 @@
 							<h2 class="element-invisible">National Pollutant Discharge Elimination System (NPDES)</h2>
 					
 					
-						<ul class="menu"><li class="menu-item"><a href="/npdes" title="" class="menu-node-unpublished menu-link">NPDES Home</a></li>
+						<!-- <ul class="menu"><li class="menu-item"><a href="/npdes" title="" class="menu-node-unpublished menu-link">NPDES Home</a></li>
 				<li class="menu-item"><a href="https://www.epa.gov/npdes/about-npdes" class="menu-node-unpublished menu-link">About NPDES</a></li>
 				<li class="menu-item"><a href="https://www.epa.gov/npdes/all-npdes-program-areas" class="menu-node-unpublished menu-link">All NPDES Program Areas</a></li>
 				<li class="menu-item"><a href="https://www.epa.gov/npdes/animal-feeding-operations-afos" class="menu-node-unpublished menu-link">Animal Feeding Operations</a></li>
@@ -163,7 +163,7 @@
 				<li class="menu-item"><a href="https://www.epa.gov/npdes/vessels" class="menu-node-unpublished menu-link">Vessels Incidental Discharge Permitting</a></li>
 				<li class="menu-item"><a href="https://www.epa.gov/npdes/water-quality-trading" class="menu-node-unpublished menu-link">Water Quality Trading</a></li>
 				<li class="collapsed menu-item"><a href="https://www.epa.gov/npdes/npdes-technical-resources" class="menu-node-unpublished menu-link">NPDES Technical Resources</a></li>
-				</ul>  
+				</ul>   -->
 				</div>
 					</div>
 					</div>
@@ -206,9 +206,9 @@
 
 						<form action="">
 								<p id="note"><span style="font-weight: bold"> NOTE: </span>Select the start and end dates by clicking the boxes and using the dropdown calendar </p>
-							Start Date: <input type="text" readonly id="startdatepicker" value="YYYY-MM-DD"><br id="responsivebr"> End Date: <input readyonly type="text" id="enddatepicker" value="YYYY-MM-DD"><br>
+							Start Date: <input type="text" readonly id="startdatepicker" placeholder="YYYY-MM-DD"><br id="responsivebr"> End Date: <input readonly type="text" id="enddatepicker" placeholder="YYYY-MM-DD"><br>
 							<p id="note"><span style="font-weight: bold"> NOTE: </span>If your construction project extends beyond the estimated end date, you will need to either recalculate the R factor based on a new end date, or apply for NPDES permit coverage. </p>
-							Location: <input type="text" id='location' value='Enter Address'><input id="mapViewButton" value="View on map" type="button" onclick="makeMap();" />
+							Location: <input type="text" id='location' placeholder='Enter Address'><input id="mapViewButton" value="View on map" type="button" onclick="makeMap();" />
 
 							
 		
@@ -407,7 +407,7 @@ function getRFactor() {
 	var coordinates = [coordx, coordy];
 	var locationz = 'location={"geometry":{"type":"Point","coordinates":['+coordx+','+coordy+']}}'
 
-	var webservice = 'https://api.epa.gov/lew/v1/rfactor?start_date='+startDate+'&end_date='+endDate+'&location={"geometry":{"type":"Point","coordinates":['+coordx+','+coordy+']}}&api_key=yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5'
+	var webservice = 'https://api.epa.gov/lew/v1/rfactor?start_date='+startDate+'&end_date='+endDate+'&location={"geometry":{"type":"Point","coordinates":['+coordx+','+coordy+']}}&api_key=K20ha4MR1Ddd7sciJQdCZlS5LsudmmtpQeeZ3J7L '
 
 
 	$.getJSON(webservice, function(data) {
@@ -421,6 +421,7 @@ function getRFactor() {
 			$('#conclusion2').html('You do NOT qualify for a waiver from NPDES permitting requirements.');
 		}
 });
+	document.getElementById('eContainer').style.display = "block";
 }
 
 </script>
