@@ -6,6 +6,7 @@
   <meta http-equiv="ImageToolbar" content="false" />
   <meta http-equiv="cleartype" content="on" />
   <meta name="HandheldFriendly" content="true" />
+  <link rel="shortcut icon" href="https://www.epa.gov/sites/all/themes/epa/favicon.ico" type="image/vnd.microsoft.icon" />
   <meta name="MobileOptimized" content="width" />
   <meta name="viewport" content="width=device-width" />
   <!--googleon: all-->
@@ -24,14 +25,12 @@
   <meta name="DC.date.reviewed" content="" />
   <meta name="DC.creator" content="" />
 	<title>Standalone Template for Applications | US EPA</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	
-  <link rel="shortcut icon" href="https://www.epa.gov/sites/all/themes/epa/favicon.ico" type="image/vnd.microsoft.icon" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<!--googleoff: all-->
 	<link rel="stylesheet" href="/css/main.css">
 	<link rel="stylesheet" href="https://www.epa.gov/sites/all/libraries/standalone/css/core/style.css" media="all" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
     <link rel="stylesheet" href="https://js.arcgis.com/4.10/esri/css/main.css">
 
@@ -46,9 +45,19 @@
 	
 <style type="text/css" media="all">
 @import url("https://www.epa.gov/sites/all/themes/epa/css/design.min.css");
+@import url("https://www.epa.gov/sites/all/themes/epa/css/typography.min.css");
+@import url("https://www.epa.gov/sites/all/themes/epa/css/drupal.min.css");
+@import url("https://www.epa.gov/sites/all/themes/epa/css/layout.min.css");
+@import url("https://www.epa.gov/sites/all/themes/epa/css/core/contextual.min.css");
+@import url("https://www.epa.gov/sites/all/themes/epa/css/contrib/date.min.css");
+@import url("https://www.epa.gov/sites/all/themes/epa/css/design.min.css");
+@import url("https://www.epa.gov/sites/all/themes/epa/css/mobile-menu.min.css");
+@import url("https://www.epa.gov/sites/all/themes/epa/css/drop-down-menu.min.css");
+@import url("https://www.epa.gov/sites/all/themes/epa/css/flexslider.min.css");
+@import url("https://www.epa.gov/sites/all/themes/epa/css/lib/colorbox.min.css");
+@import url("https://www.epa.gov/sites/all/libraries/js/datatables-1.10.12/datatables.min.css");
 
 </style>
-
 </head>
 <body class="html">
   <!-- Google Tag Manager -->
@@ -116,19 +125,41 @@
 	</div>
 	<div id="block-pane-social-sharing" class="block block-pane  block-pane-social-sharing">
 
-			<span class="connect-title">Share</span>
-		<ul class="share-links">
-				<a href="#" class="fa fa-facebook"></a>
-				<a href="#" class="fa fa-twitter"></a>
-				<a href="#" class="fa fa-pinterest"></a>
-				<a href="#" class="fa fa-envelope"></a>
-		</ul>
-		</div>
+	<span class="connect-title">Share</span>
+<ul class="share-links">
+<li class="share-links__item facebook">
+	<a class="share-links__link" href="https://www.facebook.com/sharer.php?u=https://epa.gov/report-environment" aria-label="Facebook" target="_blank" rel="noopener noreferrer" title="Share this page on Facebook">
+		<svg class="icon icon--social-link" aria-hidden="true">
+			<use xlink:href="./images/small-icons.svg#small-facebook" />
+		</svg>
+	</a>
+</li>
+<li class="share-links__item twitter">
+	<a class="share-links__link" href="https://twitter.com/intent/tweet?original_referer=https://epa.gov/report-environment/&text=Report on the Environment&url=https://epa.gov/report-environment&via=EPA&count=none&lang=en" aria-label="Twitter" target="_blank" rel="noopener noreferrer" title="Tweet this page">
+		<svg class="icon icon--social-link" aria-hidden="true">
+			<use xlink:href="./images/small-icons.svg#small-twitter" />
+		</svg>
+	</a>
+</li>
+<li class="share-links__item pinterest">
+	<a class="share-links__link" href="https://pinterest.com/pin/create/button/?url=https://epa.gov/report-environment&description=Report on the Environment&media=https://www.epa.gov/sites/all/themes/epa/img/epa-seal.png" aria-label="Pinterest" target="_blank" rel="noopener noreferrer" title="Pin this page">
+		<svg class="icon icon--social-link" aria-hidden="true">
+			<use xlink:href="./images/small-icons.svg#small-pinterest" />
+		</svg>
+	</a>
+</li>
+<li class="share-links__item email">
+	<a class="share-links__link" href="mailto:%20?subject=Shared from the US EPA: Report on the Environment&body=Report on the Environment - https://epa.gov/report-environment" aria-label="Email this page">
+		<svg class="icon icon--social-link" aria-hidden="true">
+			<use xlink:href="./images/small-icons.svg#small-email" />
+		</svg>
+	</a>
+</li>
+</ul>
 </div>
 
 </div>
     <div class="main-column clearfix">
-			
       <!--googleon:all-->
       <div class="panel-pane pane-node-content">
         <div class="pane-content">
@@ -137,66 +168,58 @@
 				</div>
 				<div class="row">
 					<div class="col-3">
-						<div class="region-sidebar-first region-sidebar">  <div id="block-og-menu-og-single-menu-block" class="block block-og-menu  block-og-menu-og-single-menu-block">
-
-							<h2 class="element-invisible">National Pollutant Discharge Elimination System (NPDES)</h2>
-					
-					
-						<ul class="menu"><li class="menu-item"><a href="/npdes" title="" class="menu-node-unpublished menu-link">NPDES Home</a></li>
-				<li class="menu-item"><a href="https://www.epa.gov/npdes/about-npdes" class="menu-node-unpublished menu-link">About NPDES</a></li>
-				<li class="menu-item"><a href="https://www.epa.gov/npdes/all-npdes-program-areas" class="menu-node-unpublished menu-link">All NPDES Program Areas</a></li>
-				<li class="menu-item"><a href="https://www.epa.gov/npdes/animal-feeding-operations-afos" class="menu-node-unpublished menu-link">Animal Feeding Operations</a></li>
-				<li class="menu-item"><a href="https://www.epa.gov/npdes/npdes-aquaculture-permitting" class="menu-node-unpublished menu-link">Aquaculture</a></li>
-				<li class="menu-item"><a href="https://www.epa.gov/npdes/forest-roads" class="menu-node-unpublished menu-link">Forest Roads</a></li>
-				<li class="menu-item"><a href="https://www.epa.gov/npdes/industrial-wastewater" class="menu-node-unpublished menu-link">Industrial Wastewater</a></li>
-				<li class="menu-item"><a href="https://www.epa.gov/npdes/municipal-wastewater" class="menu-node-unpublished menu-link">Municipal Wastewater</a></li>
-				<li class="menu-item"><a href="https://www.epa.gov/npdes/national-pretreatment-program" class="menu-node-unpublished menu-link">National Pretreatment Program</a></li>
-				<li class="menu-item"><a href="https://www.epa.gov/npdes/pesticide-permitting" class="menu-node-unpublished menu-link">Pesticide Permitting</a></li>
-				<li class="menu-item"><a href="https://www.epa.gov/npdes/npdes-stormwater-program" class="menu-node-unpublished menu-link">Stormwater</a></li>
-				<li class="menu-item"><a href="https://www.epa.gov/npdes/vessels" class="menu-node-unpublished menu-link">Vessels Incidental Discharge Permitting</a></li>
-				<li class="menu-item"><a href="https://www.epa.gov/npdes/water-quality-trading" class="menu-node-unpublished menu-link">Water Quality Trading</a></li>
-				<li class="collapsed menu-item"><a href="https://www.epa.gov/npdes/npdes-technical-resources" class="menu-node-unpublished menu-link">NPDES Technical Resources</a></li>
-				</ul>  
-				</div>
-					</div>
+						<a href=""> NPDES Home </a>
+						<hr id="hr"/>
+						<a href=""> About NPDES </a>
+						<hr id="hr"/>
+						<a href=""> All NPDES Program Areas </a>
+						<hr id="hr"/>
+						<a href=""> Animal Feeding Operations </a>
+						<hr id="hr"/>
+						<a href=""> Aquaculture </a>
+						<hr id="hr"/>
+						<a href=""> Forest Roads </a>
+						<hr id="hr"/>
+						<a href=""> Industrial Wastewater </a>
+						<hr id="hr"/>
+						<a href=''> Municipal Wastewater </a>
+						<hr id="hr"/>
+						<a href=''> National Pretreatment Program </a>
+						<hr id="hr"/>
+						<a href=''> Pesticide Permitting </a>
+						<hr id="hr"/>
+						<a href=''> Stormwater </a>
+						<hr id="hr"/>
+						<a href=''> Vessels Incidental Discharge Permitting </a>
+						<hr id="hr"/>
+						<a href=''> Water Quality Trading </a>
+						<hr id="hr"/>
+						<a href=''> NPDES Technical Resources </a>
 					</div>
 					<div class="col-9">
-						<h1 class="page-title NPDESTitle">Rainfall Erosivity Factor Calculator for  Small Construction Sites</h1>
+						<h1 class="NPDESTitle"> Rainfall Erosivity Factor Calculator for Small Construction Sites </h1>
+						<p id="bodytext"> EPA's stormwater regulations allow NPDES permitting authorities to waive NPDES permitting requirements for stormwater discharges from small construction sites if: </p>
+							<ul> 
+								<li id="bodytext"> The construction site disturbs less than five acres, and </li>
+								<li id="bodytext"> the rainfall erosivity factor ("R" in the revised universal soil loss equation, or RUSLE) value is less than five during the period of construction activity</li>
+							</ul>
+						<p id="bodytext"> If your small construction project is located in an area where EPA is the permitting authority and your R factor is less than five, you qualify for a low erosivity waiver (LEW) from NPDES stormwater permitting. LEW certifications are submitted
+							through the electronic Notice of Intent (eNOI) system. Several states that are authorized to implement the NPDES permitting program also accept LEWs. Check with your state NPDES permitting authority for more information.
+						</p>
+						<ul>
+							<li><a id="bodylink"  href=''>List of states, Indian country, and territories where EPA's 2012 Construction General Permit (CGP) and Multi-Sector General Permit (MSGP) Apply</a></li>
+							<li><a id="bodylink" href=''>EPA's CGP eNOI System </a></li>
 
-<div class="panel-pane pane-node-content" >
+						</ul>
+						<p id="bodytext"> The period during which small construction sites qualify for the waiver generally occurs during a relatively short time in arid and semi-arid areas. If your small construction project does not qualify for a waiver, then NPDES stormwater permit coverage is required. </p>
 
-  
-  
-  
-  
-  
-  <div class="pane-content">
-    <div class="node node-page clearfix view-mode-full ">
-
-  
-  <p>EPA’s stormwater regulations allow NPDES permitting authorities to waive NPDES permitting requirements for stormwater discharges from small construction sites if:</p>
-
-<ul><li>the construction site disturbs less than five acres, and</li>
-	<li>the rainfall erosivity factor (“R” in the revised universal soil loss equation, or RUSLE) value is less than five during the period of construction activity.</li>
-</ul><p>If your small construction project is located in an area where EPA is the permitting authority and your R factor is less than five, you qualify for a low erosivity waiver (LEW) from NPDES stormwater permitting. LEW certifications are submitted through the electronic Notice of Intent (eNOI) system. Several states that are authorized to implement the NPDES permitting program also accept LEWs. Check with your state NPDES permitting authority for more information.</p>
-
-<ul><li><a href="/npdes/authorization-status-epas-construction-and-industrial-stormwater-programs">List of states, Indian country, and territories where EPA's 2012 Construction General Permit (CGP) and Multi-Sector General Permit (MSGP) Apply</a></li>
-	<li><a href="https://cdxnodengn.epa.gov/oeca-cgp-web/action/login">EPA’s CGP eNOI System</a></li>
-</ul><p>The period during which small construction sites qualify for the waiver generally occurs during a relatively short time in arid and semi-arid areas. If your small construction project does not qualify for a waiver, then NPDES stormwater permit coverage is required.</p>
-
-<p>To use the Rainfall Erosivity Factor Calculator to determine your eligibility for the LEW, you will need your project’s location (either latitude/longitude or address) and the estimated start and end dates of construction. The period of construction activity begins at initial earth disturbance and ends with final stabilization.</p>
-
-<ul><li><a href="/npdes/construction-rainfall-erosivity-waiver-fact-sheet">Construction Rainfall Erosivity Waiver Fact Sheet</a></li>
-	<li><a href="/npdes/epas-2017-construction-general-permit-cgp-and-related-documents">Appendix C of the 2017 CGP – Small Construction Waivers and Instructions</a></li>
-</ul><p>For questions or comments, email EPA’s CGP staff at <a href="mailto:cgp@epa.gov">cgp@epa.gov</a>.</p>
-
-</div>
-  </div>
-
-  
-  
-</div>
-
+						<p id="bodytext"> To use the Rainfall Erosivity Factor Calculator to determine your eligibility for the LEW, you will need your project's location (either latitude/longitude or address) and the estimated start and end dates of construction. The period of construction activity begins at initial earth disturbance and ends with final stabilization. </p>
+					
+						<ul>
+							<li> <a id="bodylink" href="">Construction Rainfall Erosivity Waiver Fact Sheet</a></li>
+							<li><a id="bodylink" href=''>Appendix C of the 2017 CGP - Small Construction Waivers and Instructions </a></li>
+						</ul>
+						<p id="bodytext"> For questions or comments, email EPA's CGP staff at <a href=''>cgp@epa.gov</a>.</p>
 						<form action="">
 							Start Date: <input type="text" id="startdatepicker" value="MM/DD/YYYY"> End Date: <input type="text" id="enddatepicker" value="MM/DD/YYYY"><br>
 							<p id="note"> NOTE: If your construction project extends beyond the estimated end date, you will need to either recalculate the R factor based on a new end date, or apply for NPDES permit coverage. </p>
@@ -383,8 +406,10 @@ function getRFactor() {
 
 	var webservice = 'https://api.epa.gov/lew/rfactor?start_date='+startDate+'&end_date='+endDate+'&location={"geometry":{"type":"Point","coordinates":['+coordx+','+coordy+']}}&api_key=yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5'
 
+	console.log(webservice);
 
 	$.getJSON(webservice, function(data) {
+		console.log(data.rfactor);
 		$('#tableEI').html('Erosivity Index:' + data.rfactor.toString());
 		$('#tableEnd').html('End Date:' + endDate);
 		$('#tableStart').html('Start Date: '+ startDate);
@@ -427,9 +452,9 @@ function getRFactor() {
 					],
 				function(Map, MapView, Graphic) {
 						var centerx = document.getElementById('longitude').innerHTML;
-					
+						console.log(centerx);
 						var centery = document.getElementById('latitude').innerHTML;
-						
+						console.log(centery);
 						// Create the Map with an initial basemap
 						var map = new Map({
 							basemap: "topo"

@@ -1,27 +1,56 @@
 version: 2
 jobs:
   develop-branch:
+    working_directory: ~/project/app # directory where steps will run
     docker:
-      - image: circleci/node:7.10
+      - image: circleci/node:dubnium-stretch
     environment:
       APP_NAME: lew-dev
       APP_DOMAIN: app.cloud.gov
       CF_ORG: epa-surface-water
       CF_SPACE: owtbx-dev
     steps:
-      - checkout
+      - checkout:
+          path: ~/project
+      - run:
+          name: update-npm
+          command: 'sudo npm install -g npm@latest'
+      - run:
+          name: Check npm version
+          command: |
+            npm --version
+      - run:
+          name: Check node version
+          command: |
+            node --version
+      - restore_cache: # special step to restore the dependency cache
+          # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install npm
+          command: npm install
+      - save_cache: # special step to save the dependency cache
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run: # run tests
+          name: test
+          command: npm test
       - run: 
           name: Install Sonarqube scanner
           command: |
+            cd ..
             wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492-linux.zip
             unzip sonar-scanner-cli-3.3.0.1492-linux.zip
       - run:
           name: Run Sonarqube scanner
           command: |
+            cd ..
             ./sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner -Dsonar.projectKey=lew -Dsonar.host.url=$SONARQUBE_URL -Dsonar.login=$SONARQUBE_TOKEN
       - run:
           name: Setup Cloud Foundry CLI
           command: |
+            cd ..
             curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
             sudo dpkg -i cf-cli_amd64.deb
             cf -v
@@ -31,7 +60,6 @@ jobs:
       - run:
           name: Deploy application to Cloud.gov
           command: |
-            cd app
             cf push --no-start $APP_NAME-green -f manifest-dev.yml -p . -n green
       - run:
           name: Start application on Cloud.gov and clean routes
@@ -49,18 +77,38 @@ jobs:
             cf rename $APP_NAME-green $APP_NAME
 
   stage-branch:
+    working_directory: ~/project/app # directory where steps will run
     docker:
-      - image: circleci/node:7.10
+      - image: circleci/node:dubnium-stretch
     environment:
       APP_NAME: lew-stage
       APP_DOMAIN: app.cloud.gov
       CF_ORG: epa-surface-water
       CF_SPACE: owtbx-staging
     steps:
-      - checkout
+      - checkout:
+          path: ~/project
+      - run:
+          name: update-npm
+          command: 'sudo npm install -g npm@latest'
+      - run:
+          name: Check npm version
+          command: |
+            npm --version
+      - run:
+          name: Check node version
+          command: |
+            node --version
+      - run:
+          name: install npm
+          command: npm install
+      - run: # run tests
+          name: test
+          command: npm test
       - run:
           name: Setup Cloud Foundry CLI
           command: |
+            cd ..
             curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
             sudo dpkg -i cf-cli_amd64.deb
             cf -v
@@ -70,7 +118,6 @@ jobs:
       - run:
           name: Deploy application to Cloud.gov
           command: |
-            cd app
             cf push --no-start $APP_NAME-green -f manifest-staging.yml -p . -n green
       - run:
           name: Start application on Cloud.gov and clean routes
