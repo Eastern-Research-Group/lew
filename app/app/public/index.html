@@ -366,9 +366,9 @@ function getRFactor() {
 	var coordyfixed = coordynum.toFixed(4);
 	var coordinates = [coordx, coordy];
 	var locationz = 'location={"geometry":{"type":"Point","coordinates":['+coordx+','+coordy+']}}'
-	var webservice = 'localhost:9091/lew/v1/rfactor?start_date='+startDate+'&end_date='+endDate+'&location={"geometry":{"type":"Point","coordinates":['+coordx+','+coordy+']}}&api_key=K20ha4MR1Ddd7sciJQdCZlS5LsudmmtpQeeZ3J7L '
+	var smartURL = window.location.protocol + "//" + window.location.host + "/v1/rfactor";
+	var webservice = smartURL+'?start_date='+startDate+'&end_date='+endDate+'&location={"geometry":{"type":"Point","coordinates":['+coordx+','+coordy+']}}&api_key=K20ha4MR1Ddd7sciJQdCZlS5LsudmmtpQeeZ3J7L'
 	
-
 	$.getJSON(webservice, function(data) {
 		$('#eiValue').html(data.rfactor.toString());
 		$('#tableEndSpan').html(endDate);
