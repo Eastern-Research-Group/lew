@@ -206,7 +206,7 @@
 
 						<form action="">
 								<p id="note"><span style="font-weight: bold"> NOTE: </span>Select the start and end dates by clicking the boxes and using the dropdown calendar </p>
-							Start Date: <input type="date" id="startdatepicker" placeholder="YYYY-MM-DD"><br id="responsivebr"> End Date: <input type="date" id="enddatepicker" placeholder="YYYY-MM-DD"><br>
+							Start Date: <input type="date" id="startdatepicker" placeholder="YYYY-MM-DD"><br id="responsivebr">  End Date: &nbsp;  <input type="date" id="enddatepicker" placeholder="YYYY-MM-DD"><br>
 							<p id="note"><span style="font-weight: bold"> NOTE: </span>If your construction project extends beyond the estimated end date, you will need to either recalculate the R factor based on a new end date, or apply for NPDES permit coverage. </p>
 							Location: <input type="text" id='location' placeholder='Enter Address'><input id="mapViewButton" value="View on map" type="button" onclick="makeMap();" />
 
@@ -353,6 +353,7 @@
 <script src="https://js.arcgis.com/4.10/"></script>
 
 <script>
+
 function getRFactor() {
 
 	var startDate = $('#startdatepicker').val();
@@ -366,14 +367,10 @@ function getRFactor() {
 	var coordinates = [coordx, coordy];
 	var locationz = 'location={"geometry":{"type":"Point","coordinates":['+coordx+','+coordy+']}}'
 	var webservice = 'localhost:9091/lew/v1/rfactor?start_date='+startDate+'&end_date='+endDate+'&location={"geometry":{"type":"Point","coordinates":['+coordx+','+coordy+']}}&api_key=K20ha4MR1Ddd7sciJQdCZlS5LsudmmtpQeeZ3J7L '
+	
 
-	try {
 	$.getJSON(webservice, function(data) {
 		$('#eiValue').html(data.rfactor.toString());
-	}
-	catch(err) {
-		console.log(err);
-	}
 		$('#tableEndSpan').html(endDate);
 		$('#tableStartSpan').html(startDate);
 		$('#tableLatitudeSpan').html(coordxfixed);
@@ -382,6 +379,8 @@ function getRFactor() {
 			$('#conclusion').html("A rainfall erosivity factor of 5.0 or greater has been calculated for your site's period of construction.");
 			$('#conclusion2').html('You do NOT qualify for a waiver from NPDES permitting requirements.');
 		}
+}).fail(function(error) {
+	console.log(error);
 });
 	document.getElementById('eContainer').style.display = "block";
 }
