@@ -15,12 +15,14 @@ describe("rFactor controller testing", () => {
     var request = httpMocks.createRequest({
       method: "GET",
       url: "/",
+      headers: {
+        "X-Api-User-Id": "UNIT_TEST_USER_ID"
+      },
       query: {
         start_date: "2019-02-21",
         end_date: "2019-02-28",
         location:
-          '{"geometry":{"type":"Point","coordinates":[-87.845556,42.582222]}}',
-        api_key: "yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5"
+          '{"geometry":{"type":"Point","coordinates":[-87.845556,42.582222]}}'
       }
     });
 
@@ -40,10 +42,14 @@ describe("rFactor controller testing", () => {
   /****************************************************
    *
    ****************************************************/
-  it("Missing api-key test", function(done) {
+  it("Missing X-Api-User-Id test", function(done) {
     var request = httpMocks.createRequest({
       method: "GET",
+      hostname: "localhost",
       url: "/",
+      headers: {
+        "MISSING-X-Api-User-Id-TEST": "UNIT_TEST_USER_ID"
+      },
       query: {
         start_date: "2019-02-21",
         end_date: "2019-02-28",
@@ -59,10 +65,39 @@ describe("rFactor controller testing", () => {
       .then(function(result) {
         var data = JSON.parse(response._getData());
         response.statusCode.should.eql(400);
-        data.should.eql({
-          error_id: 1,
-          error_msg: "Missing API Key parameter"
-        });
+        data.should.eql({ error_id: 1, error_msg: "Missing API Identifier" });
+        done();
+      })
+      .catch(done);
+  });
+
+  /****************************************************
+   *
+   ****************************************************/
+  it("Missing X-Api-User-Id Localhost workaround", function(done) {
+    var request = httpMocks.createRequest({
+      method: "GET",
+      hostname: "localhost",
+      url: "/",
+      headers: {
+        "MISSING-X-Api-User-Id-TEST": "UNIT_TEST_USER_ID"
+      },
+      query: {
+        start_date: "2019-02-21",
+        end_date: "2019-02-28",
+        location:
+          '{"geometry":{"type":"Point","coordinates":[-87.845556,42.582222]}}',
+        api_key: "UNIT_TEST_USER_KEY"
+      }
+    });
+
+    var response = httpMocks.createResponse();
+
+    let rtn = rfactorContoller.calculateRFactor(request, response);
+    rtn
+      .then(function(result) {
+        var data = JSON.parse(response._getData());
+        response.statusCode.should.eql(200);
         done();
       })
       .catch(done);
@@ -75,6 +110,9 @@ describe("rFactor controller testing", () => {
     var request = httpMocks.createRequest({
       method: "GET",
       url: "/",
+      headers: {
+        "X-Api-User-Id": "UNIT_TEST_USER_ID"
+      },
       query: {
         end_date: "2019-02-28",
         location:
@@ -106,6 +144,9 @@ describe("rFactor controller testing", () => {
     var request = httpMocks.createRequest({
       method: "GET",
       url: "/",
+      headers: {
+        "X-Api-User-Id": "UNIT_TEST_USER_ID"
+      },
       query: {
         start_date: "asdfsafsa",
         end_date: "2019-02-28",
@@ -138,6 +179,9 @@ describe("rFactor controller testing", () => {
     var request = httpMocks.createRequest({
       method: "GET",
       url: "/",
+      headers: {
+        "X-Api-User-Id": "UNIT_TEST_USER_ID"
+      },
       query: {
         start_date: "2019-02-21",
         location:
@@ -169,6 +213,9 @@ describe("rFactor controller testing", () => {
     var request = httpMocks.createRequest({
       method: "GET",
       url: "/",
+      headers: {
+        "X-Api-User-Id": "UNIT_TEST_USER_ID"
+      },
       query: {
         start_date: "2019-02-21",
         end_date: "asdfsdfsa",
@@ -201,6 +248,9 @@ describe("rFactor controller testing", () => {
     var request = httpMocks.createRequest({
       method: "GET",
       url: "/",
+      headers: {
+        "X-Api-User-Id": "UNIT_TEST_USER_ID"
+      },
       query: {
         start_date: "2019-02-21",
         end_date: "2019-02-20",
@@ -233,6 +283,9 @@ describe("rFactor controller testing", () => {
     var request = httpMocks.createRequest({
       method: "GET",
       url: "/",
+      headers: {
+        "X-Api-User-Id": "UNIT_TEST_USER_ID"
+      },
       query: {
         start_date: "2019-02-21",
         end_date: "2019-02-22",
@@ -263,6 +316,9 @@ describe("rFactor controller testing", () => {
     var request = httpMocks.createRequest({
       method: "GET",
       url: "/",
+      headers: {
+        "X-Api-User-Id": "UNIT_TEST_USER_ID"
+      },
       query: {
         start_date: "2019-02-21",
         end_date: "2019-02-28",
@@ -294,6 +350,9 @@ describe("rFactor controller testing", () => {
     var request = httpMocks.createRequest({
       method: "GET",
       url: "/",
+      headers: {
+        "X-Api-User-Id": "UNIT_TEST_USER_ID"
+      },
       query: {
         start_date: "2019-02-21",
         end_date: "2019-02-28",
