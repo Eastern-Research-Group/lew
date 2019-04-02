@@ -38,7 +38,9 @@ module.exports.calculateRFactor = async (req, res) => {
   var err_json = null;
   if (
     req.header("X-Api-User-Id") === undefined &&
-    (req.hostname === "localhost" && req.query.api_key === undefined)
+    (req.hostname === "localhost" &&
+      req.query.api_key === undefined &&
+      (req.hostname === "localhost" && req.header("X-Api-Key") === undefined))
   ) {
     err_json = { error_id: 1, error_msg: "Missing API Identifier" };
     log.warn(err_json);

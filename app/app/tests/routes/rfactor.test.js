@@ -74,7 +74,7 @@ describe("rFactor controller testing", () => {
   /****************************************************
    *
    ****************************************************/
-  it("Missing X-Api-User-Id Localhost workaround", function(done) {
+  it("Missing X-Api-User-Id localhost workaround using api_key parameter", function(done) {
     var request = httpMocks.createRequest({
       method: "GET",
       hostname: "localhost",
@@ -88,6 +88,38 @@ describe("rFactor controller testing", () => {
         location:
           '{"geometry":{"type":"Point","coordinates":[-87.845556,42.582222]}}',
         api_key: "UNIT_TEST_USER_KEY"
+      }
+    });
+
+    var response = httpMocks.createResponse();
+
+    let rtn = rfactorContoller.calculateRFactor(request, response);
+    rtn
+      .then(function(result) {
+        var data = JSON.parse(response._getData());
+        response.statusCode.should.eql(200);
+        done();
+      })
+      .catch(done);
+  });
+
+  /****************************************************
+   *
+   ****************************************************/
+  it("Missing X-Api-User-Id localhost workaround using api_key header", function(done) {
+    var request = httpMocks.createRequest({
+      method: "GET",
+      hostname: "localhost",
+      url: "/",
+      headers: {
+        "MISSING-X-Api-User-Id-TEST": "UNIT_TEST_USER_ID",
+        "X-Api-Key": "UNIT_TEST_USER_KEY"
+      },
+      query: {
+        start_date: "2019-02-21",
+        end_date: "2019-02-28",
+        location:
+          '{"geometry":{"type":"Point","coordinates":[-87.845556,42.582222]}}'
       }
     });
 
