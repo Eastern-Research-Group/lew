@@ -143,7 +143,7 @@
           </div>
 				</div>
 				<div class="row">
-					<div class="col-xs-1 col-sm-3">
+					<div class="col-xs-12">
 						<div class="region-sidebar-first region-sidebar">  <div id="block-og-menu-og-single-menu-block" class="block block-og-menu  block-og-menu-og-single-menu-block">
 
 							<h2 class="element-invisible">National Pollutant Discharge Elimination System (NPDES)</h2>
@@ -167,7 +167,7 @@
 				</div>
 					</div>
 					</div>
-					<div class="col-xs-11 col-sm-9">
+					<div class="col-xs-12">
 						<h1 class="page-title NPDESTitle">Rainfall Erosivity Factor Calculator for  Small Construction Sites</h1>
 
 <div class="panel-pane pane-node-content" >
@@ -187,7 +187,7 @@
 	<li>the rainfall erosivity factor (“R” in the revised universal soil loss equation, or RUSLE) value is less than five during the period of construction activity.</li>
 </ul><p>If your small construction project is located in an area where EPA is the permitting authority and your R factor is less than five, you qualify for a low erosivity waiver (LEW) from NPDES stormwater permitting. LEW certifications are submitted through the electronic Notice of Intent (eNOI) system. Several states that are authorized to implement the NPDES permitting program also accept LEWs. Check with your state NPDES permitting authority for more information.</p>
 
-<ul><li><a href="/npdes/authorization-status-epas-construction-and-industrial-stormwater-programs">List of states, Indian country, and territories where EPA's 2012 Construction General Permit (CGP) and Multi-Sector General Permit (MSGP) Apply</a></li>
+<ul><li><a href="https://www.epa.gov/npdes/authorization-status-epas-construction-and-industrial-stormwater-programs#undefined">List of states, Indian country, and territories where EPA's 2012 Construction General Permit (CGP) and Multi-Sector General Permit (MSGP) Apply</a></li>
 	<li><a href="https://cdxnodengn.epa.gov/oeca-cgp-web/action/login">EPA’s CGP eNOI System</a></li>
 </ul><p>The period during which small construction sites qualify for the waiver generally occurs during a relatively short time in arid and semi-arid areas. If your small construction project does not qualify for a waiver, then NPDES stormwater permit coverage is required.</p>
 
@@ -226,10 +226,8 @@
 				
 				</div>
 				<div class="row">
-					<div class="col-xs-2 col-sm-3">
 
-					</div>
-					<div class="col-9">
+					<div class="col-12">
 						<div class="container" id="eContainer">
 							<h3 id="h3Facility"> Facility Information </h3>
 							<table class="table table-bordered">
@@ -365,16 +363,24 @@ function getRFactor() {
 	var coordynum = parseFloat(coordy);
 	var coordyfixed = coordynum.toFixed(4);
 	var coordinates = [coordx, coordy];
+	var startyear = startDate.slice(0,4); 2012-05-12
+	var startmonth = startDate.slice(5,7);
+	var startday = startDate.slice(8);
+	var newStartDate = startmonth + '/' + startday + '/' + startyear;
+	var endyear = endDate.slice(0,4); 2012-05-12
+	var endmonth = endDate.slice(5,7);
+	var endday = endDate.slice(8);
+	var newendDate = endmonth + '/' + endday + '/' + endyear;
 	var locationz = 'location={"geometry":{"type":"Point","coordinates":['+coordx+','+coordy+']}}'
 	var smartURL = window.location.protocol + "//" + window.location.host + "/v1/rfactor";
 	var webservice = smartURL+'?start_date='+startDate+'&end_date='+endDate+'&location={"geometry":{"type":"Point","coordinates":['+coordx+','+coordy+']}}&api_key=K20ha4MR1Ddd7sciJQdCZlS5LsudmmtpQeeZ3J7L'
 	
 	$.getJSON(webservice, function(data) {
 		$('#eiValue').html(data.rfactor.toString());
-		$('#tableEndSpan').html(endDate);
-		$('#tableStartSpan').html(startDate);
-		$('#tableLatitudeSpan').html(coordxfixed);
-		$('#tableLongitudeSpan').html(coordyfixed);
+		$('#tableEndSpan').html(newendDate);
+		$('#tableStartSpan').html(newStartDate);
+		$('#tableLatitudeSpan').html(coordyfixed);
+		$('#tableLongitudeSpan').html(coordxfixed);
 		if (data.rfactor > 5) {
 			$('#conclusion').html("A rainfall erosivity factor of 5.0 or greater has been calculated for your site's period of construction.");
 			$('#conclusion2').html('You do NOT qualify for a waiver from NPDES permitting requirements.');

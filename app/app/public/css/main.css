@@ -113,13 +113,11 @@ tr {
 }
 
 #startdatepicker {
-  padding-right: 0%;
-  margin-right: 12%;
+  margin-right: 45%;
   margin-bottom: 4%;
 }
 
 #enddatepicker {
-  padding-right: 0;
   margin-bottom: 4%;
 }
 
@@ -263,4 +261,8 @@ tr {
   #responsivebr {
     display: inline;
   }
+}
+
+.signup-footer {
+  margin-bottom: 5%;
 }
