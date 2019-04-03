@@ -193,8 +193,8 @@
 
 <p>To use the Rainfall Erosivity Factor Calculator to determine your eligibility for the LEW, you will need your project’s location (either latitude/longitude or address) and the estimated start and end dates of construction. The period of construction activity begins at initial earth disturbance and ends with final stabilization.</p>
 
-<ul><li><a href="/npdes/construction-rainfall-erosivity-waiver-fact-sheet">Construction Rainfall Erosivity Waiver Fact Sheet</a></li>
-	<li><a href="/npdes/epas-2017-construction-general-permit-cgp-and-related-documents">Appendix C of the 2017 CGP – Small Construction Waivers and Instructions</a></li>
+<ul><li><a href="https://www.epa.gov/npdes/construction-rainfall-erosivity-waiver-fact-sheet">Construction Rainfall Erosivity Waiver Fact Sheet</a></li>
+	<li><a href="https://www.epa.gov/npdes/epas-2017-construction-general-permit-cgp-and-related-documents">Appendix C of the 2017 CGP – Small Construction Waivers and Instructions</a></li>
 </ul><p>For questions or comments, email EPA’s CGP staff at <a href="mailto:cgp@epa.gov">cgp@epa.gov</a>.</p>
 
 </div>
@@ -363,10 +363,13 @@ function getRFactor() {
 	var coordynum = parseFloat(coordy);
 	var coordyfixed = coordynum.toFixed(4);
 	var coordinates = [coordx, coordy];
+	// the format for the boxes at the bottom is not the same as that which is displayed in the input=date boxes. This splice fixes that
 	var startyear = startDate.slice(0,4); 2012-05-12
 	var startmonth = startDate.slice(5,7);
 	var startday = startDate.slice(8);
+	// concatenate the spliced sections to make a date that can be inserted in the start date box in the eContainer
 	var newStartDate = startmonth + '/' + startday + '/' + startyear;
+	// same thing with end dates
 	var endyear = endDate.slice(0,4); 2012-05-12
 	var endmonth = endDate.slice(5,7);
 	var endday = endDate.slice(8);
@@ -399,8 +402,8 @@ function getRFactor() {
 			
   			var location = $("#location").val();
 
-  			var ws =
-    		'https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=' + location + '&f=json&outSR=4326&outFields=Loc_name%2cCity%2cPlace_addr%2cRegion%2cRegionAbbr%2cCountry'
+  			var ws = 'https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=' + location + '&f=json&outSR=4326&outFields=Loc_name%2cCity%2cPlace_addr%2cRegion%2cRegionAbbr%2cCountry'
+
 
   			$("#datatxt").html("Calling web service");
  				 $("#lon-lat").html("Loading");
@@ -424,6 +427,7 @@ function getRFactor() {
 
 					],
 				function(Map, MapView, Graphic, FeatureLayer) {
+					// this takes the latitude and longitude from the getCoords function
 					document.getElementById("viewDiv").style.height = "500px";
 
 						var centerx = document.getElementById('longitude').innerHTML;
