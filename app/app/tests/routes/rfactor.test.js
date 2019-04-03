@@ -45,7 +45,7 @@ describe("rFactor controller testing", () => {
   it("Missing X-Api-User-Id test", function(done) {
     var request = httpMocks.createRequest({
       method: "GET",
-      hostname: "localhost",
+      hostname: "lew.epa.gov",
       url: "/",
       headers: {
         "MISSING-X-Api-User-Id-TEST": "UNIT_TEST_USER_ID"
@@ -55,6 +55,39 @@ describe("rFactor controller testing", () => {
         end_date: "2019-02-28",
         location:
           '{"geometry":{"type":"Point","coordinates":[-87.845556,42.582222]}}'
+      }
+    });
+
+    var response = httpMocks.createResponse();
+
+    let rtn = rfactorContoller.calculateRFactor(request, response);
+    rtn
+      .then(function(result) {
+        var data = JSON.parse(response._getData());
+        response.statusCode.should.eql(400);
+        data.should.eql({ error_id: 1, error_msg: "Missing API Identifier" });
+        done();
+      })
+      .catch(done);
+  });
+
+  /****************************************************
+   *
+   ****************************************************/
+  it("Missing X-Api-User-Id from other domain test", function(done) {
+    var request = httpMocks.createRequest({
+      method: "GET",
+      hostname: "lew-app.app.cloud.gov",
+      url: "/",
+      headers: {
+        "MISSING-X-Api-User-Id-TEST": "UNIT_TEST_USER_ID"
+      },
+      query: {
+        start_date: "2019-02-21",
+        end_date: "2019-02-28",
+        location:
+          '{"geometry":{"type":"Point","coordinates":[-87.845556,42.582222]}}',
+        api_key: "UNIT_TEST_USER_KEY"
       }
     });
 
