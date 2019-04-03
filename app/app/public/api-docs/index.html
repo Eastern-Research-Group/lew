@@ -67,9 +67,11 @@
       window.onload = function() {
         // Begin Swagger UI call region
         var openapi_file;
-        if (window.location.hostname.toLocaleLowerCase() == "localhost" || window.location.hostname.toLocaleLowerCase() == "lew-dev.app.cloud.gov" || window.location.hostname.toLocaleLowerCase() == "lew-stage.app.cloud.gov") {
-          openapi_file = "lew_openapi_not_prod.json";
-        } else {
+        if (window.location.hostname.toLocaleLowerCase() == "localhost" || window.location.hostname.toLocaleLowerCase() == "lew-dev.app.cloud.gov") {
+          openapi_file = "lew_openapi_all.json";
+        } else if(window.location.hostname.toLocaleLowerCase() == "lew-stage.app.cloud.gov") {
+          openapi_file = "lew_openapi_staging.json";
+        }else {
           openapi_file = "lew_openapi.json";
         }
         const ui = SwaggerUIBundle({

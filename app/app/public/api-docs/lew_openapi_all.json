@@ -2,6 +2,10 @@
   "openapi": "3.0.0",
   "servers": [
     {
+      "description": "Production",
+      "url": "https://api.epa.gov/lew"
+    },
+    {
       "description": "Staging",
       "url": "https://api.epa.gov/TEST/lew"
     },
