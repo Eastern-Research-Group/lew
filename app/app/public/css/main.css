@@ -125,7 +125,7 @@ tr {
   padding-left: 3%;
   padding-right: 4%;
   margin-top: 3%;
-  width: 400px;
+  max-width: 400px;
 }
 
 #mapViewButton {
@@ -265,4 +265,8 @@ tr {
 
 .signup-footer {
   margin-bottom: 5%;
+}
+
+#viewDiv {
+  height: 500px;
 }
