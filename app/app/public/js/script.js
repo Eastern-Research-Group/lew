@@ -47,9 +47,9 @@ define(["app/esriMap"], function(esriMap) {
 
     function getCoords() {
       console.log("in getCoords();");
-      var location = $("#location").val();
+      let location = $("#location").val();
 
-      var ws =
+      let ws =
         "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=" +
         location +
         "&f=json&outSR=4326&outFields=Loc_name%2cCity%2cPlace_addr%2cRegion%2cRegionAbbr%2cCountry";
@@ -82,36 +82,39 @@ define(["app/esriMap"], function(esriMap) {
     });
 
     function getRFactor() {
-      var startDate = $("#startdatepicker").val();
-      var endDate = $("#enddatepicker").val();
+      console.log("LOADER HERE");
+      document.getElementById("loader").style.display = "block";
+      document.getElementById("errorMessage").style.display = "none";
+      document.getElementById("eContainer").style.display = "none";
+      let startDate = $("#startdatepicker").val();
+      let endDate = $("#enddatepicker").val();
 
-      var coordx = localStorage.longitude;
-      var coordxnum = parseFloat(coordy);
-      var coordxfixed = coordxnum.toFixed(4);
+      let coordx = localStorage.longitude;
+      let coordxnum = parseFloat(coordx);
+      let coordxfixed = coordxnum.toFixed(4);
 
-      var coordy = localStorage.latitude;
-      var coordynum = parseFloat(coordx);
-      var coordyfixed = coordynum.toFixed(4);
+      let coordy = localStorage.latitude;
+      let coordynum = parseFloat(coordy);
+      let coordyfixed = coordynum.toFixed(4);
 
-      var coordinates = [coordx, coordy];
       // the format for the boxes at the bottom is not the same as that which is displayed in the input=date boxes. This splice fixes that
-      var startyear = startDate.slice(0, 4);
+      let startyear = startDate.slice(0, 4);
       //   2012 - 05 - 12;
-      var startmonth = startDate.slice(5, 7);
-      var startday = startDate.slice(8);
+      let startmonth = startDate.slice(5, 7);
+      let startday = startDate.slice(8);
       // concatenate the spliced sections to make a date that can be inserted in the start date box in the eContainer
-      var newStartDate = startmonth + "/" + startday + "/" + startyear;
+      let newStartDate = startmonth + "/" + startday + "/" + startyear;
       // same thing with end dates
-      var endyear = endDate.slice(0, 4);
+      let endyear = endDate.slice(0, 4);
       //   2012 - 05 - 12;
-      var endmonth = endDate.slice(5, 7);
-      var endday = endDate.slice(8);
-      var newendDate = endmonth + "/" + endday + "/" + endyear;
+      let endmonth = endDate.slice(5, 7);
+      let endday = endDate.slice(8);
+      let newendDate = endmonth + "/" + endday + "/" + endyear;
 
-      var smartURL =
+      let smartURL =
         window.location.protocol + "//" + window.location.host + "/v1/rfactor";
 
-      var webservice =
+      let webservice =
         smartURL +
         "?start_date=" +
         startDate +
@@ -124,6 +127,8 @@ define(["app/esriMap"], function(esriMap) {
         "]}}&api_key=K20ha4MR1Ddd7sciJQdCZlS5LsudmmtpQeeZ3J7L";
 
       $.getJSON(webservice, function(data) {
+        console.log("END LOADER");
+        document.getElementById("loader").style.display = "none";
         console.log(data);
         $("#eiValue").html(data.rfactor.toString());
         $("#tableEndSpan").html(newendDate);
@@ -138,11 +143,14 @@ define(["app/esriMap"], function(esriMap) {
             "You do NOT qualify for a waiver from NPDES permitting requirements."
           );
         }
+
+        document.getElementById("eContainer").style.display = "block";
       }).fail(function(error) {
         console.log(error);
         alert(error.responseText.slice(28, -2));
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("errorMessage").style.display = "block";
       });
-      document.getElementById("eContainer").style.display = "block";
     }
   }
 
