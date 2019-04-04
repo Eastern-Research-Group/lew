@@ -104,10 +104,10 @@ tr {
   margin-bottom: 5%;
 }
 
-#note {
-  padding-left: 1%;
-  padding-bottom: 1%;
-  margin-bottom: 1%;
+.note {
+  padding-left: 5px;
+  padding-bottom: 0;
+  margin-bottom: 10px;
   font-weight: 400;
   background-color: #eff0f2;
 }
@@ -122,7 +122,6 @@ tr {
 }
 
 #location {
-  padding-left: 3%;
   padding-right: 4%;
   margin-top: 3%;
   max-width: 400px;
@@ -299,4 +298,14 @@ tr {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.loading-text {
+  text-align: center;
+}
+
+.error-message {
+  color: rgb(156, 15, 15);
+  display: none;
+  text-align: center;
 }

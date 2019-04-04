@@ -205,9 +205,9 @@
 </div>
 
 						<form id="form">
-								<p id="note"><span style="font-weight: bold"> NOTE: </span>Select the start and end dates by clicking the boxes and using the dropdown calendar </p>
+								<p class="note"><span style="font-weight: bold"> NOTE: </span>Select the start and end dates by clicking the boxes and using the dropdown calendar </p>
 							Start Date: <input type="date" id="startdatepicker" placeholder="YYYY-MM-DD"><br id="responsivebr">  End Date: &nbsp;  <input type="date" id="enddatepicker" placeholder="YYYY-MM-DD"><br>
-							<p id="note"><span style="font-weight: bold"> NOTE: </span>If your construction project extends beyond the estimated end date, you will need to either recalculate the R factor based on a new end date, or apply for NPDES permit coverage. </p>
+							<p class="note"><span style="font-weight: bold"> NOTE: </span>If your construction project extends beyond the estimated end date, you will need to either recalculate the R factor based on a new end date, or apply for NPDES permit coverage. </p>
 							Location: <input class="form-control" style="display: inline-block;" type="text" id='location' placeholder='Enter Address'>
 							
 							<input id="mapViewButton" value="Show on map" type="button" />
@@ -233,8 +233,11 @@
 				<div class="row">
 
 					<div class="col-12">
-							<div id="loader" style="display: none;" class="loader"></div>
-							<p id="errorMessage" style="color: rgb(156, 15, 15); display: none; text-align: center;">There was an error with your query.</p>
+						<div id="loader" style="display: none;">
+							<div class="loader"></div>
+							<p class="loading-text">Loading...</p>
+						</div>
+							<p id="errorMessage" class="error-message">There was an error with your query.</p>
 						<div class="container" id="eContainer">
 							<h3 id="h3Facility"> Facility Information </h3>
 							<table class="table table-bordered">

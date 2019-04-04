@@ -33,7 +33,6 @@ define(["app/esriMap"], function(esriMap) {
       .addEventListener("click", (event) => {
         event.preventDefault();
         console.log("button clicked");
-        //   makeMap();
         getCoords();
       });
 
@@ -41,7 +40,6 @@ define(["app/esriMap"], function(esriMap) {
     document.getElementById("form").addEventListener("submit", (event) => {
       event.preventDefault();
       console.log("form submitted");
-      //   makeMap();
       getCoords();
     });
 
@@ -147,9 +145,10 @@ define(["app/esriMap"], function(esriMap) {
         document.getElementById("eContainer").style.display = "block";
       }).fail(function(error) {
         console.log(error);
-        alert(error.responseText.slice(28, -2));
+
         document.getElementById("loader").style.display = "none";
         document.getElementById("errorMessage").style.display = "block";
+        alert(error.responseJSON.error_msg || error.statusText);
       });
     }
   }

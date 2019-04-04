@@ -61,6 +61,8 @@ define([
       console.log("\nClick detected at:");
       console.log("Latitude: " + localStorage.latitude);
       console.log("Longitude: " + localStorage.longitude);
+      document.getElementById("location").value =
+        localStorage.longitude + " , " + localStorage.latitude;
 
       // Add the graphics to the view's graphics layer
       view.graphics.addMany([pointGraphic]);
