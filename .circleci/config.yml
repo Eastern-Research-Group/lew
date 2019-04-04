@@ -36,6 +36,11 @@ jobs:
       - run: # run tests
           name: test
           command: npm test
+      - run:
+          name: Install and run snyk
+          command: |
+            sudo npm install -g snyk
+            snyk test
       - run: 
           name: Install Sonarqube scanner
           command: |
@@ -108,7 +113,7 @@ jobs:
       - run:
           name: Install and run snyk
           command: |
-            'sudo npm install -g snyk'
+            sudo npm install -g snyk
             snyk test
       - run:
           name: Setup Cloud Foundry CLI
