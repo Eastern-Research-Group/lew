@@ -1,141 +1,152 @@
-function makeMap() {
-  getCoords();
+define(["app/esriMap"], function(esriMap) {
+  function init() {
+    // initialize localstorage to default view of USA
+    localStorage.latitude = "39.381266";
+    localStorage.longitude = "-97.922211";
 
-  require([
-    "esri/Map",
-    "esri/views/MapView",
-    "esri/Graphic",
-    "esri/layers/FeatureLayer"
-  ], function(Map, MapView, Graphic, FeatureLayer) {
-    // this takes the latitude and longitude from the getCoords function
+    // initialize map
+    esriMap.init("viewDiv");
 
-    var centerx = document.getElementById("longitude").innerHTML;
-
-    var centery = document.getElementById("latitude").innerHTML;
-
-    // Create the Map with an initial basemap
-    var map = new Map({
-      basemap: "topo"
+    // when ADD POINT button is clicked. for debugging.
+    document.getElementById("add point").addEventListener("click", (e) => {
+      console.log("\nAdd point button clicked");
+      longitude = -Math.floor(Math.random() * 90) + 80;
+      latitude = Math.floor(Math.random() * 40) + 30;
+      esriMap.addPoint(latitude, longitude);
     });
 
-    // Create the MapView and reference the Map in the instance
-    console.log("here");
-    var view = new MapView({
-      container: "viewDiv",
-      map: map,
-      zoom: 15,
-      center: [centerx, centery]
-    });
-
-    var point = {
-      type: "point", // autocasts as new Point()
-      longitude: centerx,
-      latitude: centery
-    };
-
-    // Create a symbol for drawing the point
-    var markerSymbol = {
-      type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
-      color: [226, 119, 40],
-      outline: {
-        // autocasts as new SimpleLineSymbol()
-        color: [255, 255, 255],
-        width: 2
+    // when TEST STORAGE button is clicked. for debugging.
+    document.getElementById("point test").addEventListener("click", (e) => {
+      console.log("\nTest storage button clicked");
+      if (typeof Storage !== "undefined") {
+        console.log("Latitude: " + localStorage.latitude);
+        console.log("Longitude: " + localStorage.longitude);
+      } else {
+        console.log("storage not available");
       }
-    };
-
-    // Create a graphic and add the geometry and symbol to it
-    var pointGraphic = new Graphic({
-      geometry: point,
-      symbol: markerSymbol
     });
 
-    // Add the graphics to the view's graphics layer
-    view.graphics.addMany([pointGraphic]);
-  });
-}
+    // view on map button listener
 
-function getCoords() {
-  var location = $("#location").val();
+    document
+      .getElementById("mapViewButton")
+      .addEventListener("click", (event) => {
+        event.preventDefault();
+        console.log("button clicked");
+        //   makeMap();
+        getCoords();
+      });
 
-  var ws =
-    "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=" +
-    location +
-    "&f=json&outSR=4326&outFields=Loc_name%2cCity%2cPlace_addr%2cRegion%2cRegionAbbr%2cCountry";
+    // form Listener
+    document.getElementById("form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      console.log("form submitted");
+      //   makeMap();
+      getCoords();
+    });
 
-  $("#datatxt").html("Calling web service");
-  $("#lon-lat").html("Loading");
+    function getCoords() {
+      console.log("in getCoords();");
+      var location = $("#location").val();
 
-  $.getJSON(ws, function(data) {
-    $("#datatxt").html(JSON.stringify(data));
-    $("#longitude").html(data.candidates[0].location.x.toString());
-    $("#latitude").html(data.candidates[0].location.y.toString());
-  }).fail(function() {
-    console.log("error");
-    $("#datatxt").html("error");
-  });
-}
+      var ws =
+        "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=" +
+        location +
+        "&f=json&outSR=4326&outFields=Loc_name%2cCity%2cPlace_addr%2cRegion%2cRegionAbbr%2cCountry";
 
-function getRFactor() {
-  var startDate = $("#startdatepicker").val();
-  var endDate = $("#enddatepicker").val();
-  var coordx = document.getElementById("longitude").innerHTML;
-  var coordxnum = parseFloat(coordx);
-  var coordxfixed = coordxnum.toFixed(4);
-  var coordy = document.getElementById("latitude").innerHTML;
-  var coordynum = parseFloat(coordy);
-  var coordyfixed = coordynum.toFixed(4);
-  var coordinates = [coordx, coordy];
-  // the format for the boxes at the bottom is not the same as that which is displayed in the input=date boxes. This splice fixes that
-  var startyear = startDate.slice(0, 4);
-  2012 - 05 - 12;
-  var startmonth = startDate.slice(5, 7);
-  var startday = startDate.slice(8);
-  // concatenate the spliced sections to make a date that can be inserted in the start date box in the eContainer
-  var newStartDate = startmonth + "/" + startday + "/" + startyear;
-  // same thing with end dates
-  var endyear = endDate.slice(0, 4);
-  2012 - 05 - 12;
-  var endmonth = endDate.slice(5, 7);
-  var endday = endDate.slice(8);
-  var newendDate = endmonth + "/" + endday + "/" + endyear;
-  var locationz =
-    'location={"geometry":{"type":"Point","coordinates":[' +
-    coordx +
-    "," +
-    coordy +
-    "]}}";
-  var smartURL =
-    window.location.protocol + "//" + window.location.host + "/v1/rfactor";
-  var webservice =
-    smartURL +
-    "?start_date=" +
-    startDate +
-    "&end_date=" +
-    endDate +
-    '&location={"geometry":{"type":"Point","coordinates":[' +
-    coordx +
-    "," +
-    coordy +
-    "]}}&api_key=K20ha4MR1Ddd7sciJQdCZlS5LsudmmtpQeeZ3J7L";
+      $("#datatxt").html("Calling web service");
+      $("#lon-lat").html("Loading");
 
-  $.getJSON(webservice, function(data) {
-    $("#eiValue").html(data.rfactor.toString());
-    $("#tableEndSpan").html(newendDate);
-    $("#tableStartSpan").html(newStartDate);
-    $("#tableLatitudeSpan").html(coordyfixed);
-    $("#tableLongitudeSpan").html(coordxfixed);
-    if (data.rfactor > 5) {
-      $("#conclusion").html(
-        "A rainfall erosivity factor of 5.0 or greater has been calculated for your site's period of construction."
-      );
-      $("#conclusion2").html(
-        "You do NOT qualify for a waiver from NPDES permitting requirements."
-      );
+      $.getJSON(ws, function(data) {
+        console.log(data);
+        $("#datatxt").html(JSON.stringify(data));
+
+        localStorage.latitude = data.candidates[0].location.y;
+        localStorage.longitude = data.candidates[0].location.x;
+        console.log("Latitude: " + localStorage.latitude);
+        console.log("Longitude: " + localStorage.longitude);
+
+        esriMap.addPoint(localStorage.latitude, localStorage.longitude);
+      }).fail(function() {
+        console.log("error");
+        $("#datatxt").html("error");
+      });
     }
-  }).fail(function(error) {
-    console.log(error);
-    alert(error.responseText.slice(28, -2));
-  });
-  document.getElementById("eContainer").style.display = "block";
-}
+
+    // view on map button listener
+
+    document.getElementById("rButton").addEventListener("click", (event) => {
+      event.preventDefault();
+      console.log("R button clicked");
+      getRFactor();
+    });
+
+    function getRFactor() {
+      var startDate = $("#startdatepicker").val();
+      var endDate = $("#enddatepicker").val();
+
+      var coordx = localStorage.longitude;
+      var coordxnum = parseFloat(coordy);
+      var coordxfixed = coordxnum.toFixed(4);
+
+      var coordy = localStorage.latitude;
+      var coordynum = parseFloat(coordx);
+      var coordyfixed = coordynum.toFixed(4);
+
+      var coordinates = [coordx, coordy];
+      // the format for the boxes at the bottom is not the same as that which is displayed in the input=date boxes. This splice fixes that
+      var startyear = startDate.slice(0, 4);
+      //   2012 - 05 - 12;
+      var startmonth = startDate.slice(5, 7);
+      var startday = startDate.slice(8);
+      // concatenate the spliced sections to make a date that can be inserted in the start date box in the eContainer
+      var newStartDate = startmonth + "/" + startday + "/" + startyear;
+      // same thing with end dates
+      var endyear = endDate.slice(0, 4);
+      //   2012 - 05 - 12;
+      var endmonth = endDate.slice(5, 7);
+      var endday = endDate.slice(8);
+      var newendDate = endmonth + "/" + endday + "/" + endyear;
+
+      var smartURL =
+        window.location.protocol + "//" + window.location.host + "/v1/rfactor";
+
+      var webservice =
+        smartURL +
+        "?start_date=" +
+        startDate +
+        "&end_date=" +
+        endDate +
+        '&location={"geometry":{"type":"Point","coordinates":[' +
+        coordx +
+        "," +
+        coordy +
+        "]}}&api_key=K20ha4MR1Ddd7sciJQdCZlS5LsudmmtpQeeZ3J7L";
+
+      $.getJSON(webservice, function(data) {
+        console.log(data);
+        $("#eiValue").html(data.rfactor.toString());
+        $("#tableEndSpan").html(newendDate);
+        $("#tableStartSpan").html(newStartDate);
+        $("#tableLatitudeSpan").html(coordyfixed);
+        $("#tableLongitudeSpan").html(coordxfixed);
+        if (data.rfactor > 5) {
+          $("#conclusion").html(
+            "A rainfall erosivity factor of 5.0 or greater has been calculated for your site's period of construction."
+          );
+          $("#conclusion2").html(
+            "You do NOT qualify for a waiver from NPDES permitting requirements."
+          );
+        }
+      }).fail(function(error) {
+        console.log(error);
+        alert(error.responseText.slice(28, -2));
+      });
+      document.getElementById("eContainer").style.display = "block";
+    }
+  }
+
+  return {
+    init: init
+  };
+});

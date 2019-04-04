@@ -204,11 +204,13 @@
   
 </div>
 
-						<form action="">
+						<form id="form">
 								<p id="note"><span style="font-weight: bold"> NOTE: </span>Select the start and end dates by clicking the boxes and using the dropdown calendar </p>
 							Start Date: <input type="date" id="startdatepicker" placeholder="YYYY-MM-DD"><br id="responsivebr">  End Date: &nbsp;  <input type="date" id="enddatepicker" placeholder="YYYY-MM-DD"><br>
 							<p id="note"><span style="font-weight: bold"> NOTE: </span>If your construction project extends beyond the estimated end date, you will need to either recalculate the R factor based on a new end date, or apply for NPDES permit coverage. </p>
-							Location: <input type="text" id='location' placeholder='Enter Address'><input id="mapViewButton" value="View on map" type="button" onclick="makeMap();" />
+							Location: <input class="form-control" style="display: inline-block;" type="text" id='location' placeholder='Enter Address'>
+							
+							<input id="mapViewButton" value="Show on map" type="button" />
 
 							<input style="background-color: green;" id="point test" value="Test storage" type="button" />
 							<input style="background-color: green;" id="add point" value="Add point" type="button" />
@@ -222,7 +224,7 @@
 		
 		
 		
-							<input id="rButton" value="Determine R Factor" type="button" onclick="getRFactor();" />
+							<input id="rButton" value="Determine R Factor" type="button" />
 						</form>
 
 					</div>
@@ -360,10 +362,7 @@
         name: "app",
         location: location.pathname.replace(/\/[^/]*$/, '') + '/js'
       },
-      {
-        name: "config",
-        location: location.pathname.replace(/\/[^/]*$/, '') + '/config'
-      }]
+	]
     };
   </script>
 
@@ -371,14 +370,13 @@
 
 
 <script>
-    require(["app/station"],
-    function (station) {
-      station.init();
+    require(["app/script"],
+    function (script) {
+		script.init();
     });
   </script>
 
 
-<script src="js/script.js">
 
   </script>
 </body>

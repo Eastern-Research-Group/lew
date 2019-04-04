@@ -29,7 +29,7 @@ define([
     view = new MapView({
       container: "viewDiv",
       map: map,
-      zoom: 3,
+      zoom: 4,
       center: ["-97.922211", "39.381266"]
     });
 
@@ -98,7 +98,7 @@ define([
     view.graphics.removeAll();
     localStorage.latitude = latitude;
     localStorage.longitude = longitude;
-    const point = new Point({ x: latitude, y: longitude });
+    const point = new Point({ x: longitude, y: latitude });
 
     // Create a symbol for drawing the point
     var markerSymbol = {
@@ -120,7 +120,7 @@ define([
     view.graphics.addMany([graphic]);
 
     view.center = point;
-    // view.zoom = 3;
+    view.zoom = 8;
 
     console.log("Point added at:");
     console.log("Latitude: " + localStorage.latitude);
