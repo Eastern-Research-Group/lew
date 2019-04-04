@@ -38,14 +38,14 @@
     <script>
       (function(w, d, s, l, i) {
         w[l] = w[l] || [];
-        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
         var f = d.getElementsByTagName(s)[0],
           j = d.createElement(s),
-          dl = l != 'dataLayer' ? '&l=' + l : '';
+          dl = l != "dataLayer" ? "&l=" + l : "";
         j.async = true;
-        j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+        j.src = "//www.googletagmanager.com/gtm.js?id=" + i + dl;
         f.parentNode.insertBefore(j, f);
-      })(window, document, 'script', 'dataLayer', 'GTM-L8ZB');
+      })(window, document, "script", "dataLayer", "GTM-L8ZB");
     </script>
     <!-- End Google Tag Manager -->
     <link rel="stylesheet" type="text/css" href="./swagger-ui.css" />
@@ -67,20 +67,32 @@
       window.onload = function() {
         // Begin Swagger UI call region
         var openapi_file;
-        if (window.location.hostname.toLocaleLowerCase() == "localhost" || window.location.hostname.toLocaleLowerCase() == "lew-dev.app.cloud.gov") {
+        if (
+          window.location.hostname.toLocaleLowerCase() == "localhost" ||
+          window.location.hostname.toLocaleLowerCase() ==
+            "lew-dev.app.cloud.gov"
+        ) {
           openapi_file = "lew_openapi_all.json";
-        } else if(window.location.hostname.toLocaleLowerCase() == "lew-stage.app.cloud.gov") {
+        } else if (
+          window.location.hostname.toLocaleLowerCase() ==
+          "lew-stage.app.cloud.gov"
+        ) {
           openapi_file = "lew_openapi_staging.json";
-        }else {
+        } else {
           openapi_file = "lew_openapi.json";
         }
         const ui = SwaggerUIBundle({
-          url: window.location.protocol + "//" + window.location.host + "/api-docs/" + openapi_file,
-          dom_id: '#swagger-ui',
+          url:
+            window.location.protocol +
+            "//" +
+            window.location.host +
+            "/api-docs/" +
+            openapi_file,
+          dom_id: "#swagger-ui",
           deepLinking: true,
           presets: [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset],
           plugins: [SwaggerUIBundle.plugins.DownloadUrl],
-          layout: 'StandaloneLayout'
+          layout: "StandaloneLayout"
         });
         // End Swagger UI call region
 

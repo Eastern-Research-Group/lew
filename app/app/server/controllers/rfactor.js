@@ -287,7 +287,7 @@ function getCountyURL(lon, lat) {
           } catch (err) {
             var err_json = {
               error_id: 62,
-              error_msg: "Error parsiing results of county data"
+              error_msg: "Error parsing results of county data"
             };
             log.error(err_json + err.toString() + "  postData = " + postData);
             reject(err_json);
