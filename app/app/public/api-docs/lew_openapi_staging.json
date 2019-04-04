@@ -60,7 +60,7 @@
           {
             "in": "header",
             "name": "X-Api-Key",
-            "description": "Default api.epa.gov user key for access to EPA resources",
+            "description": "Default api.epa.gov user key for access to EPA resources. <a target=\"_blank\" href=\"..\\api_key_signup.html\">Obtain your own API key</a>",
             "schema": {
               "type": "string",
               "default": "yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5"
