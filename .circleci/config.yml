@@ -106,9 +106,9 @@ jobs:
           name: test
           command: npm test
       - run:
-          name: Install and run snyk
+          name: Install and run snyk.io test
           command: |
-            'sudo npm install -g snyk'
+            sudo npm install -g snyk
             snyk test
       - run:
           name: Setup Cloud Foundry CLI
