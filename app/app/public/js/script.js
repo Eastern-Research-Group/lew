@@ -79,7 +79,23 @@ define(["app/esriMap"], function(esriMap) {
         document.getElementById("errorMessage").style.display = "block";
         document.getElementById("loader").style.display = "none";
         document.getElementById("eContainer").style.display = "none";
-      } else {
+      }
+      // check if start date is empty
+      else if (!$("#startdatepicker").val()) {
+        document.getElementById("errorMessage").innerHTML = "Please enter a valid Start Date.";
+        document.getElementById("errorMessage").style.display = "block";
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("eContainer").style.display = "none";
+      }
+      // check if end date is empty
+      else if (!$("#enddatepicker").val()) {
+        document.getElementById("errorMessage").innerHTML = "Please enter a valid End Date.";
+        document.getElementById("errorMessage").style.display = "block";
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("eContainer").style.display = "none";
+      }
+      // location and dates are all set
+      else {
         let startDate = $("#startdatepicker").val();
         let endDate = $("#enddatepicker").val();
 
