@@ -161,13 +161,6 @@ tr {
   border-radius: 50%;
 }
 
-.fa:hover {
-  opacity: 0.8;
-  color: white;
-  background: #0071bc;
-  text-decoration: none;
-}
-
 .fa-facebook {
   background: white;
   color: #0071bc;
@@ -194,6 +187,13 @@ tr {
 
 .fa:visited {
   color: #0071bc;
+}
+
+.fa:hover {
+  opacity: 0.8;
+  color: white;
+  background: #0071bc;
+  text-decoration: none;
 }
 
 .connect-title__link {
