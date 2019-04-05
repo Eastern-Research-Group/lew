@@ -1,6 +1,16 @@
 define(["app/esriMap"], function(esriMap) {
   let attempts = 0;
   function init() {
+    // if ie11
+
+    var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
+
+    if (isIE11) {
+      console.log("ie11 detected beep boop");
+      var element = document.getElementById("responsivebr");
+      element.classList.remove("responsivebr");
+    }
+
     // initialize localstorage to default view of USA
     if (typeof Storage !== "undefined") {
       localStorage.latitude = "39.381266";
@@ -12,18 +22,15 @@ define(["app/esriMap"], function(esriMap) {
     esriMap.init("viewDiv");
 
     // view on map button listener
-    document
-      .getElementById("mapViewButton")
-      .addEventListener("click", function(event) {
-        event.preventDefault();
-        console.log("button clicked");
-        getCoords();
-      });
+    document.getElementById("mapViewButton").addEventListener("click", function(event) {
+      event.preventDefault();
+      console.log("button clicked");
+      getCoords();
+    });
 
     // form Listener
     document.getElementById("form").addEventListener("submit", function(event) {
       event.preventDefault();
-      console.log("form submitted");
       // get the coordinates and add a point to the map based on search box value
       getCoords();
     });
@@ -56,16 +63,12 @@ define(["app/esriMap"], function(esriMap) {
     }
 
     // view on map button listener
-    document
-      .getElementById("rButton")
-      .addEventListener("click", function(event) {
-        event.preventDefault();
-        console.log("R button clicked");
-        getRFactor();
-      });
+    document.getElementById("rButton").addEventListener("click", function(event) {
+      event.preventDefault();
+      getRFactor();
+    });
 
     function getRFactor() {
-      console.log("LOADER HERE");
       document.getElementById("loader").style.display = "block";
       document.getElementById("errorMessage").style.display = "none";
       document.getElementById("eContainer").style.display = "none";
@@ -94,8 +97,7 @@ define(["app/esriMap"], function(esriMap) {
       let endday = endDate.slice(8);
       let newendDate = endmonth + "/" + endday + "/" + endyear;
 
-      let smartURL =
-        window.location.protocol + "//" + window.location.host + "/v1/rfactor";
+      let smartURL = window.location.protocol + "//" + window.location.host + "/v1/rfactor";
 
       let webservice =
         smartURL +
@@ -123,9 +125,7 @@ define(["app/esriMap"], function(esriMap) {
           $("#conclusion").html(
             "A rainfall erosivity factor of 5.0 or greater has been calculated for your site's period of construction."
           );
-          $("#conclusion2").html(
-            "You do NOT qualify for a waiver from NPDES permitting requirements."
-          );
+          $("#conclusion2").html("You do NOT qualify for a waiver from NPDES permitting requirements.");
         }
 
         document.getElementById("eContainer").style.display = "block";

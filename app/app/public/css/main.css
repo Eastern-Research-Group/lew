@@ -24,8 +24,7 @@ hr#hr {
 }
 
 a {
-  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial,
-    sans-serif;
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   font-size: 14pt;
   color: black;
 }
@@ -39,8 +38,7 @@ section a {
 }
 
 #bodytext {
-  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial,
-    sans-serif;
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   font-size: 14pt;
   font-weight: 500;
   line-height: 1.5;
@@ -48,8 +46,7 @@ section a {
 }
 
 #bodylink {
-  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial,
-    sans-serif;
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   font-size: 14pt;
   line-height: 1.5;
 }
@@ -133,26 +130,23 @@ tr {
 }
 
 #h3Facility {
-  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial,
-    sans-serif;
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   font-size: 140%;
 }
 #h3Results {
-  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial,
-    sans-serif;
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   font-size: 140%;
 }
 
 #tableEI {
-  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial,
-    sans-serif;
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   font-size: 110%;
   font-weight: 400;
 }
 #contactlink {
   color: #0071bc;
 }
-#responsivebr {
+.responsivebr {
   display: none;
 }
 
@@ -257,7 +251,7 @@ tr {
 }
 
 @media only screen and (max-width: 961px) {
-  #responsivebr {
+  .responsivebr {
     display: inline-flex;
   }
 }
