@@ -137,6 +137,7 @@ define(["app/esriMap"], function(esriMap) {
           // recursively query the API again, due to unreliability. usually fails the 1st time for a new location, then works every time
           getRFactor();
         } else {
+          attempts = 0;
           console.log(error);
           document.getElementById("loader").style.display = "none";
           let errorElement = document.getElementById("errorMessage");
