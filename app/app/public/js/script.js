@@ -1,12 +1,8 @@
 define(["app/esriMap"], function(esriMap) {
   let attempts = 0;
   function init() {
-    // if ie11
-
-    var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
-
-    if (isIE11) {
-      console.log("ie11 detected beep boop");
+    // if browser is ie11, fix the responsiveness of the datepicker inputs
+    if (!!window.MSInputMethodContext && !!document.documentMode) {
       var element = document.getElementById("responsivebr");
       element.classList.remove("responsivebr");
     }
@@ -24,7 +20,6 @@ define(["app/esriMap"], function(esriMap) {
     // view on map button listener
     document.getElementById("mapViewButton").addEventListener("click", function(event) {
       event.preventDefault();
-      console.log("button clicked");
       getCoords();
     });
 
@@ -52,8 +47,6 @@ define(["app/esriMap"], function(esriMap) {
 
         localStorage.latitude = data.candidates[0].location.y;
         localStorage.longitude = data.candidates[0].location.x;
-        console.log("Latitude: " + localStorage.latitude);
-        console.log("Longitude: " + localStorage.longitude);
 
         esriMap.addPoint(localStorage.latitude, localStorage.longitude);
       }).fail(function() {

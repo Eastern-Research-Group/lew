@@ -6,21 +6,11 @@ define([
   "esri/geometry/Point",
   "esri/layers/GraphicsLayer",
   "esri/symbols/SimpleMarkerSymbol"
-], function(
-  Map,
-  MapView,
-  Graphic,
-  FeatureLayer,
-  Point,
-  GraphicsLayer,
-  SimpleMarkerSymbol
-) {
+], function(Map, MapView, Graphic, FeatureLayer, Point, GraphicsLayer, SimpleMarkerSymbol) {
   let map = null;
   let view = null;
 
-  function init(element) {
-    console.log("initializing map..");
-
+  function init() {
     // Create the Map with an initial basemap
     map = new Map({
       basemap: "topo"
@@ -58,11 +48,10 @@ define([
       } else {
         alert("Local storage not available. Please try a different browser.");
       }
-      console.log("\nClick detected at:");
-      console.log("Latitude: " + localStorage.latitude);
-      console.log("Longitude: " + localStorage.longitude);
-      document.getElementById("location").value =
-        localStorage.longitude + " , " + localStorage.latitude;
+      // console.log("\nClick detected at:");
+      // console.log("Latitude: " + localStorage.latitude);
+      // console.log("Longitude: " + localStorage.longitude);
+      document.getElementById("location").value = localStorage.longitude + " , " + localStorage.latitude;
 
       // Add the graphics to the view's graphics layer
       view.graphics.addMany([pointGraphic]);
@@ -124,9 +113,9 @@ define([
     view.center = point;
     view.zoom = 8;
 
-    console.log("Point added at:");
-    console.log("Latitude: " + localStorage.latitude);
-    console.log("Longitude: " + localStorage.longitude);
+    // console.log("Point added at:");
+    // console.log("Latitude: " + localStorage.latitude);
+    // console.log("Longitude: " + localStorage.longitude);
   }
 
   return {
