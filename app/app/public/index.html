@@ -23,7 +23,13 @@
   <meta name="DC.date.modified" content="" />
   <meta name="DC.date.reviewed" content="" />
   <meta name="DC.creator" content="" />
-	<title>Standalone Template for Applications | US EPA</title>
+  <title>Rainfall Erosivity Factor Calculator </title>
+
+
+
+
+
+
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	
   <link rel="shortcut icon" href="https://www.epa.gov/sites/all/themes/epa/favicon.ico" type="image/vnd.microsoft.icon" />
@@ -39,16 +45,13 @@
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({"gtm.start":new Date().getTime(),event:"gtm.js"});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src="//www.googletagmanager.com/gtm.js?id="+i+dl;f.parentNode.insertBefore(j,f);})(window,document,"script","dataLayer","GTM-L8ZB");</script>
 	<!-- End Google Tag Manager -->  
-	<script
-  src="https://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-	crossorigin="anonymous"></script>
+
 	
 <style type="text/css" media="all">
 @import url("https://www.epa.gov/sites/all/themes/epa/css/design.min.css");
 
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+
 </head>
 <body class="html">
   <!-- Google Tag Manager -->
@@ -212,9 +215,6 @@
 							
 							<input id="mapViewButton" value="Show on map" type="button" />
 
-							<input style="background-color: green;" id="point test" value="Test storage" type="button" />
-							<input style="background-color: green;" id="add point" value="Add point" type="button" />
-
 							
 		
 									<div class="viewDiv" id="viewDiv"></div>
@@ -256,7 +256,7 @@
 								</tbody>
 							</table>
 							<h3 id="h3Results"> Calculation Results </h3>
-							<h5 id="tableEI"> Rainfall erosivity factor (R Factor) = <span id="eiValue" style="color:red; font-weight: bold"> </span></h5>
+							<h5 id="tableEI"> Rainfall erosivity factor (R Factor) = <span id="eiValue" style="color:#d44600; font-weight: bold"> </span></h5>
 								<p id="conclusion"></p>
 								<p id="conclusion2" style="font-weight: bold"></p>
 
@@ -276,7 +276,7 @@
 
 				</div>
             </div>
-        </div>
+     
 	</section>
 	<footer class="main-footer clearfix" role="contentinfo">
 		<div class="main-footer__inner">
@@ -340,25 +340,28 @@
 				</div>
 			</div>
         </div>
-    </footer>
-		<script type="text/javascript">
-			$(function(){
-					if(!Modernizr.inputtypes.date) {
-							console.log("The 'date' input type is not supported, so using JQueryUI datepicker instead.");
-							$("#startdatepicker").datepicker();
-					}
-			});
-	</script>
-			<script type="text/javascript">
-				$(function(){
-						if(!Modernizr.inputtypes.date) {
-								console.log("The 'date' input type is not supported, so using JQueryUI datepicker instead.");
-								$("#enddatepicker").datepicker();
-						}
-				});
-		</script>
-	
+	</footer>
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+ crossorigin="anonymous"></script>
+<script type="text/javascript">
+	$(function () {
+		if (!Modernizr.inputtypes.date) {
+			console.log("The 'date' input type is not supported, so using JQueryUI datepicker instead.");
+			$("#startdatepicker").datepicker();
+		}
+	});
+</script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+
+<script type="text/javascript">
+	$(function () {
+		if (!Modernizr.inputtypes.date) {
+			console.log("The 'date' input type is not supported, so using JQueryUI datepicker instead.");
+			$("#enddatepicker").datepicker();
+		}
+	});
+</script>
 
 <script>
     var dojoConfig = {

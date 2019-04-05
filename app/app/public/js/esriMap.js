@@ -56,7 +56,7 @@ define([
         localStorage.latitude = evt.mapPoint.latitude;
         localStorage.longitude = evt.mapPoint.longitude;
       } else {
-        console.log("storage not available");
+        alert("Local storage not available. Please try a different browser.");
       }
       console.log("\nClick detected at:");
       console.log("Latitude: " + localStorage.latitude);

@@ -1,50 +1,34 @@
 define(["app/esriMap"], function(esriMap) {
+  let attempts = 0;
   function init() {
     // initialize localstorage to default view of USA
-    localStorage.latitude = "39.381266";
-    localStorage.longitude = "-97.922211";
-
+    if (typeof Storage !== "undefined") {
+      localStorage.latitude = "39.381266";
+      localStorage.longitude = "-97.922211";
+    } else {
+      alert("Local storage not available. Please try a different browser.");
+    }
     // initialize map
     esriMap.init("viewDiv");
 
-    // when ADD POINT button is clicked. for debugging.
-    document.getElementById("add point").addEventListener("click", (e) => {
-      console.log("\nAdd point button clicked");
-      longitude = -Math.floor(Math.random() * 90) + 80;
-      latitude = Math.floor(Math.random() * 40) + 30;
-      esriMap.addPoint(latitude, longitude);
-    });
-
-    // when TEST STORAGE button is clicked. for debugging.
-    document.getElementById("point test").addEventListener("click", (e) => {
-      console.log("\nTest storage button clicked");
-      if (typeof Storage !== "undefined") {
-        console.log("Latitude: " + localStorage.latitude);
-        console.log("Longitude: " + localStorage.longitude);
-      } else {
-        console.log("storage not available");
-      }
-    });
-
     // view on map button listener
-
     document
       .getElementById("mapViewButton")
-      .addEventListener("click", (event) => {
+      .addEventListener("click", function(event) {
         event.preventDefault();
         console.log("button clicked");
         getCoords();
       });
 
     // form Listener
-    document.getElementById("form").addEventListener("submit", (event) => {
+    document.getElementById("form").addEventListener("submit", function(event) {
       event.preventDefault();
       console.log("form submitted");
+      // get the coordinates and add a point to the map based on search box value
       getCoords();
     });
 
     function getCoords() {
-      console.log("in getCoords();");
       let location = $("#location").val();
 
       let ws =
@@ -55,7 +39,7 @@ define(["app/esriMap"], function(esriMap) {
       $("#datatxt").html("Calling web service");
       $("#lon-lat").html("Loading");
 
-      $.getJSON(ws, function(data) {
+      $.get(ws, function(data) {
         console.log(data);
         $("#datatxt").html(JSON.stringify(data));
 
@@ -72,12 +56,13 @@ define(["app/esriMap"], function(esriMap) {
     }
 
     // view on map button listener
-
-    document.getElementById("rButton").addEventListener("click", (event) => {
-      event.preventDefault();
-      console.log("R button clicked");
-      getRFactor();
-    });
+    document
+      .getElementById("rButton")
+      .addEventListener("click", function(event) {
+        event.preventDefault();
+        console.log("R button clicked");
+        getRFactor();
+      });
 
     function getRFactor() {
       console.log("LOADER HERE");
@@ -124,8 +109,9 @@ define(["app/esriMap"], function(esriMap) {
         coordy +
         "]}}&api_key=K20ha4MR1Ddd7sciJQdCZlS5LsudmmtpQeeZ3J7L";
 
-      $.getJSON(webservice, function(data) {
-        console.log("END LOADER");
+      $.get(webservice, function(data) {
+        // reset number of attempts on success
+        attempts = 0;
         document.getElementById("loader").style.display = "none";
         console.log(data);
         $("#eiValue").html(data.rfactor.toString());
@@ -144,11 +130,24 @@ define(["app/esriMap"], function(esriMap) {
 
         document.getElementById("eContainer").style.display = "block";
       }).fail(function(error) {
-        console.log(error);
-
-        document.getElementById("loader").style.display = "none";
-        document.getElementById("errorMessage").style.display = "block";
-        alert(error.responseJSON.error_msg || error.statusText);
+        // increment attempts and try again
+        attempts++;
+        console.log("Attempts: " + attempts);
+        if (attempts <= 3) {
+          // recursively query the API again, due to unreliability. usually fails the 1st time for a new location, then works every time
+          getRFactor();
+        } else {
+          console.log(error);
+          document.getElementById("loader").style.display = "none";
+          let errorElement = document.getElementById("errorMessage");
+          errorElement.style.display = "block";
+          // depending on type of error, set the error message
+          errorElement.innerHTML =
+            error.responseJSON.error_msg ||
+            error.statusText ||
+            "Error with your query. Try again or adjust your search parameters.";
+          alert(error.responseJSON.error_msg || error.statusText);
+        }
       });
     }
   }

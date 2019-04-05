@@ -258,7 +258,7 @@ tr {
 
 @media only screen and (max-width: 961px) {
   #responsivebr {
-    display: inline;
+    display: inline-flex;
   }
 }
 
@@ -302,6 +302,7 @@ tr {
 
 .loading-text {
   text-align: center;
+  font-weight: bold;
 }
 
 .error-message {
