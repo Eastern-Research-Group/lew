@@ -31,6 +31,10 @@ define(["app/esriMap"], function(esriMap) {
     });
 
     function getCoords() {
+      // hide results container
+      document.getElementById("eContainer").style.display = "none";
+      // hide location search error message
+      document.getElementById("location-error").style.display = "none";
       let location = $("#location").val();
 
       let ws =
@@ -42,6 +46,9 @@ define(["app/esriMap"], function(esriMap) {
       $("#lon-lat").html("Loading");
 
       $.get(ws, function(data) {
+        if (data.candidates.length === 0) {
+          document.getElementById("location-error").style.display = "inline";
+        }
         console.log(data);
         $("#datatxt").html(JSON.stringify(data));
 
@@ -109,6 +116,9 @@ define(["app/esriMap"], function(esriMap) {
         attempts = 0;
         document.getElementById("loader").style.display = "none";
         console.log(data);
+        if (data.rfactor == null) {
+          data.rfactor = "Unknown";
+        }
         $("#eiValue").html(data.rfactor.toString());
         $("#tableEndSpan").html(newendDate);
         $("#tableStartSpan").html(newStartDate);

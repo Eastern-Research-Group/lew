@@ -25,6 +25,10 @@ define([
 
     view.on("click", function(evt) {
       view.graphics.removeAll();
+      // hide results container
+      document.getElementById("eContainer").style.display = "none";
+      // hide location search error message
+      document.getElementById("location-error").style.display = "none";
 
       var markerSymbol = {
         type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
