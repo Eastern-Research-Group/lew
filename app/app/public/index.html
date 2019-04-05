@@ -23,6 +23,7 @@
     <meta name="DC.date.reviewed" content="" />
     <meta name="DC.creator" content="" />
     <title>Rainfall Erosivity Factor Calculator</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
 
     <link
       rel="stylesheet"
@@ -539,17 +540,18 @@
       integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
       crossorigin="anonymous"
     ></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
     <script type="text/javascript">
       $(function() {
         if (!Modernizr.inputtypes.date) {
           console.log("The 'date' input type is not supported, so using JQueryUI datepicker instead.");
-          $("#startdatepicker").datepicker();
+          $("#startdatepicker").datepicker({ dateFormat: "yy-mm-dd" });
+          $("#enddatepicker").datepicker({ dateFormat: "yy-mm-dd" });
         }
       });
     </script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-
+    <!-- 
     <script type="text/javascript">
       $(function() {
         if (!Modernizr.inputtypes.date) {
@@ -557,7 +559,7 @@
           $("#enddatepicker").datepicker();
         }
       });
-    </script>
+    </script> -->
 
     <script>
       var dojoConfig = {
