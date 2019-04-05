@@ -50,7 +50,7 @@ define([
         localStorage.latitude = evt.mapPoint.latitude;
         localStorage.longitude = evt.mapPoint.longitude;
       } else {
-        alert("Local storage not available. Please try a different browser.");
+        console.log("Local storage not available. Please try a different browser.");
       }
       // console.log("\nClick detected at:");
       // console.log("Latitude: " + localStorage.latitude);
@@ -61,31 +61,31 @@ define([
       view.graphics.addMany([pointGraphic]);
     });
 
-    var point = {
-      type: "point", // autocasts as new Point()
-      longitude: "-97.922211",
-      latitude: "39.381266"
-    };
+    // var point = {
+    //   type: "point", // autocasts as new Point()
+    //   longitude: "-97.922211",
+    //   latitude: "39.381266"
+    // };
 
-    // Create a symbol for drawing the point
-    var markerSymbol = {
-      type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
-      color: [226, 119, 40],
-      outline: {
-        // autocasts as new SimpleLineSymbol()
-        color: [255, 255, 255],
-        width: 2
-      }
-    };
+    // // Create a symbol for drawing the point
+    // var markerSymbol = {
+    //   type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+    //   color: [226, 119, 40],
+    //   outline: {
+    //     // autocasts as new SimpleLineSymbol()
+    //     color: [255, 255, 255],
+    //     width: 2
+    //   }
+    // };
 
-    // Create a graphic and add the geometry and symbol to it
-    var pointGraphic = new Graphic({
-      geometry: point,
-      symbol: markerSymbol
-    });
+    // // Create a graphic and add the geometry and symbol to it
+    // var pointGraphic = new Graphic({
+    //   geometry: point,
+    //   symbol: markerSymbol
+    // });
 
-    // Add the graphics to the view's graphics layer
-    view.graphics.addMany([pointGraphic]);
+    // // Add the graphics to the view's graphics layer
+    // view.graphics.addMany([pointGraphic]);
   }
 
   // add a point to the map
