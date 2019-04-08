@@ -1,5 +1,5 @@
 h2.page-title {
-  font-family: Merriweather, Georgia, Cambria, 'Times New Roman', Times, serif;
+  font-family: Merriweather, Georgia, Cambria, "Times New Roman", Times, serif;
   font-weight: 700;
   line-height: 1.3;
   margin: 0;
@@ -7,7 +7,7 @@ h2.page-title {
 }
 
 h1.NPDESTitle {
-  font-family: Merriweather, Georgia, Cambria, 'Times New Roman', Times, serif;
+  font-family: Merriweather, Georgia, Cambria, "Times New Roman", Times, serif;
   line-height: 1.3;
   font-weight: 800;
   margin: 0;
@@ -24,8 +24,7 @@ hr#hr {
 }
 
 a {
-  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Roboto, Arial,
-    sans-serif;
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   font-size: 14pt;
   color: black;
 }
@@ -39,8 +38,7 @@ section a {
 }
 
 #bodytext {
-  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Roboto, Arial,
-    sans-serif;
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   font-size: 14pt;
   font-weight: 500;
   line-height: 1.5;
@@ -48,8 +46,7 @@ section a {
 }
 
 #bodylink {
-  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Roboto, Arial,
-    sans-serif;
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   font-size: 14pt;
   line-height: 1.5;
 }
@@ -59,6 +56,12 @@ form {
 }
 
 #viewDiv {
+  padding: 0;
+  margin: 0;
+  height: 5px;
+  width: 100%;
+}
+#testing {
   padding: 0;
   margin: 0;
   height: 500px;
@@ -73,10 +76,18 @@ form {
   display: none;
 }
 
+.form-text {
+  margin-top: 0;
+}
+
+#conclusion {
+  padding-bottom: 1%;
+}
 #eContainer {
-  background-color: lightblue;
-  padding-bottom: 3%;
-  padding-top: 1%;
+  display: none;
+  background-color: #e4fbff;
+  padding-bottom: 5%;
+  padding-top: 4%;
 }
 tr {
   background-color: white;
@@ -86,43 +97,69 @@ tr {
   height: 100%;
   width: 60%;
   margin-left: 20%;
-  margin-top: 5%;
+  margin-top: 20px;
   margin-bottom: 5%;
 }
 
-#note {
-  padding-left: 1%;
-  padding-bottom: 1%;
+.note {
+  padding-left: 5px;
+  padding-bottom: 0;
+  margin-bottom: 10px;
   font-weight: 400;
-  background-color: #d2d8e0;
+  background-color: #eff0f2;
+  border-radius: 12px;
 }
 
 #startdatepicker {
-  padding-right: 2%;
-  margin-right: 12%;
+  margin-right: 45%;
   margin-bottom: 4%;
 }
 
 #enddatepicker {
-  padding-right: 4%;
   margin-bottom: 4%;
 }
 
+@media only screen and (max-width: 600px) {
+  #enddatepicker {
+    margin-right: 25%;
+  }
+}
+
 #location {
-  padding-left: 3%;
   padding-right: 4%;
   margin-top: 3%;
-  width: 400px;
+  max-width: 400px;
 }
 
 #mapViewButton {
-  margin-left: 3%;
-  width: 200px;
+  /* margin-left: 3%; */
+  width: 150px;
+}
+
+#h3Facility {
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-size: 140%;
+}
+#h3Results {
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-size: 140%;
+}
+
+#tableEI {
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-size: 110%;
+  font-weight: 400;
+}
+#contactlink {
+  color: #0071bc;
+}
+.responsivebr {
+  display: none;
 }
 
 .fa {
   box-sizing: content-box;
-  padding: 15px;
+  padding: 4px;
   font-size: 20px;
   width: 20px;
   text-align: center;
@@ -131,28 +168,171 @@ tr {
   border-radius: 50%;
 }
 
-.fa:hover {
-  opacity: 0.8;
-  color: white;
-  text-decoration: none;
-}
-
 .fa-facebook {
-  background: #3b5998;
-  color: white;
+  background: white;
+  color: #0071bc;
+  border: 1px solid #0071bc;
 }
 
 .fa-twitter {
-  background: #55acee;
-  color: white;
+  background: white;
+  color: #0071bc;
+  border: 1px solid #0071bc;
 }
 
 .fa-pinterest {
-  background: #cb2027;
-  color: white;
+  background: white;
+  color: #0071bc;
+  border: 1px solid #0071bc;
 }
 
 .fa-envelope {
-  background: #494545;
+  background: white;
+  color: #0071bc;
+  border: 1px solid #0071bc;
+}
+
+.fa:visited {
+  color: #0071bc;
+}
+
+.fa:hover {
+  opacity: 0.8;
   color: white;
+  background: #0071bc;
+  text-decoration: none;
+}
+
+.connect-title__link {
+  margin-left: 35%;
+}
+
+.connecting {
+  text-align: right;
+}
+.headrow {
+  margin-top: 2%;
+}
+
+@media only screen and (max-width: 700px) {
+  .menu-link {
+    display: none;
+  }
+  .menu-item {
+    display: none;
+  }
+  .fa {
+    display: none;
+  }
+  #sharing {
+    display: none;
+  }
+
+  .connect-title__link {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #mapViewButton {
+    margin-top: 5%;
+    margin-left: 25%;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  #mapViewButton {
+    margin-top: 5%;
+  }
+}
+
+@media only screen and (max-width: 568px) {
+  #startdatepicker {
+    margin-right: 20%;
+  }
+
+  #rButton {
+    margin-left: 9%;
+  }
+}
+
+@media only screen and (max-width: 1050px) {
+  .responsivebr {
+    display: inline-flex;
+  }
+}
+
+.signup-footer {
+  margin-bottom: 5%;
+}
+
+#viewDiv {
+  height: 500px;
+}
+
+.loader {
+  border: 16px solid #a7a7a7;
+  border-radius: 50%;
+  border-top: 16px solid #0071bc;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  margin: auto;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-text {
+  text-align: center;
+  font-weight: bold;
+}
+
+.error-message {
+  color: rgb(156, 15, 15);
+  display: none;
+  text-align: center;
+}
+
+.fat {
+  display: inline-block;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.fa-stack-1x {
+  font-size: 42px;
+}
+
+.fa-circle {
+  color: #0071bc;
+}
+
+.number {
+  font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+  font-size: 33px;
+  top: 5px;
+  right: 14px;
+  position: absolute;
 }

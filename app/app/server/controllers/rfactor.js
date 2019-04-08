@@ -14,11 +14,7 @@ Date.prototype.isValid = function() {
 
 Date.prototype.formatMMDDYYYY = function() {
   return (
-    ("00" + (this.getMonth() + 1)).substr(-2) +
-    "/" +
-    ("00" + this.getDate()).substr(-2) +
-    "/" +
-    this.getFullYear()
+    ("00" + (this.getMonth() + 1)).substr(-2) + "/" + ("00" + this.getDate()).substr(-2) + "/" + this.getFullYear()
   );
 };
 
@@ -37,8 +33,7 @@ module.exports.calculateRFactor = async (req, res) => {
 
   var err_json = null;
   if (
-    (req.hostname !== "localhost" &&
-      req.header("X-Api-User-Id") === undefined) ||
+    (req.hostname !== "localhost" && req.header("X-Api-User-Id") === undefined) ||
     (req.hostname === "localhost" &&
       req.query.api_key === undefined &&
       (req.hostname === "localhost" && req.header("X-Api-Key") === undefined))
@@ -77,11 +72,7 @@ module.exports.calculateRFactor = async (req, res) => {
 
   log.debug("req.query.start_date = " + req.query.start_date);
   //reformat start_date to take into account UTC
-  start_date = new Date(
-    start_date.getUTCFullYear(),
-    start_date.getUTCMonth(),
-    start_date.getUTCDate()
-  );
+  start_date = new Date(start_date.getUTCFullYear(), start_date.getUTCMonth(), start_date.getUTCDate());
   log.debug("start_date = " + start_date);
 
   /********************************************************* 
@@ -105,11 +96,7 @@ module.exports.calculateRFactor = async (req, res) => {
   }
   log.debug("req.query.end_date = " + req.query.end_date);
   //reformat start_date to take into account UTC
-  end_date = new Date(
-    end_date.getUTCFullYear(),
-    end_date.getUTCMonth(),
-    end_date.getUTCDate()
-  );
+  end_date = new Date(end_date.getUTCFullYear(), end_date.getUTCMonth(), end_date.getUTCDate());
   log.debug("end_date = " + end_date);
 
   /********************************************************* 
@@ -179,18 +166,8 @@ module.exports.calculateRFactor = async (req, res) => {
   log.debug("setMonth = " + setMonth);
 
   var setDay = [
-    Number(
-      setDate[0].substring(
-        setDate[0].indexOf("/") + 1,
-        setDate[0].lastIndexOf("/")
-      )
-    ),
-    Number(
-      setDate[1].substring(
-        setDate[1].indexOf("/") + 1,
-        setDate[1].lastIndexOf("/")
-      )
-    )
+    Number(setDate[0].substring(setDate[0].indexOf("/") + 1, setDate[0].lastIndexOf("/"))),
+    Number(setDate[1].substring(setDate[1].indexOf("/") + 1, setDate[1].lastIndexOf("/")))
   ];
 
   log.debug("setDay = " + setDay);
@@ -218,11 +195,7 @@ module.exports.calculateRFactor = async (req, res) => {
   try {
     const url = await getCountyURL(lon, lat);
     const EI_DAILY_AMOUNT = await getClimateDataForCounty(url);
-    const rFactor_1 = await calculateRFactor(
-      EI_DAILY_AMOUNT,
-      setYear,
-      dayIndex
-    );
+    const rFactor_1 = await calculateRFactor(EI_DAILY_AMOUNT, setYear, dayIndex);
     return await sendResponse(rFactor_1, res);
   } catch (err) {
     res.status(400).json(err);
@@ -297,14 +270,10 @@ function getCountyURL(lon, lat) {
           if (results == null) {
             var err_json = {
               error_id: 63,
-              error_msg:
-                "rFactor information is not available for this location"
+              error_msg: "rFactor information is not available for this location"
             };
             log.error(
-              err_json +
-                "Error retrieving county URL information from the results array. " +
-                "  postData = " +
-                postData
+              err_json + "Error retrieving county URL information from the results array. " + "  postData = " + postData
             );
             reject(err_json);
             return;
@@ -353,9 +322,7 @@ function getClimateDataForCounty(countyURL) {
             error_id: 70,
             error_msg: "Error retrieving county level data."
           };
-          log.error(
-            err_json + " The countyURL =" + countyURL + " " + err.toString()
-          );
+          log.error(err_json + " The countyURL =" + countyURL + " " + err.toString());
           reject(err_json);
           return;
         } else {
@@ -411,8 +378,7 @@ function calculateRFactor(EI_DAILY_AMOUNT, setYear, dayIndex) {
         if (p % 365 == 0) {
           rFactor = rFactor + Number(dailyEIData[365]);
         } else {
-          rFactor =
-            rFactor + Number(dailyEIData[p - 365 * Math.floor(p / 365)]);
+          rFactor = rFactor + Number(dailyEIData[p - 365 * Math.floor(p / 365)]);
         }
       }
 
