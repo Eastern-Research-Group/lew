@@ -52,40 +52,11 @@ define([
       } else {
         console.log("Local storage not available. Please try a different browser.");
       }
-      // console.log("\nClick detected at:");
-      // console.log("Latitude: " + localStorage.latitude);
-      // console.log("Longitude: " + localStorage.longitude);
       document.getElementById("location").value = localStorage.longitude + " , " + localStorage.latitude;
 
       // Add the graphics to the view's graphics layer
       view.graphics.addMany([pointGraphic]);
     });
-
-    // var point = {
-    //   type: "point", // autocasts as new Point()
-    //   longitude: "-97.922211",
-    //   latitude: "39.381266"
-    // };
-
-    // // Create a symbol for drawing the point
-    // var markerSymbol = {
-    //   type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
-    //   color: [226, 119, 40],
-    //   outline: {
-    //     // autocasts as new SimpleLineSymbol()
-    //     color: [255, 255, 255],
-    //     width: 2
-    //   }
-    // };
-
-    // // Create a graphic and add the geometry and symbol to it
-    // var pointGraphic = new Graphic({
-    //   geometry: point,
-    //   symbol: markerSymbol
-    // });
-
-    // // Add the graphics to the view's graphics layer
-    // view.graphics.addMany([pointGraphic]);
   }
 
   // add a point to the map
@@ -116,10 +87,6 @@ define([
 
     view.center = point;
     view.zoom = 8;
-
-    // console.log("Point added at:");
-    // console.log("Latitude: " + localStorage.latitude);
-    // console.log("Longitude: " + localStorage.longitude);
   }
 
   return {

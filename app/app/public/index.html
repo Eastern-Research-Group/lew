@@ -311,24 +311,47 @@
 
               <form id="form">
                 <p class="note">
-                  <span style="font-weight: bold"> NOTE: </span>Select the start and end dates by clicking the boxes and using the dropdown calendar
-                </p>
-                <span>Start Date: </span>
-                <input type="date" id="startdatepicker" placeholder="YYYY-MM-DD" />
-                <br id="responsivebr" class="responsivebr" />
-                <span>End Date: </span>
-                <input type="date" id="enddatepicker" placeholder="YYYY-MM-DD" /><br />
-                <p class="note">
-                  <span style="font-weight: bold"> NOTE: </span>If your construction project extends beyond the estimated end date, you will need to either
+                  <span class="fa-stack fa-lg">
+                    <i class="fat fa-circle fa-stack-2x"></i>
+                    <i class="fat fa-inverse fa-stack-1x"><span class="number">1</span></i>
+                  </span>
+                  <!-- <span style="font-weight: bold"> Step #1 </span>  -->
+                  Select the start and end dates by clicking the boxes and using the dropdown calendar.
+                  <br /><br />
+                  <span style="font-weight: bold">Note: </span>If your construction project extends beyond the estimated end date, you will need to either
                   recalculate the R factor based on a new end date, or apply for NPDES permit coverage.
                 </p>
-                Location:
+                <span>Start Date: </span>
+                <input type="date" class="form-control" style="width: unset; display: unset;" id="startdatepicker" placeholder="YYYY-MM-DD" />
+                <br id="responsivebr" class="responsivebr" />
+                <span>End Date: </span>
+                <input type="date" class="form-control" style="width: unset; display: unset;" id="enddatepicker" placeholder="YYYY-MM-DD" /><br />
+
+                <p class="note">
+                  <span class="fa-stack fa-lg">
+                    <i class="fat fa-circle fa-stack-2x"></i>
+                    <i class="fat fa-inverse fa-stack-1x"><span class="number">2</span></i>
+                  </span>
+                  Select your small construction project using the search box below or clicking on the map.
+                </p>
+                <span>Location:</span>
+
                 <input class="form-control" style="display: inline-block;" type="text" id="location" placeholder="Enter address or latitude/longitude" />
 
-                <input id="mapViewButton" value="Show on map" type="button" /> <span id="location-error" style="color: red; display: none;">Invalid Address</span>
+                <input id="mapViewButton" value="Show on map" type="button" />
+                <span id="location-error" style="color: red; display: none;">Invalid Location</span>
 
                 <div class="viewDiv" id="viewDiv"></div>
 
+                <br />
+                <p class="note">
+                  <span class="fa-stack fa-lg">
+                    <i class="fat fa-circle fa-stack-2x"></i>
+                    <i class="fat fa-inverse fa-stack-1x"><span class="number">3</span></i>
+                  </span>
+
+                  Click the Determine R Factor button below to calculate an R Factor for your small construction project site.
+                </p>
                 <input id="rButton" value="Determine R Factor" type="button" />
               </form>
             </div>

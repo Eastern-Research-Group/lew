@@ -170,11 +170,11 @@ define(["app/esriMap"], function(esriMap) {
             let errorElement = document.getElementById("errorMessage");
             errorElement.style.display = "block";
             // depending on type of error, set the error message
-            errorElement.innerHTML =
-              error.responseJSON.error_msg ||
-              error.statusText ||
-              "Error with your query. Try again or adjust your search parameters.";
-            // alert(error.responseJSON.error_msg || error.statusText);
+            try {
+              errorElement.innerHTML = error.responseJSON.error_msg || error.statusText;
+            } catch (err) {
+              errorElement.innerHTML = "Error with your search. Check your inputs and try again.";
+            }
           }
         });
       }
