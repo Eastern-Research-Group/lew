@@ -1,4 +1,5 @@
 define(["app/esriMap"], function(esriMap) {
+  // holds number of attempts in case API fails first 1 or 2 times. stops after 4 attempts.
   let attempts = 0;
   function init() {
     // if browser is ie11, fix the responsiveness of the datepicker inputs
@@ -20,17 +21,18 @@ define(["app/esriMap"], function(esriMap) {
     // view on map button listener
     document.getElementById("mapViewButton").addEventListener("click", function(event) {
       event.preventDefault();
-      getCoords();
+      // get the coordinates and add a point to the map based on search box value
+      getCoords(function() {});
     });
 
     // form Listener
     document.getElementById("form").addEventListener("submit", function(event) {
       event.preventDefault();
       // get the coordinates and add a point to the map based on search box value
-      getCoords();
+      getCoords(function() {});
     });
 
-    function getCoords() {
+    function getCoords(_callback) {
       // hide results container
       document.getElementById("eContainer").style.display = "none";
       // hide location search error message
@@ -49,30 +51,35 @@ define(["app/esriMap"], function(esriMap) {
         if (data.candidates.length === 0) {
           document.getElementById("location-error").style.display = "inline";
         }
-        console.log(data);
-        $("#datatxt").html(JSON.stringify(data));
-
-        localStorage.latitude = data.candidates[0].location.y;
-        localStorage.longitude = data.candidates[0].location.x;
-
+        // add lat/long to local storage
+        try {
+          localStorage.latitude = data.candidates[0].location.y;
+          localStorage.longitude = data.candidates[0].location.x;
+        } catch (err) {
+          document.getElementById("location-error").style.display = "inline";
+        }
+        // add a point on the map
         esriMap.addPoint(localStorage.latitude, localStorage.longitude);
+        _callback();
       }).fail(function() {
-        console.log("error");
-        $("#datatxt").html("error");
+        document.getElementById("location-error").style.display = "inline";
       });
     }
 
     // view on map button listener
     document.getElementById("rButton").addEventListener("click", function(event) {
       event.preventDefault();
-      getRFactor();
+      // check if user has entered a location in the location input but has NOT searched it. if so, automatically search for them before calculating.
+      if ((localStorage.latitude == "empty" || localStorage.longitude == "empty") && $("#location").val() != "") {
+        getCoords(function() {
+          getRFactor();
+        });
+      } else {
+        getRFactor();
+      }
     });
 
     function getRFactor() {
-      if ((localStorage.latitude == "empty" || localStorage.longitude == "empty") && $("#location").val() != "") {
-        console.log("needs to be searched");
-      }
-
       document.getElementById("loader").style.display = "block";
       document.getElementById("errorMessage").style.display = "none";
       document.getElementById("eContainer").style.display = "none";
@@ -125,10 +132,25 @@ define(["app/esriMap"], function(esriMap) {
         let endday = endDate.slice(8);
         let newendDate = endmonth + "/" + endday + "/" + endyear;
 
-        let smartURL = window.location.protocol + "//" + window.location.host + "/v1/rfactor";
+        if (window.location.host.toLowerCase().startsWith("localhost")) {
+          api = "http://localhost:" + window.location.port + "/v1/rfactor";
+          console.log("Localhost detected. Using " + api);
+        } else if (window.location.host.toLowerCase().includes("lew-dev.app.cloud.gov")) {
+          api = "https://api.epa.gov/DEV/lew/v1/rfactor";
+          console.log("lew-dev.app.cloud.gov detected. Using " + api);
+        } else if (window.location.host.toLowerCase().includes("lew-stage.app.cloud.gov")) {
+          api = "https://api.epa.gov/TEST/lew/v1/rfactor";
+          console.log("lew-stage.app.cloud.gov detected. Using " + api);
+        } else {
+          api = "https://api.epa.gov/lew/v1/rfactor";
+          console.log("Could not recognize URL. Using " + api);
+        }
+
+        // old url
+        // let smartURL = window.location.protocol + "//" + window.location.host + "/v1/rfactor";
 
         let webservice =
-          smartURL +
+          api +
           "?start_date=" +
           startDate +
           "&end_date=" +
