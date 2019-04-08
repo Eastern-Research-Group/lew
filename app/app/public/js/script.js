@@ -13,7 +13,9 @@ define(["app/esriMap"], function(esriMap) {
       localStorage.latitude = "empty";
       localStorage.longitude = "empty";
     } else {
-      console.log("Local storage not available. Please try a different browser.");
+      document.getElementById("errorMessage").innerHTML =
+        "Localstorage is not enabled. Please use a different browser.";
+      document.getElementById("errorMessage").style.display = " block";
     }
     // initialize map
     esriMap.init("viewDiv");
@@ -165,7 +167,6 @@ define(["app/esriMap"], function(esriMap) {
           // reset number of attempts on success
           attempts = 0;
           document.getElementById("loader").style.display = "none";
-          console.log(data);
           if (data.rfactor == null) {
             data.rfactor = "Unknown";
           }
@@ -185,7 +186,6 @@ define(["app/esriMap"], function(esriMap) {
         }).fail(function(error) {
           // increment attempts and try again
           attempts++;
-          console.log("Attempts: " + attempts);
           if (attempts <= 3) {
             // recursively query the API again, due to unreliability. usually fails the 1st time for a new location, then works every time
             getRFactor();
