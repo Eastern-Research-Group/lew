@@ -7,6 +7,13 @@ define(["app/esriMap"], function(esriMap) {
       var element = document.getElementById("responsivebr");
       element.classList.remove("responsivebr");
     }
+    // if ie11 use startsWith polyfill
+    if (!String.prototype.startsWith) {
+      String.prototype.startsWith = function(searchString, position) {
+        position = position || 0;
+        return this.indexOf(searchString, position) === position;
+      };
+    }
 
     // initialize localstorage to default empty
     if (typeof Storage !== "undefined") {
@@ -176,6 +183,13 @@ define(["app/esriMap"], function(esriMap) {
               "A rainfall erosivity factor of 5.0 or greater has been calculated for your site's period of construction."
             );
             $("#conclusion2").html("You do NOT qualify for a waiver from NPDES permitting requirements.");
+          } else {
+            $("#conclusion").html(
+              "A rainfall erosivity factor of less than 5.0 has been calculated for your site and period of construction. Contact your permitting authority to determine if you are eligible for a waiver from NPDES permitting requirements. If you are covered under EPA's " +
+                '<a href="https://www.epa.gov/npdes/stormwater-discharges-construction-activities#cgp">construction general permit</a>' +
+                " then you can use eNOI to submit your low erosivity waiver certification."
+            );
+            $("#conclusion2").html("");
           }
 
           document.getElementById("eContainer").style.display = "block";
