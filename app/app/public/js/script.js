@@ -136,16 +136,12 @@ define(["app/esriMap"], function(esriMap) {
 
         if (window.location.host.toLowerCase().startsWith("localhost")) {
           api = "http://localhost:" + window.location.port + "/v1/rfactor";
-          console.log("Localhost detected. Using " + api);
         } else if (window.location.host.toLowerCase().includes("lew-dev.app.cloud.gov")) {
           api = "https://api.epa.gov/DEV/lew/v1/rfactor";
-          console.log("lew-dev.app.cloud.gov detected. Using " + api);
         } else if (window.location.host.toLowerCase().includes("lew-stage.app.cloud.gov")) {
           api = "https://api.epa.gov/TEST/lew/v1/rfactor";
-          console.log("lew-stage.app.cloud.gov detected. Using " + api);
         } else {
           api = "https://api.epa.gov/lew/v1/rfactor";
-          console.log("Using production API endpoint: " + api);
         }
 
         // old url
