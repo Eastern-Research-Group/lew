@@ -145,7 +145,7 @@ define(["app/esriMap"], function(esriMap) {
           console.log("lew-stage.app.cloud.gov detected. Using " + api);
         } else {
           api = "https://api.epa.gov/lew/v1/rfactor";
-          console.log("Could not recognize URL. Using " + api);
+          console.log("Using production API endpoint: " + api);
         }
 
         // old url
