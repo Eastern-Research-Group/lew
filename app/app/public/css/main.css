@@ -132,8 +132,8 @@ tr {
 }
 
 #mapViewButton {
-  margin-left: 3%;
-  width: 200px;
+  /* margin-left: 3%; */
+  width: 150px;
 }
 
 #h3Facility {
@@ -233,7 +233,7 @@ tr {
   }
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 600px) {
   #mapViewButton {
     margin-top: 5%;
     margin-left: 25%;
@@ -243,7 +243,6 @@ tr {
 @media only screen and (max-width: 1000px) {
   #mapViewButton {
     margin-top: 5%;
-    margin-left: 5%;
   }
 }
 

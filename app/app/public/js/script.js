@@ -69,6 +69,10 @@ define(["app/esriMap"], function(esriMap) {
     });
 
     function getRFactor() {
+      if ((localStorage.latitude == "empty" || localStorage.longitude == "empty") && $("#location").val() != "") {
+        console.log("needs to be searched");
+      }
+
       document.getElementById("loader").style.display = "block";
       document.getElementById("errorMessage").style.display = "none";
       document.getElementById("eContainer").style.display = "none";
