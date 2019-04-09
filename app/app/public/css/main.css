@@ -25,7 +25,6 @@ hr#hr {
 
 a {
   font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
-  font-size: 14pt;
   color: black;
 }
 
@@ -113,6 +112,7 @@ tr {
 #startdatepicker {
   margin-right: 45%;
   margin-bottom: 4%;
+  margin-top: 20px;
 }
 
 #enddatepicker {
@@ -127,7 +127,7 @@ tr {
 
 #location {
   padding-right: 4%;
-  margin-top: 3%;
+  margin-top: 20px;
   max-width: 400px;
 }
 
@@ -235,14 +235,14 @@ tr {
 
 @media only screen and (max-width: 600px) {
   #mapViewButton {
-    margin-top: 5%;
+    margin-top: 20px;
     margin-left: 25%;
   }
 }
 
 @media only screen and (max-width: 1000px) {
   #mapViewButton {
-    margin-top: 5%;
+    margin-top: 20px;
   }
 }
 

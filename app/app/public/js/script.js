@@ -1,4 +1,5 @@
 define(["app/esriMap"], function(esriMap) {
+  // holds number of attempts in case API fails first 1 or 2 times. stops after 4 attempts.
   let attempts = 0;
   function init() {
     // if browser is ie11, fix the responsiveness of the datepicker inputs
@@ -6,13 +7,22 @@ define(["app/esriMap"], function(esriMap) {
       var element = document.getElementById("responsivebr");
       element.classList.remove("responsivebr");
     }
+    // if ie11 use startsWith polyfill
+    if (!String.prototype.startsWith) {
+      String.prototype.startsWith = function(searchString, position) {
+        position = position || 0;
+        return this.indexOf(searchString, position) === position;
+      };
+    }
 
     // initialize localstorage to default empty
     if (typeof Storage !== "undefined") {
       localStorage.latitude = "empty";
       localStorage.longitude = "empty";
     } else {
-      console.log("Local storage not available. Please try a different browser.");
+      document.getElementById("errorMessage").innerHTML =
+        "Localstorage is not enabled. Please use a different browser.";
+      document.getElementById("errorMessage").style.display = " block";
     }
     // initialize map
     esriMap.init("viewDiv");
@@ -20,17 +30,18 @@ define(["app/esriMap"], function(esriMap) {
     // view on map button listener
     document.getElementById("mapViewButton").addEventListener("click", function(event) {
       event.preventDefault();
-      getCoords();
+      // get the coordinates and add a point to the map based on search box value
+      getCoords(function() {});
     });
 
     // form Listener
     document.getElementById("form").addEventListener("submit", function(event) {
       event.preventDefault();
       // get the coordinates and add a point to the map based on search box value
-      getCoords();
+      getCoords(function() {});
     });
 
-    function getCoords() {
+    function getCoords(_callback) {
       // hide results container
       document.getElementById("eContainer").style.display = "none";
       // hide location search error message
@@ -49,30 +60,35 @@ define(["app/esriMap"], function(esriMap) {
         if (data.candidates.length === 0) {
           document.getElementById("location-error").style.display = "inline";
         }
-        console.log(data);
-        $("#datatxt").html(JSON.stringify(data));
-
-        localStorage.latitude = data.candidates[0].location.y;
-        localStorage.longitude = data.candidates[0].location.x;
-
+        // add lat/long to local storage
+        try {
+          localStorage.latitude = data.candidates[0].location.y;
+          localStorage.longitude = data.candidates[0].location.x;
+        } catch (err) {
+          document.getElementById("location-error").style.display = "inline";
+        }
+        // add a point on the map
         esriMap.addPoint(localStorage.latitude, localStorage.longitude);
+        _callback();
       }).fail(function() {
-        console.log("error");
-        $("#datatxt").html("error");
+        document.getElementById("location-error").style.display = "inline";
       });
     }
 
     // view on map button listener
     document.getElementById("rButton").addEventListener("click", function(event) {
       event.preventDefault();
-      getRFactor();
+      // check if user has entered a location in the location input but has NOT searched it. if so, automatically search for them before calculating.
+      if ((localStorage.latitude == "empty" || localStorage.longitude == "empty") && $("#location").val() != "") {
+        getCoords(function() {
+          getRFactor();
+        });
+      } else {
+        getRFactor();
+      }
     });
 
     function getRFactor() {
-      if ((localStorage.latitude == "empty" || localStorage.longitude == "empty") && $("#location").val() != "") {
-        console.log("needs to be searched");
-      }
-
       document.getElementById("loader").style.display = "block";
       document.getElementById("errorMessage").style.display = "none";
       document.getElementById("eContainer").style.display = "none";
@@ -125,10 +141,21 @@ define(["app/esriMap"], function(esriMap) {
         let endday = endDate.slice(8);
         let newendDate = endmonth + "/" + endday + "/" + endyear;
 
-        let smartURL = window.location.protocol + "//" + window.location.host + "/v1/rfactor";
+        if (window.location.host.toLowerCase().startsWith("localhost")) {
+          api = "http://localhost:" + window.location.port + "/v1/rfactor";
+        } else if (window.location.host.toLowerCase().includes("lew-dev.app.cloud.gov")) {
+          api = "https://api.epa.gov/DEV/lew/v1/rfactor";
+        } else if (window.location.host.toLowerCase().includes("lew-stage.app.cloud.gov")) {
+          api = "https://api.epa.gov/TEST/lew/v1/rfactor";
+        } else {
+          api = "https://api.epa.gov/lew/v1/rfactor";
+        }
+
+        // old url
+        // let smartURL = window.location.protocol + "//" + window.location.host + "/v1/rfactor";
 
         let webservice =
-          smartURL +
+          api +
           "?start_date=" +
           startDate +
           "&end_date=" +
@@ -143,7 +170,6 @@ define(["app/esriMap"], function(esriMap) {
           // reset number of attempts on success
           attempts = 0;
           document.getElementById("loader").style.display = "none";
-          console.log(data);
           if (data.rfactor == null) {
             data.rfactor = "Unknown";
           }
@@ -157,13 +183,19 @@ define(["app/esriMap"], function(esriMap) {
               "A rainfall erosivity factor of 5.0 or greater has been calculated for your site's period of construction."
             );
             $("#conclusion2").html("You do NOT qualify for a waiver from NPDES permitting requirements.");
+          } else {
+            $("#conclusion").html(
+              "A rainfall erosivity factor of less than 5.0 has been calculated for your site and period of construction. Contact your permitting authority to determine if you are eligible for a waiver from NPDES permitting requirements. If you are covered under EPA's " +
+                '<a href="https://www.epa.gov/npdes/stormwater-discharges-construction-activities#cgp">construction general permit</a>' +
+                " then you can use eNOI to submit your low erosivity waiver certification."
+            );
+            $("#conclusion2").html("");
           }
 
           document.getElementById("eContainer").style.display = "block";
         }).fail(function(error) {
           // increment attempts and try again
           attempts++;
-          console.log("Attempts: " + attempts);
           if (attempts <= 3) {
             // recursively query the API again, due to unreliability. usually fails the 1st time for a new location, then works every time
             getRFactor();

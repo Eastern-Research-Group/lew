@@ -50,7 +50,9 @@ define([
         localStorage.latitude = evt.mapPoint.latitude;
         localStorage.longitude = evt.mapPoint.longitude;
       } else {
-        console.log("Local storage not available. Please try a different browser.");
+        document.getElementById("errorMessage").innerHTML =
+          "Localstorage is not enabled. Please use a different browser.";
+        document.getElementById("errorMessage").style.display = "block";
       }
       document.getElementById("location").value = localStorage.longitude + " , " + localStorage.latitude;
 
