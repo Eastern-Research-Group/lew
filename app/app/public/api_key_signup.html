@@ -5,30 +5,44 @@
   <meta http-equiv="ImageToolbar" content="false" />
   <meta http-equiv="cleartype" content="on" />
   <meta name="HandheldFriendly" content="true" />
-  <link rel="shortcut icon" href="https://www.epa.gov/sites/all/themes/epa/favicon.ico" type="image/vnd.microsoft.icon" />
   <meta name="MobileOptimized" content="width" />
   <meta name="viewport" content="width=device-width" />
   <!--googleon: all-->
-  <meta name="DC.description" content="The Rainfall Erosivity Factor Calculator can be used to help determine if your small construction site qualifies for stormwater discharge waivers." />
-  <meta name="DC.title" content="Low Erosivity Waiver (LEW)" />
+  <meta name="DC.description" content="" />
+  <meta name="DC.title" content="" />
   <!--googleoff: snippet-->
-  <meta name="keywords" content="NPDES, stormwater, tool, rainfall erosivity, erosion, small construction, waivers, lew, regulations" />
+  <meta name="keywords" content="" />
   <link rel="canonical" href="" />
   <link rel="shortlink" href="" />
   <meta name="DC.language" content="en" />
-  <meta name="DC.Subject.epachannel" content="Learn the Issues" />
-  <meta name="DC.type" content="Overviews and Factsheets" />
+  <meta name="DC.Subject.epachannel" content="" />
+  <meta name="DC.type" content="" />
   <meta name="DC.Subject.epaopt" content="" />
   <meta name="DC.date.created" content="" />
   <meta name="DC.date.modified" content="" />
   <meta name="DC.date.reviewed" content="" />
-  <meta name="DC.creator" content="US EPA,OW,OWM" />
-  <title>Internal Server Error | US EPA</title>
-  <!--googleoff: all-->
-  <link rel="stylesheet" href="https://www.epa.gov/sites/all/libraries/standalone/css/core/style.css" media="all" />
+  <meta name="DC.creator" content="" />
+	<title>API Key Signup | US EPA</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	
+  <link rel="shortcut icon" href="https://www.epa.gov/sites/all/themes/epa/favicon.ico" type="image/vnd.microsoft.icon" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<!--googleoff: all-->
+	<link rel="stylesheet" href="https://www.epa.gov/sites/all/libraries/standalone/css/core/style.css" media="all" />
+	<link rel="stylesheet" href="/css/main.css">
+
+    
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({"gtm.start":new Date().getTime(),event:"gtm.js"});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src="//www.googletagmanager.com/gtm.js?id="+i+dl;f.parentNode.insertBefore(j,f);})(window,document,"script","dataLayer","GTM-L8ZB");</script>
-  <!-- End Google Tag Manager -->  
+	<!-- End Google Tag Manager -->  
+	<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+	crossorigin="anonymous"></script>
+
+
+</style>
 </head>
 <body class="html">
   <!-- Google Tag Manager -->
@@ -43,19 +57,19 @@
 			<h1 class="site-name"><a href="https://www.epa.gov/" rel="home" title="Go to the home page"><span>US EPA</span></a></h1>
 			<div class="site-slogan">United States Environmental Protection Agency</div>
 		</div>
-		<div class="region-header">
-			<div class="block-epa-core-gsa-epa-search" id="block-epa-core-gsa-epa-search">
-				<form action="https://search.epa.gov/epasearch" class="epa-search" method="get">
-					<label class="element-hidden" for="search-box">Search</label>
-          <input class="form-text" id="search-box" name="querytext" placeholder="Search EPA.gov" value="">
-          <button class="epa-search-button" id="search-button" title="Search" type="submit">Search</button>
-          <input name="areaname" type="hidden" value="">
-          <input name="areacontacts" type="hidden" value="">
-          <input name="areasearchurl" type="hidden" value="">
-          <input name="typeofsearch" type="hidden" value="epa">
-          <input name="result_template" type="hidden" value="2col.ftl">
-				</form>
-			</div>
+        <div class="region-header">
+                <div class="block-epa-core-gsa-epa-search" id="block-epa-core-gsa-epa-search">
+                    <form action="https://search.epa.gov/epasearch" class="epa-search" method="get">
+                        <label class="element-hidden" for="search-box">Search</label>
+              <input class="form-text" id="search-box" name="querytext" style="margin-top: 0" placeholder="Search EPA.gov" value="">
+              <button class="epa-search-button epaS" id="search-button"  title="Search" type="submit">Search</button>
+              <input name="areaname" type="hidden" value="">
+              <input name="areacontacts" type="hidden" value="">
+              <input name="areasearchurl" type="hidden" value="">
+              <input name="typeofsearch" type="hidden" value="epa">
+              <input name="result_template" type="hidden" value="2col.ftl">
+                    </form>
+                </div>
 		</div>
 	</header>
 	<nav class="nav main-nav clearfix" role="navigation">
@@ -81,35 +95,43 @@
 			</ul>
 		</div>
 	</div>
-	<section class="main-content clearfix" id="main-content" lang="en" role="main" tabindex="-1">
-		<div class="region-preface clearfix">
-			<!-- <div class="block-views-revision-hublinks-block" id="block-views-revision-hublinks-block">
-				<div class="view view-revision-hublinks view-id-revision_hublinks">
-					 <span class="related-info"><strong>Related Topics:</strong></span> 
-					<ul class="menu pipeline">
-						<li class="menu-item"><a href="{HOME PAGE LINK}">Insert your Home Page Link here</a></li>
-					</ul>
-				</div>
-			</div>  -->
-			<div class="block block-pane block-pane-epa-web-area-connect" id="block-pane-epa-web-area-connect">
-				<ul class="menu utility-menu">
-					<li class="menu-item"><a class="menu-link" href="mailto:cgp@epa.gov">Contact Us</a></li>
-				</ul>
-			</div>
-		</div>
-    <div class="main-column clearfix">
-      <!--googleon:all-->
-      <h1  class="page-title">Sorry, but this web application is not available at this time.</h1>
-      <div class="panel-pane pane-node-content">
-        <div class="pane-content">
-          <div class="node node-page clearfix view-mode-full">
-            <p>
-							<ul><li><a href="mailto:cgp@epa.gov">Contact Us</a> if the problem persists.</li></p>
-          </div>
-        </div>
-      </div>
-    </div>
-	</section>
+	
+    <div class="wrap container content-page">
+
+            <h2 style="margin-top: 2%">API Key Signup</h2>
+        
+        <div id="apidatagov_signup">Loading signup form...</div>
+        <script type="text/javascript">
+        	var smartURL2 = window.location.protocol + "//" + window.location.host + "/api-docs";
+          /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+          var apiUmbrellaSignupOptions = {
+            registrationSource: 'epa-lew',
+            apiKey: '1g5JbJwZeeqJM15vYxBj7aAOw5dlZA8QJ1iLEjAj',
+            verifyEmail: true,
+            signupConfirmationMessage: '<h2>What Next?</h2>' +
+              '<ul>' +
+                '<li>Explore the Low Erosivity Waiver (LEW) web service <a href='+smartURL2+' >documentation</a>.</li>' +
+     
+              '</ul>'
+          };
+        
+          (function() {
+            var apiUmbrella = document.createElement('script'); apiUmbrella.type = 'text/javascript'; apiUmbrella.async = true;
+            apiUmbrella.src = 'https://api.data.gov/static/javascripts/signup_embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(apiUmbrella);
+          })();
+        </script>
+        <noscript><div class="alert alert-danger" role="alert">Please enable JavaScript to signup for an <a href="https://api.data.gov/">api.data.gov</a> API key.</div></noscript>
+        
+            
+
+        
+                  </div>
+ 
+
+
+
+
 	<footer class="main-footer clearfix" role="contentinfo">
 		<div class="main-footer__inner">
 			<div class="region-footer">
@@ -171,7 +193,8 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</footer>
+        </div>
+    </footer>
+		
 </body>
 </html>

@@ -1,7 +1,7 @@
 ---
  applications:
    - name: lew-staging
-     instances: 1
+     instances: 2
      memory: 128M
      disk_quota: 512MB
      timeout: 180

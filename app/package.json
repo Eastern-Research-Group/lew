@@ -7,10 +7,11 @@
     "node": "10.x"
   },
   "scripts": {
-    "start": "npm run start_local",
-    "start_local": "cross-env NODE_ENV=local LOGGER_LEVEL=DEBUG nodemon --inspect app/server.js",
-    "start:prod": "npm run start:fake_prod",
-    "start:fake_prod": "cross-env NODE_ENV=production LOGGER_LEVEL=DEBUG nodemon --inspect app/server.js"
+    "start": "npm run start_local_cmd",
+    "start_local_cmd": "cross-env NODE_ENV=local LOGGER_LEVEL=DEBUG nodemon --ignore 'app/tests' --inspect app/server.js",
+    "test": "cross-env NODE_ENV=production LOGGER_LEVEL=OFF mocha --timeout 20000 app/tests --recursive",
+    "start:prod": "npm run start:fake_prod_cmd",
+    "start:fake_prod_cmd": "cross-env NODE_ENV=production LOGGER_LEVEL=DEBUG node --inspect app/server.js"
   },
   "husky": {
     "hooks": {
@@ -33,20 +34,30 @@
   "homepage": "https://github.com/Eastern-Research-Group/lew",
   "devDependencies": {
     "browser-sync": "^2.26.3",
-    "connect-browser-sync": "^2.1.0",
+    "chai": "^4.2.0",
     "http-server": "0.11.1",
-    "husky": "1.2.0",
-    "lint-staged": "8.1.0",
+    "husky": "^1.3.1",
+    "lint-staged": "^8.1.5",
+    "mocha": "^6.0.2",
+    "node-mocks-http": "^1.7.3",
     "nodemon": "^1.18.10",
-    "prettier": "1.14.2"
+    "prettier": "^1.16.4"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "cross-env": "^5.2.0",
+    "dayjs": "^1.8.12",
     "express": "^4.16.4",
     "express-basic-auth": "^1.1.6",
+    "fast-xml-parser": "^3.12.13",
+    "helmet": "^3.15.1",
+    "jshint": "^2.10.1",
     "log4js": "^4.0.2",
     "request": "^2.88.0",
-    "serve-favicon": "^2.5.0"
+    "request-promise": "^4.2.4",
+    "request-promise-native": "^1.0.7",
+    "serve-favicon": "^2.5.0",
+    "swagger-ui-express": "^4.0.2"
   },
   "lint-staged": {
     "linters": {
