@@ -182,12 +182,25 @@ define(["app/esriMap"], function(esriMap) {
             $("#conclusion").html(
               "A rainfall erosivity factor of 5.0 or greater has been calculated for your site's period of construction."
             );
-            $("#conclusion2").html("You do NOT qualify for a waiver from NPDES permitting requirements.");
+            $("#conclusion2").html(
+              "You do NOT qualify for a waiver from NPDES permitting requirements and must seek Construction General Permit (CGP) coverage. " +
+                'If you are located in an <a target="_blank" rel="noopener" href="https://www.epa.gov/sites/production/files/2017-03/documents/2017_cgp_final_appendix_b_-_areas_of_permit_coverage_508.pdf">area where EPA is the permitting authority</a>, ' +
+                'you must submit a Notice of Intent (NOI) through the <a target="_blank" rel="noopener" href="https://www.epa.gov/npdes/submitting-notice-intent-noi-notice-termination-not-or-low-erosivity-waiver-lew-under">NPDES eReporting Tool (NeT)</a>. ' +
+                "Otherwise, you must seek coverage under your state’s CGP."
+            );
           } else {
             $("#conclusion").html(
-              "A rainfall erosivity factor of less than 5.0 has been calculated for your site and period of construction. Contact your permitting authority to determine if you are eligible for a waiver from NPDES permitting requirements. If you are covered under EPA's " +
-                '<a href="https://www.epa.gov/npdes/stormwater-discharges-construction-activities#cgp">construction general permit</a>' +
-                " then you can use eNOI to submit your low erosivity waiver certification."
+              "A rainfall erosivity factor of less than 5.0 has been calculated for your site and period of construction. " +
+                "If you are located in an " +
+                '<a target="_blank" rel="noopener" href="https://www.epa.gov/sites/production/files/2017-03/documents/2017_cgp_final_appendix_b_-_areas_of_permit_coverage_508.pdf">area where EPA is the permitting authority</a>, ' +
+                'you can submit a LEW through EPA’s  <a target="_blank" rel="noopener" href="https://www.epa.gov/npdes/submitting-notice-intent-noi-notice-termination-not-or-low-erosivity-waiver-lew-under">NPDES eReporting Tool (NeT)</a>. ' +
+                "Otherwise, contact your state permitting authority to determine if you are eligible for a waiver from NPDES permitting requirements. " +
+                "<br /><br />" +
+                "If you submitted a LEW through EPA’s NeT and your construction activity ultimately extends past the project completion date you specified above, " +
+                "you must recalculate the R factor using the original start date and a new project completion date. " +
+                "If the recalculated R factor is still less than 5.0, you must submit a modification to your LEW through NeT before the end of the original construction period. " +
+                "If the new R factor is 5.0 or greater, you must submit a Notice of Intent (NOI) instead to " +
+                "be covered by the Construction General Permit (CGP) before the original project completion date."
             );
             $("#conclusion2").html("");
           }
