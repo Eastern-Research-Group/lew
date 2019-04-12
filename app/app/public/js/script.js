@@ -193,10 +193,10 @@ define(["app/esriMap"], function(esriMap) {
               "A rainfall erosivity factor of less than 5.0 has been calculated for your site and period of construction. " +
                 "If you are located in an " +
                 '<a target="_blank" rel="noopener" href="https://www.epa.gov/sites/production/files/2017-03/documents/2017_cgp_final_appendix_b_-_areas_of_permit_coverage_508.pdf">area where EPA is the permitting authority</a>, ' +
-                'you can submit an LEW through EPA’s  <a target="_blank" rel="noopener" href="https://www.epa.gov/npdes/submitting-notice-intent-noi-notice-termination-not-or-low-erosivity-waiver-lew-under">NPDES eReporting Tool (NeT)</a>. ' +
+                'you can submit a LEW through EPA’s  <a target="_blank" rel="noopener" href="https://www.epa.gov/npdes/submitting-notice-intent-noi-notice-termination-not-or-low-erosivity-waiver-lew-under">NPDES eReporting Tool (NeT)</a>. ' +
                 "Otherwise, contact your state permitting authority to determine if you are eligible for a waiver from NPDES permitting requirements. " +
                 "<br /><br />" +
-                "If you submitted an LEW through EPA’s NeT and your construction activity ultimately extends past the project completion date you specified above, " +
+                "If you submitted a LEW through EPA’s NeT and your construction activity ultimately extends past the project completion date you specified above, " +
                 "you must recalculate the R factor using the original start date and a new project completion date. " +
                 "If the recalculated R factor is still less than 5.0, you must submit a modification to your LEW through NeT before the end of the original construction period. " +
                 "If the new R factor is 5.0 or greater, you must submit a Notice of Intent (NOI) instead to " +
