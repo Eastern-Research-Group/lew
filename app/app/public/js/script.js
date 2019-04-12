@@ -184,9 +184,9 @@ define(["app/esriMap"], function(esriMap) {
             );
             $("#conclusion2").html(
               "You do NOT qualify for a waiver from NPDES permitting requirements and must seek Construction General Permit (CGP) coverage. " +
-                'If you are located in an <a target="_blank" rel="noopener" href="https://www.epa.gov/sites/production/files/2017-03/documents/2017_cgp_final_appendix_b_-_areas_of_permit_coverage_508.pdf">area where EPA is the permitting authority</a>, ' +
-                'you must submit a Notice of Intent (NOI) through the <a target="_blank" rel="noopener" href="https://www.epa.gov/npdes/submitting-notice-intent-noi-notice-termination-not-or-low-erosivity-waiver-lew-under">NPDES eReporting Tool (NeT)</a>. ' +
-                "Otherwise, you must seek coverage under your state’s CGP."
+                '<span style="font-weight: normal">If you are located in an <a target="_blank" rel="noopener" href="https://www.epa.gov/sites/production/files/2017-03/documents/2017_cgp_final_appendix_b_-_areas_of_permit_coverage_508.pdf">area where EPA is the permitting authority</a>, ' +
+                'you must submit a Notice of Intent (NOI) through the <a target="_blank" rel="noopener" href="https://www.epa.gov/npdes/submitting-notice-intent-noi-notice-termination-not-or-low-erosivity-waiver-lew-under">NPDES eReporting Tool (NeT)</a>.' +
+                "Otherwise, you must seek coverage under your state’s CGP.</span>"
             );
           } else {
             $("#conclusion").html(
