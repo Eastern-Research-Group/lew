@@ -146,7 +146,7 @@ define(["app/esriMap"], function(esriMap) {
         } else if (window.location.host.toLowerCase().includes("lew-dev.app.cloud.gov")) {
           api = "https://api.epa.gov/DEV/lew/v1/rfactor";
         } else if (window.location.host.toLowerCase().includes("lew-stage.app.cloud.gov")) {
-          api = "https://api.epa.gov/TEST/lew/v1/rfactor";
+          api = "https://api.epa.gov/STAGE/lew/v1/rfactor";
         } else {
           api = "https://api.epa.gov/lew/v1/rfactor";
         }
