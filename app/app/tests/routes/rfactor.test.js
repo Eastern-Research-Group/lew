@@ -21,8 +21,7 @@ describe("rFactor controller testing", () => {
       query: {
         start_date: "2019-02-21",
         end_date: "2019-02-28",
-        location:
-          '{"geometry":{"type":"Point","coordinates":[-87.845556,42.582222]}}'
+        location: '{"geometry":{"type":"Point","coordinates":[-87.845556,42.582222]}}'
       }
     });
 
@@ -53,8 +52,7 @@ describe("rFactor controller testing", () => {
       query: {
         start_date: "2019-02-21",
         end_date: "2019-02-28",
-        location:
-          '{"geometry":{"type":"Point","coordinates":[-87.845556,42.582222]}}'
+        location: '{"geometry":{"type":"Point","coordinates":[-87.845556,42.582222]}}'
       }
     });
 
@@ -85,8 +83,7 @@ describe("rFactor controller testing", () => {
       query: {
         start_date: "2019-02-21",
         end_date: "2019-02-28",
-        location:
-          '{"geometry":{"type":"Point","coordinates":[-87.845556,42.582222]}}',
+        location: '{"geometry":{"type":"Point","coordinates":[-87.845556,42.582222]}}',
         api_key: "UNIT_TEST_USER_KEY"
       }
     });
@@ -118,8 +115,7 @@ describe("rFactor controller testing", () => {
       query: {
         start_date: "2019-02-21",
         end_date: "2019-02-28",
-        location:
-          '{"geometry":{"type":"Point","coordinates":[-87.845556,42.582222]}}',
+        location: '{"geometry":{"type":"Point","coordinates":[-87.845556,42.582222]}}',
         api_key: "UNIT_TEST_USER_KEY"
       }
     });
@@ -151,8 +147,7 @@ describe("rFactor controller testing", () => {
       query: {
         start_date: "2019-02-21",
         end_date: "2019-02-28",
-        location:
-          '{"geometry":{"type":"Point","coordinates":[-87.845556,42.582222]}}'
+        location: '{"geometry":{"type":"Point","coordinates":[-87.845556,42.582222]}}'
       }
     });
 
@@ -180,8 +175,7 @@ describe("rFactor controller testing", () => {
       },
       query: {
         end_date: "2019-02-28",
-        location:
-          '{"geometry":{"type":"Point","coordinates":[-87.845556,42.582222]}}',
+        location: '{"geometry":{"type":"Point","coordinates":[-87.845556,42.582222]}}',
         api_key: "yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5"
       }
     });
@@ -215,8 +209,7 @@ describe("rFactor controller testing", () => {
       query: {
         start_date: "asdfsafsa",
         end_date: "2019-02-28",
-        location:
-          '{"geometry":{"type":"Point","coordinates":[-87.845556,42.582222]}}',
+        location: '{"geometry":{"type":"Point","coordinates":[-87.845556,42.582222]}}',
         api_key: "yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5"
       }
     });
@@ -249,8 +242,7 @@ describe("rFactor controller testing", () => {
       },
       query: {
         start_date: "2019-02-21",
-        location:
-          '{"geometry":{"type":"Point","coordinates":[-87.845556,42.582222]}}',
+        location: '{"geometry":{"type":"Point","coordinates":[-87.845556,42.582222]}}',
         api_key: "yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5"
       }
     });
@@ -284,8 +276,7 @@ describe("rFactor controller testing", () => {
       query: {
         start_date: "2019-02-21",
         end_date: "asdfsdfsa",
-        location:
-          '{"geometry":{"type":"Point","coordinates":[-87.845556,42.582222]}}',
+        location: '{"geometry":{"type":"Point","coordinates":[-87.845556,42.582222]}}',
         api_key: "yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5"
       }
     });
@@ -319,8 +310,7 @@ describe("rFactor controller testing", () => {
       query: {
         start_date: "2019-02-21",
         end_date: "2019-02-20",
-        location:
-          '{"geometry":{"type":"Point","coordinates":[-87.845556,42.582222]}}',
+        location: '{"geometry":{"type":"Point","coordinates":[-87.845556,42.582222]}}',
         api_key: "yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5"
       }
     });
@@ -421,8 +411,7 @@ describe("rFactor controller testing", () => {
       query: {
         start_date: "2019-02-21",
         end_date: "2019-02-28",
-        location:
-          '{"geometry":{"type":"Point","coordinates":[-14.062500,48.224673]}}',
+        location: '{"geometry":{"type":"Point","coordinates":[-14.062500,48.224673]}}',
         api_key: "yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5"
       }
     });
