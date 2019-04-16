@@ -431,4 +431,94 @@ describe("rFactor controller testing", () => {
       })
       .catch(done);
   });
+
+  /****************************************************
+   *
+   ****************************************************/
+  it("Cross construction two year rFactor test", function(done) {
+    var request = httpMocks.createRequest({
+      method: "GET",
+      url: "/",
+      headers: {
+        "X-Api-User-Id": "UNIT_TEST_USER_ID"
+      },
+      query: {
+        start_date: "2018-02-21",
+        end_date: "2019-02-21",
+        location: '{"geometry":{"type":"Point","coordinates":[-76.4899,38.4401]}}'
+      }
+    });
+
+    var response = httpMocks.createResponse();
+
+    let rtn = rfactorContoller.calculateRFactor(request, response);
+    rtn
+      .then(function(result) {
+        var data = JSON.parse(response._getData());
+        data.should.have.property("rfactor");
+        data.rfactor.should.eql(193);
+        done();
+      })
+      .catch(done);
+  });
+
+  /****************************************************
+   *
+   ****************************************************/
+  it("Cross construction three year rFactor test", function(done) {
+    var request = httpMocks.createRequest({
+      method: "GET",
+      url: "/",
+      headers: {
+        "X-Api-User-Id": "UNIT_TEST_USER_ID"
+      },
+      query: {
+        start_date: "2017-02-21",
+        end_date: "2019-02-21",
+        location: '{"geometry":{"type":"Point","coordinates":[-76.4899,38.4401]}}'
+      }
+    });
+
+    var response = httpMocks.createResponse();
+
+    let rtn = rfactorContoller.calculateRFactor(request, response);
+    rtn
+      .then(function(result) {
+        var data = JSON.parse(response._getData());
+        data.should.have.property("rfactor");
+        data.rfactor.should.eql(385);
+        done();
+      })
+      .catch(done);
+  });
+
+  /****************************************************
+   *
+   ****************************************************/
+  it("Cross construction five year rFactor test", function(done) {
+    var request = httpMocks.createRequest({
+      method: "GET",
+      url: "/",
+      headers: {
+        "X-Api-User-Id": "UNIT_TEST_USER_ID"
+      },
+      query: {
+        start_date: "2013-02-21",
+        end_date: "2018-02-21",
+        location: '{"geometry":{"type":"Point","coordinates":[-76.4899,38.4401]}}'
+      }
+    });
+
+    var response = httpMocks.createResponse();
+
+    let rtn = rfactorContoller.calculateRFactor(request, response);
+    rtn
+      .then(function(result) {
+        var data = JSON.parse(response._getData());
+        data.should.have.property("rfactor");
+        data.rfactor.should.eql(963);
+        done();
+      })
+      .catch(done);
+  });
 });
