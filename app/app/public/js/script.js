@@ -59,17 +59,18 @@ define(["app/esriMap"], function(esriMap) {
       $.get(ws, function(data) {
         if (data.candidates.length === 0) {
           document.getElementById("location-error").style.display = "inline";
+        } else {
+          // add lat/long to local storage
+          try {
+            localStorage.latitude = data.candidates[0].location.y;
+            localStorage.longitude = data.candidates[0].location.x;
+          } catch (err) {
+            document.getElementById("location-error").style.display = "inline";
+          }
+          // add a point on the map
+          esriMap.addPoint(localStorage.latitude, localStorage.longitude);
+          _callback();
         }
-        // add lat/long to local storage
-        try {
-          localStorage.latitude = data.candidates[0].location.y;
-          localStorage.longitude = data.candidates[0].location.x;
-        } catch (err) {
-          document.getElementById("location-error").style.display = "inline";
-        }
-        // add a point on the map
-        esriMap.addPoint(localStorage.latitude, localStorage.longitude);
-        _callback();
       }).fail(function() {
         document.getElementById("location-error").style.display = "inline";
       });
