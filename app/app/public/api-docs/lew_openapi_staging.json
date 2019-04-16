@@ -3,7 +3,7 @@
   "servers": [
     {
       "description": "US Environmental Protection Agency (Staging)",
-      "url": "https://api.epa.gov/TEST/lew"
+      "url": "https://api.epa.gov/STAGE/lew"
     }
   ],
   "info": {
