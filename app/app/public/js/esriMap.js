@@ -25,6 +25,8 @@ define([
 
     view.on("click", function(evt) {
       view.graphics.removeAll();
+      // hide error message
+      document.getElementById("errorMessage").style.display = "none";
       // hide results container
       document.getElementById("eContainer").style.display = "none";
       // hide location search error message
