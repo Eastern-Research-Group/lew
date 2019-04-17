@@ -42,6 +42,8 @@ define(["app/esriMap"], function(esriMap) {
     });
 
     function getCoords(_callback) {
+      // hide error message
+      document.getElementById("errorMessage").style.display = "none";
       // hide results container
       document.getElementById("eContainer").style.display = "none";
       // hide location search error message
