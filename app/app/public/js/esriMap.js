@@ -47,14 +47,14 @@ define([
       });
 
       if (typeof Storage !== "undefined") {
-        localStorage.latitude = evt.mapPoint.latitude;
-        localStorage.longitude = evt.mapPoint.longitude;
+        sessionStorage.latitude = evt.mapPoint.latitude;
+        sessionStorage.longitude = evt.mapPoint.longitude;
       } else {
         document.getElementById("errorMessage").innerHTML =
-          "Localstorage is not enabled. Please use a different browser.";
+          "sessionStorage is not enabled. Please use a different browser.";
         document.getElementById("errorMessage").style.display = "block";
       }
-      document.getElementById("location").value = localStorage.longitude + " , " + localStorage.latitude;
+      document.getElementById("location").value = sessionStorage.longitude + " , " + sessionStorage.latitude;
 
       // Add the graphics to the view's graphics layer
       view.graphics.addMany([pointGraphic]);
@@ -64,8 +64,8 @@ define([
   // add a point to the map
   function addPoint(latitude, longitude) {
     view.graphics.removeAll();
-    localStorage.latitude = latitude;
-    localStorage.longitude = longitude;
+    sessionStorage.latitude = latitude;
+    sessionStorage.longitude = longitude;
     const point = new Point({ x: longitude, y: latitude });
 
     // Create a symbol for drawing the point
