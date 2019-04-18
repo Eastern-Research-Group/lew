@@ -8,6 +8,7 @@ const logger = require("./server/utilities/logger.js");
 
 const app = express();
 app.use(helmet());
+app.use(helmet.noCache());
 app.use(cors());
 var log = logger.logger;
 var port = process.env.PORT || 9090;
@@ -29,8 +30,7 @@ if (process.env.NODE_ENV) {
 if (isLocal) log.info("Environment = local");
 if (isDevelopment) log.info("Environment = development");
 if (isStaging) log.info("Environment = staging");
-if (!isLocal && !isDevelopment && !isStaging)
-  log.info("Environment = staging or production");
+if (!isLocal && !isDevelopment && !isStaging) log.info("Environment = staging or production");
 
 /****************************************************************
  Setup basic auth for non-staging and non-production
@@ -52,10 +52,7 @@ function getUnauthorizedResponse(req) {
 /****************************************************************
  Setup server and routes
 ****************************************************************/
-app.use(
-  "/",
-  express.static(path.join(__dirname, "public"), { index: ["index.html"] })
-);
+app.use("/", express.static(path.join(__dirname, "public"), { index: ["index.html"] }));
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 
 /****************************************************************
