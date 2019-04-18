@@ -336,3 +336,7 @@ tr {
   right: 14px;
   position: absolute;
 }
+
+.form-label {
+  display: inline-block;
+}
