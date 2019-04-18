@@ -375,11 +375,7 @@ function calculateRFactor(EI_DAILY_AMOUNT, setYear, dayIndex) {
         dayIndex[1] = dayIndex[1] + 365 * (setYear[1] - setYear[0]);
       }
       for (p = dayIndex[0]; p < dayIndex[1] + 1; p++) {
-        if (p % 365 == 0) {
-          rFactor = rFactor + Number(dailyEIData[365]);
-        } else {
-          rFactor = rFactor + Number(dailyEIData[p - 365 * Math.floor(p / 365)]);
-        }
+        rFactor = rFactor + Number(dailyEIData[p - 365 * Math.floor(p / 365)]);
       }
 
       log.debug("rFactor = " + rFactor);
