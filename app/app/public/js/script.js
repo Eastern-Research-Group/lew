@@ -7,11 +7,26 @@ define(["app/esriMap"], function(esriMap) {
       var element = document.getElementById("responsivebr");
       element.classList.remove("responsivebr");
     }
-    // if ie11 use startsWith polyfill
+    // ie11 startsWith() polyfill
     if (!String.prototype.startsWith) {
       String.prototype.startsWith = function(searchString, position) {
         position = position || 0;
         return this.indexOf(searchString, position) === position;
+      };
+    }
+
+    // ie11 includes() polyfill
+    if (!String.prototype.includes) {
+      String.prototype.includes = function(search, start) {
+        if (typeof start !== "number") {
+          start = 0;
+        }
+
+        if (start + search.length > this.length) {
+          return false;
+        } else {
+          return this.indexOf(search, start) !== -1;
+        }
       };
     }
 
