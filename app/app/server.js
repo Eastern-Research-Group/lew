@@ -39,6 +39,9 @@ if (isDevelopment || isStaging) {
   lew_user_name = process.env.LEW_BASIC_AUTH_USER_NAME;
   lew_user_pwd = process.env.LEW_BASIC_AUTH_USER_PWD;
 
+  log.error("lew_user_name" + lew_user_name);
+  log.error("lew_user_pwd" + lew_user_pwd);
+
   app.use(
     basicAuth({
       users: { lew_user_name: lew_user_pwd },
