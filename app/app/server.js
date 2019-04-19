@@ -36,15 +36,14 @@ if (!isLocal && !isDevelopment && !isStaging) log.info("Environment = staging or
  Setup basic auth for non-staging and non-production
 ****************************************************************/
 if (isDevelopment || isStaging) {
-  var lew_user_name = process.env.LEW_BASIC_AUTH_USER_NAME;
-  var lew_user_pwd = process.env.LEW_BASIC_AUTH_USER_PWD;
+  var user_json = '{"' + process.env.LEW_BASIC_AUTH_USER_NAME + '" : "' + process.env.LEW_BASIC_AUTH_USER_PWD + '"}';
+  user_obj = JSON.parse(user_json);
 
-  log.error("lew_user_name-" + lew_user_name + "-");
-  log.error("lew_user_pwd-" + lew_user_pwd + "-");
+  log.error("user_json-" + user_json + "-");
 
   app.use(
     basicAuth({
-      users: { lew_user_name: lew_user_pwd },
+      users: user_obj,
       challenge: true,
       unauthorizedResponse: getUnauthorizedResponse
     })
