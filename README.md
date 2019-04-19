@@ -62,7 +62,7 @@ git push origin feature/your-branch-name
   [Github repository](https://github.com/Eastern-Research-Group/lew/branches)
 
 ***
-![HMWv2 DevOps Pipeline](/docs/img/HMWv2%20DevOps%20Pipeline.png?raw=true "HMWv2 DevOps Pipeline")
+![LEW DevOps Pipeline](/docs/img/LEW%20DevOps%20Pipeline.png?raw=true "LEW DevOps Pipeline")
 
 ## Local Development Environment Setup
 
