@@ -131,7 +131,8 @@ jobs:
       - run:
           name: Set application-level variables
           command: |
-            cf set-env $APP_NAME-green "$LEW_BASIC_AUTH_USER_NAME" "$LEW_BASIC_AUTH_USER_PWD"
+            cf set-env $APP_NAME-green "LEW_BASIC_AUTH_USER_NAME" "$LEW_BASIC_AUTH_USER_NAME"
+            cf set-env $APP_NAME-green "LEW_BASIC_AUTH_USER_PWD" "$LEW_BASIC_AUTH_USER_PWD"
       - run:
           name: Start application on Cloud.gov and clean routes
           command: |
