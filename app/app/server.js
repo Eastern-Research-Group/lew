@@ -36,10 +36,12 @@ if (!isLocal && !isDevelopment && !isStaging) log.info("Environment = staging or
  Setup basic auth for non-staging and non-production
 ****************************************************************/
 if (isDevelopment || isStaging) {
+  if (process.env.LEW_BASIC_AUTH_USER_NAME == null || process.env.LEW_BASIC_AUTH_USER_PWD == null) {
+    log.error("Either the basic LEW user name or password environmental variable is not set.");
+  }
+
   var user_json = '{"' + process.env.LEW_BASIC_AUTH_USER_NAME + '" : "' + process.env.LEW_BASIC_AUTH_USER_PWD + '"}';
   user_obj = JSON.parse(user_json);
-
-  log.error("user_json-" + user_json + "-");
 
   app.use(
     basicAuth({
