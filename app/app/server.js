@@ -36,9 +36,12 @@ if (!isLocal && !isDevelopment && !isStaging) log.info("Environment = staging or
  Setup basic auth for non-staging and non-production
 ****************************************************************/
 if (isDevelopment || isStaging) {
+  lew_user_name = process.env.LEW_BASIC_AUTH_USER_NAME;
+  lew_user_pwd = process.env.LEW_BASIC_AUTH_USER_PWD;
+
   app.use(
     basicAuth({
-      users: { lew: "lew12!" },
+      users: { lew_user_name: lew_user_pwd },
       challenge: true,
       unauthorizedResponse: getUnauthorizedResponse
     })
