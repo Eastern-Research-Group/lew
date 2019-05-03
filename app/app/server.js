@@ -8,6 +8,7 @@ const logger = require("./server/utilities/logger.js");
 
 const app = express();
 app.use(helmet());
+app.use(helmet.noCache());
 app.use(cors());
 var log = logger.logger;
 var port = process.env.PORT || 9090;
@@ -29,16 +30,22 @@ if (process.env.NODE_ENV) {
 if (isLocal) log.info("Environment = local");
 if (isDevelopment) log.info("Environment = development");
 if (isStaging) log.info("Environment = staging");
-if (!isLocal && !isDevelopment && !isStaging)
-  log.info("Environment = staging or production");
+if (!isLocal && !isDevelopment && !isStaging) log.info("Environment = staging or production");
 
 /****************************************************************
  Setup basic auth for non-staging and non-production
 ****************************************************************/
 if (isDevelopment || isStaging) {
+  if (process.env.LEW_BASIC_AUTH_USER_NAME == null || process.env.LEW_BASIC_AUTH_USER_PWD == null) {
+    log.error("Either the basic LEW user name or password environmental variable is not set.");
+  }
+
+  var user_json = '{"' + process.env.LEW_BASIC_AUTH_USER_NAME + '" : "' + process.env.LEW_BASIC_AUTH_USER_PWD + '"}';
+  user_obj = JSON.parse(user_json);
+
   app.use(
     basicAuth({
-      users: { lew: "lew12!" },
+      users: user_obj,
       challenge: true,
       unauthorizedResponse: getUnauthorizedResponse
     })
@@ -52,10 +59,7 @@ function getUnauthorizedResponse(req) {
 /****************************************************************
  Setup server and routes
 ****************************************************************/
-app.use(
-  "/",
-  express.static(path.join(__dirname, "public"), { index: ["index.html"] })
-);
+app.use("/", express.static(path.join(__dirname, "public"), { index: ["index.html"] }));
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 
 /****************************************************************
