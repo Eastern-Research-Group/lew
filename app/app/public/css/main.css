@@ -110,18 +110,20 @@ tr {
 }
 
 #startdatepicker {
-  margin-right: 45%;
-  margin-bottom: 4%;
-  margin-top: 20px;
+  margin-bottom: 25px;
 }
 
 #enddatepicker {
-  margin-bottom: 4%;
+  margin-bottom: 25px;
 }
 
-@media only screen and (max-width: 600px) {
-  #enddatepicker {
-    margin-right: 25%;
+.end-date {
+  text-align: left;
+}
+
+@media only screen and (min-width: 768px) {
+  .end-date {
+    text-align: right;
   }
 }
 
@@ -253,12 +255,6 @@ tr {
 @media only screen and (max-width: 1000px) {
   #mapViewButton {
     margin-top: 20px;
-  }
-}
-
-@media only screen and (max-width: 568px) {
-  #startdatepicker {
-    margin-right: 20%;
   }
 }
 
