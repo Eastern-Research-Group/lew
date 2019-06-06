@@ -34,7 +34,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "example": "2019-01-15T00:00:00.000Z"
+              "example": "2019-01-15"
             }
           },
           {
@@ -44,7 +44,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "example": "2019-03-13T00:00:00.000Z"
+              "example": "2019-03-13"
             }
           },
           {
@@ -89,6 +89,46 @@
   },
   "components": {
     "schemas": {
+      "RFactorInput": {
+        "type": "object",
+        "title": "RFactor Input",
+        "properties": {
+          "start_date": {
+            "type": "string",
+            "example": "2019-01-15"
+          },
+          "end_date": {
+            "type": "string",
+            "example": "2019-03-13"
+          },
+          "location": {
+            "type": "object",
+            "title": "GeoJSON Point",
+            "properties": {
+              "geometry": {
+                "type": "object",
+                "title": "GeoJSON Point",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "Point"
+                  },
+                  "coordinates": {
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "example": [-87.845556, 42.582222]
+                  }
+                },
+                "required": ["type", "coordinates"]
+              }
+            },
+            "required": ["geometry"]
+          }
+        },
+        "required": ["startDate", "endDate", "location"]
+      },
       "RFactorOutput": {
         "type": "object",
         "title": "RFactor Output",

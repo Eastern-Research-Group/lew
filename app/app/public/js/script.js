@@ -2,10 +2,16 @@ define(["app/esriMap"], function(esriMap) {
   // holds number of attempts in case API fails first 1 or 2 times. stops after 4 attempts.
   let attempts = 0;
   function init() {
+    // hide message and display controls
+
+    document.getElementById("form").style.display = "block";
+    document.getElementById("noscript").style.display = "none";
+
     // if browser is ie11, fix the responsiveness of the datepicker inputs
     if (!!window.MSInputMethodContext && !!document.documentMode) {
       var element = document.getElementById("responsivebr");
       element.classList.remove("responsivebr");
+      document.getElementById("end-div").style.textAlign = "left";
     }
     // ie11 startsWith() polyfill
     if (!String.prototype.startsWith) {

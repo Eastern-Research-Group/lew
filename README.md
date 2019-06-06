@@ -72,3 +72,7 @@ git push origin feature/your-branch-name
   - run "npm install" from the command line to install packages from NPM
   - run "npm run start" from the command line to start a local web server to support development
   - run "npm test" from the command line to run the application's unit tests
+
+## Production Deployment
+
+- Refer to previous production deployment instructions under [/docs/deployment_instructions](/docs/deployment_instructions)

@@ -162,8 +162,9 @@
         </ul>
       </div>
     </div>
-
+    <noscript><div class="alert alert-danger" role="alert">JavaScript must be enabled to use the Rainfall Erosivity Factor Calculator.</div></noscript>
     <section id="main-content" class="main-content clearfix" role="main">
+      
       <!--lang="en"-->
       <div class="row headrow">
         <div class="col-8">
@@ -217,7 +218,7 @@
             <div class="node node-page clearfix view-mode-full"></div>
           </div>
           <div class="row">
-            <div class="col-xs-12">
+             <div class="col-12">
               <div class="region-sidebar-first region-sidebar">
                 <div id="block-og-menu-og-single-menu-block" class="block block-og-menu  block-og-menu-og-single-menu-block">
                   <h2 class="element-invisible">
@@ -242,7 +243,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-xs-12">
+            <div class="col-12">
               <h1 class="page-title NPDESTitle">
                 Rainfall Erosivity Factor Calculator for Small Construction Sites
               </h1>
@@ -316,7 +317,11 @@
                 </div>
               </div>
 
-              <form id="form">
+              <div id="noscript" class="alert alert-danger" role="alert">
+                JavaScript must be enabled to use the Rainfall Erosivity Factor Calculator.
+              </div>
+
+              <form id="form" style="display: none;">
                 <p class="note">
                   <span class="fa-stack fa-lg">
                     <i class="fat fa-circle fa-stack-2x"></i>
@@ -328,13 +333,20 @@
                   The period of construction activity begins at initial earth disturbance and ends with final stabilization.
                 </p>
 
-                <label class="form-label" for="startdatepicker">Start Date: </label>
-                <input type="date" class="form-control" style="width: unset; display: unset;" id="startdatepicker" placeholder="YYYY-MM-DD" />
+           
+                  <div class="row" style="margin-top: 20px;">
+                  <div class="col-lg-6 col-md-6 col-sm-12">
+                  <label class="form-label" for="startdatepicker">Start Date: </label>
+                  <input type="date" class="form-control" style="width: unset; display: unset;" id="startdatepicker" placeholder="YYYY-MM-DD" />
+                </div>
 
                 <br id="responsivebr" class="responsivebr" />
 
-                <label class="form-label" for="enddatepicker">End Date: </label>
-                <input type="date" class="form-control" style="width: unset; display: unset;" id="enddatepicker" placeholder="YYYY-MM-DD" /><br />
+                    <div id="end-div" class="end-date col-lg-6 col-md-6 col-sm-12">
+                  <label class="form-label" for="enddatepicker">End Date: </label>
+                  <input type="date" class="form-control" style="width: unset; display: unset;" id="enddatepicker" placeholder="YYYY-MM-DD" /><br />
+                </div>
+              </div>
 
                 <p class="note">
                   <span class="fa-stack fa-lg">
