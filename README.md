@@ -75,4 +75,4 @@ git push origin feature/your-branch-name
 
 ## Production Deployment
 
-- Refer to previous production deployment instructions under [/docs/deployment_instructions](/docs/deployment_instructions)
+- Refer to previous production deployment instructions under [WATERS/RAD SharePoint Site - access required](https://usepa.sharepoint.com/sites/OW/IO/PMO/ITPortfolio/RAD/Shared%20Documents/Forms/AllItems.aspx?viewpath=%2Fsites%2FOW%2FIO%2FPMO%2FITPortfolio%2FRAD%2FShared%20Documents%2FForms%2FAllItems%2Easpx&id=%2Fsites%2FOW%2FIO%2FPMO%2FITPortfolio%2FRAD%2FShared%20Documents%2F04%20%2D%20Design%2C%20Development%2C%20and%20Deployment%2FLEW%2FDeployment%20Instructions)
