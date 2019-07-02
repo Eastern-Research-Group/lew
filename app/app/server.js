@@ -9,6 +9,11 @@ const logger = require("./server/utilities/logger.js");
 const app = express();
 app.use(helmet());
 app.use(helmet.noCache());
+app.use(
+  helmet.hsts({
+    maxAge: 31536000
+  })
+);
 app.use(cors());
 var log = logger.logger;
 var port = process.env.PORT || 9090;
