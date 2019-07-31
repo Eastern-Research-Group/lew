@@ -1,6 +1,6 @@
 ---
 name: Change Request
-about: This change request teams follows the OWTBX CMP
+about: The change request template that follows the OWTBX CMP
 title: ''
 labels: ''
 assignees: ''
