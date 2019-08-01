@@ -11,7 +11,7 @@
     "start_local_cmd": "cross-env NODE_ENV=local LOGGER_LEVEL=DEBUG nodemon --ignore 'app/tests' --inspect app/server.js",
     "test": "cross-env NODE_ENV=production LOGGER_LEVEL=OFF mocha --timeout 20000 app/tests --recursive",
     "start:prod": "npm run start:fake_prod_cmd",
-    "start:fake_prod_cmd": "cross-env NODE_ENV=production LOGGER_LEVEL=DEBUG node --inspect app/server.js"
+    "start:fake_prod_cmd": "cross-env NODE_ENV=production LOGGER_LEVEL=ERROR node app/server.js"
   },
   "husky": {
     "hooks": {
