@@ -233,7 +233,8 @@ define(["app/esriMap"], function(esriMap) {
         }).fail(function(error) {
           // increment attempts and try again
           attempts++;
-          if (attempts <= 3) {
+          if (attempts <= 0) {
+            //removed this looping construct.
             // recursively query the API again, due to unreliability. usually fails the 1st time for a new location, then works every time
             getRFactor();
           } else {

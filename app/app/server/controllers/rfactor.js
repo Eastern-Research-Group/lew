@@ -18,6 +18,8 @@ Date.prototype.formatMMDDYYYY = function() {
   );
 };
 
+let metadataObj;
+
 /***********************************************************************
  * Default route
  ***********************************************************************/
@@ -26,6 +28,8 @@ module.exports.calculateRFactor = async (req, res) => {
   var start_date = null;
   var end_date = null;
   var location = null;
+
+  metadataObj = populateMetdataObj(req);
 
   /********************************************************* 
     Check the existence and then validate api_key or X-Api-User-Id
@@ -39,10 +43,10 @@ module.exports.calculateRFactor = async (req, res) => {
       (req.hostname === "localhost" && req.header("X-Api-Key") === undefined))
   ) {
     err_json = { error_id: 1, error_msg: "Missing API Identifier" };
-    log.warn(err_json);
+    log.warn(logger.formatLogMsg(metadataObj, err_json));
   } else {
     var api_user_id = req.header("X-Api-User-Id");
-    log.debug("API User ID = " + api_user_id);
+    log.debug(logger.formatLogMsg(metadataObj, "API User ID = " + api_user_id));
   }
 
   if (err_json != null) {
@@ -56,12 +60,12 @@ module.exports.calculateRFactor = async (req, res) => {
   var err_json = null;
   if (req.query.start_date === undefined) {
     err_json = { error_id: 20, error_msg: "Missing start date parameter" };
-    log.warn(err_json);
+    log.warn(logger.formatLogMsg(metadataObj, err_json));
   } else {
     start_date = new Date(req.query.start_date);
     if (start_date.isValid() == false) {
       err_json = { error_id: 21, error_msg: "Invalid start date parameter" };
-      log.warn(err_json);
+      log.warn(logger.formatLogMsg(metadataObj, err_json));
     }
   }
 
@@ -81,12 +85,12 @@ module.exports.calculateRFactor = async (req, res) => {
   err_json = null;
   if (req.query.end_date === undefined) {
     err_json = { error_id: 30, error_msg: "Missing end date parameter" };
-    log.warn(err_json);
+    log.warn(logger.formatLogMsg(metadataObj, err_json));
   } else {
     end_date = new Date(req.query.end_date);
     if (end_date.isValid() == false) {
       err_json = { error_id: 31, error_msg: "Invalid end date parameter" };
-      log.warn(err_json);
+      log.warn(logger.formatLogMsg(metadataObj, err_json));
     }
   }
 
@@ -108,14 +112,13 @@ module.exports.calculateRFactor = async (req, res) => {
       error_id: 35,
       error_msg: "Start date must occur before end date"
     };
-    log.warn(err_json);
+    log.warn(logger.formatLogMsg(metadataObj, err_json));
   }
 
   if (err_json != null) {
     res.status(400).json(err_json);
     return;
   }
-  log.debug(err_json);
 
   /********************************************************* 
     GeoJSON validation
@@ -123,13 +126,13 @@ module.exports.calculateRFactor = async (req, res) => {
   err_json = null;
   if (req.query.location === undefined) {
     err_json = { error_id: 40, error_msg: "Missing location parameter" };
-    log.warn(err_json);
+    log.warn(logger.formatLogMsg(metadataObj, err_json));
   } else {
     try {
       location = JSON.parse(req.query.location);
     } catch (err) {
       err_json = { error_id: 41, error_msg: "Invalid location parameter" };
-      log.warn(err_json);
+      log.warn(logger.formatLogMsg(metadataObj, err_json));
     }
 
     if (
@@ -140,7 +143,7 @@ module.exports.calculateRFactor = async (req, res) => {
         location.geometry.coordinates.length != 2)
     ) {
       err_json = { error_id: 42, error_msg: "Invalid location parameter" };
-      log.warn(err_json);
+      log.warn(logger.formatLogMsg(metadataObj, err_json));
     }
   }
 
@@ -209,7 +212,7 @@ function sendResponse(rFactor, res) {
   return new Promise((resolve, reject) => {
     var out = { rfactor: Number(rFactor) };
     res.json(out);
-    log.info(out);
+    log.info(logger.formatLogMsg(metadataObj, out));
     resolve();
     return;
   });
@@ -240,7 +243,7 @@ function getCountyURL(lon, lat) {
             error_id: 60,
             error_msg: "Error retrieving county URL"
           };
-          log.error(err_json + " postData = " + postData);
+          log.error(logger.formatLogMsg(metadataObj, err_json, { postData: postData }));
           reject(err_json);
           return;
         } else {
@@ -249,7 +252,7 @@ function getCountyURL(lon, lat) {
               error_id: 61,
               error_msg: "Error calling RUSLE web service"
             };
-            log.error(err_json + " statusCode = " + res.statusCode);
+            log.error(logger.formatLogMsg(metadataObj, err_json, "statusCode = " + res.statusCode));
             reject(err_json);
             return;
           }
@@ -262,7 +265,7 @@ function getCountyURL(lon, lat) {
               error_id: 62,
               error_msg: "Error parsing results of county data"
             };
-            log.error(err_json + err.toString() + "  postData = " + postData);
+            log.error(logger.formatLogMsg(metadataObj, err_json, { postData: postData, ERR: err.toString() }));
             reject(err_json);
             return;
           }
@@ -273,7 +276,10 @@ function getCountyURL(lon, lat) {
               error_msg: "rFactor information is not available for this location"
             };
             log.error(
-              err_json + "Error retrieving county URL information from the results array. " + "  postData = " + postData
+              logger.formatLogMsg(metadataObj, err_json, {
+                OtherMSG: "Error retrieving county URL information from the results array.",
+                postData: postData
+              })
             );
             reject(err_json);
             return;
@@ -286,7 +292,7 @@ function getCountyURL(lon, lat) {
                 success: "true",
                 postData: postData
               };
-              log.info(info_json);
+              log.info(logger.formatLogMsg(metadataObj, "Climate data found", { postData: postData }));
               resolve(url);
               return;
             }
@@ -295,7 +301,7 @@ function getCountyURL(lon, lat) {
             error_id: 64,
             error_msg: "Error retrieving county URL"
           };
-          log.error(err_json);
+          log.error(logger.formatLogMsg(metadataObj, err_json, null));
           reject(err_json);
           return;
         }
@@ -322,7 +328,7 @@ function getClimateDataForCounty(countyURL) {
             error_id: 70,
             error_msg: "Error retrieving county level data."
           };
-          log.error(err_json + " The countyURL =" + countyURL + " " + err.toString());
+          log.error(logger.formatLogMsg(metadataObj, err_json, { countyURL: countyURL, ERRMSG: err.toString() }));
           reject(err_json);
           return;
         } else {
@@ -343,7 +349,7 @@ function getClimateDataForCounty(countyURL) {
             error_id: 71,
             error_msg: "Climate attribute not found."
           };
-          log.error(err_json + " The countyURL = " + countyURL);
+          log.error(logger.formatLogMsg(metadataObj, err_json, { countyURL: countyURL }));
           reject(err_json);
           return;
         }
@@ -365,7 +371,7 @@ function calculateRFactor(EI_DAILY_AMOUNT, setYear, dayIndex) {
         error_id: 80,
         error_msg: "15: Internal Web Service Error. [EI_DAILY_AMOUNT is empty]"
       };
-      log.error(err_json);
+      log.error(logger.formatLogMsg(null, err_json, null));
       reject(err_json);
     } else {
       var dailyEIData = EI_DAILY_AMOUNT.replace(/\n/g, " ").split(" ");
@@ -389,6 +395,26 @@ function calculateRFactor(EI_DAILY_AMOUNT, setYear, dayIndex) {
       }
     }
     log.debug("rFactor = " + rFactor);
+    log.debug(logger.formatLogMsg(metadataObj, "rFactor = " + rFactor, null));
+
     resolve(rFactor);
   });
+}
+
+/***********************************************************************
+Populate Metadata Object with HTTP headers we care about
+***********************************************************************/
+function populateMetdataObj(request) {
+  let metadata = {};
+
+  metadata.b3 = request.header("b3") === undefined ? null : request.header("b3");
+  metadata.x_b3_traceid = request.header("x-b3-traceid") === undefined ? null : request.header("x-b3-traceid");
+  metadata.x_b3_spanid = request.header("x-b3-spanid") === undefined ? null : request.header("x-b3-spanid");
+  metadata.x_b3_parentspanid =
+    request.header("x_b3_parentspanid") === undefined ? null : request.header("x_b3_parentspanid");
+  metadata.x_api_user_id = request.header("x-api-user-id") === undefined ? null : request.header("x-api-user-id");
+  metadata.x_api_umbrella_request_id =
+    request.header("x-api-umbrella-request-id") === undefined ? null : request.header("x-api-umbrella-request-id");
+
+  return metadata;
 }

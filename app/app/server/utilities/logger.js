@@ -24,14 +24,25 @@ log4js.configure({
 
 var logger = log4js.getLogger();
 
-if (process.env.LOGGER_LEVEL)
-  logger.level = process.env.LOGGER_LEVEL.toUpperCase();
+if (process.env.LOGGER_LEVEL) logger.level = process.env.LOGGER_LEVEL.toUpperCase();
 else logger.level = "INFO"; //default level
 
 logger.info("LOGGER_LEVEL = " + logger.level);
 
 var getLogger = function() {
   return logger;
+};
+
+//We use this function to format most of the error messages to
+//work well (support the review) with Cloud.gov (Kibana)
+exports.formatLogMsg = function(app_metadata, app_message, app_otherinfo) {
+  var rtn_obj = { app_metadata: null, app_message: null, app_otherinfo: null };
+
+  if (app_metadata != null) rtn_obj.app_metadata = app_metadata;
+  if (app_message != null) rtn_obj.app_message = app_message;
+  if (app_otherinfo != null) rtn_obj.app_otherinfo = app_otherinfo;
+
+  return JSON.stringify(rtn_obj);
 };
 
 exports.logger = getLogger();
