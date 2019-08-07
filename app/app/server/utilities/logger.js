@@ -42,7 +42,7 @@ exports.formatLogMsg = function(app_metadata, app_message, app_otherinfo) {
   if (app_message != null) rtn_obj.app_message = app_message;
   if (app_otherinfo != null) rtn_obj.app_otherinfo = app_otherinfo;
 
-  return JSON.stringify(rtn_obj);
+  return JSON.stringify({ rtn_obj });
 };
 
 exports.logger = getLogger();
