@@ -327,9 +327,11 @@ function getClimateDataForCounty(metadataObj, countyURL) {
             error_id: 70,
             error_msg: "Error retrieving county level data."
           };
-          log.debug("there should be an ERROR message right after this one!!!");
+          log.debug("Debug message: there should be an ERROR message right after this one!!!");
           log.error("im an error and should be in error log");
-          log.error(logger.formatLogMsg(metadataObj, "error inside formatmsg"));
+          log.error(logger.formatLogMsg(metadataObj, "simple error string."));
+          log.error(logger.formatLogMsg(metadataObj, "simple error string #2.", "simple error string part 2."));
+          log.error(logger.formatLogMsg(metadataObj, err_json));
           reject(err_json);
           return;
         } else {
