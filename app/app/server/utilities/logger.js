@@ -36,7 +36,7 @@ var getLogger = function() {
 //We use this function to format most of the error messages to
 //work well (support the review) with Cloud.gov (Kibana)
 exports.formatLogMsg = function(app_metadata, app_message, app_otherinfo) {
-  var rtn_obj = { app_metadata: null, app_message: null, app_otherinfo: null };
+  let rtn_obj = { app_metadata: null, app_message: null, app_otherinfo: null };
 
   if (app_metadata != null) rtn_obj.app_metadata = app_metadata;
   if (app_message != null) rtn_obj.app_message = app_message;
