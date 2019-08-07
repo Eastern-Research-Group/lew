@@ -288,6 +288,7 @@ function getCountyURL(metadataObj, lon, lat) {
               const url = results[i].value;
               var info_json = {
                 success: "true",
+                climate_url: url,
                 postData: postData
               };
               log.info(logger.formatLogMsg(metadataObj, "Climate data found", { postData: postData }));
@@ -321,7 +322,7 @@ function getClimateDataForCounty(metadataObj, countyURL) {
         timeout: 15000
       },
       function(err, res, body) {
-        if (err) {
+        if (err || res.statusCode != 200) {
           var err_json = {
             error_id: 70,
             error_msg: "Error retrieving county level data."
