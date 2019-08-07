@@ -18,8 +18,6 @@ Date.prototype.formatMMDDYYYY = function() {
   );
 };
 
-let metadataObj;
-
 /***********************************************************************
  * Default route
  ***********************************************************************/
@@ -29,7 +27,7 @@ module.exports.calculateRFactor = async (req, res) => {
   var end_date = null;
   var location = null;
 
-  metadataObj = populateMetdataObj(req);
+  let metadataObj = populateMetdataObj(req);
 
   /********************************************************* 
     Check the existence and then validate api_key or X-Api-User-Id
@@ -196,10 +194,10 @@ module.exports.calculateRFactor = async (req, res) => {
   var lat = location.geometry.coordinates[1];
 
   try {
-    const url = await getCountyURL(lon, lat);
-    const EI_DAILY_AMOUNT = await getClimateDataForCounty(url);
-    const rFactor_1 = await calculateRFactor(EI_DAILY_AMOUNT, setYear, dayIndex);
-    return await sendResponse(rFactor_1, res);
+    const url = await getCountyURL(metadataObj, lon, lat);
+    const EI_DAILY_AMOUNT = await getClimateDataForCounty(metadataObj, url);
+    const rFactor_1 = await calculateRFactor(metadataObj, EI_DAILY_AMOUNT, setYear, dayIndex);
+    return await sendResponse(metadataObj, rFactor_1, res);
   } catch (err) {
     res.status(400).json(err);
   }
@@ -208,7 +206,7 @@ module.exports.calculateRFactor = async (req, res) => {
 /***********************************************************************
  *
  ***********************************************************************/
-function sendResponse(rFactor, res) {
+function sendResponse(metadataObj, rFactor, res) {
   return new Promise((resolve, reject) => {
     var out = { rfactor: Number(rFactor) };
     res.json(out);
@@ -221,7 +219,7 @@ function sendResponse(rFactor, res) {
 /***********************************************************************
  
 ***********************************************************************/
-function getCountyURL(lon, lat) {
+function getCountyURL(metadataObj, lon, lat) {
   return new Promise((resolve, reject) => {
     var postData =
       '{"metainfo":{"mode":"sync","keep_results":"3600000"},"parameter":[{"name":"latitude","value":' +
@@ -313,7 +311,7 @@ function getCountyURL(lon, lat) {
 /***********************************************************************
  
 ***********************************************************************/
-function getClimateDataForCounty(countyURL) {
+function getClimateDataForCounty(metadataObj, countyURL) {
   return new Promise((resolve, reject) => {
     log.debug("countyURL = " + countyURL);
     request(
@@ -361,7 +359,7 @@ function getClimateDataForCounty(countyURL) {
 /***********************************************************************
  
 ***********************************************************************/
-function calculateRFactor(EI_DAILY_AMOUNT, setYear, dayIndex) {
+function calculateRFactor(metadataObj, EI_DAILY_AMOUNT, setYear, dayIndex) {
   return new Promise((resolve, reject) => {
     log.debug("setYear = " + setYear);
     log.debug("dayIndex = " + dayIndex);
