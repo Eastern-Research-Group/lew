@@ -338,6 +338,8 @@ function getClimateDataForCounty(metadataObj, countyURL) {
           log.error(logger.formatLogMsg(metadataObj, "simple error string #4.", "4"));
           log.error(logger.formatLogMsg(metadataObj, "simple error string #4.", ""));
           log.error(logger.formatLogMsg(metadataObj, metadataObj, metadataObj));
+          log.error(logger.formatLogMsg(metadataObj, metadataObj));
+          log.error("im an error and should be in error log #2");
           log.error(logger.formatLogMsg(metadataObj, err_json));
 
           reject(err_json);
