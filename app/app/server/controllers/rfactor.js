@@ -329,7 +329,7 @@ function getClimateDataForCounty(metadataObj, countyURL) {
           };
           log.debug("there should be an ERROR message right after this one!!!");
           log.error("im an error and should be in error log");
-          log.error(logger.formatLogMsg(metadataObj, err_json, { countyURL: countyURL }));
+          log.error(logger.formatLogMsg(metadataObj, err_json));
           reject(err_json);
           return;
         } else {
