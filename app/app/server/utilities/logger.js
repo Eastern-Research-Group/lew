@@ -2,14 +2,14 @@ var log4js = require("log4js");
 
 log4js.configure({
   appenders: {
-    stdout: { type: "stdout", layout: { type: "messagePassThrough" } },
+    stdout: { type: "stdout", layout: { type: "pattern", pattern: "%p - %m" } },
     stdoutFilter: {
       type: "logLevelFilter",
       appender: "stdout",
       level: "TRACE",
       maxLevel: "WARN"
     },
-    stderr: { type: "stderr", layout: { type: "messagePassThrough" } },
+    stderr: { type: "stderr", layout: { type: "pattern", pattern: "%p - %m" } },
     stderrFilter: {
       type: "logLevelFilter",
       appender: "stderr",
@@ -42,7 +42,7 @@ exports.formatLogMsg = function(app_metadata, app_message, app_otherinfo) {
   if (app_message != null) rtn_obj.app_message = app_message;
   if (app_otherinfo != null) rtn_obj.app_otherinfo = app_otherinfo;
 
-  return "lew - " + JSON.stringify(rtn_obj);
+  return JSON.stringify(rtn_obj);
 };
 
 exports.logger = getLogger();
