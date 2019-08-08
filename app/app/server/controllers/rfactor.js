@@ -291,7 +291,7 @@ function getCountyURL(metadataObj, lon, lat) {
                 climate_url: url,
                 postData: postData
               };
-              log.info(logger.formatLogMsg(metadataObj, "Climate data found", { postData: postData }));
+              log.debug(logger.formatLogMsg(metadataObj, "Climate data found", { postData: postData }));
               resolve(url);
               return;
             }
