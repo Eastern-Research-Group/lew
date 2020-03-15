@@ -94,10 +94,11 @@ tr {
 
 #rButton {
   height: 100%;
-  width: 60%;
+  width: 200px;
   margin-left: 20%;
   margin-top: 20px;
   margin-bottom: 5%;
+  font-size: 1rem;
 }
 
 .note {
@@ -136,6 +137,7 @@ tr {
 #mapViewButton {
   /* margin-left: 3%; */
   width: 150px;
+  font-size: 1rem;
 }
 
 #h3Facility {
