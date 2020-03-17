@@ -1,78 +1,22 @@
 
 # Low Erosivity Waiver (LEW)
+The Low Erosivity Waiver (LEW) or the Rainfall Erosivity Factor Calculator for Small Construction Sites app is a responsive, map-centric, mobile ready web application that allows end-users (i.e. construction companies, NPDES permitting authorities) to determine if they can waive NPDES permitting requirements for stormwater discharges from small construction sites. The waiver is possible if  
 
-## Continuous Build Status (by branch)
+ - the construction site disturbs less than five acres, and
+ - the rainfall erosivity factor (“R” in the revised universal soil loss
+   equation, or RUSLE) value is less than five during the period of
+   construction activity.
 
-* Develop branch: [![CircleCI](https://circleci.com/gh/Eastern-Research-Group/lew/tree/develop.svg?style=svg&circle-token=fd2c6fd923415a86fb853f1886e28fce233aa771)](https://circleci.com/gh/Eastern-Research-Group/lew/tree/develop)
-* Staging branch: [![CircleCI](https://circleci.com/gh/Eastern-Research-Group/lew/tree/staging.svg?style=svg&circle-token=fd2c6fd923415a86fb853f1886e28fce233aa771)](https://circleci.com/gh/Eastern-Research-Group/lew/tree/staging)
+As such, LEW provides a web application and associated web service that allows an end-user to provide information about their construction activities to retrieve an “R” factor ranking to determine if a waiver is appropriate. 
 
-  
-## Application locations (contact development team for user name / password)
+<p align="center">
+      <img height="50%" width="50%" src="/docs/img/githubimage.png">
+</p>
 
- - **Production**
-   - https://lew.epa.gov
-   - https://lew-prod.app.cloud.gov  
- - **Staging**
-   - https://lew-stage.app.cloud.gov
- - **Development**
-   - https://lew-dev.app.cloud.gov
- - **Local**
-   - http://localhost:9091
-   
-</br>
+## Documentation
+- [Local Development Environment Setup](/docs/local_dev_setup.md), instructions for getting the application running on your device to support coding.
+- [How to contribute to the project](/docs/CONTRIBUTING.md), learn how to help improve the application. 
 
- - **Application Pages**
-   - ***/*** (home page)
-   - ***/api-docs*** (swagger user interface)
-   - ***/sign_up_key.html*** (api.data.gov API key signup)
-   
-## Contribute
+## Disclaimer
 
-We currently use three Git based branches to support the project.
-
-- develop = we use a feature branch strategy to submit code changes to this branch. Merges will be auto deployed to the Development environment.
-- staging = Only a designated gatekeeper (e.g. Brad Cooper) for the project should issue pull requests from develop against staging. Merges will be auto deployed to the User Acceptance Testing environment.
-- master = Only a designated gatekeeper for the project can issue pull requests from staging against master. The actual deployment mechanics for production is still TBD requiring NCC input.
-
-
-**Instructions for contributing via Git:**
-
-- Make sure you are on the Develop branch.
-
-```
-git checkout develop
-```
-
-- Make a new feature branch. Name it relative to the topic.
-
-```
-git checkout -b feature/your-branch-name
-```
-
-- You will now be in your new branch where you are free to make changes.
-- To push those changes up, you'll need to add, commit, and push with the following commands:
-
-```
-git add .
-git commit -m "describe your changes in these quotation marks"
-git push origin feature/your-branch-name
-```
-
-- Then you can make a pull request by finding your branch on the
-  [Github repository](https://github.com/Eastern-Research-Group/lew/branches)
-
-***
-![LEW DevOps Pipeline](/docs/img/LEW%20DevOps%20Pipeline.png?raw=true "LEW DevOps Pipeline")
-
-## Local Development Environment Setup
-
-- git clone this repo
-- install Node.js from https://nodejs.org
-- navigate to the app folder in the repo using the command line
-  - run "npm install" from the command line to install packages from NPM
-  - run "npm run start" from the command line to start a local web server to support development
-  - run "npm test" from the command line to run the application's unit tests
-
-## Production Deployment
-
-- Refer to previous production deployment instructions under [/docs/deployment_instructions](/docs/deployment_instructions/)
+This United States Environmental Protection Agency (EPA) GitHub project code is provided on an "as is" basis and the user assumes responsibility for its use.  EPA has relinquished control of the information and no longer has responsibility to protect the integrity, confidentiality, or availability of the information.  Any reference to specific commercial products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply their endorsement, recommendation or favoring by EPA.  The EPA seal and logo shall not be used in any manner to imply endorsement of any commercial product or activity by EPA or the United States Government.
