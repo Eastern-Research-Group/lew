@@ -61,16 +61,6 @@
     "swagger-ui-express": "^4.1.3"
   },
   "lint-staged": {
-    "linters": {
-      "app/**/*.{js,jsx,json,css}": [
-        "prettier --write",
-        "git add"
-      ]
-    },
-    "ignore": [
-      "app/css/epa/*.css",
-      "app/css/lib/*.css",
-      "app/js/lib/*.js"
-    ]
+    "src/**/*.{js,json,css,md}": "prettier --write"
   }
 }
