@@ -8,7 +8,7 @@ jobs:
       APP_NAME: lew-dev
       APP_DOMAIN: app.cloud.gov
       CF_ORG: epa-surface-water
-      CF_SPACE: owtbx-dev
+      CF_SPACE: owtbx-lew-dev
     steps:
       - checkout:
           path: ~/project
@@ -89,7 +89,7 @@ jobs:
       APP_NAME: lew-stage
       APP_DOMAIN: app.cloud.gov
       CF_ORG: epa-surface-water
-      CF_SPACE: owtbx-staging
+      CF_SPACE: owtbx-lew-staging
     steps:
       - checkout:
           path: ~/project
