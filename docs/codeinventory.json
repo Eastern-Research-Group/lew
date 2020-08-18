@@ -1,0 +1,36 @@
+{
+"organization": "USEPA",
+"name": "Low Erosivity Waiver (LEW)",
+"description": "The Low Erosivity Waiver (LEW) or the Rainfall Erosivity Factor Calculator for Small Construction Sites app is a responsive, map-centric, mobile ready web application that allows end-users (i.e. construction companies, NPDES permitting authorities) to determine if they can waive NPDES permitting requirements for stormwater discharges from small construction sites.",
+"permissions": {
+"licenses": [
+{
+"name": "Creative Commons Zero (CC0)",
+"URL": "https://github.com/USEPA/LEW/blob/develop/LICENSE"
+}
+],
+"usageType": "openSource",
+"exemptionText": null
+},
+"repositoryURL": "https://github.com/USEPA/LEW",
+"languages": [
+"Bootstrap",
+"JavaScript",
+"Node.js",
+"ArcGIS API for JavaScript"
+],
+"tags": [
+"EPA",
+"LEW",
+"Rainfall Erosivity Factor Calculator",
+"Low Erosivity Waiver",
+"Stormwater discharges from small construction sites",
+"Rainfall erosivity factor",
+"R-factor",
+"RUSLE"
+],
+"contact": {
+"name": "CGP staff",
+"email": "cgp@epa.gov"
+}
+}
