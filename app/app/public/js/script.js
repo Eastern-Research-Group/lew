@@ -165,6 +165,7 @@ define(["app/esriMap"], function(esriMap) {
         let endday = endDate.slice(8);
         let newendDate = endmonth + "/" + endday + "/" + endyear;
 
+        var api = null;
         if (window.location.host.toLowerCase().startsWith("localhost")) {
           api = "http://localhost:" + window.location.port + "/v1/rfactor";
         } else if (window.location.host.toLowerCase().includes("lew-dev.app.cloud.gov")) {

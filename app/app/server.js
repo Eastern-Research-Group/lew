@@ -47,7 +47,7 @@ if (isDevelopment || isStaging) {
   }
 
   var user_json = '{"' + process.env.LEW_BASIC_AUTH_USER_NAME + '" : "' + process.env.LEW_BASIC_AUTH_USER_PWD + '"}';
-  user_obj = JSON.parse(user_json);
+  const user_obj = JSON.parse(user_json);
 
   app.use(
     basicAuth({
