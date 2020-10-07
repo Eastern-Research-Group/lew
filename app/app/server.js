@@ -1,5 +1,6 @@
 const express = require("express");
 const helmet = require("helmet");
+const noCache = require('nocache')
 var cors = require("cors");
 var favicon = require("serve-favicon");
 const basicAuth = require("express-basic-auth");
@@ -8,7 +9,7 @@ const logger = require("./server/utilities/logger.js");
 
 const app = express();
 app.use(helmet());
-app.use(helmet.noCache());
+app.use(noCache())
 app.use(
   helmet.hsts({
     maxAge: 31536000
