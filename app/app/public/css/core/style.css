@@ -549,10 +549,8 @@ footer * {
   z-index: 9999;
 }
 header {
-  display: block;
-}
-header {
   background: #fff;
+  display: block;
 }
 header button,
 header select {
@@ -604,9 +602,6 @@ header button {
   header h1 {
     font-size: 235.29%;
   }
-}
-header a {
-  color: #0071bc;
 }
 header::selection {
   background: #5b616b;
@@ -879,6 +874,7 @@ header .site-slogan {
 }
 header a {
   outline-offset: 2px;
+  color: #0071bc;
 }
 @media screen {
   header h1 a,
@@ -915,10 +911,8 @@ header .site-name span {
 
 /** EPA Global Navigation *************************************************/
 nav {
-  display: block;
-}
-nav {
   background: #fff;
+  display: block;
 }
 @media screen {
   nav h2 {
@@ -951,8 +945,6 @@ nav {
 }
 nav a {
   outline-offset: 2px;
-}
-nav a {
   color: #0071bc;
 }
 nav::selection {
@@ -1145,8 +1137,6 @@ nav.main-nav > .nav__inner > .menu .menu .menu-link {
   clip: rect(1px, 1px, 1px, 1px);
   opacity: 0;
   position: absolute !important;
-}
-nav.main-nav > .nav__inner > .menu .menu .menu-link {
   background: #d6d7d9;
   border: solid #d6d7d9;
   border-width: 0 5px;
@@ -1175,8 +1165,6 @@ nav.main-nav > .nav__inner > .menu .menu a.active {
 /** EPA Global Section *************************************************/
 section {
   display: block;
-}
-section {
   background: #fff;
 }
 @media screen {
@@ -1205,8 +1193,6 @@ section {
 }
 section a {
   outline-offset: 2px;
-}
-section a {
   color: #0071bc;
 }
 @media screen {
@@ -1349,8 +1335,6 @@ section .resource-directory .region-preface {
 section #block-pane-epa-web-area-connect {
   display: inline-block;
   padding-bottom: 0.66em;
-}
-section #block-pane-epa-web-area-connect {
   margin-left: 2em;
 }
 @media screen and (min-width: 30em) {
@@ -1533,8 +1517,6 @@ section .view-revision-hublinks .pipeline > li > a {
 /** EPA Global Footer *************************************************/
 footer {
   display: block;
-}
-footer {
   background: #fff;
 }
 @media screen {
@@ -1563,8 +1545,6 @@ footer {
 }
 footer a {
   outline-offset: 2px;
-}
-footer a {
   color: #0071bc;
 }
 footer::selection {
