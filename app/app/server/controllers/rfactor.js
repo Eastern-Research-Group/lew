@@ -74,7 +74,7 @@ function getCountyUrl(metadataObj, lat, lon) {
             return;
           }
 
-          if (results == null) {
+          if (!results) {
             var err_json = {
               error_id: 63,
               error_msg: "rFactor information is not available for this location"
@@ -175,7 +175,7 @@ function getClimateData(metadataObj, countyUrl) {
 
 function calculateRFactor(metadataObj, EI_DAILY_AMOUNT, start_date, end_date) {
   return new Promise((resolve, reject) => {
-    if (EI_DAILY_AMOUNT == null) {
+    if (!EI_DAILY_AMOUNT) {
       var err_json = {
         error_id: 80,
         error_msg: "15: Internal Web Service Error. [EI_DAILY_AMOUNT is empty]"
@@ -327,7 +327,7 @@ module.exports.calculateRFactor = async (req, res) => {
     log.warn(logger.formatLogMsg(metadataObj, err_json));
   } else {
     start_date = new Date(req.query.start_date);
-    if (start_date.isValid() == false) {
+    if (!start_date.isValid()) {
       err_json = {
         error_id: 21,
         error_msg: "Invalid start date parameter"
@@ -358,7 +358,7 @@ module.exports.calculateRFactor = async (req, res) => {
     log.warn(logger.formatLogMsg(metadataObj, err_json));
   } else {
     end_date = new Date(req.query.end_date);
-    if (end_date.isValid() == false) {
+    if (!end_date.isValid()) {
       err_json = {
         error_id: 31,
         error_msg: "Invalid end date parameter"
@@ -415,11 +415,11 @@ module.exports.calculateRFactor = async (req, res) => {
     }
 
     if (
-      err_json == null &&
-      (location == null ||
-        location.geometry == null ||
-        location.geometry.coordinates == null ||
-        location.geometry.coordinates.length != 2)
+      !err_json &&
+      (!location ||
+        !location.geometry ||
+        !location.geometry.coordinates ||
+        location.geometry.coordinates.length !== 2)
     ) {
       err_json = {
         error_id: 42,

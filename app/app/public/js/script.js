@@ -36,15 +36,9 @@ define(["app/esriMap"], function(esriMap) {
       };
     }
 
-    // initialize sessionStorage to default empty
-    if (typeof Storage !== "undefined") {
-      sessionStorage.latitude = "empty";
-      sessionStorage.longitude = "empty";
-    } else {
-      document.getElementById("errorMessage").innerHTML =
-        "sessionStorage is not enabled. Please use a different browser.";
-      document.getElementById("errorMessage").style.display = " block";
-    }
+    window.lew_latitude = "empty";
+    window.lew_longitude = "empty";
+
     // initialize map
     esriMap.init("viewDiv");
 
@@ -85,13 +79,13 @@ define(["app/esriMap"], function(esriMap) {
         } else {
           // add lat/long to local storage
           try {
-            sessionStorage.latitude = data.candidates[0].location.y;
-            sessionStorage.longitude = data.candidates[0].location.x;
+            window.lew_latitude = data.candidates[0].location.y;
+            window.lew_longitude = data.candidates[0].location.x;
           } catch (err) {
             document.getElementById("location-error").style.display = "inline";
           }
           // add a point on the map
-          esriMap.addPoint(sessionStorage.latitude, sessionStorage.longitude);
+          esriMap.addPoint(window.lew_latitude, window.lew_longitude);
           _callback();
         }
       }).fail(function() {
@@ -103,7 +97,7 @@ define(["app/esriMap"], function(esriMap) {
     document.getElementById("rButton").addEventListener("click", function(event) {
       event.preventDefault();
       // check if user has entered a location in the location input but has NOT searched it. if so, automatically search for them before calculating.
-      if ((sessionStorage.latitude == "empty" || sessionStorage.longitude == "empty") && $("#location").val() != "") {
+      if ((window.lew_latitude === "empty" || window.lew_longitude === "empty") && $("#location").val() !== "") {
         getCoords(function() {
           getRFactor();
         });
@@ -117,7 +111,7 @@ define(["app/esriMap"], function(esriMap) {
       document.getElementById("errorMessage").style.display = "none";
       document.getElementById("eContainer").style.display = "none";
       // if no location has been searched or clicked
-      if (sessionStorage.latitude == "empty") {
+      if (window.lew_latitude === "empty" || window.lew_longitude === 'empty') {
         document.getElementById("errorMessage").innerHTML =
           "Please search an address or select your location on the map.";
         document.getElementById("errorMessage").style.display = "block";
@@ -143,11 +137,11 @@ define(["app/esriMap"], function(esriMap) {
         let startDate = $("#startdatepicker").val();
         let endDate = $("#enddatepicker").val();
 
-        let coordx = sessionStorage.longitude;
+        let coordx = window.lew_longitude;
         let coordxnum = parseFloat(coordx);
         let coordxfixed = coordxnum.toFixed(4);
 
-        let coordy = sessionStorage.latitude;
+        let coordy = window.lew_latitude;
         let coordynum = parseFloat(coordy);
         let coordyfixed = coordynum.toFixed(4);
 
@@ -195,7 +189,7 @@ define(["app/esriMap"], function(esriMap) {
           // reset number of attempts on success
           attempts = 0;
           document.getElementById("loader").style.display = "none";
-          if (data.rfactor == null) {
+          if (!data.rfactor) {
             data.rfactor = "Unknown";
           }
           $("#eiValue").html(data.rfactor.toString());
