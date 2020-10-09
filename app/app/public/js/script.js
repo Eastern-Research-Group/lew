@@ -107,6 +107,10 @@ define(["app/esriMap"], function(esriMap) {
     });
 
     function getRFactor() {
+      // don't fetch if currently loading a request to prevent spamming the API 
+      // by rapidly clicking the 'Calculate R Factor' button
+      if (getComputedStyle(document.getElementById("loader")).getPropertyValue('display') === 'block') return;
+
       document.getElementById("loader").style.display = "block";
       document.getElementById("errorMessage").style.display = "none";
       document.getElementById("eContainer").style.display = "none";
