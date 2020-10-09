@@ -238,7 +238,7 @@ function calculateRFactor(metadataObj, EI_DAILY_AMOUNT, start_date, end_date) {
       if (endDayOfYear > startDayOfYear) {
         log.debug('Project is contained within a year');
         // subtract 1 from startDayOfYear because index on dailyEIdata starts with 0
-        for (p = startDayOfYear - 1; p < endDayOfYear; p++) {
+        for (let p = startDayOfYear - 1; p < endDayOfYear; p++) {
           rfactor = rfactor + Number(dailyEIdata[p]);
         }
       } else {
@@ -247,7 +247,7 @@ function calculateRFactor(metadataObj, EI_DAILY_AMOUNT, start_date, end_date) {
         var dayCounter = 0;
         // first calculate from start date to 12/31
         // subtract 1 from startDayOfYear because index on dailyEIdata starts with 0
-        for (p = startDayOfYear - 1; p < 365; p++) {
+        for (let p = startDayOfYear - 1; p < 365; p++) {
           rfactor = rfactor + Number(dailyEIdata[p]);
           dayCounter++;
         }
@@ -256,7 +256,7 @@ function calculateRFactor(metadataObj, EI_DAILY_AMOUNT, start_date, end_date) {
         var daysRemaining = numProjectDays - dayCounter;
         // then start at 1/1 and go for number of days remaining in project
         log.debug('daysRemaining = ' + daysRemaining);
-        for (p = 0; p < daysRemaining; p++) {
+        for (let p = 0; p < daysRemaining; p++) {
           rfactor = rfactor + Number(dailyEIdata[p]);
           dayCounter++;
           // log.debug('rfactor = ' + rfactor);
