@@ -12,6 +12,8 @@
   <meta name="MobileOptimized" content="width" />
   <meta name="viewport" content="width=device-width" />
   <!--googleon: all-->
+  <meta name="description"
+    content="The Rainfall Erosivity Factor Calculator can be used to help determine if your small construction site qualifies for stormwater discharge waivers.">
   <meta name="DC.description"
     content="The Rainfall Erosivity Factor Calculator can be used to help determine if your small construction site qualifies for stormwater discharge waivers." />
   <meta name="DC.title" content="Low Erosivity Waiver (LEW)" />
@@ -75,7 +77,7 @@
     <a href="#main-content" class="skip-link element-invisible element-focusable">Jump to main content</a>
   </div>
   <header class="masthead clearfix" role="banner">
-    <img alt="" class="site-logo" src="https://www.epa.gov/sites/all/themes/epa/logo.png" />
+    <img alt="epa logo" class="site-logo" src="https://www.epa.gov/sites/all/themes/epa/logo.png" />
     <div class="site-name-and-slogan">
       <h1 class="site-name">
         <a href="https://www.epa.gov/" rel="home" title="Go to the home page"><span>US EPA</span></a>
@@ -88,7 +90,8 @@
       <div class="block-epa-core-gsa-epa-search" id="block-epa-core-gsa-epa-search">
         <form action="https://search.epa.gov/epasearch" class="epa-search" method="get">
           <label class="element-hidden" for="search-box">Search</label>
-          <input class="form-text" id="search-box" name="querytext" placeholder="Search EPA.gov" value="" />
+          <input class="form-text" id="search-box" aria-label="Search EPA.gov" name="querytext"
+            placeholder="Search EPA.gov" value="" />
           <button class="epa-search-button" id="search-button" title="Search" type="submit">
             Search
           </button>
@@ -158,20 +161,29 @@
       </div>
       <div class="col-4 connecting">
         <a id="contactlink" href="mailto:cgp@epa.gov" class="connect-title__link">CONTACT US</a>
-        <ul class="share-links">
+        <div class="share-links">
           <span id="sharing">SHARE</span>
           <a href="https://www.facebook.com/sharer.php?u=https://www.epa.gov/npdes/rainfall-erosivity-factor-calculator-small-construction-sites&t=Rainfall%20Erosivity%20Factor%20Calculator%20for%20%20Small%20Construction%20Sites"
-            target="_blank" rel="noopener noreferrer" class="fa fa-facebook" title="Share this page on Facebook"
-            aria-hidden="true"></a>
+            target="_blank" rel="noopener noreferrer" title="Share this page on Facebook">
+            Share this page on Facebook
+            <div class="fa fa-facebook"></div>
+          </a>
           <a href="https://twitter.com/intent/tweet?original_referer=https://www.epa.gov/npdes/rainfall-erosivity-factor-calculator-small-construction-sites&text=Rainfall%20Erosivity%20Factor%20Calculator%20for%20%20Small%20Construction%20Sites&url=https://www.epa.gov/npdes/rainfall-erosivity-factor-calculator-small-construction-sites&via=EPA&count=none&lang=en"
-            title="Tweet this page" target="_blank" rel="noopener noreferrer" class="fa fa-twitter"
-            aria-hidden="true"></a>
+            title="Tweet this page" target="_blank" rel="noopener noreferrer">
+            Tweet this page
+            <div class="fa fa-twitter"></div>
+          </a>
           <a href="https://pinterest.com/pin/create/button/?url=https://www.epa.gov/npdes/rainfall-erosivity-factor-calculator-small-construction-sites&description=Rainfall%20Erosivity%20Factor%20Calculator%20for%20%20Small%20Construction%20Sites&media=https://www.epa.gov/sites/all/themes/epa/img/epa-seal.png?"
-            target="_blank" rel="noopener noreferrer" title="Pin this page" class="fa fa-pinterest"
-            aria-hidden="true"></a>
+            target="_blank" rel="noopener noreferrer" title="Pin this page">
+            Share this page on pinterest
+            <div class="fa fa-pinterest"></div>
+          </a>
           <a href="mailto:%20?subject=Shared%20from%20the%20US%20EPA:%20Rainfall%20Erosivity%20Factor%20Calculator%20for%20%20Small%20Construction%20Sites&body=Rainfall%20Erosivity%20Factor%20Calculator%20for%20%20Small%20Construction%20Sites%20-%20https://www.epa.gov/npdes/rainfall-erosivity-factor-calculator-small-construction-sites"
-            target="_blank" rel="noopener noreferrer" class="fa fa-envelope" aria-label="Email this page"></a>
-        </ul>
+            target="_blank" rel="noopener noreferrer" aria-label="Email this page">
+            Email this page
+            <div class="fa fa-envelope"></div>
+          </a>
+        </div>
       </div>
     </div>
 
@@ -328,11 +340,12 @@
                   <i class="fat fa-circle fa-stack-2x"></i>
                   <i class="fat fa-inverse fa-stack-1x"><span class="number">3</span></i>
                 </span>
-
                 Click the "Calculate R Factor" button below to calculate an R Factor for your small construction
                 project.
               </p>
-              <input id="rButton" value="Calculate R Factor" type="button" />
+              <div class="rfactor-button-container">
+                <input type="submit" id="rButton" value="Calculate R Factor" type="button" />
+              </div>
             </form>
           </div>
         </div>
@@ -346,7 +359,7 @@
               There was an error with your query.
             </p>
             <div class="container" id="eContainer">
-              <h3 id="h3Facility">Facility Information</h3>
+              <h2 id="h3Facility">Facility Information</h2>
               <table class="table table-bordered">
                 <tbody>
                   <tr>
@@ -372,10 +385,10 @@
                 </tbody>
               </table>
               <h3 id="h3Results">Calculation Results</h3>
-              <h5 id="tableEI">
+              <h4 id="tableEI">
                 Rainfall erosivity factor (R Factor) =
                 <span id="eiValue" style="color:#d44600; font-weight: bold"> </span>
-              </h5>
+              </h4>
               <p id="conclusion"></p>
               <p id="conclusion2" style="font-weight: bold"></p>
             </div>
@@ -502,7 +515,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"
     integrity="sha512-3n19xznO0ubPpSwYCRRBgHh63DrV+bdZfHK52b1esvId4GsfwStQNPJFjeQos2h3JwCmZl0/LgLxSKMAI55hgw=="
     crossorigin="anonymous"></script>
-    
+
   <script type="text/javascript">
     $(function () {
       if (!Modernizr.inputtypes.date) {
