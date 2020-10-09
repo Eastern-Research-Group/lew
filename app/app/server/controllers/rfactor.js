@@ -228,7 +228,7 @@ function calculateRFactor(metadataObj, EI_DAILY_AMOUNT, start_date, end_date) {
       log.debug(
         'Project spans one year or longer; rFactor maxed out at 1 year',
       );
-      for (p = 0; p < 365; p++) {
+      for (let p = 0; p < 365; p++) {
         rfactor = rfactor + Number(dailyEIdata[p]);
       }
     } else {
