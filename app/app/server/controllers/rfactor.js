@@ -9,7 +9,9 @@ var url = 'http://csip.engr.colostate.edu:8088/csip-misc/d/r2climate/2.0';
 Date.prototype.isValid = function () {
   // An invalid date object returns NaN for getTime() and NaN is the only
   // object not strictly equal to itself.
-  return this.getTime() === this.getTime();
+  
+  // if date.getTime() is NaN the date is invalid
+  return !isNaN(this.getTime());
 };
 
 function getDayOfYear(date) {
