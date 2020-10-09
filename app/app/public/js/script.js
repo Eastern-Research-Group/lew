@@ -96,23 +96,15 @@ define(['app/esriMap'], function (esriMap) {
       });
     }
 
-    // view on map button listener
+    // Calculate R Factor listener
     document
       .getElementById('rButton')
       .addEventListener('click', function (event) {
         event.preventDefault();
-        // check if user has entered a location in the location input but has NOT searched it. if so, automatically search for them before calculating.
-        if (
-          (window.lew_latitude === 'empty' ||
-            window.lew_longitude === 'empty') &&
-          $('#location').val() !== ''
-        ) {
-          getCoords(function () {
-            getRFactor();
-          });
-        } else {
+        // on submit, search the location and get the R Factor
+        getCoords(function () {
           getRFactor();
-        }
+        });
       });
 
     function getRFactor() {
@@ -227,16 +219,16 @@ define(['app/esriMap'], function (esriMap) {
             );
             $('#conclusion2').html(
               'You do NOT qualify for a waiver from NPDES permitting requirements and must seek Construction General Permit (CGP) coverage. ' +
-                '<span style="font-weight: normal">If you are located in an <a target="_blank" rel="noopener" href="https://www.epa.gov/sites/production/files/2017-03/documents/2017_cgp_final_appendix_b_-_areas_of_permit_coverage_508.pdf">area where EPA is the permitting authority</a>, ' +
-                'you must submit a Notice of Intent (NOI) through the <a target="_blank" rel="noopener" href="https://www.epa.gov/npdes/submitting-notice-intent-noi-notice-termination-not-or-low-erosivity-waiver-lew-under">NPDES eReporting Tool (NeT)</a>.' +
+                '<span style="font-weight: normal">If you are located in an <a target="_blank" rel="noopener noreferrer"  href="https://www.epa.gov/sites/production/files/2017-03/documents/2017_cgp_final_appendix_b_-_areas_of_permit_coverage_508.pdf">area where EPA is the permitting authority</a>, ' +
+                'you must submit a Notice of Intent (NOI) through the <a target="_blank" rel="noopener noreferrer"  href="https://www.epa.gov/npdes/submitting-notice-intent-noi-notice-termination-not-or-low-erosivity-waiver-lew-under">NPDES eReporting Tool (NeT)</a>.' +
                 'Otherwise, you must seek coverage under your state’s CGP.</span>',
             );
           } else {
             $('#conclusion').html(
               'A rainfall erosivity factor of less than 5.0 has been calculated for your site and period of construction. ' +
                 'If you are located in an ' +
-                '<a target="_blank" rel="noopener" href="https://www.epa.gov/sites/production/files/2017-03/documents/2017_cgp_final_appendix_b_-_areas_of_permit_coverage_508.pdf">area where EPA is the permitting authority</a>, ' +
-                'you can submit a LEW through EPA’s  <a target="_blank" rel="noopener" href="https://www.epa.gov/npdes/submitting-notice-intent-noi-notice-termination-not-or-low-erosivity-waiver-lew-under">NPDES eReporting Tool (NeT)</a>. ' +
+                '<a target="_blank" rel="noopener noreferrer"  href="https://www.epa.gov/sites/production/files/2017-03/documents/2017_cgp_final_appendix_b_-_areas_of_permit_coverage_508.pdf">area where EPA is the permitting authority</a>, ' +
+                'you can submit a LEW through EPA’s  <a target="_blank" rel="noopener noreferrer"  href="https://www.epa.gov/npdes/submitting-notice-intent-noi-notice-termination-not-or-low-erosivity-waiver-lew-under">NPDES eReporting Tool (NeT)</a>. ' +
                 'Otherwise, contact your state permitting authority to determine if you are eligible for a waiver from NPDES permitting requirements. ' +
                 '<br /><br />' +
                 'If you submitted a LEW through EPA’s NeT and your construction activity ultimately extends past the project completion date you specified above, ' +
