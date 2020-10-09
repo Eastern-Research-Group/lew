@@ -328,7 +328,7 @@ tr {
 
 .fat {
   display: inline-block;
-  font-family: FontAwesome;
+  font-family: FontAwesome, Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: normal;
   line-height: 1;
@@ -341,7 +341,7 @@ tr {
 }
 
 .fa-circle {
-  color: #0071bc;
+  color: #  071bc;
 }
 
 .number {
