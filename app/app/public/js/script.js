@@ -5,7 +5,6 @@ define(['app/esriMap'], function (esriMap) {
     // hide message and display controls
 
     document.getElementById('form').style.display = 'block';
-    document.getElementById('noscript').style.display = 'none';
 
     // if browser is ie11, fix the responsiveness of the datepicker inputs
     if (!!window.MSInputMethodContext && !!document.documentMode) {
