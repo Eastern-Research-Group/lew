@@ -1,19 +1,23 @@
-const express = require("express");
-const helmet = require("helmet");
-const noCache = require('nocache')
-var cors = require("cors");
-var favicon = require("serve-favicon");
-const basicAuth = require("express-basic-auth");
-var path = require("path");
-const logger = require("./server/utilities/logger.js");
+const express = require('express');
+const helmet = require('helmet');
+const noCache = require('nocache');
+var cors = require('cors');
+var favicon = require('serve-favicon');
+const basicAuth = require('express-basic-auth');
+var path = require('path');
+const logger = require('./server/utilities/logger.js');
 
 const app = express();
-app.use(helmet());
-app.use(noCache())
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  }),
+);
+app.use(noCache());
 app.use(
   helmet.hsts({
-    maxAge: 31536000
-  })
+    maxAge: 31536000,
+  }),
 );
 app.use(cors());
 var log = logger.logger;
@@ -28,65 +32,79 @@ var isDevelopment = false;
 var isStaging = false;
 
 if (process.env.NODE_ENV) {
-  isLocal = "local" === process.env.NODE_ENV.toLowerCase();
-  isDevelopment = "development" === process.env.NODE_ENV.toLowerCase();
-  isStaging = "staging" === process.env.NODE_ENV.toLowerCase();
+  isLocal = 'local' === process.env.NODE_ENV.toLowerCase();
+  isDevelopment = 'development' === process.env.NODE_ENV.toLowerCase();
+  isStaging = 'staging' === process.env.NODE_ENV.toLowerCase();
 }
 
-if (isLocal) log.info("Environment = local");
-if (isDevelopment) log.info("Environment = development");
-if (isStaging) log.info("Environment = staging");
-if (!isLocal && !isDevelopment && !isStaging) log.info("Environment = staging or production");
+if (isLocal) log.info('Environment = local');
+if (isDevelopment) log.info('Environment = development');
+if (isStaging) log.info('Environment = staging');
+if (!isLocal && !isDevelopment && !isStaging)
+  log.info('Environment = staging or production');
 
 /****************************************************************
  Setup basic auth for non-staging and non-production
 ****************************************************************/
 if (isDevelopment || isStaging) {
-  if (process.env.LEW_BASIC_AUTH_USER_NAME == null || process.env.LEW_BASIC_AUTH_USER_PWD == null) {
-    log.error("Either the basic LEW user name or password environmental variable is not set.");
+  if (
+    process.env.LEW_BASIC_AUTH_USER_NAME == null ||
+    process.env.LEW_BASIC_AUTH_USER_PWD == null
+  ) {
+    log.error(
+      'Either the basic LEW user name or password environmental variable is not set.',
+    );
   }
 
-  var user_json = '{"' + process.env.LEW_BASIC_AUTH_USER_NAME + '" : "' + process.env.LEW_BASIC_AUTH_USER_PWD + '"}';
+  var user_json =
+    '{"' +
+    process.env.LEW_BASIC_AUTH_USER_NAME +
+    '" : "' +
+    process.env.LEW_BASIC_AUTH_USER_PWD +
+    '"}';
   const user_obj = JSON.parse(user_json);
 
   app.use(
     basicAuth({
       users: user_obj,
       challenge: true,
-      unauthorizedResponse: getUnauthorizedResponse
-    })
+      unauthorizedResponse: getUnauthorizedResponse,
+    }),
   );
 }
 
 function getUnauthorizedResponse(req) {
-  return req.auth ? "Invalid credentials" : "No credentials provided";
+  return req.auth ? 'Invalid credentials' : 'No credentials provided';
 }
 
 /****************************************************************
  Setup server and routes
 ****************************************************************/
-app.use("/", express.static(path.join(__dirname, "public"), { index: ["index.html"] }));
-app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
+app.use(
+  '/',
+  express.static(path.join(__dirname, 'public'), { index: ['index.html'] }),
+);
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 /****************************************************************
  Enable CORS/Preflight/OPTIONS request
 ****************************************************************/
-app.options("*", cors());
+app.options('*', cors());
 
 /****************************************************************
  Custom application routes
 ****************************************************************/
-require("./server/routes/index")(app);
+require('./server/routes/index')(app);
 
 /****************************************************************
  Worse case error handling for 404 and 500 issues
 ****************************************************************/
-app.use(function(req, res, next) {
-  res.sendFile(path.join(__dirname, "public", "404.html"));
+app.use(function (req, res, next) {
+  res.sendFile(path.join(__dirname, 'public', '404.html'));
 });
 
-app.use(function(err, req, res, next) {
-  res.sendFile(path.join(__dirname, "public", "500.html"));
+app.use(function (err, req, res, next) {
+  res.sendFile(path.join(__dirname, 'public', '500.html'));
 });
 
 //For local testing of the production flow, use the same port as browersync to avoid
@@ -95,18 +113,18 @@ if (port === 9090 && isLocal === false) {
   port = browserSync_port;
 }
 
-app.listen(port, function() {
+app.listen(port, function () {
   if (isLocal) {
-    const browserSync = require("browser-sync");
+    const browserSync = require('browser-sync');
 
     log.info(`Application listening on port ${browserSync_port}`);
     browserSync({
-      files: [path.join(__dirname, "/public/**")],
+      files: [path.join(__dirname, '/public/**')],
       online: false,
       open: false,
       port: browserSync_port,
-      proxy: "localhost:" + port,
-      ui: false
+      proxy: 'localhost:' + port,
+      ui: false,
     });
   } else {
     log.info(`Application listening on port ${port}`);
