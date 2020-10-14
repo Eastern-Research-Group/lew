@@ -3,7 +3,6 @@ var parser = require('fast-xml-parser');
 const logger = require('../utilities/logger.js');
 const log = logger.logger;
 
-var metadataObj;
 var url = 'http://csip.engr.colostate.edu:8088/csip-misc/d/r2climate/2.0';
 
 Date.prototype.isValid = function () {
@@ -331,7 +330,7 @@ module.exports.calculateRFactor = async (req, res) => {
   var end_date = null;
   var location = null;
 
-  metadataObj = populateMetdataObj(req);
+  const metadataObj = populateMetdataObj(req);
 
   /********************************************************* 
     Check the existence and then validate api_key or X-Api-User-Id
