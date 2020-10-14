@@ -9,7 +9,7 @@ var url = 'http://csip.engr.colostate.edu:8088/csip-misc/d/r2climate/2.0';
 Date.prototype.isValid = function () {
   // An invalid date object returns NaN for getTime() and NaN is the only
   // object not strictly equal to itself.
-  
+
   // if date.getTime() is NaN the date is invalid
   return !isNaN(this.getTime());
 };
@@ -76,7 +76,7 @@ function getCountyUrl(metadataObj, lat, lon) {
           try {
             results = response.body.result;
           } catch (err) {
-            var err_json = {
+            err_json = {
               error_id: 62,
               error_msg: 'Error parsing results of county data',
             };
@@ -91,7 +91,7 @@ function getCountyUrl(metadataObj, lat, lon) {
           }
 
           if (!results) {
-            var err_json = {
+            err_json = {
               error_id: 63,
               error_msg:
                 'rFactor information is not available for this location',
@@ -109,18 +109,13 @@ function getCountyUrl(metadataObj, lat, lon) {
 
           for (var i = 0, len = results.length; i < len; i++) {
             if (results[i].name === 'climate') {
-              const url = results[i].value;
-              var info_json = {
-                success: 'true',
-                climate_url: url,
-                postData: options,
-              };
+              const resultUrl = results[i].value;
               log.debug(
                 logger.formatLogMsg(metadataObj, 'Climate data found', {
                   postData: options,
                 }),
               );
-              resolve(url);
+              resolve(resultUrl);
               return;
             }
           }
@@ -332,7 +327,6 @@ function populateMetdataObj(request) {
  * Default route
  ***********************************************************************/
 module.exports.calculateRFactor = async (req, res) => {
-  var rFactor = 0;
   var start_date = null;
   var end_date = null;
   var location = null;
@@ -369,7 +363,7 @@ module.exports.calculateRFactor = async (req, res) => {
   /********************************************************* 
     Check the existence and then validate start date
     *********************************************************/
-  var err_json = null;
+  err_json = null;
   if (req.query.start_date === undefined) {
     err_json = {
       error_id: 20,
@@ -511,7 +505,7 @@ module.exports.calculateRFactor = async (req, res) => {
       start_date,
       end_date,
     );
-    const response = await sendResponse(metadataObj, rfactor, res);
+    await sendResponse(metadataObj, rfactor, res);
   } catch (err) {
     res.status(400).json(err);
   }
