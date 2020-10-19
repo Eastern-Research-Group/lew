@@ -42,11 +42,11 @@ jobs:
             cd ..
             wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492-linux.zip
             unzip sonar-scanner-cli-3.3.0.1492-linux.zip
-      - run:
-          name: Run Sonarqube scanner
-          command: |
-            cd ..
-            ./sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner -Dsonar.projectKey=lew -Dsonar.host.url=$SONARQUBE_URL -Dsonar.login=$SONARQUBE_TOKEN
+      # - run:
+      #     name: Run Sonarqube scanner
+      #     command: |
+      #       cd ..
+      #       ./sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner -Dsonar.projectKey=lew -Dsonar.host.url=$SONARQUBE_URL -Dsonar.login=$SONARQUBE_TOKEN
       - run:
           name: Setup Cloud Foundry CLI
           command: |
