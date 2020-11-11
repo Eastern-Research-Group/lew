@@ -125,7 +125,6 @@ describe("rFactor controller testing", () => {
     let rtn = rfactorContoller.calculateRFactor(request, response);
     rtn
       .then(function(result) {
-        var data = JSON.parse(response._getData());
         response.statusCode.should.eql(200);
         done();
       })
@@ -156,7 +155,6 @@ describe("rFactor controller testing", () => {
     let rtn = rfactorContoller.calculateRFactor(request, response);
     rtn
       .then(function(result) {
-        var data = JSON.parse(response._getData());
         response.statusCode.should.eql(200);
         done();
       })
