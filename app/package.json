@@ -11,7 +11,7 @@
     "start_local_cmd": "cross-env NODE_ENV=local LOGGER_LEVEL=DEBUG nodemon --ignore 'app/tests' --inspect app/server.js",
     "test": "cross-env NODE_ENV=production LOGGER_LEVEL=OFF mocha --timeout 20000 app/tests --recursive",
     "start:prod": "npm run start:fake_prod_cmd",
-    "start:fake_prod_cmd": "cross-env NODE_ENV=production LOGGER_LEVEL=DEBUG node --inspect app/server.js"
+    "start:fake_prod_cmd": "cross-env NODE_ENV=production LOGGER_LEVEL=ERROR node app/server.js"
   },
   "husky": {
     "hooks": {
@@ -33,43 +33,35 @@
   "license": "ISC",
   "homepage": "https://github.com/Eastern-Research-Group/lew",
   "devDependencies": {
-    "browser-sync": "^2.26.5",
+    "browser-sync": "2.26.13",
     "chai": "^4.2.0",
-    "husky": "^1.3.1",
-    "lint-staged": "^8.1.5",
-    "mocha": "^6.1.4",
-    "node-mocks-http": "^1.7.3",
-    "nodemon": "^1.18.10",
-    "prettier": "^1.16.4"
+    "husky": "4.3.0",
+    "jshint": "2.12.0",
+    "lint-staged": "10.5.0",
+    "mocha": "8.2.0",
+    "node-mocks-http": "1.9.0",
+    "nodemon": "2.0.6",
+    "prettier": "2.1.2"
   },
   "dependencies": {
     "cors": "^2.8.5",
-    "cross-env": "^5.2.0",
-    "dayjs": "^1.8.12",
-    "express": "^4.16.4",
+    "cross-env": "^7.0.2",
+    "dayjs": "1.9.4",
+    "express": "^4.17.1",
     "express-basic-auth": "^1.2.0",
-    "fast-xml-parser": "^3.12.13",
-    "helmet": "^3.15.1",
-    "jshint": "^2.10.1",
-    "log4js": "^4.0.2",
-    "moment": "^2.24.0",
-    "request": "^2.88.0",
-    "request-promise": "^4.2.4",
-    "request-promise-native": "^1.0.7",
+    "fast-xml-parser": "3.17.4",
+    "helmet": "4.1.1",
+    "log4js": "6.3.0",
+    "minimist": "^1.2.5",
+    "moment": "2.29.1",
+    "nocache": "2.1.0",
+    "request": "^2.88.2",
+    "request-promise": "4.2.6",
+    "request-promise-native": "1.0.9",
     "serve-favicon": "^2.5.0",
-    "swagger-ui-express": "^4.0.2"
+    "swagger-ui-express": "4.1.4"
   },
   "lint-staged": {
-    "linters": {
-      "app/**/*.{js,jsx,json,css}": [
-        "prettier --write",
-        "git add"
-      ]
-    },
-    "ignore": [
-      "app/css/epa/*.css",
-      "app/css/lib/*.css",
-      "app/js/lib/*.js"
-    ]
+    "src/**/*.{js,json,css,md}": "prettier --write"
   }
 }

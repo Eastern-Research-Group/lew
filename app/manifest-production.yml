@@ -11,5 +11,5 @@
      path: /
      env:
         NODE_ENV: production
-        LOGGER_LEVEL: ERROR
+        LOGGER_LEVEL: INFO
         OPTIMIZE_MEMORY: true

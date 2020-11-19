@@ -32,7 +32,7 @@ describe("rFactor controller testing", () => {
       .then(function(result) {
         var data = JSON.parse(response._getData());
         data.should.have.property("rfactor");
-        data.rfactor.should.eql(0.356);
+        data.rfactor.should.eql(0.305);
         done();
       })
       .catch(done);
@@ -125,7 +125,6 @@ describe("rFactor controller testing", () => {
     let rtn = rfactorContoller.calculateRFactor(request, response);
     rtn
       .then(function(result) {
-        var data = JSON.parse(response._getData());
         response.statusCode.should.eql(200);
         done();
       })
@@ -156,7 +155,6 @@ describe("rFactor controller testing", () => {
     let rtn = rfactorContoller.calculateRFactor(request, response);
     rtn
       .then(function(result) {
-        var data = JSON.parse(response._getData());
         response.statusCode.should.eql(200);
         done();
       })
@@ -465,7 +463,7 @@ describe("rFactor controller testing", () => {
   /****************************************************
    *
    ****************************************************/
-  it("Cross construction three year rFactor test", function(done) {
+  it("Cross construction leap year rFactor test", function(done) {
     var request = httpMocks.createRequest({
       method: "GET",
       url: "/",
@@ -473,8 +471,8 @@ describe("rFactor controller testing", () => {
         "X-Api-User-Id": "UNIT_TEST_USER_ID"
       },
       query: {
-        start_date: "2017-02-21",
-        end_date: "2019-02-21",
+        start_date: "2020-02-28",
+        end_date: "2020-03-01",
         location: '{"geometry":{"type":"Point","coordinates":[-76.4899,38.4401]}}'
       }
     });
@@ -486,7 +484,7 @@ describe("rFactor controller testing", () => {
       .then(function(result) {
         var data = JSON.parse(response._getData());
         data.should.have.property("rfactor");
-        data.rfactor.should.eql(385);
+        data.rfactor.should.eql(0.779);
         done();
       })
       .catch(done);
@@ -495,7 +493,7 @@ describe("rFactor controller testing", () => {
   /****************************************************
    *
    ****************************************************/
-  it("Cross construction five year rFactor test", function(done) {
+  it("Cross construction non-leap year rFactor test", function(done) {
     var request = httpMocks.createRequest({
       method: "GET",
       url: "/",
@@ -503,8 +501,8 @@ describe("rFactor controller testing", () => {
         "X-Api-User-Id": "UNIT_TEST_USER_ID"
       },
       query: {
-        start_date: "2013-02-21",
-        end_date: "2018-02-21",
+        start_date: "2021-02-28",
+        end_date: "2021-03-01",
         location: '{"geometry":{"type":"Point","coordinates":[-76.4899,38.4401]}}'
       }
     });
@@ -516,7 +514,7 @@ describe("rFactor controller testing", () => {
       .then(function(result) {
         var data = JSON.parse(response._getData());
         data.should.have.property("rfactor");
-        data.rfactor.should.eql(963);
+        data.rfactor.should.eql(0.516);
         done();
       })
       .catch(done);

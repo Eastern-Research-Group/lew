@@ -1,62 +1,64 @@
 define([
-  "esri/Map",
-  "esri/views/MapView",
-  "esri/Graphic",
-  "esri/layers/FeatureLayer",
-  "esri/geometry/Point",
-  "esri/layers/GraphicsLayer",
-  "esri/symbols/SimpleMarkerSymbol"
-], function(Map, MapView, Graphic, FeatureLayer, Point, GraphicsLayer, SimpleMarkerSymbol) {
+  'esri/Map',
+  'esri/views/MapView',
+  'esri/Graphic',
+  'esri/layers/FeatureLayer',
+  'esri/geometry/Point',
+  'esri/layers/GraphicsLayer',
+  'esri/symbols/SimpleMarkerSymbol',
+], function (
+  Map,
+  MapView,
+  Graphic,
+  FeatureLayer,
+  Point,
+  GraphicsLayer,
+  SimpleMarkerSymbol,
+) {
   let map = null;
   let view = null;
 
   function init() {
     // Create the Map with an initial basemap
     map = new Map({
-      basemap: "topo"
+      basemap: 'topo',
     });
     // Create the MapView and reference the Map in the instance
     view = new MapView({
-      container: "viewDiv",
+      container: 'viewDiv',
       map: map,
       zoom: 4,
-      center: ["-97.922211", "39.381266"]
+      center: ['-97.922211', '39.381266'],
     });
 
-    view.on("click", function(evt) {
+    view.on('click', function (evt) {
       view.graphics.removeAll();
       // hide error message
-      document.getElementById("errorMessage").style.display = "none";
+      document.getElementById('errorMessage').style.display = 'none';
       // hide results container
-      document.getElementById("eContainer").style.display = "none";
+      document.getElementById('eContainer').style.display = 'none';
       // hide location search error message
-      document.getElementById("location-error").style.display = "none";
+      document.getElementById('location-error').style.display = 'none';
 
       var markerSymbol = {
-        type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+        type: 'simple-marker', // autocasts as new SimpleMarkerSymbol()
         color: [226, 119, 40],
         outline: {
           // autocasts as new SimpleLineSymbol()
           color: [255, 255, 255],
-          width: 2
-        }
+          width: 2,
+        },
       };
 
       // Create a graphic and add the geometry and symbol to it
       var pointGraphic = new Graphic({
         geometry: evt.mapPoint,
-        symbol: markerSymbol
+        symbol: markerSymbol,
       });
-
-      if (typeof Storage !== "undefined") {
-        sessionStorage.latitude = evt.mapPoint.latitude;
-        sessionStorage.longitude = evt.mapPoint.longitude;
-      } else {
-        document.getElementById("errorMessage").innerHTML =
-          "sessionStorage is not enabled. Please use a different browser.";
-        document.getElementById("errorMessage").style.display = "block";
-      }
-      document.getElementById("location").value = sessionStorage.longitude + " , " + sessionStorage.latitude;
+      window.lew_latitude = evt.mapPoint.latitude;
+      window.lew_longitude = evt.mapPoint.longitude;
+      document.getElementById('location').value =
+        window.lew_longitude + ' , ' + window.lew_latitude;
 
       // Add the graphics to the view's graphics layer
       view.graphics.addMany([pointGraphic]);
@@ -66,24 +68,24 @@ define([
   // add a point to the map
   function addPoint(latitude, longitude) {
     view.graphics.removeAll();
-    sessionStorage.latitude = latitude;
-    sessionStorage.longitude = longitude;
+    window.lew_latitude = latitude;
+    window.lew_longitude = longitude;
     const point = new Point({ x: longitude, y: latitude });
 
     // Create a symbol for drawing the point
     var markerSymbol = {
-      type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+      type: 'simple-marker', // autocasts as new SimpleMarkerSymbol()
       color: [226, 119, 40],
       outline: {
         // autocasts as new SimpleLineSymbol()
         color: [255, 255, 255],
-        width: 2
-      }
+        width: 2,
+      },
     };
 
     const graphic = new Graphic({
       geometry: point,
-      symbol: markerSymbol
+      symbol: markerSymbol,
     });
 
     // add graphic to the view
@@ -95,6 +97,6 @@ define([
 
   return {
     init: init,
-    addPoint: addPoint
+    addPoint: addPoint,
   };
 });
