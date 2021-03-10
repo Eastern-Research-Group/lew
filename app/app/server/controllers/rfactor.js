@@ -1,4 +1,4 @@
-const rp = require('request-promise');
+const axios = require('axios');
 var parser = require('fast-xml-parser');
 const logger = require('../utilities/logger.js');
 const log = logger.logger;
@@ -28,9 +28,9 @@ function getCountyUrl(metadataObj, lat, lon) {
   return new Promise((resolve, reject) => {
     var options = {
       method: 'POST',
-      uri: url,
-      // uri: 'https://httpstat.us/400',
-      body: {
+      url,
+      // url: 'https://httpstat.us/400',
+      data: {
         metainfo: {
           mode: 'sync',
           keep_results: '3600000',
@@ -49,14 +49,12 @@ function getCountyUrl(metadataObj, lat, lon) {
       headers: {
         'Content-Type': 'application/json',
       },
-      json: true,
-      resolveWithFullResponse: true,
     };
-    rp(options)
+    axios(options)
       .then(function (response) {
-        log.debug('county URL statusCode = ' + response.statusCode);
+        log.debug('county URL status = ' + response.status);
 
-        if (response.statusCode != 200) {
+        if (response.status != 200) {
           var err_json = {
             error_id: 61,
             error_msg: 'Error calling RUSLE web service',
@@ -65,7 +63,7 @@ function getCountyUrl(metadataObj, lat, lon) {
             logger.formatLogMsg(
               metadataObj,
               err_json,
-              'statusCode = ' + response.statusCode,
+              'status = ' + response.status,
             ),
           );
           reject(err_json);
@@ -73,7 +71,7 @@ function getCountyUrl(metadataObj, lat, lon) {
         } else {
           var results = null;
           try {
-            results = response.body.result;
+            results = response.data.result;
           } catch (err) {
             err_json = {
               error_id: 62,
@@ -140,18 +138,17 @@ function getClimateData(metadataObj, countyUrl) {
   return new Promise((resolve, reject) => {
     var options = {
       method: 'GET',
-      uri: countyUrl,
-      // uri: 'https://httpstat.us/402',
+      url: countyUrl,
+      // url: 'https://httpstat.us/402',
       headers: {
         'Content-Type': 'application/xml',
       },
-      resolveWithFullResponse: true,
     };
-    rp(options)
+    axios(options)
       .then(function (response) {
-        log.debug('climate data statusCode = ' + response.statusCode);
+        log.debug('climate data status = ' + response.status);
 
-        if (response.statusCode != 200) {
+        if (response.status != 200) {
           var err_json = {
             error_id: 70,
             error_msg: 'Error retrieving county level data.',
@@ -164,7 +161,7 @@ function getClimateData(metadataObj, countyUrl) {
           reject(err_json);
           return;
         } else {
-          var xmlData = response.body;
+          var xmlData = response.data;
           if (parser.validate(xmlData) === true) {
             var jsonObj = parser.parse(xmlData);
             // find EI_DAILY_AMOUNT
