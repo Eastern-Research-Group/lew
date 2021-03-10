@@ -44,6 +44,7 @@
     "prettier": "2.2.1"
   },
   "dependencies": {
+    "axios": "0.21.1",
     "cors": "2.8.5",
     "cross-env": "7.0.3",
     "express": "4.17.1",
@@ -52,9 +53,6 @@
     "helmet": "4.4.1",
     "log4js": "6.3.0",
     "nocache": "2.1.0",
-    "request": "2.88.2",
-    "request-promise": "4.2.6",
-    "request-promise-native": "1.0.9",
     "serve-favicon": "2.5.0",
     "swagger-ui-express": "4.1.6"
   },
