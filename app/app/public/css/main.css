@@ -23,7 +23,7 @@ hr#hr {
   margin-top: 0;
 }
 
-a {
+.main-content a {
   font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', 'Roboto', Arial,
     sans-serif;
   color: black;
