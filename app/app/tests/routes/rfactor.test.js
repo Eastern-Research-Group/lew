@@ -2,6 +2,7 @@ const assert = require("assert");
 const expect = require("chai").expect;
 const should = require("chai").should();
 const httpMocks = require("node-mocks-http");
+const nock = require("nock");
 
 var chai = require("chai");
 
@@ -399,40 +400,6 @@ describe("rFactor controller testing", () => {
   /****************************************************
    *
    ****************************************************/
-  it("Climate information not available for location to calculate rFactor test", function(done) {
-    var request = httpMocks.createRequest({
-      method: "GET",
-      url: "/",
-      headers: {
-        "X-Api-User-Id": "UNIT_TEST_USER_ID"
-      },
-      query: {
-        start_date: "2019-02-21",
-        end_date: "2019-02-28",
-        location: '{"geometry":{"type":"Point","coordinates":[-14.062500,48.224673]}}',
-        api_key: "yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5"
-      }
-    });
-
-    var response = httpMocks.createResponse();
-
-    let rtn = rfactorContoller.calculateRFactor(request, response);
-    rtn
-      .then(function(result) {
-        var data = JSON.parse(response._getData());
-        response.statusCode.should.eql(400);
-        data.should.eql({
-          error_id: 63,
-          error_msg: "rFactor information is not available for this location"
-        });
-        done();
-      })
-      .catch(done);
-  });
-
-  /****************************************************
-   *
-   ****************************************************/
   it("Cross construction two year rFactor test", function(done) {
     var request = httpMocks.createRequest({
       method: "GET",
@@ -515,6 +482,88 @@ describe("rFactor controller testing", () => {
         var data = JSON.parse(response._getData());
         data.should.have.property("rfactor");
         data.rfactor.should.eql(0.516);
+        done();
+      })
+      .catch(done);
+  });
+
+  /****************************************************
+   *
+   ****************************************************/
+  it("Climate information not available for location to calculate rFactor test", function(done) {
+    nock('http://csip.engr.colostate.edu:8088')
+      .post('/csip-misc/d/r2climate/2.0').reply(200, {
+        metainfo: {},
+        parameter: [],
+        // leave result off to simulate no results
+      });
+   
+    var request = httpMocks.createRequest({
+      method: "GET",
+      url: "/",
+      headers: {
+        "X-Api-User-Id": "UNIT_TEST_USER_ID"
+      },
+      query: {
+        start_date: "2019-02-21",
+        end_date: "2019-02-28",
+        location: '{"geometry":{"type":"Point","coordinates":[-14.062500,48.224673]}}',
+        api_key: "yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5"
+      }
+    });
+
+    var response = httpMocks.createResponse();
+
+    let rtn = rfactorContoller.calculateRFactor(request, response);
+    rtn
+      .then(function(result) {
+        var data = JSON.parse(response._getData());
+        response.statusCode.should.eql(400);
+        data.should.eql({
+          error_id: 63,
+          error_msg: "rFactor information is not available for this location"
+        });
+        done();
+      })
+      .catch(done);
+  });
+
+  /****************************************************
+   *
+   ****************************************************/
+  it("Error retreiving county URL", function(done) {
+    nock('http://csip.engr.colostate.edu:8088')
+      .post('/csip-misc/d/r2climate/2.0').reply(500, {
+        metainfo: {},
+        parameter: [],
+        // leave result off to simulate no results
+      });
+    
+    var request = httpMocks.createRequest({
+      method: "GET",
+      url: "/",
+      headers: {
+        "X-Api-User-Id": "UNIT_TEST_USER_ID"
+      },
+      query: {
+        start_date: "2019-02-21",
+        end_date: "2019-02-28",
+        location: '{"geometry":{"type":"Point","coordinates":[-14.062500,48.224673]}}',
+        api_key: "yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5"
+      }
+    });
+
+    var response = httpMocks.createResponse();
+
+    let rtn = rfactorContoller.calculateRFactor(request, response);
+    rtn
+      .then(function(result) {
+        var data = JSON.parse(response._getData());
+        response.statusCode.should.eql(400);
+        data.should.eql({
+          error_id: 60,
+          error_msg: "Error retrieving county URL"
+        });
         done();
       })
       .catch(done);
