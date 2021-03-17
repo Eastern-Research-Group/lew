@@ -8,6 +8,9 @@ var chai = require("chai");
 
 const rfactorContoller = require("../../server/controllers/rfactor");
 
+const colostateDomain = 'http://csip.engr.colostate.edu:8088';
+const r2climate = '/csip-misc/d/r2climate/2.0';
+
 describe("rFactor controller testing", () => {
   /****************************************************
    *
@@ -491,8 +494,8 @@ describe("rFactor controller testing", () => {
    *
    ****************************************************/
   it("Climate information not available for location to calculate rFactor test", function(done) {
-    nock('http://csip.engr.colostate.edu:8088')
-      .post('/csip-misc/d/r2climate/2.0').reply(200, {
+    nock(colostateDomain)
+      .post(r2climate).reply(200, {
         metainfo: {},
         parameter: [],
         // leave result off to simulate no results
@@ -532,8 +535,8 @@ describe("rFactor controller testing", () => {
    *
    ****************************************************/
   it("Error retreiving county URL", function(done) {
-    nock('http://csip.engr.colostate.edu:8088')
-      .post('/csip-misc/d/r2climate/2.0').reply(500, {
+    nock(colostateDomain)
+      .post(r2climate).reply(500, {
         metainfo: {},
         parameter: [],
         // leave result off to simulate no results
@@ -548,7 +551,7 @@ describe("rFactor controller testing", () => {
       query: {
         start_date: "2019-02-21",
         end_date: "2019-02-28",
-        location: '{"geometry":{"type":"Point","coordinates":[-14.062500,48.224673]}}',
+        location: '{"geometry":{"type":"Point","coordinates":[-76.4899,38.4401]}}',
         api_key: "yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5"
       }
     });
