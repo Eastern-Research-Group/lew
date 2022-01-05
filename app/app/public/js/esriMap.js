@@ -2,18 +2,12 @@ define([
   'esri/Map',
   'esri/views/MapView',
   'esri/Graphic',
-  'esri/layers/FeatureLayer',
   'esri/geometry/Point',
-  'esri/layers/GraphicsLayer',
-  'esri/symbols/SimpleMarkerSymbol',
 ], function (
   Map,
   MapView,
   Graphic,
-  FeatureLayer,
   Point,
-  GraphicsLayer,
-  SimpleMarkerSymbol,
 ) {
   let map = null;
   let view = null;
@@ -21,7 +15,7 @@ define([
   function init() {
     // Create the Map with an initial basemap
     map = new Map({
-      basemap: 'topo',
+      basemap: 'topo-vector',
     });
     // Create the MapView and reference the Map in the instance
     view = new MapView({
