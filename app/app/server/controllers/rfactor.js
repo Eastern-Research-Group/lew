@@ -72,7 +72,7 @@ function getCountyUrl(metadataObj, lat, lon) {
           try {
             results = response.data.result;
           } catch (err) {
-            err_json = {
+            var err_json = {
               error_id: 62,
               error_msg: 'Error parsing results of county data',
             };
@@ -87,7 +87,7 @@ function getCountyUrl(metadataObj, lat, lon) {
           }
 
           if (!results) {
-            err_json = {
+            var err_json = {
               error_id: 63,
               error_msg:
                 'rFactor information is not available for this location',
