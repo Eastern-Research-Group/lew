@@ -11,6 +11,13 @@ const rfactorContoller = require("../../server/controllers/rfactor");
 const colostateDomain = 'http://csip.engr.colostate.edu:8088';
 const r2climate = '/csip-misc/d/r2climate/2.0';
 
+function verifyStatus400(response, done) {
+  var data = JSON.parse(response._getData());
+  response.statusCode.should.eql(400);
+  data.should.eql({ error_id: 1, error_msg: "Missing API Identifier" });
+  done();
+}
+
 describe("rFactor controller testing", () => {
   /****************************************************
    *
@@ -64,12 +71,7 @@ describe("rFactor controller testing", () => {
 
     let rtn = rfactorContoller.calculateRFactor(request, response);
     rtn
-      .then(function(result) {
-        var data = JSON.parse(response._getData());
-        response.statusCode.should.eql(400);
-        data.should.eql({ error_id: 1, error_msg: "Missing API Identifier" });
-        done();
-      })
+      .then((result) => verifyStatus400(response, done))
       .catch(done);
   });
 
@@ -96,12 +98,7 @@ describe("rFactor controller testing", () => {
 
     let rtn = rfactorContoller.calculateRFactor(request, response);
     rtn
-      .then(function(result) {
-        var data = JSON.parse(response._getData());
-        response.statusCode.should.eql(400);
-        data.should.eql({ error_id: 1, error_msg: "Missing API Identifier" });
-        done();
-      })
+      .then((result) => verifyStatus400(response, done))
       .catch(done);
   });
 

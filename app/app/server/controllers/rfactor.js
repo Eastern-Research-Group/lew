@@ -20,8 +20,7 @@ function getDayOfYear(date) {
     start +
     (start.getTimezoneOffset() - date.getTimezoneOffset()) * 60 * 1000;
   var oneDay = 1000 * 60 * 60 * 24;
-  var day = Math.floor(diff / oneDay);
-  return day;
+  return Math.floor(diff / oneDay);
 }
 
 function getCountyUrl(metadataObj, lat, lon) {
@@ -128,7 +127,6 @@ function getCountyUrl(metadataObj, lat, lon) {
             logger.formatLogMsg(metadataObj, err_json, { postData: options }),
           );
           reject(err_json);
-          return;
         }
       });
   });
@@ -186,7 +184,6 @@ function getClimateData(metadataObj, countyUrl) {
             }),
           );
           reject(err_json);
-          return;
         }
       });
   });
@@ -279,7 +276,6 @@ var sendResponse = function sendResponse(metadataObj, rfactor, res) {
     res.json(out);
     log.info(logger.formatLogMsg(metadataObj, out));
     resolve();
-    return;
   });
 };
 
