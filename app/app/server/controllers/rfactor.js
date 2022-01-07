@@ -53,8 +53,9 @@ function getCountyUrl(metadataObj, lat, lon) {
       .then(function (response) {
         log.debug('county URL status = ' + response.status);
 
+        let err_json = {};
         if (response.status != 200) {
-          var err_json = {
+          err_json = {
             error_id: 61,
             error_msg: 'Error calling RUSLE web service',
           };
@@ -72,7 +73,7 @@ function getCountyUrl(metadataObj, lat, lon) {
           try {
             results = response.data.result;
           } catch (err) {
-            var err_json = {
+            err_json = {
               error_id: 62,
               error_msg: 'Error parsing results of county data',
             };
@@ -87,7 +88,7 @@ function getCountyUrl(metadataObj, lat, lon) {
           }
 
           if (!results) {
-            var err_json = {
+            err_json = {
               error_id: 63,
               error_msg:
                 'rFactor information is not available for this location',
@@ -119,7 +120,7 @@ function getCountyUrl(metadataObj, lat, lon) {
       })
       .catch(function (err) {
         if (err) {
-          var err_json = {
+          const err_json = {
             error_id: 60,
             error_msg: 'Error retrieving county URL',
           };
