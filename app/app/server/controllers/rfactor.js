@@ -1,7 +1,8 @@
 const axios = require('axios');
-var parser = require('fast-xml-parser');
+const { XMLParser, XMLValidator } = require('fast-xml-parser');
 const logger = require('../utilities/logger.js');
 const log = logger.logger;
+const parser = new XMLParser();
 
 var url = 'http://csip.engr.colostate.edu:8088/csip-misc/d/r2climate/2.0';
 
@@ -161,7 +162,7 @@ function getClimateData(metadataObj, countyUrl) {
           return;
         } else {
           var xmlData = response.data;
-          if (parser.validate(xmlData) === true) {
+          if (XMLValidator.validate(xmlData) === true) {
             var jsonObj = parser.parse(xmlData);
             // find EI_DAILY_AMOUNT
             for (var i = 0, len = jsonObj.Obj.Flt.length; i < len; i++) {
