@@ -71,7 +71,7 @@ describe("rFactor controller testing", () => {
 
     let rtn = rfactorContoller.calculateRFactor(request, response);
     rtn
-      .then((result) => verifyStatus400(response, done))
+      .then((_result) => verifyStatus400(response, done))
       .catch(done);
   });
 
@@ -98,7 +98,7 @@ describe("rFactor controller testing", () => {
 
     let rtn = rfactorContoller.calculateRFactor(request, response);
     rtn
-      .then((result) => verifyStatus400(response, done))
+      .then((_result) => verifyStatus400(response, done))
       .catch(done);
   });
 
