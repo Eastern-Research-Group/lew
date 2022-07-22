@@ -4,7 +4,7 @@ const logger = require('../utilities/logger.js');
 const log = logger.logger;
 const parser = new XMLParser();
 
-var url = 'http://csip.engr.colostate.edu:8088/csip-misc/d/r2climate/2.0';
+var url = 'https://csip.engr.colostate.edu:9088/csip-misc/d/r2climate/2.0';
 
 Date.prototype.isValid = function () {
   // An invalid date object returns NaN for getTime() and NaN is the only
