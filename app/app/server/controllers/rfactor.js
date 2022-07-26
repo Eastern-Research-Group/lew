@@ -1,9 +1,10 @@
 const axios = require('axios');
-var parser = require('fast-xml-parser');
+const { XMLParser, XMLValidator } = require('fast-xml-parser');
 const logger = require('../utilities/logger.js');
 const log = logger.logger;
+const parser = new XMLParser();
 
-var url = 'http://csip.engr.colostate.edu:8088/csip-misc/d/r2climate/2.0';
+var url = 'https://csip.engr.colostate.edu:9088/csip-misc/d/r2climate/2.0';
 
 Date.prototype.isValid = function () {
   // An invalid date object returns NaN for getTime() and NaN is the only
@@ -20,8 +21,7 @@ function getDayOfYear(date) {
     start +
     (start.getTimezoneOffset() - date.getTimezoneOffset()) * 60 * 1000;
   var oneDay = 1000 * 60 * 60 * 24;
-  var day = Math.floor(diff / oneDay);
-  return day;
+  return Math.floor(diff / oneDay);
 }
 
 function getCountyUrl(metadataObj, lat, lon) {
@@ -54,8 +54,9 @@ function getCountyUrl(metadataObj, lat, lon) {
       .then(function (response) {
         log.debug('county URL status = ' + response.status);
 
+        let err_json = {};
         if (response.status != 200) {
-          var err_json = {
+          err_json = {
             error_id: 61,
             error_msg: 'Error calling RUSLE web service',
           };
@@ -120,7 +121,7 @@ function getCountyUrl(metadataObj, lat, lon) {
       })
       .catch(function (err) {
         if (err) {
-          var err_json = {
+          const err_json = {
             error_id: 60,
             error_msg: 'Error retrieving county URL',
           };
@@ -128,7 +129,6 @@ function getCountyUrl(metadataObj, lat, lon) {
             logger.formatLogMsg(metadataObj, err_json, { postData: options }),
           );
           reject(err_json);
-          return;
         }
       });
   });
@@ -162,7 +162,7 @@ function getClimateData(metadataObj, countyUrl) {
           return;
         } else {
           var xmlData = response.data;
-          if (parser.validate(xmlData) === true) {
+          if (XMLValidator.validate(xmlData) === true) {
             var jsonObj = parser.parse(xmlData);
             // find EI_DAILY_AMOUNT
             for (var i = 0, len = jsonObj.Obj.Flt.length; i < len; i++) {
@@ -186,7 +186,6 @@ function getClimateData(metadataObj, countyUrl) {
             }),
           );
           reject(err_json);
-          return;
         }
       });
   });
@@ -279,7 +278,6 @@ var sendResponse = function sendResponse(metadataObj, rfactor, res) {
     res.json(out);
     log.info(logger.formatLogMsg(metadataObj, out));
     resolve();
-    return;
   });
 };
 

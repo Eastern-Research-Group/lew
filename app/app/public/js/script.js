@@ -41,23 +41,21 @@ define(['app/esriMap'], function (esriMap) {
     // initialize map
     esriMap.init('viewDiv');
 
+    function eventListenerGetCoords(event) {
+      event.preventDefault();
+      // get the coordinates and add a point to the map based on search box value
+      getCoords(function () { /* This is intentional */ });
+    } 
+
     // view on map button listener
     document
       .getElementById('mapViewButton')
-      .addEventListener('click', function (event) {
-        event.preventDefault();
-        // get the coordinates and add a point to the map based on search box value
-        getCoords(function () {});
-      });
+      .addEventListener('click', eventListenerGetCoords);
 
     // form Listener
     document
       .getElementById('form')
-      .addEventListener('submit', function (event) {
-        event.preventDefault();
-        // get the coordinates and add a point to the map based on search box value
-        getCoords(function () {});
-      });
+      .addEventListener('submit', eventListenerGetCoords);
 
     function getCoords(_callback) {
       // hide error message
