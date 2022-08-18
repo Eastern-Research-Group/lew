@@ -14,6 +14,22 @@ Date.prototype.isValid = function () {
   return !isNaN(this.getTime());
 };
 
+function isLeapYear(date) {
+  return new Date(date.getFullYear(), 1, 29).getDate() === 29;
+}
+
+function buildLeapYearData(data) {
+  const leapYearData = [...data];
+
+  // get data for Feb 28th
+  const feb28Data = data[58];
+
+  // insert Feb 28th value in for Feb 29th
+  leapYearData.splice(59, 0, feb28Data);
+
+  return leapYearData;
+}
+
 function getDayOfYear(date) {
   var start = new Date(date.getFullYear(), 0, 0);
   var diff =
@@ -203,11 +219,19 @@ function calculateRFactor(metadataObj, EI_DAILY_AMOUNT, start_date, end_date) {
       return;
     }
 
-    var dailyEIdata = EI_DAILY_AMOUNT.replace(/\n/g, ' ').split(' ');
+    var dailyEIdataNormal = EI_DAILY_AMOUNT.replace(/\n/g, ' ').split(' ');
+    var dailyEIdataLeapYear = buildLeapYearData(dailyEIdataNormal);
+    var dailyEIdata = dailyEIdataNormal;
     var rfactor = 0;
+
+    const isStartLeapYear = isLeapYear(start_date);
+    const isEndLeapYear = isLeapYear(end_date);
 
     log.debug('start_date = ' + start_date);
     log.debug('end_date = ' + end_date);
+    log.debug('isStartLeapYear = ' + isStartLeapYear);
+    log.debug('isEndLeapYear = ' + isEndLeapYear);
+
     // find number of days the project spans
     // add one day to end date because timestamp is set to midnight for both dates,
     // but want to include end date in count
@@ -221,7 +245,7 @@ function calculateRFactor(metadataObj, EI_DAILY_AMOUNT, start_date, end_date) {
         'Project spans one year or longer; rFactor maxed out at 1 year',
       );
       for (let p = 0; p < 365; p++) {
-        rfactor = rfactor + Number(dailyEIdata[p]);
+        rfactor = rfactor + Number(dailyEIdataNormal[p]);
       }
     } else {
       var startDayOfYear = getDayOfYear(start_date);
@@ -229,21 +253,36 @@ function calculateRFactor(metadataObj, EI_DAILY_AMOUNT, start_date, end_date) {
 
       if (endDayOfYear > startDayOfYear) {
         log.debug('Project is contained within a year');
+
+        // determine whether or not the leap year data is needed for the start year
+        if(isStartLeapYear || isEndLeapYear) dailyEIdata = dailyEIdataLeapYear;
+        else dailyEIdata = dailyEIdataNormal;
+
         // subtract 1 from startDayOfYear because index on dailyEIdata starts with 0
         for (let p = startDayOfYear - 1; p < endDayOfYear; p++) {
           rfactor = rfactor + Number(dailyEIdata[p]);
         }
       } else {
         log.debug('Project crosses end of year');
+
+        // determine whether or not the leap year data is needed for the start year
+        if(isStartLeapYear) dailyEIdata = dailyEIdataLeapYear;
+        else dailyEIdata = dailyEIdataNormal;
+
         // dayCounter variable ensures all days of project span are counted, even if a leap day is included
         var dayCounter = 0;
         // first calculate from start date to 12/31
         // subtract 1 from startDayOfYear because index on dailyEIdata starts with 0
-        for (let p = startDayOfYear - 1; p < 365; p++) {
+        const numDays = isStartLeapYear ? 366 : 365;
+        for (let p = startDayOfYear - 1; p < numDays; p++) {
           rfactor = rfactor + Number(dailyEIdata[p]);
           dayCounter++;
         }
         log.debug('dayCounter = ' + dayCounter);
+
+        // determine whether or not the leap year data is needed for the end year
+        if(isEndLeapYear) dailyEIdata = dailyEIdataLeapYear;
+        else dailyEIdata = dailyEIdataNormal;
 
         var daysRemaining = numProjectDays - dayCounter;
         // then start at 1/1 and go for number of days remaining in project
