@@ -219,10 +219,9 @@ function calculateRFactor(metadataObj, EI_DAILY_AMOUNT, start_date, end_date) {
       return;
     }
 
-    var dailyEIdataNormal = EI_DAILY_AMOUNT.replace(/\n/g, ' ').split(' ');
-    var dailyEIdataLeapYear = buildLeapYearData(dailyEIdataNormal);
-    var dailyEIdata = dailyEIdataNormal;
-    var rfactor = 0;
+    const dailyEIdataNormal = EI_DAILY_AMOUNT.replace(/\n/g, ' ').split(' ');
+    const dailyEIdataLeapYear = buildLeapYearData(dailyEIdataNormal);
+    let rfactor = 0;
 
     const isStartLeapYear = isLeapYear(start_date);
     const isEndLeapYear = isLeapYear(end_date);
@@ -250,6 +249,7 @@ function calculateRFactor(metadataObj, EI_DAILY_AMOUNT, start_date, end_date) {
     } else {
       var startDayOfYear = getDayOfYear(start_date);
       var endDayOfYear = getDayOfYear(end_date);
+      let dailyEIdata = dailyEIdataNormal;
 
       if (endDayOfYear > startDayOfYear) {
         log.debug('Project is contained within a year');
