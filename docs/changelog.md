@@ -18,3 +18,5 @@
 - Fixed a bug where selecting 12/31 on a leap year would result in an Unknown R Factor.  
 
 ## 2.0.0 (Released April 2019)
+### History 
+- Version 2.0.0 was initially released in April 2019 and has been updated several times since the initial release without an official changelog. The Changelog begins with version 2.2.0.
