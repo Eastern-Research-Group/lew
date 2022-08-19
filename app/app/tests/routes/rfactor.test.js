@@ -451,7 +451,37 @@ describe("rFactor controller testing", () => {
       .then(function(result) {
         var data = JSON.parse(response._getData());
         data.should.have.property("rfactor");
-        data.rfactor.should.eql(0.779);
+        data.rfactor.should.eql(0.773);
+        done();
+      })
+      .catch(done);
+  });
+
+  /****************************************************
+   *
+   ****************************************************/
+   it("Cross construction leap year rFactor test to end of year", function(done) {
+    var request = httpMocks.createRequest({
+      method: "GET",
+      url: "/",
+      headers: {
+        "X-Api-User-Id": "UNIT_TEST_USER_ID"
+      },
+      query: {
+        start_date: "2020-02-28",
+        end_date: "2020-12-31",
+        location: '{"geometry":{"type":"Point","coordinates":[-76.4899,38.4401]}}'
+      }
+    });
+
+    var response = httpMocks.createResponse();
+
+    let rtn = rfactorContoller.calculateRFactor(request, response);
+    rtn
+      .then(function(result) {
+        var data = JSON.parse(response._getData());
+        data.should.have.property("rfactor");
+        data.rfactor.should.eql(181);
         done();
       })
       .catch(done);
