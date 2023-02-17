@@ -1,0 +1,94 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Staging Deploy
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch    branches: [ staging ]
+  push:
+    branches: [ staging ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  changes:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    environment: staging
+
+    outputs: 
+      workflows: ${{ steps.filter.outputs.workflows }}
+      app: ${{ steps.filter.outputs.app }}
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:      
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it 
+      - uses: actions/checkout@v3
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            workflows:
+              - '.github/workflows/staging.yml'
+            app:
+              - 'app/**'
+        
+  app:
+    # Check if this folder has any changes
+    needs: changes
+    if: ${{ 
+      needs.changes.outputs.app == 'true' ||  
+      needs.changes.outputs.workflows == 'true' }}
+
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    environment: staging
+
+    # Set environment variables
+    env:
+      APP_NAME: lew-stage
+      APP_DOMAIN: app.cloud.gov
+      CF_ORG: ${{ secrets.CF_ORG }}
+      CF_SPACE: ${{ secrets.CF_SPACE_STAGING }}
+      CF_USER_STAGING: ${{ secrets.CF_USER_STAGING }}
+      CF_PASSWORD_STAGING: ${{ secrets.CF_PASSWORD_STAGING }}
+      LEW_BASIC_AUTH_USER_NAME: ${{ secrets.LEW_BASIC_AUTH_USER_NAME }}
+      LEW_BASIC_AUTH_USER_PWD: ${{ secrets.LEW_BASIC_AUTH_USER_PWD }}
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      
+      # Set up node and npm
+      - uses: actions/setup-node@v3
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: app
+
+      - name: Run tests
+        run: npm test
+        working-directory: app
+
+      # Run CloudFoundry/Cloud.gov deployment
+      - name: Set up Cloud Foundry CLI
+        run: |
+          curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&version=v7&source=github'
+          sudo dpkg -i cf-cli_amd64.deb
+          cf -v
+          cf api https://api.fr.cloud.gov
+          cf auth "$CF_USER_STAGING" "$CF_PASSWORD_STAGING"
+          cf target -o "$CF_ORG" -s "$CF_SPACE"
+
+      - name: Set application-level variables
+        run: |
+          cf set-env $APP_NAME "LEW_BASIC_AUTH_USER_NAME" "$LEW_BASIC_AUTH_USER_NAME" > /dev/null
+          cf set-env $APP_NAME "LEW_BASIC_AUTH_USER_PWD" "$LEW_BASIC_AUTH_USER_PWD" > /dev/null
+
+      # Now that front-end is built in server/dist, only push server dir to Cloud.gov
+      - name: Deploy application to Cloud.gov
+        run: cf push $APP_NAME --strategy rolling -f manifest-staging.yml -p . -t 180
+        working-directory: app
