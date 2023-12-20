@@ -3,18 +3,13 @@ define([
   'esri/views/MapView',
   'esri/Graphic',
   'esri/geometry/Point',
-], function (
-  Map,
-  MapView,
-  Graphic,
-  Point,
-) {
+], function (EsriMap, MapView, Graphic, Point) {
   let map = null;
   let view = null;
 
   function init() {
     // Create the Map with an initial basemap
-    map = new Map({
+    map = new EsriMap({
       basemap: 'topo-vector',
     });
     // Create the MapView and reference the Map in the instance
