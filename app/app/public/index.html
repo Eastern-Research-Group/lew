@@ -1,554 +1,785 @@
-<!DOCTYPE html>
+<!doctype html>
 <html class="js" lang="en" dir="ltr">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8" />
+    <meta http-equiv="ImageToolbar" content="false" />
+    <meta http-equiv="cleartype" content="on" />
+    <meta name="HandheldFriendly" content="true" />
+    <link
+      rel="shortcut icon"
+      href="./img/favicon.ico"
+      type="image/vnd.microsoft.icon"
+    />
+    <meta name="MobileOptimized" content="width" />
+    <meta name="viewport" content="width=device-width" />
+    <!--googleon: all-->
+    <meta
+      name="description"
+      content="The Rainfall Erosivity Factor Calculator can be used to help determine if your small construction site qualifies for stormwater discharge waivers."
+    />
+    <meta
+      name="DC.description"
+      content="The Rainfall Erosivity Factor Calculator can be used to help determine if your small construction site qualifies for stormwater discharge waivers."
+    />
+    <meta name="DC.title" content="Low Erosivity Waiver (LEW)" />
+    <!--googleoff: snippet-->
+    <meta
+      name="keywords"
+      content="NPDES, stormwater, tool, rainfall erosivity, erosion, small construction, waivers, lew, regulations"
+    />
+    <link rel="canonical" href="" />
+    <link rel="shortlink" href="" />
+    <meta name="DC.language" content="en" />
+    <meta name="DC.Subject.epachannel" content="Learn the Issues" />
+    <meta name="DC.type" content="Overviews and Factsheets" />
+    <meta name="DC.Subject.epaopt" content="" />
+    <meta name="DC.date.created" content="" />
+    <meta name="DC.date.modified" content="" />
+    <meta name="DC.date.reviewed" content="" />
+    <meta name="DC.creator" content="US EPA,OW,OWM" />
+    <title>Rainfall Erosivity Factor Calculator | US EPA</title>
 
-<head>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta charset="utf-8" />
-  <meta http-equiv="ImageToolbar" content="false" />
-  <meta http-equiv="cleartype" content="on" />
-  <meta name="HandheldFriendly" content="true" />
-  <link rel="shortcut icon" href="https://www.epa.gov/sites/all/themes/epa/favicon.ico"
-    type="image/vnd.microsoft.icon" />
-  <meta name="MobileOptimized" content="width" />
-  <meta name="viewport" content="width=device-width" />
-  <!--googleon: all-->
-  <meta name="description"
-    content="The Rainfall Erosivity Factor Calculator can be used to help determine if your small construction site qualifies for stormwater discharge waivers.">
-  <meta name="DC.description"
-    content="The Rainfall Erosivity Factor Calculator can be used to help determine if your small construction site qualifies for stormwater discharge waivers." />
-  <meta name="DC.title" content="Low Erosivity Waiver (LEW)" />
-  <!--googleoff: snippet-->
-  <meta name="keywords"
-    content="NPDES, stormwater, tool, rainfall erosivity, erosion, small construction, waivers, lew, regulations" />
-  <link rel="canonical" href="" />
-  <link rel="shortlink" href="" />
-  <meta name="DC.language" content="en" />
-  <meta name="DC.Subject.epachannel" content="Learn the Issues" />
-  <meta name="DC.type" content="Overviews and Factsheets" />
-  <meta name="DC.Subject.epaopt" content="" />
-  <meta name="DC.date.created" content="" />
-  <meta name="DC.date.modified" content="" />
-  <meta name="DC.date.reviewed" content="" />
-  <meta name="DC.creator" content="US EPA,OW,OWM" />
-  <title>Rainfall Erosivity Factor Calculator | US EPA</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
+      integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ=="
+      crossorigin="anonymous"
+    />
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
-    integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ=="
-    crossorigin="anonymous" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link
+      rel="shortcut icon"
+      href="./img/favicon.ico"
+      type="image/vnd.microsoft.icon"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
 
-  <link rel="shortcut icon" href="https://www.epa.gov/sites/all/themes/epa/favicon.ico"
-    type="image/vnd.microsoft.icon" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <!--googleoff: all-->
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/epa.css" media="all" />
+    <link
+      rel="stylesheet"
+      href="https://js.arcgis.com/4.28/esri/css/main.css"
+    />
 
-  <!--googleoff: all-->
-  <link rel="stylesheet" href="./css/main.css" />
-  <link rel="stylesheet" href="https://www.epa.gov/sites/all/libraries/standalone/css/core/style.css" media="all" />
-  <link rel="stylesheet" href="https://js.arcgis.com/4.28/esri/css/main.css" />
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-L8ZB');
+    </script>
+    <!-- End Google Tag Manager -->
 
-  <!-- Google Tag Manager -->
-  <script>
-    (function (w, d, s, l, i) {
-      w[l] = w[l] || [];
-      w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-      var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s),
-        dl = l != "dataLayer" ? "&l=" + l : "";
-      j.async = true;
-      j.src = "//www.googletagmanager.com/gtm.js?id=" + i + dl;
-      f.parentNode.insertBefore(j, f);
-    })(window, document, "script", "dataLayer", "GTM-L8ZB");
-  </script>
-  <!-- End Google Tag Manager -->
+    <style type="text/css" media="all">
+      @import url('./css/epaDesign.css');
+    </style>
+  </head>
 
-  <style type="text/css" media="all">
-    @import url("https://www.epa.gov/sites/all/themes/epa/css/design.min.css");
-  </style>
-</head>
-
-<body class="html">
-  <!-- Google Tag Manager -->
-  <noscript><iframe title="GTM" src="//www.googletagmanager.com/ns.html?id=GTM-L8ZB" height="0" width="0"
-      style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager -->
-  <div class="skip-links">
-    <a href="#main-content" class="skip-link element-invisible element-focusable">Jump to main content</a>
-  </div>
-  <header class="masthead clearfix" role="banner">
-    <img alt="epa logo" class="site-logo" src="https://www.epa.gov/sites/all/themes/epa/logo.png" />
-    <div class="site-name-and-slogan">
-      <h1 class="site-name">
-        <a href="https://www.epa.gov/" rel="home" title="Go to the home page"><span>US EPA</span></a>
-      </h1>
-      <div class="site-slogan">
-        United States Environmental Protection Agency
-      </div>
+  <body class="html">
+    <!-- Google Tag Manager -->
+    <noscript
+      ><iframe
+        title="GTM"
+        src="//www.googletagmanager.com/ns.html?id=GTM-L8ZB"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager -->
+    <div class="skip-links">
+      <a
+        href="#main-content"
+        class="skip-link element-invisible element-focusable"
+        >Jump to main content</a
+      >
     </div>
-    <div class="region-header">
-      <div class="block-epa-core-gsa-epa-search" id="block-epa-core-gsa-epa-search">
-        <form action="https://search.epa.gov/epasearch" class="epa-search" method="get">
-          <label class="element-hidden" for="search-box">Search</label>
-          <input class="form-text" id="search-box" aria-label="Search EPA.gov" name="querytext"
-            placeholder="Search EPA.gov" value="" />
-          <button class="epa-search-button" id="search-button" title="Search" type="submit">
-            Search
-          </button>
-          <input name="areaname" type="hidden" value="" />
-          <input name="areacontacts" type="hidden" value="" />
-          <input name="areasearchurl" type="hidden" value="" />
-          <input name="typeofsearch" type="hidden" value="epa" />
-          <input name="result_template" type="hidden" value="2col.ftl" />
-        </form>
-      </div>
-    </div>
-  </header>
-  <nav class="nav main-nav clearfix" role="navigation">
-    <div class="nav__inner">
-      <h2 class="element-invisible">Main menu</h2>
-      <ul class="menu" role="menu">
-        <li class="menu-item" role="presentation">
-          <a class="menu-link" href="https://www.epa.gov/environmental-topics" role="menuitem"
-            title="Learn about Environmental Topics that EPA covers.">Environmental Topics</a>
-        </li>
-        <li class="menu-item" role="presentation">
-          <a class="menu-link" href="https://www.epa.gov/laws-regulations" role="menuitem"
-            title="Laws written by Congress provide the authority for EPA to write regulations. Regulations explain the technical, operational, and legal details necessary to implement laws.">Laws
-            &amp; Regulations</a>
-        </li>
-        <li class="menu-item" role="presentation">
-          <a class="menu-link" href="https://www.epa.gov/aboutepa" role="menuitem"
-            title="Learn more about our mission and what we do, how we are organized, and our history.">About EPA</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <div class="mobile-nav" id="mobile-nav">
-    <div class="mobile-bar clearfix">
-      <label class="menu-button" for="mobile-nav-toggle">Menu</label>
-    </div>
-    <input checked id="mobile-nav-toggle" type="checkbox" />
-    <div class="mobile-links element-hidden" id="mobile-links" style="height:2404px;">
-      <ul class="mobile-menu">
-        <li class="menu-item" role="presentation">
-          <a class="menu-link" href="https://www.epa.gov/environmental-topics" role="menuitem"
-            title="Learn about Environmental Topics that EPA covers.">Environmental Topics</a>
-        </li>
-        <li class="menu-item" role="presentation">
-          <a class="menu-link" href="https://www.epa.gov/laws-regulations" role="menuitem"
-            title="Laws written by Congress provide the authority for EPA to write regulations. Regulations explain the technical, operational, and legal details necessary to implement laws.">Laws
-            &amp; Regulations</a>
-        </li>
-        <li class="menu-item" role="presentation">
-          <a class="menu-link" href="https://www.epa.gov/aboutepa" role="menuitem"
-            title="Learn more about our mission and what we do, how we are organized, and our history.">About EPA</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <section id="main-content" class="main-content clearfix" role="main">
-
-    <div class="row headrow">
-      <div class="col-8">
-        <h2 id="minititle">
-          National Pollutant Discharge Elimination System (NPDES)
-        </h2>
-      </div>
-      <div class="col-4 connecting">
-        <a id="contactlink" href="mailto:cgp@epa.gov" class="connect-title__link">CONTACT US</a>
-        <div class="share-links">
-          <span id="sharing">SHARE</span>
-          <a href="https://www.facebook.com/sharer.php?u=https://www.epa.gov/npdes/rainfall-erosivity-factor-calculator-small-construction-sites&t=Rainfall%20Erosivity%20Factor%20Calculator%20for%20%20Small%20Construction%20Sites"
-            target="_blank" rel="noopener noreferrer" title="Share this page on Facebook">
-            Share this page on Facebook
-            <div class="fa fa-facebook"></div>
-          </a>
-          <a href="https://twitter.com/intent/tweet?original_referer=https://www.epa.gov/npdes/rainfall-erosivity-factor-calculator-small-construction-sites&text=Rainfall%20Erosivity%20Factor%20Calculator%20for%20%20Small%20Construction%20Sites&url=https://www.epa.gov/npdes/rainfall-erosivity-factor-calculator-small-construction-sites&via=EPA&count=none&lang=en"
-            title="Tweet this page" target="_blank" rel="noopener noreferrer">
-            Tweet this page
-            <div class="fa fa-twitter"></div>
-          </a>
-          <a href="https://pinterest.com/pin/create/button/?url=https://www.epa.gov/npdes/rainfall-erosivity-factor-calculator-small-construction-sites&description=Rainfall%20Erosivity%20Factor%20Calculator%20for%20%20Small%20Construction%20Sites&media=https://www.epa.gov/sites/all/themes/epa/img/epa-seal.png?"
-            target="_blank" rel="noopener noreferrer" title="Pin this page">
-            Share this page on pinterest
-            <div class="fa fa-pinterest"></div>
-          </a>
-          <a href="mailto:%20?subject=Shared%20from%20the%20US%20EPA:%20Rainfall%20Erosivity%20Factor%20Calculator%20for%20%20Small%20Construction%20Sites&body=Rainfall%20Erosivity%20Factor%20Calculator%20for%20%20Small%20Construction%20Sites%20-%20https://www.epa.gov/npdes/rainfall-erosivity-factor-calculator-small-construction-sites"
-            target="_blank" rel="noopener noreferrer" aria-label="Email this page">
-            Email this page
-            <div class="fa fa-envelope"></div>
-          </a>
+    <header class="masthead clearfix" role="banner">
+      <div class="site-name-and-slogan">
+        <h1 class="site-name">
+          <a href="https://www.epa.gov/" rel="home" title="Go to the home page"
+            ><span>US EPA</span></a
+          >
+        </h1>
+        <div class="site-slogan">
+          United States Environmental Protection Agency
         </div>
       </div>
-    </div>
-
-    <div class="main-column clearfix">
-      <!--googleon:all-->
-      <div class="panel-pane pane-node-content">
-        <div class="pane-content">
-          <div class="node node-page clearfix view-mode-full"></div>
+      <div class="region-header">
+        <div
+          class="block-epa-core-gsa-epa-search"
+          id="block-epa-core-gsa-epa-search"
+        >
+          <form
+            action="https://search.epa.gov/epasearch"
+            class="epa-search"
+            method="get"
+          >
+            <label class="element-hidden" for="search-box">Search</label>
+            <input
+              class="form-text"
+              id="search-box"
+              aria-label="Search EPA.gov"
+              name="querytext"
+              placeholder="Search EPA.gov"
+              value=""
+            />
+            <button
+              class="epa-search-button"
+              id="search-button"
+              title="Search"
+              type="submit"
+            >
+              Search
+            </button>
+            <input name="areaname" type="hidden" value="" />
+            <input name="areacontacts" type="hidden" value="" />
+            <input name="areasearchurl" type="hidden" value="" />
+            <input name="typeofsearch" type="hidden" value="epa" />
+            <input name="result_template" type="hidden" value="2col.ftl" />
+          </form>
         </div>
-        <div class="row">
-          <div class="col-12">
-            <div class="region-sidebar-first region-sidebar">
-              <div id="block-og-menu-og-single-menu-block"
-                class="block block-og-menu  block-og-menu-og-single-menu-block">
-                <h2 class="element-invisible">
-                  National Pollutant Discharge Elimination System (NPDES)
-                </h2>
-
-              </div>
-            </div>
+      </div>
+    </header>
+    <nav class="nav main-nav clearfix" role="navigation">
+      <div class="nav__inner">
+        <h2 class="element-invisible">Main menu</h2>
+        <ul class="menu" role="menu">
+          <li class="menu-item" role="presentation">
+            <a
+              class="menu-link"
+              href="https://www.epa.gov/environmental-topics"
+              role="menuitem"
+              title="Learn about Environmental Topics that EPA covers."
+              >Environmental Topics</a
+            >
+          </li>
+          <li class="menu-item" role="presentation">
+            <a
+              class="menu-link"
+              href="https://www.epa.gov/laws-regulations"
+              role="menuitem"
+              title="Laws written by Congress provide the authority for EPA to write regulations. Regulations explain the technical, operational, and legal details necessary to implement laws."
+              >Laws &amp; Regulations</a
+            >
+          </li>
+          <li class="menu-item" role="presentation">
+            <a
+              class="menu-link"
+              href="https://www.epa.gov/aboutepa"
+              role="menuitem"
+              title="Learn more about our mission and what we do, how we are organized, and our history."
+              >About EPA</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="mobile-nav" id="mobile-nav">
+      <div class="mobile-bar clearfix">
+        <label class="menu-button" for="mobile-nav-toggle">Menu</label>
+      </div>
+      <input checked id="mobile-nav-toggle" type="checkbox" />
+      <div
+        class="mobile-links element-hidden"
+        id="mobile-links"
+        style="height: 2404px"
+      >
+        <ul class="mobile-menu">
+          <li class="menu-item" role="presentation">
+            <a
+              class="menu-link"
+              href="https://www.epa.gov/environmental-topics"
+              role="menuitem"
+              title="Learn about Environmental Topics that EPA covers."
+              >Environmental Topics</a
+            >
+          </li>
+          <li class="menu-item" role="presentation">
+            <a
+              class="menu-link"
+              href="https://www.epa.gov/laws-regulations"
+              role="menuitem"
+              title="Laws written by Congress provide the authority for EPA to write regulations. Regulations explain the technical, operational, and legal details necessary to implement laws."
+              >Laws &amp; Regulations</a
+            >
+          </li>
+          <li class="menu-item" role="presentation">
+            <a
+              class="menu-link"
+              href="https://www.epa.gov/aboutepa"
+              role="menuitem"
+              title="Learn more about our mission and what we do, how we are organized, and our history."
+              >About EPA</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+    <section id="main-content" class="main-content clearfix" role="main">
+      <div class="row headrow">
+        <div class="col-8">
+          <h2 id="minititle">
+            National Pollutant Discharge Elimination System (NPDES)
+          </h2>
+        </div>
+        <div class="col-4 connecting">
+          <a
+            id="contactlink"
+            href="mailto:cgp@epa.gov"
+            class="connect-title__link"
+            >CONTACT US</a
+          >
+          <div class="share-links">
+            <span id="sharing">SHARE</span>
+            <a
+              href="https://www.facebook.com/sharer.php?u=https://www.epa.gov/npdes/rainfall-erosivity-factor-calculator-small-construction-sites&t=Rainfall%20Erosivity%20Factor%20Calculator%20for%20%20Small%20Construction%20Sites"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Share this page on Facebook"
+            >
+              Share this page on Facebook
+              <div class="fa fa-facebook"></div>
+            </a>
+            <a
+              href="https://twitter.com/intent/tweet?original_referer=https://www.epa.gov/npdes/rainfall-erosivity-factor-calculator-small-construction-sites&text=Rainfall%20Erosivity%20Factor%20Calculator%20for%20%20Small%20Construction%20Sites&url=https://www.epa.gov/npdes/rainfall-erosivity-factor-calculator-small-construction-sites&via=EPA&count=none&lang=en"
+              title="Tweet this page"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Tweet this page
+              <div class="fa fa-twitter"></div>
+            </a>
+            <a
+              href="https://pinterest.com/pin/create/button/?url=https://www.epa.gov/npdes/rainfall-erosivity-factor-calculator-small-construction-sites&description=Rainfall%20Erosivity%20Factor%20Calculator%20for%20%20Small%20Construction%20Sites&media=https://www.epa.gov/sites/all/themes/epa/img/epa-seal.png?"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Pin this page"
+            >
+              Share this page on pinterest
+              <div class="fa fa-pinterest"></div>
+            </a>
+            <a
+              href="mailto:%20?subject=Shared%20from%20the%20US%20EPA:%20Rainfall%20Erosivity%20Factor%20Calculator%20for%20%20Small%20Construction%20Sites&body=Rainfall%20Erosivity%20Factor%20Calculator%20for%20%20Small%20Construction%20Sites%20-%20https://www.epa.gov/npdes/rainfall-erosivity-factor-calculator-small-construction-sites"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Email this page"
+            >
+              Email this page
+              <div class="fa fa-envelope"></div>
+            </a>
           </div>
-          <div class="col-12">
-            <h1 class="page-title NPDESTitle">
-              Rainfall Erosivity Factor Calculator for Small Construction Sites
-            </h1>
+        </div>
+      </div>
 
-            <div class="panel-pane pane-node-content">
-              <div class="pane-content">
-                <div class="node node-page clearfix view-mode-full ">
-                  <p>
-                    EPA’s stormwater regulations allow NPDES permitting authorities to waive NPDES permitting
-                    requirements for stormwater discharges from
-                    small construction sites if:
-                  </p>
-
-                  <ul>
-                    <li>
-                      the construction site disturbs less than five acres, and
-                    </li>
-                    <li>
-                      the rainfall erosivity factor (“R” in the revised universal soil loss equation, or RUSLE) value is
-                      less than five during the period of
-                      construction activity.
-                    </li>
-                  </ul>
-                  <p>
-                    If your small construction project is located in an area where EPA is the permitting authority and
-                    your R factor is less than five, you
-                    qualify for a low erosivity waiver (LEW) from NPDES stormwater permitting. If your small
-                    construction project does not qualify for a
-                    waiver, then NPDES stormwater permit coverage is required. Follow the steps below to calculate your
-                    R-Factor.
-                  </p>
-                  <p>
-                    LEW certifications are submitted through the NPDES eReporting Tool or “CGP-NeT”. Several
-                    states that are authorized to implement the NPDES permitting program also accept LEWs. Check with
-                    your state NPDES permitting authority
-                    for more information.
-                  </p>
-
-                  <ul>
-                    <li>
-                      <a target="_blank" rel="noopener noreferrer"
-                        href="https://www.epa.gov/npdes/submitting-notice-intent-noi-notice-termination-not-or-low-erosivity-waiver-lew-under">Submit
-                        your LEW through EPA’s eReporting Tool
-                      </a>
-                    </li>
-                    <li>
-                      <a target="_blank" rel="noopener noreferrer"
-                        href="https://www.epa.gov/system/files/documents/2022-01/2022-cgp-final-appendix-b-areas-of-permit-cover.pdf">List
-                        of states, Indian country, and territories where EPA is the permitting authority (pdf)
-                      </a>
-                    </li>
-                    <li>
-                      <a target="_blank" rel="noopener noreferrer"
-                        href="https://www.epa.gov/npdes/construction-rainfall-erosivity-waiver-fact-sheet">Construction
-                        Rainfall Erosivity Waiver Fact Sheet</a>
-                    </li>
-                    <li>
-                      <a target="_blank" rel="noopener noreferrer"
-                        href="https://www.epa.gov/system/files/documents/2022-01/2022-cgp-final-appendix-c-waivers.pdf">Small Construction Waivers and Instructions (pdf)</a>
-                    </li>
-                  </ul>
-
-                  <p>
-                    The R-factor calculation can also be integrated directly into custom applications using the <a
-                      target="_blank" rel="noopener noreferrer" href="/api-docs/">R-Factor web service</a>.
-                  </p>
-
-                  <p>
-                    For questions or comments, email EPA’s CGP staff at
-                    <a href="mailto:cgp@epa.gov">cgp@epa.gov</a>.
-                  </p>
+      <div class="main-column clearfix">
+        <!--googleon:all-->
+        <div class="panel-pane pane-node-content">
+          <div class="pane-content">
+            <div class="node node-page clearfix view-mode-full"></div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="region-sidebar-first region-sidebar">
+                <div
+                  id="block-og-menu-og-single-menu-block"
+                  class="block block-og-menu block-og-menu-og-single-menu-block"
+                >
+                  <h2 class="element-invisible">
+                    National Pollutant Discharge Elimination System (NPDES)
+                  </h2>
                 </div>
               </div>
             </div>
+            <div class="col-12">
+              <h1 class="page-title NPDESTitle">
+                Rainfall Erosivity Factor Calculator for Small Construction
+                Sites
+              </h1>
 
-            <noscript>
-              <div class="alert alert-danger" role="alert">JavaScript must be enabled to use the Rainfall Erosivity
-                Factor Calculator.</div>
-            </noscript>
+              <div class="panel-pane pane-node-content">
+                <div class="pane-content">
+                  <div class="node node-page clearfix view-mode-full">
+                    <p>
+                      EPA’s stormwater regulations allow NPDES permitting
+                      authorities to waive NPDES permitting requirements for
+                      stormwater discharges from small construction sites if:
+                    </p>
 
-            <form id="form" style="display: none;">
-              <p class="note">
-                <span class="fa-stack fa-lg">
-                  <span class="fat fa-circle fa-stack-2x"></span>
-                  <span class="fat fa-inverse fa-stack-1x"><span class="number">1</span></span>
-                </span>
-                Select the estimated start and end dates of construction by clicking the boxes and using the dropdown
-                calendar.
-              </p>
-              <p class="note">
-                The period of construction activity begins at initial earth disturbance and ends with final
-                stabilization.
-              </p>
+                    <ul>
+                      <li>
+                        the construction site disturbs less than five acres, and
+                      </li>
+                      <li>
+                        the rainfall erosivity factor (“R” in the revised
+                        universal soil loss equation, or RUSLE) value is less
+                        than five during the period of construction activity.
+                      </li>
+                    </ul>
+                    <p>
+                      If your small construction project is located in an area
+                      where EPA is the permitting authority and your R factor is
+                      less than five, you qualify for a low erosivity waiver
+                      (LEW) from NPDES stormwater permitting. If your small
+                      construction project does not qualify for a waiver, then
+                      NPDES stormwater permit coverage is required. Follow the
+                      steps below to calculate your R-Factor.
+                    </p>
+                    <p>
+                      LEW certifications are submitted through the NPDES
+                      eReporting Tool or “CGP-NeT”. Several states that are
+                      authorized to implement the NPDES permitting program also
+                      accept LEWs. Check with your state NPDES permitting
+                      authority for more information.
+                    </p>
 
+                    <ul>
+                      <li>
+                        <a
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href="https://www.epa.gov/npdes/submitting-notice-intent-noi-notice-termination-not-or-low-erosivity-waiver-lew-under"
+                          >Submit your LEW through EPA’s eReporting Tool
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href="https://www.epa.gov/system/files/documents/2022-01/2022-cgp-final-appendix-b-areas-of-permit-cover.pdf"
+                          >List of states, Indian country, and territories where
+                          EPA is the permitting authority (pdf)
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href="https://www.epa.gov/npdes/construction-rainfall-erosivity-waiver-fact-sheet"
+                          >Construction Rainfall Erosivity Waiver Fact Sheet</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href="https://www.epa.gov/system/files/documents/2022-01/2022-cgp-final-appendix-c-waivers.pdf"
+                          >Small Construction Waivers and Instructions (pdf)</a
+                        >
+                      </li>
+                    </ul>
 
-              <div class="row" style="margin-top: 20px;">
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                  <label class="form-label" for="startdatepicker">Start Date: </label>
-                  <input type="date" class="form-control" style="width: unset; display: unset;" id="startdatepicker"
-                    placeholder="YYYY-MM-DD" />
+                    <p>
+                      The R-factor calculation can also be integrated directly
+                      into custom applications using the
+                      <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href="/api-docs/"
+                        >R-Factor web service</a
+                      >.
+                    </p>
+
+                    <p>
+                      For questions or comments, email EPA’s CGP staff at
+                      <a href="mailto:cgp@epa.gov">cgp@epa.gov</a>.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <noscript>
+                <div class="alert alert-danger" role="alert">
+                  JavaScript must be enabled to use the Rainfall Erosivity
+                  Factor Calculator.
+                </div>
+              </noscript>
+
+              <form id="form" style="display: none">
+                <p class="note">
+                  <span class="fa-stack fa-lg">
+                    <span class="fat fa-circle fa-stack-2x"></span>
+                    <span class="fat fa-inverse fa-stack-1x"
+                      ><span class="number">1</span></span
+                    >
+                  </span>
+                  Select the estimated start and end dates of construction by
+                  clicking the boxes and using the dropdown calendar.
+                </p>
+                <p class="note">
+                  The period of construction activity begins at initial earth
+                  disturbance and ends with final stabilization.
+                </p>
+
+                <div class="row" style="margin-top: 20px">
+                  <div class="col-lg-6 col-md-6 col-sm-12">
+                    <label class="form-label" for="startdatepicker"
+                      >Start Date:
+                    </label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      style="width: unset; display: unset"
+                      id="startdatepicker"
+                      placeholder="YYYY-MM-DD"
+                    />
+                  </div>
+
+                  <br id="responsivebr" class="responsivebr" />
+
+                  <div
+                    id="end-div"
+                    class="end-date col-lg-6 col-md-6 col-sm-12"
+                  >
+                    <label class="form-label" for="enddatepicker"
+                      >End Date:
+                    </label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      style="width: unset; display: unset"
+                      id="enddatepicker"
+                      placeholder="YYYY-MM-DD"
+                    /><br />
+                  </div>
                 </div>
 
-                <br id="responsivebr" class="responsivebr" />
+                <p class="note">
+                  <span class="fa-stack fa-lg">
+                    <span class="fat fa-circle fa-stack-2x"></span>
+                    <span class="fat fa-inverse fa-stack-1x"
+                      ><span class="number">2</span></span
+                    >
+                  </span>
+                  Locate your small construction project using the search box
+                  below or by clicking on the map.
+                </p>
+                <label class="form-label" for="location">Location:</label>
 
-                <div id="end-div" class="end-date col-lg-6 col-md-6 col-sm-12">
-                  <label class="form-label" for="enddatepicker">End Date: </label>
-                  <input type="date" class="form-control" style="width: unset; display: unset;" id="enddatepicker"
-                    placeholder="YYYY-MM-DD" /><br />
+                <input
+                  class="form-control"
+                  style="display: inline-block"
+                  type="text"
+                  id="location"
+                  placeholder="Enter address or latitude/longitude"
+                />
+
+                <input id="mapViewButton" value="Search" type="button" />
+                <span id="location-error" style="color: red; display: none"
+                  >Invalid Location</span
+                >
+
+                <div class="viewDiv" id="viewDiv"></div>
+
+                <br />
+                <p class="note">
+                  <span class="fa-stack fa-lg">
+                    <span class="fat fa-circle fa-stack-2x"></span>
+                    <span class="fat fa-inverse fa-stack-1x"
+                      ><span class="number">3</span></span
+                    >
+                  </span>
+                  Click the "Calculate R Factor" button below to calculate an R
+                  Factor for your small construction project.
+                </p>
+                <div class="rfactor-button-container">
+                  <input
+                    type="submit"
+                    id="rButton"
+                    value="Calculate R Factor"
+                    type="button"
+                  />
                 </div>
-              </div>
-
-              <p class="note">
-                <span class="fa-stack fa-lg">
-                  <span class="fat fa-circle fa-stack-2x"></span>
-                  <span class="fat fa-inverse fa-stack-1x"><span class="number">2</span></span>
-                </span>
-                Locate your small construction project using the search box below or by clicking on the map.
-              </p>
-              <label class="form-label" for="location">Location:</label>
-
-              <input class="form-control" style="display: inline-block;" type="text" id="location"
-                placeholder="Enter address or latitude/longitude" />
-
-              <input id="mapViewButton" value="Search" type="button" />
-              <span id="location-error" style="color: red; display: none;">Invalid Location</span>
-
-              <div class="viewDiv" id="viewDiv"></div>
-
-              <br />
-              <p class="note">
-                <span class="fa-stack fa-lg">
-                  <span class="fat fa-circle fa-stack-2x"></span>
-                  <span class="fat fa-inverse fa-stack-1x"><span class="number">3</span></span>
-                </span>
-                Click the "Calculate R Factor" button below to calculate an R Factor for your small construction
-                project.
-              </p>
-              <div class="rfactor-button-container">
-                <input type="submit" id="rButton" value="Calculate R Factor" type="button" />
-              </div>
-            </form>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <div id="loader" style="display: none;">
-              <div class="loader"></div>
-              <p class="loading-text">Loading...</p>
-            </div>
-            <p id="errorMessage" class="error-message">
-              There was an error with your query.
-            </p>
-            <div class="container" id="eContainer">
-              <h2 id="h3Facility">Facility Information</h2>
-              <p id="table-caption" style="display: none;">Table with facility information.</p>
-              <table class="table table-bordered" aria-label="Table with facility information."
-                aria-describedby="table-caption">
-                <tbody>
-                  <tr style="display: none;">
-                    <th scope="col">Date</th>
-                    <th scope="col">Lat/Long</th>
-                  </tr>
-                  <tr>
-                    <td id="tableStart" style="font-weight: bold">
-                      Start Date:
-                      <span id="tableStartSpan" style="font-weight: normal"></span>
-                    </td>
-                    <td id="tableLatitude" style="font-weight: bold">
-                      Latitude:
-                      <span id="tableLatitudeSpan" style="font-weight: normal"></span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td id="tableEnd" style="font-weight: bold">
-                      End Date:
-                      <span id="tableEndSpan" style="font-weight: normal"></span>
-                    </td>
-                    <td id="tableLongitude" style="font-weight: bold">
-                      Longitude:
-                      <span id="tableLongitudeSpan" style="font-weight: normal"></span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <h3 id="h3Results">Calculation Results</h3>
-              <h4 id="tableEI">
-                Rainfall erosivity factor (R Factor) =
-                <span id="eiValue" style="color:#d44600; font-weight: bold"> </span>
-              </h4>
-              <p id="conclusion"></p>
-              <p id="conclusion2" style="font-weight: bold"></p>
+              </form>
             </div>
           </div>
-        </div>
+          <div class="row">
+            <div class="col-12">
+              <div id="loader" style="display: none">
+                <div class="loader"></div>
+                <p class="loading-text">Loading...</p>
+              </div>
+              <p id="errorMessage" class="error-message">
+                There was an error with your query.
+              </p>
+              <div class="container" id="eContainer">
+                <h2 id="h3Facility">Facility Information</h2>
+                <p id="table-caption" style="display: none">
+                  Table with facility information.
+                </p>
+                <table
+                  class="table table-bordered"
+                  aria-label="Table with facility information."
+                  aria-describedby="table-caption"
+                >
+                  <tbody>
+                    <tr style="display: none">
+                      <th scope="col">Date</th>
+                      <th scope="col">Lat/Long</th>
+                    </tr>
+                    <tr>
+                      <td id="tableStart" style="font-weight: bold">
+                        Start Date:
+                        <span
+                          id="tableStartSpan"
+                          style="font-weight: normal"
+                        ></span>
+                      </td>
+                      <td id="tableLatitude" style="font-weight: bold">
+                        Latitude:
+                        <span
+                          id="tableLatitudeSpan"
+                          style="font-weight: normal"
+                        ></span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td id="tableEnd" style="font-weight: bold">
+                        End Date:
+                        <span
+                          id="tableEndSpan"
+                          style="font-weight: normal"
+                        ></span>
+                      </td>
+                      <td id="tableLongitude" style="font-weight: bold">
+                        Longitude:
+                        <span
+                          id="tableLongitudeSpan"
+                          style="font-weight: normal"
+                        ></span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <h3 id="h3Results">Calculation Results</h3>
+                <h4 id="tableEI">
+                  Rainfall erosivity factor (R Factor) =
+                  <span id="eiValue" style="color: #d44600; font-weight: bold">
+                  </span>
+                </h4>
+                <p id="conclusion"></p>
+                <p id="conclusion2" style="font-weight: bold"></p>
+              </div>
+            </div>
+          </div>
 
-        <div>
-          <span id="longitude"></span>
-        </div>
-        <div>
-          <span id="latitude"></span>
-        </div>
-      </div>
-    </div>
-  </section>
-  <footer class="main-footer clearfix" role="contentinfo">
-    <div class="main-footer__inner">
-      <div class="region-footer">
-        <div class="block-pane-epa-global-footer" id="block-pane-epa-global-footer">
-          <div class="row cols-3">
-            <div class="col size-1of3">
-              <div class="col__title">
-                Discover.
-              </div>
-              <ul class="menu">
-                <li>
-                  <a href="https://www.epa.gov/accessibility">Accessibility</a>
-                </li>
-                <li>
-                  <a href="https://www.epa.gov/planandbudget">Budget &amp; Performance</a>
-                </li>
-                <li>
-                  <a href="https://www.epa.gov/contracts">Contracting</a>
-                </li>
-                <li>
-                  <a href="https://www.epa.gov/utilities/wwwepagov-snapshots">EPA www Web Snapshots</a>
-                </li>
-                <li>
-                  <a href="https://www.epa.gov/grants">Grants</a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.epa.gov/ocr/whistleblower-protections-epa-and-how-they-relate-non-disclosure-agreements-signed-epa-employees">No
-                    FEAR Act Data</a>
-                </li>
-                <li>
-                  <a href="https://www.epa.gov/privacy">Privacy</a>
-                </li>
-                <li>
-                  <a href="https://www.epa.gov/privacy/privacy-and-security-notice">Privacy and Security Notice</a>
-                </li>
-              </ul>
-            </div>
-            <div class="col size-1of3">
-              <div class="col__title">
-                Connect.
-              </div>
-              <ul class="menu">
-                <li><a href="https://www.data.gov/">Data.gov</a></li>
-                <li>
-                  <a href="https://www.epa.gov/office-inspector-general/about-epas-office-inspector-general">Inspector
-                    General</a>
-                </li>
-                <li><a href="https://www.epa.gov/careers">Jobs</a></li>
-                <li><a href="https://www.epa.gov/newsroom">Newsroom</a></li>
-                <li>
-                  <a href="https://www.regulations.gov/">Regulations.gov</a>
-                </li>
-                <li>
-                  <a href="https://www.epa.gov/newsroom/email-subscriptions-epa-news-releases">Subscribe</a>
-                </li>
-                <li><a href="https://www.usa.gov/">USA.gov</a></li>
-                <li><a href="https://www.whitehouse.gov/">White House</a></li>
-              </ul>
-            </div>
-            <div class="col size-1of3">
-              <div class="col__title">
-                Ask.
-              </div>
-              <ul class="menu">
-                <li>
-                  <a href="https://www.epa.gov/home/forms/contact-epa">Contact EPA</a>
-                </li>
-                <li>
-                  <a href="https://www.epa.gov/web-policies-and-procedures/epa-disclaimers">EPA Disclaimers</a>
-                </li>
-                <li><a href="https://www.epa.gov/foia">FOIA Requests</a></li>
-                <li>
-                  <a href="https://www.epa.gov/aboutepa/frequent-questions-specific-epa-programstopics">Frequent
-                    Questions</a>
-                </li>
-                <li>
-                  <a href="https://www.epa.gov/aboutepa/epa-hotlines">Hotlines</a>
-                </li>
-              </ul>
-              <div class="col__title">
-                Follow.
-              </div>
-              <ul class="social-menu">
-                <li>
-                  <a class="menu-link social-facebook" href="https://www.facebook.com/EPA">EPA's Facebook</a>
-                </li>
-                <li>
-                  <a class="menu-link social-twitter" href="https://twitter.com/epa">EPA's Twitter</a>
-                </li>
-                <li>
-                  <a class="menu-link social-youtube" href="https://www.youtube.com/user/USEPAgov">EPA's YouTube</a>
-                </li>
-                <li>
-                  <a class="menu-link social-flickr" href="https://www.flickr.com/photos/usepagov">EPA's Flickr</a>
-                </li>
-                <li>
-                  <a class="menu-link social-instagram" href="https://www.instagram.com/epagov">EPA's Instagram</a>
-                </li>
-              </ul>
-            </div>
+          <div>
+            <span id="longitude"></span>
+          </div>
+          <div>
+            <span id="latitude"></span>
           </div>
         </div>
       </div>
-    </div>
-  </footer>
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"
-    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-    integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"
-    integrity="sha512-3n19xznO0ubPpSwYCRRBgHh63DrV+bdZfHK52b1esvId4GsfwStQNPJFjeQos2h3JwCmZl0/LgLxSKMAI55hgw=="
-    crossorigin="anonymous"></script>
+    </section>
+    <footer class="main-footer clearfix" role="contentinfo">
+      <div class="main-footer__inner">
+        <div class="region-footer">
+          <div
+            class="block-pane-epa-global-footer"
+            id="block-pane-epa-global-footer"
+          >
+            <div class="row cols-3">
+              <div class="col size-1of3">
+                <div class="col__title">Discover.</div>
+                <ul class="menu">
+                  <li>
+                    <a href="https://www.epa.gov/accessibility"
+                      >Accessibility</a
+                    >
+                  </li>
+                  <li>
+                    <a href="https://www.epa.gov/planandbudget"
+                      >Budget &amp; Performance</a
+                    >
+                  </li>
+                  <li>
+                    <a href="https://www.epa.gov/contracts">Contracting</a>
+                  </li>
+                  <li>
+                    <a href="https://www.epa.gov/utilities/wwwepagov-snapshots"
+                      >EPA www Web Snapshots</a
+                    >
+                  </li>
+                  <li>
+                    <a href="https://www.epa.gov/grants">Grants</a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.epa.gov/ocr/whistleblower-protections-epa-and-how-they-relate-non-disclosure-agreements-signed-epa-employees"
+                      >No FEAR Act Data</a
+                    >
+                  </li>
+                  <li>
+                    <a href="https://www.epa.gov/privacy">Privacy</a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.epa.gov/privacy/privacy-and-security-notice"
+                      >Privacy and Security Notice</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="col size-1of3">
+                <div class="col__title">Connect.</div>
+                <ul class="menu">
+                  <li><a href="https://www.data.gov/">Data.gov</a></li>
+                  <li>
+                    <a
+                      href="https://www.epa.gov/office-inspector-general/about-epas-office-inspector-general"
+                      >Inspector General</a
+                    >
+                  </li>
+                  <li><a href="https://www.epa.gov/careers">Jobs</a></li>
+                  <li><a href="https://www.epa.gov/newsroom">Newsroom</a></li>
+                  <li>
+                    <a href="https://www.regulations.gov/">Regulations.gov</a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.epa.gov/newsroom/email-subscriptions-epa-news-releases"
+                      >Subscribe</a
+                    >
+                  </li>
+                  <li><a href="https://www.usa.gov/">USA.gov</a></li>
+                  <li><a href="https://www.whitehouse.gov/">White House</a></li>
+                </ul>
+              </div>
+              <div class="col size-1of3">
+                <div class="col__title">Ask.</div>
+                <ul class="menu">
+                  <li>
+                    <a href="https://www.epa.gov/home/forms/contact-epa"
+                      >Contact EPA</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.epa.gov/web-policies-and-procedures/epa-disclaimers"
+                      >EPA Disclaimers</a
+                    >
+                  </li>
+                  <li><a href="https://www.epa.gov/foia">FOIA Requests</a></li>
+                  <li>
+                    <a
+                      href="https://www.epa.gov/aboutepa/frequent-questions-specific-epa-programstopics"
+                      >Frequent Questions</a
+                    >
+                  </li>
+                  <li>
+                    <a href="https://www.epa.gov/aboutepa/epa-hotlines"
+                      >Hotlines</a
+                    >
+                  </li>
+                </ul>
+                <div class="col__title">Follow.</div>
+                <ul class="social-menu">
+                  <li>
+                    <a
+                      class="menu-link social-facebook"
+                      href="https://www.facebook.com/EPA"
+                      >EPA's Facebook</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="menu-link social-twitter"
+                      href="https://twitter.com/epa"
+                      >EPA's Twitter</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="menu-link social-youtube"
+                      href="https://www.youtube.com/user/USEPAgov"
+                      >EPA's YouTube</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="menu-link social-flickr"
+                      href="https://www.flickr.com/photos/usepagov"
+                      >EPA's Flickr</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="menu-link social-instagram"
+                      href="https://www.instagram.com/epagov"
+                      >EPA's Instagram</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.min.js"
+      integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+      integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"
+      integrity="sha512-3n19xznO0ubPpSwYCRRBgHh63DrV+bdZfHK52b1esvId4GsfwStQNPJFjeQos2h3JwCmZl0/LgLxSKMAI55hgw=="
+      crossorigin="anonymous"
+    ></script>
 
-  <script type="text/javascript">
-    $(function () {
-      if (!Modernizr.inputtypes.date) {
-        console.log("The 'date' input type is not supported, so using JQueryUI datepicker instead.");
-        $("#startdatepicker").datepicker({ dateFormat: "yy-mm-dd" });
-        $("#enddatepicker").datepicker({ dateFormat: "yy-mm-dd" });
-      }
-    });
-  </script>
-
-  <script>
-    var dojoConfig = {
-      async: true,
-      packages: [
-        {
-          name: "app",
-          location: location.pathname.replace(/\/[^/]*$/, "") + "/js"
+    <script type="text/javascript">
+      $(function () {
+        if (!Modernizr.inputtypes.date) {
+          console.log(
+            "The 'date' input type is not supported, so using JQueryUI datepicker instead.",
+          );
+          $('#startdatepicker').datepicker({ dateFormat: 'yy-mm-dd' });
+          $('#enddatepicker').datepicker({ dateFormat: 'yy-mm-dd' });
         }
-      ]
-    };
-  </script>
+      });
+    </script>
 
-  <script src="https://js.arcgis.com/4.28/"></script>
+    <script>
+      var dojoConfig = {
+        async: true,
+        packages: [
+          {
+            name: 'app',
+            location: location.pathname.replace(/\/[^/]*$/, '') + '/js',
+          },
+        ],
+      };
+    </script>
 
-  <script>
-    require(["app/script"], function (script) {
-      script.init();
-    });
-  </script>
-</body>
+    <script src="https://js.arcgis.com/4.28/"></script>
 
+    <script>
+      require(['app/script'], function (script) {
+        script.init();
+      });
+    </script>
+  </body>
 </html>
