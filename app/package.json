@@ -28,7 +28,7 @@
   "license": "ISC",
   "homepage": "https://github.com/Eastern-Research-Group/lew",
   "devDependencies": {
-    "browser-sync": "2.29.3",
+    "browser-sync": "^2.23.7",
     "chai": "4.3.10",
     "husky": "8.0.3",
     "jshint": "2.13.6",
