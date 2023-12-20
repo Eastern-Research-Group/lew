@@ -31,18 +31,18 @@ function buildLeapYearData(data) {
 }
 
 function getDayOfYear(date) {
-  var start = new Date(date.getFullYear(), 0, 0);
-  var diff =
+  const start = new Date(date.getFullYear(), 0, 0);
+  const diff =
     date -
     start +
     (start.getTimezoneOffset() - date.getTimezoneOffset()) * 60 * 1000;
-  var oneDay = 1000 * 60 * 60 * 24;
+  const oneDay = 1000 * 60 * 60 * 24;
   return Math.floor(diff / oneDay);
 }
 
 function getCountyUrl(metadataObj, lat, lon) {
   return new Promise((resolve, reject) => {
-    var options = {
+    const options = {
       method: 'POST',
       url,
       // url: 'https://httpstat.us/400',
@@ -86,7 +86,7 @@ function getCountyUrl(metadataObj, lat, lon) {
           reject(err_json);
           return;
         } else {
-          var results = null;
+          let results = null;
           try {
             results = response.data.result;
           } catch (err) {
@@ -121,7 +121,7 @@ function getCountyUrl(metadataObj, lat, lon) {
             return;
           }
 
-          for (var i = 0, len = results.length; i < len; i++) {
+          for (let i = 0, len = results.length; i < len; i++) {
             if (results[i].name === 'climate') {
               const resultUrl = results[i].value;
               log.debug(
@@ -152,7 +152,7 @@ function getCountyUrl(metadataObj, lat, lon) {
 
 function getClimateData(metadataObj, countyUrl) {
   return new Promise((resolve, reject) => {
-    var options = {
+    const options = {
       method: 'GET',
       url: countyUrl,
       // url: 'https://httpstat.us/402',
@@ -165,7 +165,7 @@ function getClimateData(metadataObj, countyUrl) {
         log.debug('climate data status = ' + response.status);
 
         if (response.status != 200) {
-          var err_json = {
+          const err_json = {
             error_id: 70,
             error_msg: 'Error retrieving county level data.',
           };
@@ -177,11 +177,11 @@ function getClimateData(metadataObj, countyUrl) {
           reject(err_json);
           return;
         } else {
-          var xmlData = response.data;
+          const xmlData = response.data;
           if (XMLValidator.validate(xmlData) === true) {
-            var jsonObj = parser.parse(xmlData);
+            const jsonObj = parser.parse(xmlData);
             // find EI_DAILY_AMOUNT
-            for (var i = 0, len = jsonObj.Obj.Flt.length; i < len; i++) {
+            for (let i = 0, len = jsonObj.Obj.Flt.length; i < len; i++) {
               if (jsonObj.Obj.Flt[i].Name === 'EI_DAILY_AMOUNT') {
                 resolve(jsonObj.Obj.Flt[i].Calc);
                 return;
@@ -192,7 +192,7 @@ function getClimateData(metadataObj, countyUrl) {
       })
       .catch(function (err) {
         if (err) {
-          var err_json = {
+          const err_json = {
             error_id: 71,
             error_msg: 'Climate attribute not found.',
           };
@@ -210,7 +210,7 @@ function getClimateData(metadataObj, countyUrl) {
 function calculateRFactor(metadataObj, EI_DAILY_AMOUNT, start_date, end_date) {
   return new Promise((resolve, reject) => {
     if (!EI_DAILY_AMOUNT) {
-      var err_json = {
+      const err_json = {
         error_id: 80,
         error_msg: '15: Internal Web Service Error. [EI_DAILY_AMOUNT is empty]',
       };
@@ -234,7 +234,7 @@ function calculateRFactor(metadataObj, EI_DAILY_AMOUNT, start_date, end_date) {
     // find number of days the project spans
     // add one day to end date because timestamp is set to midnight for both dates,
     // but want to include end date in count
-    var numProjectDays =
+    const numProjectDays =
       (end_date.getTime() + 1000 * 3600 * 24 - start_date.getTime()) /
       (1000 * 3600 * 24);
     log.debug('numProjectDays = ' + numProjectDays);
@@ -247,15 +247,15 @@ function calculateRFactor(metadataObj, EI_DAILY_AMOUNT, start_date, end_date) {
         rfactor = rfactor + Number(dailyEIdataNormal[p]);
       }
     } else {
-      var startDayOfYear = getDayOfYear(start_date);
-      var endDayOfYear = getDayOfYear(end_date);
+      const startDayOfYear = getDayOfYear(start_date);
+      const endDayOfYear = getDayOfYear(end_date);
 
       if (endDayOfYear > startDayOfYear) {
         log.debug('Project is contained within a year');
 
         // determine whether or not the leap year data is needed for the start year
         let dailyEIdata = dailyEIdataNormal;
-        if(isStartLeapYear || isEndLeapYear) dailyEIdata = dailyEIdataLeapYear;
+        if (isStartLeapYear || isEndLeapYear) dailyEIdata = dailyEIdataLeapYear;
 
         // subtract 1 from startDayOfYear because index on dailyEIdata starts with 0
         for (let p = startDayOfYear - 1; p < endDayOfYear; p++) {
@@ -266,10 +266,10 @@ function calculateRFactor(metadataObj, EI_DAILY_AMOUNT, start_date, end_date) {
 
         // determine whether or not the leap year data is needed for the start year
         let dailyEIdata = dailyEIdataNormal;
-        if(isStartLeapYear) dailyEIdata = dailyEIdataLeapYear;
+        if (isStartLeapYear) dailyEIdata = dailyEIdataLeapYear;
 
         // dayCounter variable ensures all days of project span are counted, even if a leap day is included
-        var dayCounter = 0;
+        let dayCounter = 0;
         // first calculate from start date to 12/31
         // subtract 1 from startDayOfYear because index on dailyEIdata starts with 0
         const numDays = isStartLeapYear ? 366 : 365;
@@ -280,10 +280,10 @@ function calculateRFactor(metadataObj, EI_DAILY_AMOUNT, start_date, end_date) {
         log.debug('dayCounter = ' + dayCounter);
 
         // determine whether or not the leap year data is needed for the end year
-        if(isEndLeapYear) dailyEIdata = dailyEIdataLeapYear;
+        if (isEndLeapYear) dailyEIdata = dailyEIdataLeapYear;
         else dailyEIdata = dailyEIdataNormal;
 
-        var daysRemaining = numProjectDays - dayCounter;
+        const daysRemaining = numProjectDays - dayCounter;
         // then start at 1/1 and go for number of days remaining in project
         log.debug('daysRemaining = ' + daysRemaining);
         for (let p = 0; p < daysRemaining; p++) {
@@ -310,9 +310,9 @@ function calculateRFactor(metadataObj, EI_DAILY_AMOUNT, start_date, end_date) {
   });
 }
 
-var sendResponse = function sendResponse(metadataObj, rfactor, res) {
+const sendResponse = function sendResponse(metadataObj, rfactor, res) {
   return new Promise((resolve, reject) => {
-    var out = { rfactor: Number(rfactor) };
+    const out = { rfactor: Number(rfactor) };
     res.json(out);
     log.info(logger.formatLogMsg(metadataObj, out));
     resolve();
@@ -359,16 +359,16 @@ function populateMetdataObj(request) {
  * Default route
  ***********************************************************************/
 module.exports.calculateRFactor = async (req, res) => {
-  var start_date = null;
-  var end_date = null;
-  var location = null;
+  let start_date = null;
+  let end_date = null;
+  let location = null;
 
   const metadataObj = populateMetdataObj(req);
 
   /********************************************************* 
     Check the existence and then validate api_key or X-Api-User-Id
     *********************************************************/
-  var err_json = null;
+  let err_json = null;
   if (
     (req.hostname !== 'localhost' &&
       req.header('X-Api-User-Id') === undefined) ||
@@ -383,7 +383,7 @@ module.exports.calculateRFactor = async (req, res) => {
     };
     log.warn(logger.formatLogMsg(metadataObj, err_json));
   } else {
-    var api_user_id = req.header('X-Api-User-Id');
+    const api_user_id = req.header('X-Api-User-Id');
     log.debug(logger.formatLogMsg(metadataObj, 'API User ID = ' + api_user_id));
   }
 
@@ -501,9 +501,7 @@ module.exports.calculateRFactor = async (req, res) => {
 
     if (
       !err_json &&
-      (!location ||
-        !location.geometry ||
-        !location.geometry.coordinates ||
+      (!location?.geometry?.coordinates ||
         location.geometry.coordinates.length !== 2)
     ) {
       err_json = {
@@ -525,8 +523,8 @@ module.exports.calculateRFactor = async (req, res) => {
   /***********************************************************************
    *
    ***********************************************************************/
-  var lon = location.geometry.coordinates[0];
-  var lat = location.geometry.coordinates[1];
+  const lon = location.geometry.coordinates[0];
+  const lat = location.geometry.coordinates[1];
 
   try {
     const countyUrl = await getCountyUrl(metadataObj, lat, lon);

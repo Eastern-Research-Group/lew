@@ -1,10 +1,10 @@
 {
   "name": "lew",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Determine low erosivity waiver (LEW) factor",
   "main": "index.html",
   "engines": {
-    "node": "18.x"
+    "node": "20.x"
   },
   "scripts": {
     "start": "npm run start_local_cmd",
@@ -28,27 +28,27 @@
   "license": "ISC",
   "homepage": "https://github.com/Eastern-Research-Group/lew",
   "devDependencies": {
-    "browser-sync": "2.27.10",
-    "chai": "4.3.6",
-    "husky": "8.0.1",
-    "jshint": "2.13.5",
-    "lint-staged": "13.0.3",
-    "mocha": "10.0.0",
-    "nock": "13.2.9",
-    "node-mocks-http": "1.11.0",
-    "nodemon": "2.0.19",
-    "prettier": "2.7.1"
+    "browser-sync": "2.29.3",
+    "chai": "4.3.10",
+    "husky": "8.0.3",
+    "jshint": "2.13.6",
+    "lint-staged": "15.2.0",
+    "mocha": "10.2.0",
+    "nock": "13.4.0",
+    "node-mocks-http": "1.14.0",
+    "nodemon": "3.0.2",
+    "prettier": "3.1.1"
   },
   "dependencies": {
-    "axios": "0.27.2",
+    "axios": "1.6.2",
     "cors": "2.8.5",
     "cross-env": "7.0.3",
-    "express": "4.18.1",
+    "express": "4.18.2",
     "express-basic-auth": "1.2.1",
-    "fast-xml-parser": "4.0.9",
-    "helmet": "5.1.1",
-    "log4js": "6.6.1",
-    "nocache": "3.0.4",
+    "fast-xml-parser": "4.3.2",
+    "helmet": "7.1.0",
+    "log4js": "6.9.1",
+    "nocache": "4.0.0",
     "serve-favicon": "2.5.0"
   },
   "lint-staged": {
