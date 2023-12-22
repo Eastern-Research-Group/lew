@@ -61,14 +61,6 @@ form {
   width: 100%;
 }
 
-#latitude {
-  display: none;
-}
-
-#longitude {
-  display: none;
-}
-
 .form-text {
   margin-top: 0;
 }
@@ -77,10 +69,7 @@ form {
   padding-bottom: 1%;
 }
 #eContainer {
-  display: none;
   background-color: #e4fbff;
-  padding-bottom: 5%;
-  padding-top: 4%;
 }
 tr {
   background-color: white;
@@ -107,59 +96,6 @@ tr {
   font-weight: 400;
   background-color: #eff0f2;
   border-radius: 12px;
-}
-
-#startdatepicker {
-  margin-bottom: 25px;
-}
-
-#enddatepicker {
-  margin-bottom: 25px;
-}
-
-.end-date {
-  text-align: left;
-}
-
-@media only screen and (min-width: 768px) {
-  .end-date {
-    text-align: right;
-  }
-}
-
-#location {
-  padding-right: 4%;
-  margin-top: 20px;
-  max-width: 400px;
-}
-
-#mapViewButton {
-  width: 150px;
-  font-size: 1rem;
-}
-
-#h2Facility {
-  font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', 'Roboto', Arial,
-    sans-serif;
-  font-size: 140%;
-}
-#h3Results {
-  font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', 'Roboto', Arial,
-    sans-serif;
-  font-size: 140%;
-}
-
-#tableEI {
-  font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', 'Roboto', Arial,
-    sans-serif;
-  font-size: 110%;
-  font-weight: 400;
-}
-#contactlink {
-  color: #0071bc;
-}
-.responsivebr {
-  display: none;
 }
 
 .share-links a {
@@ -213,13 +149,10 @@ tr {
   text-decoration: none;
 }
 
-.connect-title__link {
-  margin-left: 35%;
-}
-
 .connecting {
   text-align: right;
 }
+
 .headrow {
   margin-top: 2%;
 }
@@ -240,33 +173,6 @@ tr {
 
   .connect-title__link {
     display: none;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  #mapViewButton {
-    margin-top: 20px;
-    margin-left: 25%;
-  }
-
-  footer .region-footer .row {
-    margin: 0 !important;
-  }
-
-  footer .region-footer .col {
-    padding: 0 1em;
-  }
-}
-
-@media only screen and (max-width: 1000px) {
-  #mapViewButton {
-    margin-top: 20px;
-  }
-}
-
-@media only screen and (max-width: 1050px) {
-  .responsivebr {
-    display: inline-flex;
   }
 }
 
