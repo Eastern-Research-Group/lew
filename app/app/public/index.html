@@ -160,7 +160,6 @@
       })(window, document, 'script', 'dataLayer', 'GTM-L8ZB');
     </script>
     <!-- End Google Tag Manager -->
-
   </head>
   <body class="" id="#top">
     <div
@@ -606,273 +605,255 @@
             </div>
           </div>
 
+          <!--googleon:all-->
           <article class="article">
             <h1 class="page-title">
               Rainfall Erosivity Factor Calculator for Small Construction
             </h1>
             <div class="main-column">
-              <!--googleon:all-->
-              <div>
-                <div>
-                  <p>
-                    EPA’s stormwater regulations allow NPDES permitting
-                    authorities to waive NPDES permitting requirements for
-                    stormwater discharges from small construction sites if:
-                  </p>
+              <p>
+                EPA’s stormwater regulations allow NPDES permitting authorities
+                to waive NPDES permitting requirements for stormwater discharges
+                from small construction sites if:
+              </p>
 
-                  <ul>
-                    <li>
-                      the construction site disturbs less than five acres, and
-                    </li>
-                    <li>
-                      the rainfall erosivity factor (“R” in the revised
-                      universal soil loss equation, or RUSLE) value is less than
-                      five during the period of construction activity.
-                    </li>
-                  </ul>
-                  <p>
-                    If your small construction project is located in an area
-                    where EPA is the permitting authority and your R factor is
-                    less than five, you qualify for a low erosivity waiver (LEW)
-                    from NPDES stormwater permitting. If your small construction
-                    project does not qualify for a waiver, then NPDES stormwater
-                    permit coverage is required. Follow the steps below to
-                    calculate your R-Factor.
-                  </p>
-                  <p>
-                    LEW certifications are submitted through the NPDES
-                    eReporting Tool or “CGP-NeT”. Several states that are
-                    authorized to implement the NPDES permitting program also
-                    accept LEWs. Check with your state NPDES permitting
-                    authority for more information.
-                  </p>
+              <ul>
+                <li>
+                  the construction site disturbs less than five acres, and
+                </li>
+                <li>
+                  the rainfall erosivity factor (“R” in the revised universal
+                  soil loss equation, or RUSLE) value is less than five during
+                  the period of construction activity.
+                </li>
+              </ul>
+              <p>
+                If your small construction project is located in an area where
+                EPA is the permitting authority and your R factor is less than
+                five, you qualify for a low erosivity waiver (LEW) from NPDES
+                stormwater permitting. If your small construction project does
+                not qualify for a waiver, then NPDES stormwater permit coverage
+                is required. Follow the steps below to calculate your R-Factor.
+              </p>
+              <p>
+                LEW certifications are submitted through the NPDES eReporting
+                Tool or “CGP-NeT”. Several states that are authorized to
+                implement the NPDES permitting program also accept LEWs. Check
+                with your state NPDES permitting authority for more information.
+              </p>
 
-                  <ul>
-                    <li>
-                      <a
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        href="https://www.epa.gov/npdes/submitting-notice-intent-noi-notice-termination-not-or-low-erosivity-waiver-lew-under"
-                        >Submit your LEW through EPA’s eReporting Tool
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        href="https://www.epa.gov/system/files/documents/2022-01/2022-cgp-final-appendix-b-areas-of-permit-cover.pdf"
-                        >List of states, Indian country, and territories where
-                        EPA is the permitting authority (pdf)
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        href="https://www.epa.gov/npdes/construction-rainfall-erosivity-waiver-fact-sheet"
-                        >Construction Rainfall Erosivity Waiver Fact Sheet</a
-                      >
-                    </li>
-                    <li>
-                      <a
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        href="https://www.epa.gov/system/files/documents/2022-01/2022-cgp-final-appendix-c-waivers.pdf"
-                        >Small Construction Waivers and Instructions (pdf)</a
-                      >
-                    </li>
-                  </ul>
-
-                  <p>
-                    The R-factor calculation can also be integrated directly
-                    into custom applications using the
-                    <a
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href="/api-docs/"
-                      >R-Factor web service</a
-                    >.
-                  </p>
-
-                  <p>
-                    For questions or comments, email EPA’s CGP staff at
-                    <a href="mailto:cgp@epa.gov">cgp@epa.gov</a>.
-                  </p>
-                </div>
-
-                <noscript>
-                  <div class="alert alert-danger" role="alert">
-                    JavaScript must be enabled to use the Rainfall Erosivity
-                    Factor Calculator.
-                  </div>
-                </noscript>
-
-                <form id="form" style="display: none">
-                  <p class="note">
-                    <span class="fa-stack fa-lg">
-                      <span class="fat fa-circle fa-stack-2x"></span>
-                      <span class="fat fa-inverse fa-stack-1x"
-                        ><span class="number">1</span></span
-                      >
-                    </span>
-                    Select the estimated start and end dates of construction by
-                    clicking the boxes and using the dropdown calendar.
-                  </p>
-
-                  <p class="note">
-                    The period of construction activity begins at initial earth
-                    disturbance and ends with final stabilization.
-                  </p>
-
-                  <div class="grid-row grid-gap-lg" id="date-pickers">
-                    <div class="tablet:grid-col">
-                      <label class="usa-label font-sans-2xs text-bold"
-                        >Start Date:
-                      </label>
-                      <input
-                        type="date"
-                        class="border border-gray-30 radius-md usa-input"
-                        id="startdatepicker"
-                        placeholder="YYYY-MM-DD"
-                      />
-                    </div>
-                    <div class="tablet:grid-col"></div>
-                    <div id="end-div" class="end-date tablet:grid-col">
-                      <label
-                        class="usa-label font-sans-2xs text-bold"
-                        for="enddatepicker"
-                        >End Date:
-                      </label>
-                      <input
-                        type="date"
-                        class="border border-gray-30 radius-md usa-input"
-                        id="enddatepicker"
-                        placeholder="YYYY-MM-DD"
-                      /><br />
-                    </div>
-                  </div>
-
-                  <p class="note">
-                    <span class="fa-stack fa-lg">
-                      <span class="fat fa-circle fa-stack-2x"></span>
-                      <span class="fat fa-inverse fa-stack-1x"
-                        ><span class="number">2</span></span
-                      >
-                    </span>
-                    Locate your small construction project using the search box
-                    below or by clicking on the map.
-                  </p>
-
-                  <div
-                    class="grid-row grid-gap-lg flex-align-end"
-                    id="location-search"
+              <ul>
+                <li>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://www.epa.gov/npdes/submitting-notice-intent-noi-notice-termination-not-or-low-erosivity-waiver-lew-under"
+                    >Submit your LEW through EPA’s eReporting Tool
+                  </a>
+                </li>
+                <li>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://www.epa.gov/system/files/documents/2022-01/2022-cgp-final-appendix-b-areas-of-permit-cover.pdf"
+                    >List of states, Indian country, and territories where EPA
+                    is the permitting authority (pdf)
+                  </a>
+                </li>
+                <li>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://www.epa.gov/npdes/construction-rainfall-erosivity-waiver-fact-sheet"
+                    >Construction Rainfall Erosivity Waiver Fact Sheet</a
                   >
-                    <div class="tablet:grid-col margin-bottom-2">
-                      <label
-                        class="usa-label font-sans-2xs text-bold"
-                        for="location"
-                        >Location:</label
-                      >
-                      <input
-                        class="border border-gray-30 radius-md usa-input"
-                        type="text"
-                        id="location"
-                        placeholder="Enter address or latitude/longitude"
-                      />
-                    </div>
-                    <div class="tablet:grid-col margin-bottom-2">
-                      <button
-                        id="mapViewButton"
-                        class="usa-button"
-                        type="button"
-                      >
-                        Search
-                      </button>
+                </li>
+                <li>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://www.epa.gov/system/files/documents/2022-01/2022-cgp-final-appendix-c-waivers.pdf"
+                    >Small Construction Waivers and Instructions (pdf)</a
+                  >
+                </li>
+              </ul>
 
-                      <span
-                        id="location-error"
-                        style="color: red; display: none"
-                        >Invalid Location</span
-                      >
-                    </div>
-                  </div>
+              <p>
+                The R-factor calculation can also be integrated directly into
+                custom applications using the
+                <a target="_blank" rel="noopener noreferrer" href="/api-docs/"
+                  >R-Factor web service</a
+                >.
+              </p>
 
-                  <div class="viewDiv" id="viewDiv"></div>
-                  <br />
+              <p>
+                For questions or comments, email EPA’s CGP staff at
+                <a href="mailto:cgp@epa.gov">cgp@epa.gov</a>.
+              </p>
 
-                  <p class="note">
-                    <span class="fa-stack fa-lg">
-                      <span class="fat fa-circle fa-stack-2x"></span>
-                      <span class="fat fa-inverse fa-stack-1x"
-                        ><span class="number">3</span></span
-                      >
-                    </span>
-                    Click the "Calculate R Factor" button below to calculate an
-                    R Factor for your small construction project.
-                  </p>
-                  <div class="rfactor-button-container">
-                    <button
-                      class="usa-button"
-                      type="submit"
-                      id="rButton"
-                      type="button"
-                    >
-                      Calculate R Factor
-                    </button>
-                  </div>
-                </form>
-
-                <div id="loader" style="display: none">
-                  <div class="loader"></div>
-                  <p class="loading-text">Loading...</p>
+              <noscript>
+                <div class="alert alert-danger" role="alert">
+                  JavaScript must be enabled to use the Rainfall Erosivity
+                  Factor Calculator.
                 </div>
-                <p id="errorMessage" class="error-message">
-                  There was an error with your query.
+              </noscript>
+
+              <form id="form" class="display-none">
+                <p class="note">
+                  <span class="fa-stack fa-lg">
+                    <span class="fat fa-circle fa-stack-2x"></span>
+                    <span class="fat fa-inverse fa-stack-1x"
+                      ><span class="number">1</span></span
+                    >
+                  </span>
+                  Select the estimated start and end dates of construction by
+                  clicking the boxes and using the dropdown calendar.
                 </p>
-                <div class="padding-2" id="eContainer" style="display: none">
-                  <h3>Facility Information</h2>
-                    <div class="grid-container">
-                      <div class="grid-row bg-white">
-                        <div class="grid-col border border-gray-10 padding-1">
-                          <strong>Start Date:</strong>
-                          <span
-                            id="startDateSpan"
-                          ></span>
-                        </div>
-                        <div class="grid-col border border-gray-10 padding-1">
-                        <strong>Latitude:</strong>
-                          <span
-                            id="latitudeSpan"
-                          ></span>
-                        </div>
-                      </div>
-                      <div class="grid-row bg-white">
-                        <div class="grid-col border border-gray-10 padding-1">
-                          <strong>End Date:</strong>
-                          <span
-                            id="endDateSpan"
-                          ></span>
-                        </div>
-                        <div class="grid-col border border-gray-10 padding-1">
-                          <strong>Longitude:</strong>
-                          <span
-                            id="longitudeSpan"
-                          ></span>
-                        </div>
-                      </div>
-                    </div>
-                  <h3>Calculation Results</h3>
-                  <h4>
-                    Rainfall erosivity factor (R Factor) =
-                    <span
-                      id="eiValue"
-                      style="color: #d44600; font-weight: bold"
-                    >
-                    </span>
-                  </h4>
-                  <p id="conclusion"></p>
-                  <p id="conclusion2" style="font-weight: bold"></p>
+
+                <p class="note">
+                  The period of construction activity begins at initial earth
+                  disturbance and ends with final stabilization.
+                </p>
+
+                <div class="grid-row grid-gap-lg" id="date-pickers">
+                  <div class="tablet:grid-col">
+                    <label class="usa-label font-sans-2xs text-bold"
+                      >Start Date:
+                    </label>
+                    <input
+                      type="date"
+                      class="border border-gray-30 radius-md usa-input"
+                      id="startdatepicker"
+                      placeholder="YYYY-MM-DD"
+                    />
+                  </div>
+                  <div class="tablet:grid-col"></div>
+                  <div id="end-div" class="end-date tablet:grid-col">
+                    <label
+                      class="usa-label font-sans-2xs text-bold"
+                      for="enddatepicker"
+                      >End Date:
+                    </label>
+                    <input
+                      type="date"
+                      class="border border-gray-30 radius-md usa-input"
+                      id="enddatepicker"
+                      placeholder="YYYY-MM-DD"
+                    /><br />
+                  </div>
                 </div>
+
+                <p class="note">
+                  <span class="fa-stack fa-lg">
+                    <span class="fat fa-circle fa-stack-2x"></span>
+                    <span class="fat fa-inverse fa-stack-1x"
+                      ><span class="number">2</span></span
+                    >
+                  </span>
+                  Locate your small construction project using the search box
+                  below or by clicking on the map.
+                </p>
+
+                <div
+                  class="grid-row grid-gap-lg flex-align-end"
+                  id="location-search"
+                >
+                  <div class="tablet:grid-col margin-bottom-2">
+                    <label
+                      class="usa-label font-sans-2xs text-bold"
+                      for="location"
+                      >Location:</label
+                    >
+                    <input
+                      class="border border-gray-30 radius-md usa-input"
+                      type="text"
+                      id="location"
+                      placeholder="Enter address or latitude/longitude"
+                    />
+                  </div>
+                  <div class="tablet:grid-col margin-bottom-2">
+                    <button id="mapViewButton" class="usa-button" type="button">
+                      Search
+                    </button>
+
+                    <span
+                      id="location-error"
+                      class="display-none text-secondary-vivid"
+                      >Invalid Location</span
+                    >
+                  </div>
+                </div>
+
+                <div class="margin-0 padding-0 width-full" id="viewDiv"></div>
+                <br />
+
+                <p class="note">
+                  <span class="fa-stack fa-lg">
+                    <span class="fat fa-circle fa-stack-2x"></span>
+                    <span class="fat fa-inverse fa-stack-1x"
+                      ><span class="number">3</span></span
+                    >
+                  </span>
+                  Click the "Calculate R Factor" button below to calculate an R
+                  Factor for your small construction project.
+                </p>
+                <div class="width-full margin-y-3">
+                  <button
+                    class="usa-button display-block margin-x-auto"
+                    type="submit"
+                    id="rButton"
+                    type="button"
+                  >
+                    Calculate R Factor
+                  </button>
+                </div>
+              </form>
+
+              <div id="loader" class="display-none">
+                <div class="loader"></div>
+                <p class="text-bold text-center">Loading...</p>
+              </div>
+              <p
+                id="errorMessage"
+                class="display-none text-center text-secondary-dark"
+              >
+                There was an error with your query.
+              </p>
+              <div
+                class="display-none padding-2 bg-accent-cool-lighter"
+                id="eContainer"
+              >
+                <h3>Facility Information</h3>
+                <div class="grid-container">
+                  <div class="grid-row bg-white">
+                    <div class="grid-col border border-gray-10 padding-1">
+                      <strong>Start Date:</strong>
+                      <span id="startDateSpan"></span>
+                    </div>
+                    <div class="grid-col border border-gray-10 padding-1">
+                      <strong>Latitude:</strong>
+                      <span id="latitudeSpan"></span>
+                    </div>
+                  </div>
+                  <div class="grid-row bg-white">
+                    <div class="grid-col border border-gray-10 padding-1">
+                      <strong>End Date:</strong>
+                      <span id="endDateSpan"></span>
+                    </div>
+                    <div class="grid-col border border-gray-10 padding-1">
+                      <strong>Longitude:</strong>
+                      <span id="longitudeSpan"></span>
+                    </div>
+                  </div>
+                </div>
+                <h3>Calculation Results</h3>
+                <h4>
+                  Rainfall erosivity factor (R Factor) =
+                  <span id="eiValue" style="color: #d44600; font-weight: bold">
+                  </span>
+                </h4>
+                <p id="conclusion"></p>
+                <p id="conclusion2" style="font-weight: bold"></p>
               </div>
             </div>
           </article>
@@ -1135,47 +1116,6 @@
     <script src="./js/epa-common.min.js"></script>
     <script src="./js/epa-scripts.min.js"></script>
 
-    <script>
-      /*!
-       * scriptLoader - v0.1
-       *
-       * Copyright (c) 2014 Dave Olsen, http://dmolsen.com
-       * Licensed under the MIT license
-       *
-       */
-
-      var scriptLoader = {
-        run: function (js, cb, target) {
-          var s = document.getElementById(target + '-' + cb);
-          for (var i = 0; i < js.length; i++) {
-            var src = typeof js[i] != 'string' ? js[i].src : js[i];
-            var c = document.createElement('script');
-            c.src = '../../' + src + '?' + cb;
-            if (typeof js[i] != 'string') {
-              if (js[i].dep !== undefined) {
-                c.onload = (function (dep, cb, target) {
-                  return function () {
-                    scriptLoader.run(dep, cb, target);
-                  };
-                })(js[i].dep, cb, target);
-              }
-            }
-            s.parentNode.insertBefore(c, s);
-          }
-        },
-      };
-    </script>
-
-    <script id="pl-js-polyfill-insert-1700255845140">
-      (function () {
-        if (self != top) {
-          var cb = '1700255845140';
-          var js = [];
-          scriptLoader.run(js, cb, 'pl-js-polyfill-insert');
-        }
-      })();
-    </script>
-
     <!-- Application scripts -->
     <script
       src="https://code.jquery.com/jquery-3.5.1.min.js"
@@ -1217,6 +1157,10 @@
       }
       .site-logo__svg {
         fill: #fff;
+      }
+
+      #viewDiv {
+        height: 500px;
       }
     </style>
   </body>

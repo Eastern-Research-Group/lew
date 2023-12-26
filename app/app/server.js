@@ -101,11 +101,11 @@ require('./server/routes/index')(app);
  Worse case error handling for 404 and 500 issues
 ****************************************************************/
 app.use(function (req, res, next) {
-  res.sendFile(path.join(__dirname, 'public', '404.html'));
+  res.status(404).sendFile(path.join(__dirname, 'public', '400.html'));
 });
 
 app.use(function (err, req, res, next) {
-  res.sendFile(path.join(__dirname, 'public', '500.html'));
+  res.status(500).sendFile(path.join(__dirname, 'public', '500.html'));
 });
 
 //For local testing of the production flow, use the same port as browersync to avoid
