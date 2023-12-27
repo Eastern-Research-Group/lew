@@ -111,21 +111,14 @@
 }
 
 .note {
+  align-items: center;
+  display: flex;
   padding-left: 5px;
   padding-bottom: 0;
   margin-bottom: 10px;
   font-weight: 400;
   background-color: #eff0f2;
   border-radius: 12px;
-}
-
-.number {
-  font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', 'Roboto',
-    'Arial', sans-serif;
-  font-size: 33px;
-  top: 6px;
-  right: 14px;
-  position: absolute;
 }
 
 .share-links a {

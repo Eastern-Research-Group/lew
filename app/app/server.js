@@ -98,7 +98,7 @@ app.options('*', cors());
 require('./server/routes/index')(app);
 
 /****************************************************************
- Worse case error handling for 404 and 500 issues
+ Worst case error handling for 404 and 500 issues
 ****************************************************************/
 app.use(function (req, res, next) {
   res.status(404).sendFile(path.join(__dirname, 'public', '400.html'));

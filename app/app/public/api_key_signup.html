@@ -841,13 +841,41 @@
       </div>
     </footer>
 
-    <a href="#" class="back-to-top" title="">
+    <a href="#" class="back-to-top" title="Back to top" aria-hidden="true">
       <svg class="back-to-top__icon" role="img" aria-label="">
         <use href="./images/sprite.artifact.svg#angle"></use>
       </svg>
     </a>
     <script src="./js/epa-common.min.js"></script>
     <script src="./js/epa-scripts.min.js"></script>
+
+    <!-- Conditionally show the 'back to top' button. -->
+    <script>
+      window.addEventListener('load', () => {
+        const observer = new IntersectionObserver(
+          (entries, observer) => {
+            const backToTop = document.querySelector('.back-to-top');
+            if (!backToTop) return;
+
+            let headerVisible = false;
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                headerVisible = true;
+              }
+            });
+            backToTop.ariaHidden = headerVisible;
+          },
+          {
+            root: null,
+            rootMargin: '0px',
+          },
+        );
+        const lastHeader = Array.from(
+          document.querySelectorAll('header'),
+        ).pop();
+        if (lastHeader) observer.observe(lastHeader);
+      });
+    </script>
 
     <style>
       .menu--main .menu__link,
