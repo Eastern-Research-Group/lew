@@ -112,13 +112,13 @@
 
 .note {
   align-items: center;
-  display: flex;
-  padding-left: 5px;
-  padding-bottom: 0;
-  margin-bottom: 10px;
-  font-weight: 400;
   background-color: #eff0f2;
   border-radius: 12px;
+  display: flex;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 10px;
+  padding: 0.25em;
 }
 
 .share-links a {
