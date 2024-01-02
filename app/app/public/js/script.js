@@ -209,10 +209,10 @@ define(['app/esriMap'], function (esriMap) {
             data.rfactor = 'Unknown';
           }
           $('#eiValue').html(data.rfactor.toString());
-          $('#tableEndSpan').html(newendDate);
-          $('#tableStartSpan').html(newStartDate);
-          $('#tableLatitudeSpan').html(coordyfixed);
-          $('#tableLongitudeSpan').html(coordxfixed);
+          $('#endDateSpan').html(newendDate);
+          $('#startDateSpan').html(newStartDate);
+          $('#latitudeSpan').html(coordyfixed);
+          $('#longitudeSpan').html(coordxfixed);
           if (data.rfactor > 5) {
             $('#conclusion').html(
               "A rainfall erosivity factor of 5.0 or greater has been calculated for your site's period of construction.",
