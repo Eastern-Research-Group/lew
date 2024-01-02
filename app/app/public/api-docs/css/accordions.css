@@ -29,10 +29,10 @@
   color: #212121;
 }
 .js .accordion-title {
-  background-image: url(../img/plus.svg);
+  background-image: url(https://www.epa.gov/sites/all/themes/epa/img/svg/plus.svg);
 }
 .js .accordion-title.is-active {
-  background-image: url(../img/minus.svg);
+  background-image: url(https://www.epa.gov/sites/all/themes/epa/img/svg/minus.svg);
 }
 
 .accordion-pane {

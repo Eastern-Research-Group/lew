@@ -8,7 +8,7 @@ define(['app/esriMap'], function (esriMap) {
 
     // if browser is ie11, fix the responsiveness of the datepicker inputs
     if (!!window.MSInputMethodContext && !!document.documentMode) {
-      const element = document.getElementById('responsivebr');
+      var element = document.getElementById('responsivebr');
       element.classList.remove('responsivebr');
       document.getElementById('end-div').style.textAlign = 'left';
     }
@@ -44,10 +44,8 @@ define(['app/esriMap'], function (esriMap) {
     function eventListenerGetCoords(event) {
       event.preventDefault();
       // get the coordinates and add a point to the map based on search box value
-      getCoords(function () {
-        /* This is intentional */
-      });
-    }
+      getCoords(function () { /* This is intentional */ });
+    } 
 
     // view on map button listener
     document
@@ -171,7 +169,7 @@ define(['app/esriMap'], function (esriMap) {
         let endday = endDate.slice(8);
         let newendDate = endmonth + '/' + endday + '/' + endyear;
 
-        let api = null;
+        var api = null;
         if (window.location.host.toLowerCase().startsWith('localhost')) {
           api = 'http://localhost:' + window.location.port + '/v1/rfactor';
         } else if (

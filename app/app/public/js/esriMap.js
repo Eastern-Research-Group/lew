@@ -3,13 +3,18 @@ define([
   'esri/views/MapView',
   'esri/Graphic',
   'esri/geometry/Point',
-], function (EsriMap, MapView, Graphic, Point) {
+], function (
+  Map,
+  MapView,
+  Graphic,
+  Point,
+) {
   let map = null;
   let view = null;
 
   function init() {
     // Create the Map with an initial basemap
-    map = new EsriMap({
+    map = new Map({
       basemap: 'topo-vector',
     });
     // Create the MapView and reference the Map in the instance
@@ -29,7 +34,7 @@ define([
       // hide location search error message
       document.getElementById('location-error').style.display = 'none';
 
-      const markerSymbol = {
+      var markerSymbol = {
         type: 'simple-marker', // autocasts as new SimpleMarkerSymbol()
         color: [226, 119, 40],
         outline: {
@@ -40,7 +45,7 @@ define([
       };
 
       // Create a graphic and add the geometry and symbol to it
-      const pointGraphic = new Graphic({
+      var pointGraphic = new Graphic({
         geometry: evt.mapPoint,
         symbol: markerSymbol,
       });
@@ -62,7 +67,7 @@ define([
     const point = new Point({ x: longitude, y: latitude });
 
     // Create a symbol for drawing the point
-    const markerSymbol = {
+    var markerSymbol = {
       type: 'simple-marker', // autocasts as new SimpleMarkerSymbol()
       color: [226, 119, 40],
       outline: {

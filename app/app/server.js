@@ -1,10 +1,10 @@
 const express = require('express');
 const helmet = require('helmet');
 const noCache = require('nocache');
-const cors = require('cors');
-const favicon = require('serve-favicon');
+var cors = require('cors');
+var favicon = require('serve-favicon');
 const basicAuth = require('express-basic-auth');
-const path = require('path');
+var path = require('path');
 const logger = require('./server/utilities/logger.js');
 
 const app = express();
@@ -21,16 +21,16 @@ app.use(
   }),
 );
 app.use(cors());
-const log = logger.logger;
-let port = process.env.PORT || 9090;
+var log = logger.logger;
+var port = process.env.PORT || 9090;
 const browserSync_port = 9091;
 
 /****************************************************************
  Which environment
 ****************************************************************/
-let isLocal = false;
-let isDevelopment = false;
-let isStaging = false;
+var isLocal = false;
+var isDevelopment = false;
+var isStaging = false;
 
 if (process.env.NODE_ENV) {
   isLocal = 'local' === process.env.NODE_ENV.toLowerCase();
@@ -57,7 +57,7 @@ if (isDevelopment || isStaging) {
     );
   }
 
-  const user_json =
+  var user_json =
     '{"' +
     process.env.LEW_BASIC_AUTH_USER_NAME +
     '" : "' +
