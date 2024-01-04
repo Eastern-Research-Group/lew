@@ -143,6 +143,12 @@
       [tabindex='-1']:focus {
         outline: none !important;
       }
+
+      .lew-h2 {
+        font-size: 1.34rem;
+        font-weight: 700;
+        line-height: 1.2;
+      }
     </style>
     <!-- End application styles -->
 
@@ -611,6 +617,7 @@
               Rainfall Erosivity Factor Calculator for Small Construction
             </h1>
             <div class="main-column">
+              <h2 class="lew-h2">Introduction</h2>
               <p>
                 EPA’s stormwater regulations allow NPDES permitting authorities
                 to waive NPDES permitting requirements for stormwater discharges
@@ -686,11 +693,6 @@
                 >.
               </p>
 
-              <p>
-                For questions or comments, email EPA’s CGP staff at
-                <a href="mailto:cgp@epa.gov">cgp@epa.gov</a>.
-              </p>
-
               <noscript>
                 <div class="alert alert-danger" role="alert">
                   JavaScript must be enabled to use the Rainfall Erosivity
@@ -699,18 +701,19 @@
               </noscript>
 
               <form id="form" class="display-none">
+                <h2 class="lew-h2">
+                  Steps to Calculate an R Factor for your Small Construction
+                  Project
+                </h2>
                 <p class="note">
                   <span
                     class="usa-step-indicator__current-step display-flex flex-align-center flex-justify-center font-mono-lg margin-right-1"
                     >1</span
                   >
                   Select the estimated start and end dates of construction by
-                  clicking the boxes and using the dropdown calendar.
-                </p>
-
-                <p class="note padding-1">
-                  The period of construction activity begins at initial earth
-                  disturbance and ends with final stabilization.
+                  clicking the calendar icons below and using the dropdown
+                  calendar. The period of construction activity begins at
+                  initial earth disturbance and ends with final stabilization.
                 </p>
 
                 <div class="grid-row grid-gap-lg" id="date-pickers">
@@ -746,8 +749,8 @@
                     class="usa-step-indicator__current-step display-flex flex-align-center flex-justify-center font-mono-lg margin-right-1"
                     >2</span
                   >
-                  Locate your small construction project using the search box
-                  below or by clicking on the map.
+                  Locate your small construction project by entering the address
+                  in the search box or by clicking on the map.
                 </p>
 
                 <div
@@ -788,8 +791,7 @@
                     class="usa-step-indicator__current-step display-flex flex-align-center flex-justify-center font-mono-lg margin-right-1"
                     >3</span
                   >
-                  Click the "Calculate R Factor" button below to calculate an R
-                  Factor for your small construction project.
+                  Click the "Calculate R Factor" button below.
                 </p>
                 <div class="width-full margin-y-3">
                   <button
@@ -851,6 +853,11 @@
                 <p id="conclusion"></p>
                 <p id="conclusion2" style="font-weight: bold"></p>
               </div>
+
+              <p>
+                For questions or comments, email EPA’s CGP staff at
+                <a href="mailto:cgp@epa.gov">cgp@epa.gov</a>.
+              </p>
             </div>
           </article>
         </div>
