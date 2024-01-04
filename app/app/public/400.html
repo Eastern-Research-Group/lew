@@ -453,7 +453,7 @@
               Menu
             </button>
           </div>
-          <div class="l-header__search" id="header-search-drawer">
+          <div class="l-header__search" id="header-search-drawer" hidden="true">
             <form
               class="usa-search usa-search--small usa-search--epa"
               method="get"
@@ -838,6 +838,25 @@
     <script src="./js/once.min.js"></script>
     <script src="./js/epa-common.min.js"></script>
     <script src="./js/epa-scripts.min.js"></script>
+    <!-- EPA template script overrides-->
+    <script>
+      const searchButton = document.querySelector(
+        "[aria-controls='header-search-drawer']",
+      );
+      if (searchButton) {
+        searchButton.addEventListener('click', () => {
+          const expanded = searchButton.ariaExpanded === 'true';
+          searchButton.ariaExpanded = !expanded;
+          const drawer = document.querySelector('#header-search-drawer');
+          if (expanded) {
+            drawer.setAttribute('hidden', true);
+          } else {
+            drawer.removeAttribute('hidden');
+          }
+        });
+      }
+    </script>
+    <!-- End EPA template script overrides-->
 
     <style>
       .menu--main .menu__link,
