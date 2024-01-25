@@ -1,16 +1,17 @@
 const express = require('express');
 const helmet = require('helmet');
 const noCache = require('nocache');
-var cors = require('cors');
-var favicon = require('serve-favicon');
+const cors = require('cors');
+const favicon = require('serve-favicon');
 const basicAuth = require('express-basic-auth');
-var path = require('path');
+const path = require('path');
 const logger = require('./server/utilities/logger.js');
 
 const app = express();
 app.use(
   helmet({
     contentSecurityPolicy: false,
+    crossOriginEmbedderPolicy: false,
   }),
 );
 app.use(noCache());
@@ -20,16 +21,16 @@ app.use(
   }),
 );
 app.use(cors());
-var log = logger.logger;
-var port = process.env.PORT || 9090;
+const log = logger.logger;
+let port = process.env.PORT || 9090;
 const browserSync_port = 9091;
 
 /****************************************************************
  Which environment
 ****************************************************************/
-var isLocal = false;
-var isDevelopment = false;
-var isStaging = false;
+let isLocal = false;
+let isDevelopment = false;
+let isStaging = false;
 
 if (process.env.NODE_ENV) {
   isLocal = 'local' === process.env.NODE_ENV.toLowerCase();
@@ -56,7 +57,7 @@ if (isDevelopment || isStaging) {
     );
   }
 
-  var user_json =
+  const user_json =
     '{"' +
     process.env.LEW_BASIC_AUTH_USER_NAME +
     '" : "' +
@@ -97,14 +98,14 @@ app.options('*', cors());
 require('./server/routes/index')(app);
 
 /****************************************************************
- Worse case error handling for 404 and 500 issues
+ Worst case error handling for 404 and 500 issues
 ****************************************************************/
 app.use(function (req, res, next) {
-  res.sendFile(path.join(__dirname, 'public', '404.html'));
+  res.status(404).sendFile(path.join(__dirname, 'public', '400.html'));
 });
 
 app.use(function (err, req, res, next) {
-  res.sendFile(path.join(__dirname, 'public', '500.html'));
+  res.status(500).sendFile(path.join(__dirname, 'public', '500.html'));
 });
 
 //For local testing of the production flow, use the same port as browersync to avoid

@@ -8,7 +8,7 @@
   ],
   "info": {
     "description": "Use this web service to calculate a rainfall erosivity factor (R factor) for small construction sites based on the construction start date, end date and location.\n  \n  If the small construction project is located in an area where EPA is the permitting authority and the R factor is less than five, then under EPA's stormwater regulation, NPDES permitting requirements can be waived for the stormwater discharges from the construction site. \n",
-    "version": "2.0.0",
+    "version": "2.3.0",
     "title": "EPA Low Erosivity Waiver Erosion Factor Calculator",
     "termsOfService": "https://edg.epa.gov/EPA_Data_License.html",
     "contact": {
@@ -84,8 +84,8 @@
           }
         }
       }
-   },
-   "/v1/health": {
+    },
+    "/v1/health": {
       "get": {
         "tags": ["Rainfall Erosivity"],
         "summary": "Healthcheck",

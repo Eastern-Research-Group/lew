@@ -1,41 +1,42 @@
-var log4js = require("log4js");
+const log4js = require('log4js');
 
 log4js.configure({
   appenders: {
-    stdout: { type: "stdout", layout: { type: "pattern", pattern: "%p - %m" } },
+    stdout: { type: 'stdout', layout: { type: 'pattern', pattern: '%p - %m' } },
     stdoutFilter: {
-      type: "logLevelFilter",
-      appender: "stdout",
-      level: "TRACE",
-      maxLevel: "WARN"
+      type: 'logLevelFilter',
+      appender: 'stdout',
+      level: 'TRACE',
+      maxLevel: 'WARN',
     },
-    stderr: { type: "stderr", layout: { type: "pattern", pattern: "%p - %m" } },
+    stderr: { type: 'stderr', layout: { type: 'pattern', pattern: '%p - %m' } },
     stderrFilter: {
-      type: "logLevelFilter",
-      appender: "stderr",
-      level: "ERROR",
-      maxLevel: "FATAL"
-    }
+      type: 'logLevelFilter',
+      appender: 'stderr',
+      level: 'ERROR',
+      maxLevel: 'FATAL',
+    },
   },
   categories: {
-    default: { appenders: ["stderrFilter", "stdoutFilter"], level: "all" }
-  }
+    default: { appenders: ['stderrFilter', 'stdoutFilter'], level: 'all' },
+  },
 });
 
-var logger = log4js.getLogger();
+const logger = log4js.getLogger();
 
-if (process.env.LOGGER_LEVEL) logger.level = process.env.LOGGER_LEVEL.toUpperCase();
-else logger.level = "INFO"; //default level
+if (process.env.LOGGER_LEVEL)
+  logger.level = process.env.LOGGER_LEVEL.toUpperCase();
+else logger.level = 'INFO'; //default level
 
-logger.info("LOGGER_LEVEL = " + logger.level);
+logger.info('LOGGER_LEVEL = ' + logger.level);
 
-var getLogger = function() {
+const getLogger = function () {
   return logger;
 };
 
 //We use this function to format most of the error messages to
 //work well (support the review) with Cloud.gov (Kibana)
-exports.formatLogMsg = function(app_metadata, app_message, app_otherinfo) {
+exports.formatLogMsg = function (app_metadata, app_message, app_otherinfo) {
   let rtn_obj = { app_metadata: null, app_message: null, app_otherinfo: null };
 
   if (app_metadata != null) rtn_obj.app_metadata = app_metadata;

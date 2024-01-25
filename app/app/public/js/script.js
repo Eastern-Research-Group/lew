@@ -8,7 +8,7 @@ define(['app/esriMap'], function (esriMap) {
 
     // if browser is ie11, fix the responsiveness of the datepicker inputs
     if (!!window.MSInputMethodContext && !!document.documentMode) {
-      var element = document.getElementById('responsivebr');
+      const element = document.getElementById('responsivebr');
       element.classList.remove('responsivebr');
       document.getElementById('end-div').style.textAlign = 'left';
     }
@@ -41,23 +41,23 @@ define(['app/esriMap'], function (esriMap) {
     // initialize map
     esriMap.init('viewDiv');
 
+    function eventListenerGetCoords(event) {
+      event.preventDefault();
+      // get the coordinates and add a point to the map based on search box value
+      getCoords(function () {
+        /* This is intentional */
+      });
+    }
+
     // view on map button listener
     document
       .getElementById('mapViewButton')
-      .addEventListener('click', function (event) {
-        event.preventDefault();
-        // get the coordinates and add a point to the map based on search box value
-        getCoords(function () {});
-      });
+      .addEventListener('click', eventListenerGetCoords);
 
     // form Listener
     document
       .getElementById('form')
-      .addEventListener('submit', function (event) {
-        event.preventDefault();
-        // get the coordinates and add a point to the map based on search box value
-        getCoords(function () {});
-      });
+      .addEventListener('submit', eventListenerGetCoords);
 
     function getCoords(_callback) {
       // hide error message
@@ -171,7 +171,7 @@ define(['app/esriMap'], function (esriMap) {
         let endday = endDate.slice(8);
         let newendDate = endmonth + '/' + endday + '/' + endyear;
 
-        var api = null;
+        let api = null;
         if (window.location.host.toLowerCase().startsWith('localhost')) {
           api = 'http://localhost:' + window.location.port + '/v1/rfactor';
         } else if (
@@ -209,17 +209,17 @@ define(['app/esriMap'], function (esriMap) {
             data.rfactor = 'Unknown';
           }
           $('#eiValue').html(data.rfactor.toString());
-          $('#tableEndSpan').html(newendDate);
-          $('#tableStartSpan').html(newStartDate);
-          $('#tableLatitudeSpan').html(coordyfixed);
-          $('#tableLongitudeSpan').html(coordxfixed);
+          $('#endDateSpan').html(newendDate);
+          $('#startDateSpan').html(newStartDate);
+          $('#latitudeSpan').html(coordyfixed);
+          $('#longitudeSpan').html(coordxfixed);
           if (data.rfactor > 5) {
             $('#conclusion').html(
               "A rainfall erosivity factor of 5.0 or greater has been calculated for your site's period of construction.",
             );
             $('#conclusion2').html(
               'You do NOT qualify for a waiver from NPDES permitting requirements and must seek Construction General Permit (CGP) coverage. ' +
-                '<span style="font-weight: normal">If you are located in an <a target="_blank" rel="noopener noreferrer"  href="https://www.epa.gov/sites/production/files/2017-03/documents/2017_cgp_final_appendix_b_-_areas_of_permit_coverage_508.pdf">area where EPA is the permitting authority</a>, ' +
+                '<span style="font-weight: normal">If you are located in an <a target="_blank" rel="noopener noreferrer"  href="https://www.epa.gov/system/files/documents/2022-01/2022-cgp-final-appendix-b-areas-of-permit-cover.pdf">area where EPA is the permitting authority (pdf)</a>, ' +
                 'you must submit a Notice of Intent (NOI) through the <a target="_blank" rel="noopener noreferrer"  href="https://www.epa.gov/npdes/submitting-notice-intent-noi-notice-termination-not-or-low-erosivity-waiver-lew-under">NPDES eReporting Tool (NeT)</a>.' +
                 'Otherwise, you must seek coverage under your state’s CGP.</span>',
             );
@@ -227,7 +227,7 @@ define(['app/esriMap'], function (esriMap) {
             $('#conclusion').html(
               'A rainfall erosivity factor of less than 5.0 has been calculated for your site and period of construction. ' +
                 'If you are located in an ' +
-                '<a target="_blank" rel="noopener noreferrer"  href="https://www.epa.gov/sites/production/files/2017-03/documents/2017_cgp_final_appendix_b_-_areas_of_permit_coverage_508.pdf">area where EPA is the permitting authority</a>, ' +
+                '<a target="_blank" rel="noopener noreferrer"  href="https://www.epa.gov/system/files/documents/2022-01/2022-cgp-final-appendix-b-areas-of-permit-cover.pdf">area where EPA is the permitting authority (pdf)</a>, ' +
                 'you can submit a LEW through EPA’s  <a target="_blank" rel="noopener noreferrer"  href="https://www.epa.gov/npdes/submitting-notice-intent-noi-notice-termination-not-or-low-erosivity-waiver-lew-under">NPDES eReporting Tool (NeT)</a>. ' +
                 'Otherwise, contact your state permitting authority to determine if you are eligible for a waiver from NPDES permitting requirements. ' +
                 '<br /><br />' +

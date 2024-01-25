@@ -1,553 +1,1196 @@
-<!DOCTYPE html>
+<!doctype html>
 <html class="js" lang="en" dir="ltr">
+  <head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta charset="utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="MobileOptimized" content="width" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rainfall Erosivity Factor Calculator | US EPA</title>
 
-<head>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta charset="utf-8" />
-  <meta http-equiv="ImageToolbar" content="false" />
-  <meta http-equiv="cleartype" content="on" />
-  <meta name="HandheldFriendly" content="true" />
-  <link rel="shortcut icon" href="https://www.epa.gov/sites/all/themes/epa/favicon.ico"
-    type="image/vnd.microsoft.icon" />
-  <meta name="MobileOptimized" content="width" />
-  <meta name="viewport" content="width=device-width" />
-  <!--googleon: all-->
-  <meta name="description"
-    content="The Rainfall Erosivity Factor Calculator can be used to help determine if your small construction site qualifies for stormwater discharge waivers.">
-  <meta name="DC.description"
-    content="The Rainfall Erosivity Factor Calculator can be used to help determine if your small construction site qualifies for stormwater discharge waivers." />
-  <meta name="DC.title" content="Low Erosivity Waiver (LEW)" />
-  <!--googleoff: snippet-->
-  <meta name="keywords"
-    content="NPDES, stormwater, tool, rainfall erosivity, erosion, small construction, waivers, lew, regulations" />
-  <link rel="canonical" href="" />
-  <link rel="shortlink" href="" />
-  <meta name="DC.language" content="en" />
-  <meta name="DC.Subject.epachannel" content="Learn the Issues" />
-  <meta name="DC.type" content="Overviews and Factsheets" />
-  <meta name="DC.Subject.epaopt" content="" />
-  <meta name="DC.date.created" content="" />
-  <meta name="DC.date.modified" content="" />
-  <meta name="DC.date.reviewed" content="" />
-  <meta name="DC.creator" content="US EPA,OW,OWM" />
-  <title>Rainfall Erosivity Factor Calculator | US EPA</title>
+    <link rel="canonical" href="" />
+    <link rel="shortlink" href="" />
+    <meta
+      name="description"
+      content="The Rainfall Erosivity Factor Calculator can be used to help determine if your small construction site qualifies for stormwater discharge waivers."
+    />
+    <!--googleoff: snippet-->
+    <meta
+      name="keywords"
+      content="NPDES, stormwater, tool, rainfall erosivity, erosion, small construction, waivers, lew, regulations"
+    />
+    <meta name="DC.title" content="Low Erosivity Waiver (LEW)" />
+    <meta
+      property="DC.description"
+      content="The Rainfall Erosivity Factor Calculator can be used to help determine if your small construction site qualifies for stormwater discharge waivers."
+    />
+    <meta property="DC.Subject.epachannel" content="Learn the Issues" />
+    <meta property="DC.type" content="Overviews and Factsheets" />
+    <meta property="DC.date.created" content="2021-12-06" />
+    <meta property="DC.date.modified" content="2023-12-22" />
+    <meta property="DC.date.reviewed" content="" />
+    <meta name="DC.creator" content="US EPA,OW,OWM" />
+    <meta property="DC.language" content="en" />
+    <meta property="WebArea" content="LEW" />
+    <meta property="ContentType" content="Basic page" />
+    <meta property="og:site_name" content="US EPA" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="" />
+    <meta property="og:title" content="Low Erosivity Waiver (LEW) | US EPA" />
+    <meta
+      property="og:description"
+      content="The Rainfall Erosivity Factor Calculator can be used to help determine if your small construction site qualifies for stormwater discharge waivers."
+    />
+    <meta property="og:image" content="./images/epa-standard-og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:updated_time" content="2023-12-22" />
+    <meta
+      property="og:image:alt"
+      content="U.S. Environmental Protection Agency"
+    />
+    <meta property="og:country_name" content="United States of America" />
+    <meta
+      property="article:published_time"
+      content="2021-12-06T00:00:00-05:00"
+    />
+    <meta property="article:modified_time" content="2021-12-06" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:image:alt"
+      content="U.S. Environmental Protection Agency"
+    />
+    <meta name="twitter:image:height" content="600" />
+    <meta name="twitter:image:width" content="1200" />
+    <meta name="twitter:image" content="./images/epa-standard-twitter.jpg" />
+    <link rel="icon" type="image/x-icon" href="./images/favicon.ico" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="./images/favicon-144.png" />
+    <meta name="application-name" content="US EPA" />
+    <meta name="msapplication-config" content="./ieconfig.xml" />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="196x196"
+      href="./images/favicon-196.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="152x152"
+      href="./images/favicon-152.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="144x144"
+      href="./images/favicon-144.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="120x120"
+      href="./images/favicon-120.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="114x114"
+      href="./images/favicon-114.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="72x72"
+      href="./images/favicon-72.png"
+    />
+    <link rel="apple-touch-icon-precomposed" href="./images/favicon-180.png" />
+    <link rel="icon" href="./images/favicon-32.png" sizes="32x32" />
+    <link
+      rel="preload"
+      href="./fonts/source-sans-pro/sourcesanspro-regular-webfont.woff2"
+      as="font"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="./fonts/source-sans-pro/sourcesanspro-bold-webfont.woff2"
+      as="font"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="./fonts/source-sans-pro/sourcesanspro-italic-webfont.woff2"
+      as="font"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="./fonts/merriweather/Latin-Merriweather-Bold.woff2"
+      as="font"
+      crossorigin="anonymous"
+    />
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
-    integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ=="
-    crossorigin="anonymous" />
+    <!-- Application styles -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <!--googleoff: all-->
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" media="all" href="./css/epa.css" />
+    <link
+      rel="stylesheet"
+      href="https://js.arcgis.com/4.28/esri/css/main.css"
+    />
+    <!-- Style overrides for the EPA template -->
+    <style>
+      [tabindex='-1']:focus {
+        outline: none !important;
+      }
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+      .lew-h2 {
+        font-size: 1.34rem;
+        font-weight: 700;
+        line-height: 1.2;
+      }
 
-  <link rel="shortcut icon" href="https://www.epa.gov/sites/all/themes/epa/favicon.ico"
-    type="image/vnd.microsoft.icon" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+      .usa-step-indicator__current-step {
+        flex-shrink: 0;
+      }
+    </style>
+    <!-- End application styles -->
 
-  <!--googleoff: all-->
-  <link rel="stylesheet" href="./css/main.css" />
-  <link rel="stylesheet" href="https://www.epa.gov/sites/all/libraries/standalone/css/core/style.css" media="all" />
-  <link rel="stylesheet" href="https://js.arcgis.com/4.17/esri/css/main.css" />
-
-  <!-- Google Tag Manager -->
-  <script>
-    (function (w, d, s, l, i) {
-      w[l] = w[l] || [];
-      w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-      var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s),
-        dl = l != "dataLayer" ? "&l=" + l : "";
-      j.async = true;
-      j.src = "//www.googletagmanager.com/gtm.js?id=" + i + dl;
-      f.parentNode.insertBefore(j, f);
-    })(window, document, "script", "dataLayer", "GTM-L8ZB");
-  </script>
-  <!-- End Google Tag Manager -->
-
-  <style type="text/css" media="all">
-    @import url("https://www.epa.gov/sites/all/themes/epa/css/design.min.css");
-  </style>
-</head>
-
-<body class="html">
-  <!-- Google Tag Manager -->
-  <noscript><iframe title="GTM" src="//www.googletagmanager.com/ns.html?id=GTM-L8ZB" height="0" width="0"
-      style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager -->
-  <div class="skip-links">
-    <a href="#main-content" class="skip-link element-invisible element-focusable">Jump to main content</a>
-  </div>
-  <header class="masthead clearfix" role="banner">
-    <img alt="epa logo" class="site-logo" src="https://www.epa.gov/sites/all/themes/epa/logo.png" />
-    <div class="site-name-and-slogan">
-      <h1 class="site-name">
-        <a href="https://www.epa.gov/" rel="home" title="Go to the home page"><span>US EPA</span></a>
-      </h1>
-      <div class="site-slogan">
-        United States Environmental Protection Agency
-      </div>
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-L8ZB');
+    </script>
+    <!-- End Google Tag Manager -->
+  </head>
+  <body class="" id="#top">
+    <div
+      class="skiplinks"
+      role="navigation"
+      aria-labelledby="skip-to-main--6557d8b0d2e00"
+    >
+      <a
+        id="skip-to-main--6557d8b0d2e00"
+        href="#main-content"
+        class="skiplinks__link visually-hidden focusable"
+        >Skip to main content</a
+      >
     </div>
-    <div class="region-header">
-      <div class="block-epa-core-gsa-epa-search" id="block-epa-core-gsa-epa-search">
-        <form action="https://search.epa.gov/epasearch" class="epa-search" method="get">
-          <label class="element-hidden" for="search-box">Search</label>
-          <input class="form-text" id="search-box" aria-label="Search EPA.gov" name="querytext"
-            placeholder="Search EPA.gov" value="" />
-          <button class="epa-search-button" id="search-button" title="Search" type="submit">
-            Search
-          </button>
-          <input name="areaname" type="hidden" value="" />
-          <input name="areacontacts" type="hidden" value="" />
-          <input name="areasearchurl" type="hidden" value="" />
-          <input name="typeofsearch" type="hidden" value="epa" />
-          <input name="result_template" type="hidden" value="2col.ftl" />
-        </form>
-      </div>
-    </div>
-  </header>
-  <nav class="nav main-nav clearfix" role="navigation">
-    <div class="nav__inner">
-      <h2 class="element-invisible">Main menu</h2>
-      <ul class="menu" role="menu">
-        <li class="menu-item" role="presentation">
-          <a class="menu-link" href="https://www.epa.gov/environmental-topics" role="menuitem"
-            title="Learn about Environmental Topics that EPA covers.">Environmental Topics</a>
-        </li>
-        <li class="menu-item" role="presentation">
-          <a class="menu-link" href="https://www.epa.gov/laws-regulations" role="menuitem"
-            title="Laws written by Congress provide the authority for EPA to write regulations. Regulations explain the technical, operational, and legal details necessary to implement laws.">Laws
-            &amp; Regulations</a>
-        </li>
-        <li class="menu-item" role="presentation">
-          <a class="menu-link" href="https://www.epa.gov/aboutepa" role="menuitem"
-            title="Learn more about our mission and what we do, how we are organized, and our history.">About EPA</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <div class="mobile-nav" id="mobile-nav">
-    <div class="mobile-bar clearfix">
-      <label class="menu-button" for="mobile-nav-toggle">Menu</label>
-    </div>
-    <input checked id="mobile-nav-toggle" type="checkbox" />
-    <div class="mobile-links element-hidden" id="mobile-links" style="height:2404px;">
-      <ul class="mobile-menu">
-        <li class="menu-item" role="presentation">
-          <a class="menu-link" href="https://www.epa.gov/environmental-topics" role="menuitem"
-            title="Learn about Environmental Topics that EPA covers.">Environmental Topics</a>
-        </li>
-        <li class="menu-item" role="presentation">
-          <a class="menu-link" href="https://www.epa.gov/laws-regulations" role="menuitem"
-            title="Laws written by Congress provide the authority for EPA to write regulations. Regulations explain the technical, operational, and legal details necessary to implement laws.">Laws
-            &amp; Regulations</a>
-        </li>
-        <li class="menu-item" role="presentation">
-          <a class="menu-link" href="https://www.epa.gov/aboutepa" role="menuitem"
-            title="Learn more about our mission and what we do, how we are organized, and our history.">About EPA</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <section id="main-content" class="main-content clearfix" role="main">
-
-    <div class="row headrow">
-      <div class="col-8">
-        <h2 id="minititle">
-          National Pollutant Discharge Elimination System (NPDES)
-        </h2>
-      </div>
-      <div class="col-4 connecting">
-        <a id="contactlink" href="mailto:cgp@epa.gov" class="connect-title__link">CONTACT US</a>
-        <div class="share-links">
-          <span id="sharing">SHARE</span>
-          <a href="https://www.facebook.com/sharer.php?u=https://www.epa.gov/npdes/rainfall-erosivity-factor-calculator-small-construction-sites&t=Rainfall%20Erosivity%20Factor%20Calculator%20for%20%20Small%20Construction%20Sites"
-            target="_blank" rel="noopener noreferrer" title="Share this page on Facebook">
-            Share this page on Facebook
-            <div class="fa fa-facebook"></div>
-          </a>
-          <a href="https://twitter.com/intent/tweet?original_referer=https://www.epa.gov/npdes/rainfall-erosivity-factor-calculator-small-construction-sites&text=Rainfall%20Erosivity%20Factor%20Calculator%20for%20%20Small%20Construction%20Sites&url=https://www.epa.gov/npdes/rainfall-erosivity-factor-calculator-small-construction-sites&via=EPA&count=none&lang=en"
-            title="Tweet this page" target="_blank" rel="noopener noreferrer">
-            Tweet this page
-            <div class="fa fa-twitter"></div>
-          </a>
-          <a href="https://pinterest.com/pin/create/button/?url=https://www.epa.gov/npdes/rainfall-erosivity-factor-calculator-small-construction-sites&description=Rainfall%20Erosivity%20Factor%20Calculator%20for%20%20Small%20Construction%20Sites&media=https://www.epa.gov/sites/all/themes/epa/img/epa-seal.png?"
-            target="_blank" rel="noopener noreferrer" title="Pin this page">
-            Share this page on pinterest
-            <div class="fa fa-pinterest"></div>
-          </a>
-          <a href="mailto:%20?subject=Shared%20from%20the%20US%20EPA:%20Rainfall%20Erosivity%20Factor%20Calculator%20for%20%20Small%20Construction%20Sites&body=Rainfall%20Erosivity%20Factor%20Calculator%20for%20%20Small%20Construction%20Sites%20-%20https://www.epa.gov/npdes/rainfall-erosivity-factor-calculator-small-construction-sites"
-            target="_blank" rel="noopener noreferrer" aria-label="Email this page">
-            Email this page
-            <div class="fa fa-envelope"></div>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="main-column clearfix">
-      <!--googleon:all-->
-      <div class="panel-pane pane-node-content">
-        <div class="pane-content">
-          <div class="node node-page clearfix view-mode-full"></div>
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <div class="region-sidebar-first region-sidebar">
-              <div id="block-og-menu-og-single-menu-block"
-                class="block block-og-menu  block-og-menu-og-single-menu-block">
-                <h2 class="element-invisible">
-                  National Pollutant Discharge Elimination System (NPDES)
-                </h2>
-
+    <section
+      class="usa-banner"
+      aria-label="Official website of the United States government"
+    >
+      <div class="usa-accordion">
+        <header class="usa-banner__header">
+          <div class="usa-banner__inner">
+            <div class="grid-col-auto">
+              <img
+                class="usa-banner__header-flag"
+                aria-hidden="true"
+                src="./images/us_flag_small.png"
+                alt="U.S. flag"
+                height="11px"
+                width="16px"
+              />
+            </div>
+            <div class="grid-col-fill tablet:grid-col-auto" aria-hidden="true">
+              <p class="usa-banner__header-text">
+                An official website of the United States government
+              </p>
+              <p class="usa-banner__header-action">Here’s how you know</p>
+            </div>
+            <button
+              type="button"
+              class="usa-accordion__button usa-banner__button"
+              aria-expanded="false"
+              aria-controls="gov-banner"
+            >
+              <span class="usa-banner__button-text">Here’s how you know</span>
+            </button>
+          </div>
+        </header>
+        <div
+          class="usa-banner__content usa-accordion__content"
+          id="gov-banner"
+          hidden=""
+        >
+          <div class="grid-row grid-gap-lg">
+            <div class="usa-banner__guidance tablet:grid-col-6">
+              <img
+                class="usa-banner__icon usa-media-block__img"
+                src="./images/icon-dot-gov.svg"
+                alt="Dot gov"
+              />
+              <div class="usa-media-block__body">
+                <p>
+                  <strong>Official websites use .gov</strong>
+                  <br />
+                  A <strong>.gov</strong> website belongs to an official
+                  government organization in the United States.
+                </p>
+              </div>
+            </div>
+            <div class="usa-banner__guidance tablet:grid-col-6">
+              <img
+                class="usa-banner__icon usa-media-block__img"
+                src="./images/icon-https.svg"
+                alt="HTTPS"
+              />
+              <div class="usa-media-block__body">
+                <p>
+                  <strong>Secure .gov websites use HTTPS</strong>
+                  <br />
+                  A <strong>lock</strong> (<span class="icon-lock"
+                    ><svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="52"
+                      height="64"
+                      viewBox="0 0 52 64"
+                      class="usa-banner__lock-image"
+                      role="img"
+                      aria-labelledby="banner-lock-title banner-lock-description"
+                    >
+                      <title id="banner-lock-title">Lock</title>
+                      <desc id="banner-lock-description">A locked padlock</desc>
+                      <path
+                        fill="#000000"
+                        fill-rule="evenodd"
+                        d="M26 0c10.493 0 19 8.507 19 19v9h3a4 4 0 0 1 4 4v28a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V32a4 4 0 0 1 4-4h3v-9C7 8.507 15.507 0 26 0zm0 8c-5.979 0-10.843 4.77-10.996 10.712L15 19v9h22v-9c0-6.075-4.925-11-11-11z"
+                      ></path></svg></span
+                  >) or <strong>https://</strong> means you’ve safely connected
+                  to the .gov website. Share sensitive information only on
+                  official, secure websites.
+                </p>
               </div>
             </div>
           </div>
-          <div class="col-12">
-            <h1 class="page-title NPDESTitle">
-              Rainfall Erosivity Factor Calculator for Small Construction Sites
-            </h1>
+        </div>
+      </div>
+    </section>
 
-            <div class="panel-pane pane-node-content">
-              <div class="pane-content">
-                <div class="node node-page clearfix view-mode-full ">
-                  <p>
-                    EPA’s stormwater regulations allow NPDES permitting authorities to waive NPDES permitting
-                    requirements for stormwater discharges from
-                    small construction sites if:
-                  </p>
-
-                  <ul>
-                    <li>
-                      the construction site disturbs less than five acres, and
-                    </li>
-                    <li>
-                      the rainfall erosivity factor (“R” in the revised universal soil loss equation, or RUSLE) value is
-                      less than five during the period of
-                      construction activity.
-                    </li>
-                  </ul>
-                  <p>
-                    If your small construction project is located in an area where EPA is the permitting authority and
-                    your R factor is less than five, you
-                    qualify for a low erosivity waiver (LEW) from NPDES stormwater permitting. If your small
-                    construction project does not qualify for a
-                    waiver, then NPDES stormwater permit coverage is required. Follow the steps below to calculate your
-                    R-Factor.
-                  </p>
-                  <p>
-                    LEW certifications are submitted through the NPDES eReporting Tool or “CGP-NeT”. Several
-                    states that are authorized to implement the NPDES permitting program also accept LEWs. Check with
-                    your state NPDES permitting authority
-                    for more information.
-                  </p>
-
-                  <ul>
-                    <li>
-                      <a target="_blank" rel="noopener noreferrer"
-                        href="https://www.epa.gov/npdes/submitting-notice-intent-noi-notice-termination-not-or-low-erosivity-waiver-lew-under">Submit
-                        your LEW through EPA’s eReporting Tool
-                      </a>
-                    </li>
-                    <li>
-                      <a target="_blank" rel="noopener noreferrer"
-                        href="https://www.epa.gov/sites/production/files/2017-03/documents/2017_cgp_final_appendix_b_-_areas_of_permit_coverage_508.pdf">List
-                        of states, Indian country, and territories where EPA is the permitting authority
-                      </a>
-                    </li>
-                    <li>
-                      <a target="_blank" rel="noopener noreferrer"
-                        href="https://www.epa.gov/npdes/construction-rainfall-erosivity-waiver-fact-sheet">Construction
-                        Rainfall Erosivity Waiver Fact Sheet</a>
-                    </li>
-                    <li>
-                      <a target="_blank" rel="noopener noreferrer"
-                        href="https://www.epa.gov/npdes/epas-2017-construction-general-permit-cgp-and-related-documents">Appendix
-                        C of the 2017 CGP – Small Construction Waivers and Instructions</a>
-                    </li>
-                  </ul>
-
-                  <p>
-                    The R-factor calculation can also be integrated directly into custom applications using the <a
-                      target="_blank" rel="noopener noreferrer" href="/api-docs">R-Factor web service</a>.
-                  </p>
-
-                  <p>
-                    For questions or comments, email EPA’s CGP staff at
-                    <a href="mailto:cgp@epa.gov">cgp@epa.gov</a>.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <noscript>
-              <div class="alert alert-danger" role="alert">JavaScript must be enabled to use the Rainfall Erosivity
-                Factor Calculator.</div>
-            </noscript>
-
-            <form id="form" style="display: none;">
-              <p class="note">
-                <span class="fa-stack fa-lg">
-                  <span class="fat fa-circle fa-stack-2x"></span>
-                  <span class="fat fa-inverse fa-stack-1x"><span class="number">1</span></span>
-                </span>
-                Select the estimated start and end dates of construction by clicking the boxes and using the dropdown
-                calendar.
-              </p>
-              <p class="note">
-                The period of construction activity begins at initial earth disturbance and ends with final
-                stabilization.
-              </p>
-
-
-              <div class="row" style="margin-top: 20px;">
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                  <label class="form-label" for="startdatepicker">Start Date: </label>
-                  <input type="date" class="form-control" style="width: unset; display: unset;" id="startdatepicker"
-                    placeholder="YYYY-MM-DD" />
-                </div>
-
-                <br id="responsivebr" class="responsivebr" />
-
-                <div id="end-div" class="end-date col-lg-6 col-md-6 col-sm-12">
-                  <label class="form-label" for="enddatepicker">End Date: </label>
-                  <input type="date" class="form-control" style="width: unset; display: unset;" id="enddatepicker"
-                    placeholder="YYYY-MM-DD" /><br />
-                </div>
-              </div>
-
-              <p class="note">
-                <span class="fa-stack fa-lg">
-                  <span class="fat fa-circle fa-stack-2x"></span>
-                  <span class="fat fa-inverse fa-stack-1x"><span class="number">2</span></span>
-                </span>
-                Locate your small construction project using the search box below or by clicking on the map.
-              </p>
-              <label class="form-label" for="location">Location:</label>
-
-              <input class="form-control" style="display: inline-block;" type="text" id="location"
-                placeholder="Enter address or latitude/longitude" />
-
-              <input id="mapViewButton" value="Search" type="button" />
-              <span id="location-error" style="color: red; display: none;">Invalid Location</span>
-
-              <div class="viewDiv" id="viewDiv"></div>
-
-              <br />
-              <p class="note">
-                <span class="fa-stack fa-lg">
-                  <span class="fat fa-circle fa-stack-2x"></span>
-                  <span class="fat fa-inverse fa-stack-1x"><span class="number">3</span></span>
-                </span>
-                Click the "Calculate R Factor" button below to calculate an R Factor for your small construction
-                project.
-              </p>
-              <div class="rfactor-button-container">
-                <input type="submit" id="rButton" value="Calculate R Factor" type="button" />
+    <header class="l-header js-header-search">
+      <div class="usa-overlay"></div>
+      <div class="l-constrain">
+        <div class="l-header__navbar">
+          <div class="l-header__branding">
+            <button
+              type="button"
+              class="l-header__search-button"
+              aria-controls="header-search-drawer"
+              aria-expanded="false"
+              aria-label="Open search drawer"
+            >
+              <svg
+                class="icon l-header__search-button-icon-open"
+                aria-hidden="true"
+              >
+                <use href="./images/sprite.artifact.svg#magnifying-glass"></use>
+              </svg>
+              <svg
+                class="icon l-header__search-button-icon-close"
+                aria-hidden="true"
+              >
+                <use href="./images/sprite.artifact.svg#xmark"></use>
+              </svg>
+            </button>
+            <a
+              class="site-logo"
+              href="https://www.epa.gov/"
+              aria-label="Home"
+              title="Home"
+              rel="home"
+            >
+              <span class="site-logo__image">
+                <svg
+                  class="site-logo__svg-main"
+                  aria-hidden="true"
+                  viewBox="0 0 454.1 154.7"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m112.8 61.2c-4.8 18.6-22.9 33.3-42.9 33.3-20.1 0-38-14.7-42.9-33.4h.2s9.8 10.3-.2 0c3.1 3.1 6.2 4.4 10.7 4.4s7.7-1.3 10.7-4.4c3.1 3.1 6.3 4.5 10.9 4.4 4.5 0 7.6-1.3 10.7-4.4 3.1 3.1 6.2 4.4 10.7 4.4s7.7-1.3 10.7-4.4c3.1 3.1 6.3 4.5 10.9 4.4 4.3 0 7.4-1.2 10.5-4.3z"
+                  ></path>
+                  <path
+                    d="m113.2 51.2c0-24-19.4-43.5-43.3-43.5-24 0-43.5 19.5-43.5 43.5h39.1c-4.8-1.8-8.1-6.3-8.1-11.6 0-7 5.7-12.5 12.5-12.5 7 0 12.7 5.5 12.7 12.5 0 5.2-3.1 9.6-7.6 11.6z"
+                  ></path>
+                  <path
+                    d="m72.6 147c.7-36.9 29.7-68.8 66.9-70 0 37.2-30 68-66.9 70z"
+                  ></path>
+                  <path
+                    d="m67.1 147c-.7-36.9-29.7-68.8-67.1-70 0 37.2 30.2 68 67.1 70z"
+                  ></path>
+                  <path
+                    d="m240 10.8h-87.9v133.1h87.9v-20.4h-60.3v-36h60.3v-21h-60.3v-35h60.3z"
+                  ></path>
+                  <path
+                    d="m272.8 66.5h27.1c9.1 0 15.2-8.6 15.1-17.7-.1-9-6.1-17.3-15.1-17.3h-25.3v112.4h-27.8v-133.1h62.3c20.2 0 35 17.8 35.2 38 .2 20.4-14.8 38.7-35.2 38.7h-36.3z"
+                  ></path>
+                  <path
+                    d="m315.9 143.9h29.7l12.9-35h54.2l-8.1-21.9h-38.4l18.9-50.7 39.2 107.6h29.7l-53.1-133.1h-33.7z"
+                  ></path>
+                </svg>
+                <svg
+                  class="site-logo__svg-text"
+                  aria-hidden="true"
+                  viewBox="0 0 595.4 154.7"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m9 8.5v22.4c0 1.9.2 3.3.5 4.3s.7 1.7 1 2.2c1.2 1.4 2.5 2.4 3.9 2.9 1.5.5 2.8.7 4.1.7 2.4 0 4.2-.4 5.5-1.3 1.3-.8 2.2-1.8 2.8-2.9s.9-2.3 1-3.4.1-2 .1-2.6v-22.3h4.7v22.3 1.7c0 .7-.1 1.5-.4 2.4-.3 1.8-1.2 3.6-2.5 5.4-1.8 2.1-3.8 3.5-6 4.2-2.2.6-4 .9-5.3.9-1.8 0-3.8-.3-6.2-1.1s-4.5-2.3-6.2-4.7c-.5-.8-1-1.8-1.4-3.2-.4-1.3-.6-3.3-.6-5.9v-22z"
+                  ></path>
+                  <path
+                    d="m43.2 22.2v-2.9l4.6.1-.1 4.1c.2-.3.4-.7.8-1.2.3-.5.8-.9 1.4-1.4s1.4-.9 2.3-1.3c.9-.3 2.1-.5 3.4-.4.6 0 1.4.1 2.4.3.9.2 1.9.6 2.9 1.2s1.8 1.5 2.4 2.6c.6 1.2.9 2.8.9 4.7l-.4 17-4.6-.1.4-16c0-.9 0-1.7-.2-2.4-.1-.7-.5-1.3-1.1-1.9-1.2-1.2-2.6-1.8-4.3-1.8s-3.1.5-4.4 1.7-2 3.1-2.1 5.7l-.3 14.5-4.5-.1z"
+                  ></path>
+                  <path
+                    d="m72.9 8.6h5.5v5.1h-5.5zm.5 10.9h4.6v25.1h-4.6z"
+                  ></path>
+                  <path
+                    d="m83.5 19.4h4.3v-5.3l4.5-1.5v6.8h5.4v3.4h-5.4v15.1c0 .3 0 .6.1 1 0 .4.1.7.4 1.1.2.4.5.6 1 .8.4.3 1 .4 1.8.4 1 0 1.7-.1 2.2-.2v3.7c-.9.2-2.1.3-3.8.3-2.1 0-3.6-.4-4.6-1.2s-1.5-2.2-1.5-4.2v-16.8h-4.3v-3.4z"
+                  ></path>
+                  <path
+                    d="m106.6 32.9c-.1 2.6.5 4.8 1.7 6.5 1.1 1.7 2.9 2.6 5.3 2.6 1.5 0 2.8-.4 3.9-1.3 1-.8 1.6-2.2 1.8-4h4.6c0 .6-.2 1.4-.4 2.3-.3 1-.8 2-1.7 3-.2.3-.6.6-1 1-.5.4-1 .7-1.7 1.1s-1.5.6-2.4.8c-.9.3-2 .4-3.3.4-7.6-.2-11.3-4.5-11.3-12.9 0-2.5.3-4.8 1-6.8s2-3.7 3.8-5.1c1.2-.8 2.4-1.3 3.7-1.6 1.3-.2 2.2-.3 3-.3 2.7 0 4.8.6 6.3 1.6s2.5 2.3 3.1 3.9c.6 1.5 1 3.1 1.1 4.6.1 1.6.1 2.9 0 4h-17.5m12.9-3c0-.3 0-.7 0-1.1s0-.8-.1-1.2c-.1-.9-.4-1.7-.8-2.5s-1-1.5-1.8-2c-.9-.5-2-.8-3.4-.8-.8 0-1.5.1-2.3.3s-1.5.7-2.2 1.3-1.2 1.3-1.6 2.3-.7 2.2-.8 3.6h13z"
+                  ></path>
+                  <path
+                    d="m148.6 8.6h4.6v32.1c0 1 .1 2.3.2 4h-4.6l-.1-4c-.2.3-.4.7-.7 1.2s-.8 1-1.4 1.5c-1 .7-2 1.2-3.1 1.4-.5.1-1 .2-1.5.3s-.9.1-1.4.1c-.4 0-.8 0-1.3-.1s-1.1-.2-1.7-.3c-1.1-.3-2.3-.9-3.4-1.8s-2.1-2.2-2.9-3.8c-.8-1.7-1.2-3.9-1.2-6.6.1-4.8 1.2-8.3 3.4-10.5 2.1-2.1 4.7-3.2 7.6-3.2 1.3 0 2.4.2 3.4.5.9.3 1.6.7 2.2 1.2.6.4 1 .9 1.3 1.4s.6.8.7 1.1zm.1 23.1c0-1.9-.2-3.3-.5-4.4-.4-1.1-.8-2-1.4-2.6-.5-.7-1.2-1.3-2-1.8-.9-.5-2-.7-3.3-.7-1.7 0-2.9.5-3.8 1.3s-1.6 1.9-2 3.1-.7 2.3-.7 3.4c-.1 1.1-.2 1.9-.1 2.4 0 1.1.1 2.2.3 3.4.2 1.1.5 2.2 1 3.1.5 1 1.2 1.7 2 2.3.9.6 2 .9 3.3.9 1.8 0 3.2-.5 4.2-1.4 1-.8 1.7-1.8 2.1-3s.7-2.4.8-3.4c.1-1.4.1-2.1.1-2.6z"
+                  ></path>
+                  <path
+                    d="m179.6 34.1c0 .6.1 1.3.3 2.1.1.8.5 1.6 1 2.3.5.8 1.4 1.4 2.5 1.9s2.7.8 4.7.8c1.8 0 3.3-.3 4.4-.8s1.9-1.1 2.5-1.8 1-1.5 1.1-2.2.2-1.2.2-1.7c0-1-.2-1.9-.5-2.6-.4-.6-.9-1.2-1.6-1.6-1.4-.8-3.4-1.4-5.9-2-4.9-1.1-8.1-2.2-9.5-3.2s-2.3-2.2-2.9-3.5c-.6-1.2-.8-2.4-.8-3.6.1-3.7 1.5-6.4 4.2-8.1 2.6-1.7 5.7-2.5 9.1-2.5 1.3 0 2.9.2 4.8.5 1.9.4 3.6 1.4 5 3 .5.5.9 1.1 1.2 1.7.3.5.5 1.1.6 1.6.2 1.1.3 2.1.3 2.9h-5c-.2-2.2-1-3.7-2.4-4.5-1.5-.7-3.1-1.1-4.9-1.1-5.1.1-7.7 2-7.8 5.8 0 1.5.5 2.7 1.6 3.5 1 .8 2.6 1.4 4.7 1.9 4 1 6.7 1.8 8.1 2.2.8.2 1.4.5 1.8.7.5.2 1 .5 1.4.9.8.5 1.4 1.1 1.9 1.8s.8 1.4 1.1 2.1c.3 1.4.5 2.5.5 3.4 0 3.3-1.2 6-3.5 8-2.3 2.1-5.8 3.2-10.3 3.3-1.4 0-3.2-.3-5.4-.8-1-.3-2-.7-3-1.2-.9-.5-1.8-1.2-2.5-2.1-.9-1.4-1.5-2.7-1.7-4.1-.3-1.3-.4-2.4-.3-3.2h5z"
+                  ></path>
+                  <path
+                    d="m205.7 19.4h4.3v-5.3l4.5-1.5v6.8h5.4v3.4h-5.4v15.1c0 .3 0 .6.1 1 0 .4.1.7.4 1.1.2.4.5.6 1 .8.4.3 1 .4 1.8.4 1 0 1.7-.1 2.2-.2v3.7c-.9.2-2.1.3-3.8.3-2.1 0-3.6-.4-4.6-1.2s-1.5-2.2-1.5-4.2v-16.8h-4.4z"
+                  ></path>
+                  <path
+                    d="m241 44.6c-.3-1.2-.5-2.5-.4-3.7-.5 1-1.1 1.8-1.7 2.4-.7.6-1.4 1.1-2 1.4-1.4.5-2.7.8-3.7.8-2.8 0-4.9-.8-6.4-2.2s-2.2-3.1-2.2-5.2c0-1 .2-2.3.8-3.7s1.7-2.6 3.5-3.7c1.4-.7 2.9-1.2 4.5-1.5 1.6-.1 2.9-.2 3.9-.2s2.1 0 3.3.1c.1-2.9-.2-4.8-.9-5.6-.5-.6-1.1-1.1-1.9-1.3s-1.6-.4-2.3-.4c-1.1 0-2 .2-2.6.5-.7.3-1.2.7-1.5 1.2s-.5.9-.6 1.4-.2.9-.2 1.2h-4.6c.1-.7.2-1.4.4-2.3.2-.8.6-1.6 1.3-2.5.5-.6 1-1 1.7-1.3.6-.3 1.3-.6 2-.8 1.5-.4 2.8-.6 4.2-.6 1.8 0 3.6.3 5.2.9s2.8 1.6 3.4 2.9c.4.7.6 1.4.7 2s.1 1.2.1 1.8l-.2 12c0 1 .1 3.1.4 6.3h-4.2m-.5-12.1c-.7-.1-1.6-.1-2.6-.1-.5 0-1.2 0-2.1 0-1 .1-2 .3-3 .6s-1.9.8-2.6 1.5c-.8.7-1.2 1.7-1.2 3 0 .4.1.8.2 1.3s.4 1 .8 1.5.9.8 1.6 1.1 1.5.5 2.5.5c2.3 0 4.1-.9 5.2-2.7.5-.8.8-1.7 1-2.7.1-.9.2-2.2.2-4z"
+                  ></path>
+                  <path
+                    d="m250.2 19.4h4.3v-5.3l4.5-1.5v6.8h5.4v3.4h-5.4v15.1c0 .3 0 .6.1 1 0 .4.1.7.4 1.1.2.4.5.6 1 .8.4.3 1 .4 1.8.4 1 0 1.7-.1 2.2-.2v3.7c-.9.2-2.1.3-3.8.3-2.1 0-3.6-.4-4.6-1.2s-1.5-2.2-1.5-4.2v-16.8h-4.3v-3.4z"
+                  ></path>
+                  <path
+                    d="m273.3 32.9c-.1 2.6.5 4.8 1.7 6.5 1.1 1.7 2.9 2.6 5.3 2.6 1.5 0 2.8-.4 3.9-1.3 1-.8 1.6-2.2 1.8-4h4.6c0 .6-.2 1.4-.4 2.3-.3 1-.8 2-1.7 3-.2.3-.6.6-1 1-.5.4-1 .7-1.7 1.1s-1.5.6-2.4.8c-.9.3-2 .4-3.3.4-7.6-.2-11.3-4.5-11.3-12.9 0-2.5.3-4.8 1-6.8s2-3.7 3.8-5.1c1.2-.8 2.4-1.3 3.7-1.6 1.3-.2 2.2-.3 3-.3 2.7 0 4.8.6 6.3 1.6s2.5 2.3 3.1 3.9c.6 1.5 1 3.1 1.1 4.6.1 1.6.1 2.9 0 4h-17.5m12.9-3c0-.3 0-.7 0-1.1s0-.8-.1-1.2c-.1-.9-.4-1.7-.8-2.5s-1-1.5-1.8-2c-.9-.5-2-.8-3.4-.8-.8 0-1.5.1-2.3.3s-1.5.7-2.2 1.3-1.2 1.3-1.6 2.3-.7 2.2-.8 3.6h13z"
+                  ></path>
+                  <path
+                    d="m301 37.2c0 .5.1 1 .2 1.4.1.5.4 1 .8 1.5s.9.8 1.6 1.1 1.6.5 2.7.5c1 0 1.8-.1 2.5-.3s1.3-.6 1.7-1.2c.5-.7.8-1.5.8-2.4 0-1.2-.4-2-1.3-2.5s-2.2-.9-4.1-1.2c-1.3-.3-2.4-.6-3.6-1-1.1-.3-2.1-.8-3-1.3s-1.5-1.2-2-2.1c-.5-.8-.8-1.9-.8-3.2 0-2.4.9-4.2 2.6-5.6 1.7-1.3 4-2 6.8-2.1 1.6 0 3.3.3 5 .8 1.7.6 2.9 1.6 3.7 3.1.4 1.4.6 2.6.6 3.7h-4.6c0-1.8-.6-3-1.7-3.5-1.1-.4-2.1-.6-3.1-.6-.2 0-.5 0-1 0s-1.1.2-1.7.4-1.1.5-1.5 1.1c-.5.5-.7 1.2-.7 2.1 0 1.1.5 1.9 1.3 2.3.7.4 1.5.7 2.1.9 3.3.7 5.6 1.3 6.9 1.8 1.3.4 2.2 1 2.8 1.7.7.7 1.1 1.4 1.4 2.2s.4 1.6.4 2.5c0 1.4-.3 2.7-.9 3.8s-1.4 2-2.4 2.6c-1.1.6-2.2 1-3.4 1.3s-2.5.4-3.8.4c-2.5 0-4.7-.6-6.6-1.8-1.8-1.2-2.8-3.3-2.9-6.3z"
+                  ></path>
+                  <path
+                    d="m3.4 58.5h21.9v4.2h-17.1v11.3h16.3v4.2h-16.3v12.1h17.5v4.3h-22.3z"
+                  ></path>
+                  <path
+                    d="m34.7 72.4-.1-2.9h4.6v4.1c.2-.3.4-.8.7-1.2.3-.5.8-1 1.3-1.5.6-.5 1.4-1 2.3-1.3s2-.5 3.4-.5c.6 0 1.4.1 2.4.2.9.2 1.9.5 2.9 1.1s1.8 1.4 2.5 2.5c.6 1.2 1 2.7 1 4.7v17.1h-4.6v-16c0-.9-.1-1.7-.2-2.4-.2-.7-.5-1.3-1.1-1.9-1.2-1.1-2.6-1.7-4.3-1.7s-3.1.6-4.3 1.8c-1.3 1.2-2 3.1-2 5.7v14.5h-4.5z"
+                  ></path>
+                  <path
+                    d="m60.3 69.5h5.1l7.7 19.9 7.6-19.9h5l-10.6 25.1h-4.6z"
+                  ></path>
+                  <path
+                    d="m91.4 58.6h5.5v5.1h-5.5zm.5 10.9h4.6v25.1h-4.6z"
+                  ></path>
+                  <path
+                    d="m106 74.7c0-1.8-.1-3.5-.3-5.1h4.6l.1 4.9c.5-1.8 1.4-3 2.5-3.7s2.2-1.2 3.3-1.3c1.4-.2 2.4-.2 3.1-.1v4.6c-.2-.1-.5-.2-.9-.2-.3 0-.8 0-1.3 0-1.3 0-2.4.2-3.3.5-.9.4-1.5.9-2 1.6-.9 1.4-1.4 3.2-1.3 5.4v13.3h-4.6v-19.9z"
+                  ></path>
+                  <path
+                    d="m123.3 82.4c0-1.6.2-3.2.6-4.8s1.1-3 2-4.4c1-1.3 2.2-2.4 3.8-3.2s3.6-1.2 5.9-1.2c2.4 0 4.5.4 6.1 1.3 1.5.9 2.7 2 3.6 3.3s1.5 2.8 1.8 4.3c.2.8.3 1.5.4 2.2v2.2c0 3.7-1 6.9-3 9.5s-5.1 4-9.3 4c-4-.1-7-1.4-9-3.9-1.9-2.5-2.9-5.6-2.9-9.3m4.8-.3c0 2.7.6 5 1.8 6.9 1.2 2 3 3 5.6 3.1.9 0 1.8-.2 2.7-.5.8-.3 1.6-.9 2.3-1.7s1.3-1.9 1.8-3.2c.4-1.3.6-2.9.6-4.7-.1-6.4-2.5-9.6-7.1-9.6-.7 0-1.5.1-2.4.3-.8.3-1.7.8-2.5 1.6-.8.7-1.4 1.7-1.9 3-.6 1.1-.9 2.8-.9 4.8z"
+                  ></path>
+                  <path
+                    d="m155.9 72.4-.1-2.9h4.6v4.1c.2-.3.4-.8.7-1.2.3-.5.8-1 1.3-1.5.6-.5 1.4-1 2.3-1.3s2-.5 3.4-.5c.6 0 1.4.1 2.4.2.9.2 1.9.5 2.9 1.1s1.8 1.4 2.5 2.5c.6 1.2 1 2.7 1 4.7v17.1h-4.6v-16c0-.9-.1-1.7-.2-2.4-.2-.7-.5-1.3-1.1-1.9-1.2-1.1-2.6-1.7-4.3-1.7s-3.1.6-4.3 1.8c-1.3 1.2-2 3.1-2 5.7v14.5h-4.6z"
+                  ></path>
+                  <path
+                    d="m185.7 72.8-.1-3.3h4.6v3.6c1.2-1.9 2.6-3.2 4.1-3.7 1.5-.4 2.7-.6 3.8-.6 1.4 0 2.6.2 3.6.5.9.3 1.7.7 2.3 1.1 1.1 1 1.9 2 2.3 3.1.2-.4.5-.8 1-1.3.4-.5.9-1 1.5-1.6.6-.5 1.5-.9 2.5-1.3 1-.3 2.2-.5 3.5-.5.9 0 1.9.1 3 .3 1 .2 2 .7 3 1.3s1.7 1.5 2.3 2.7.9 2.7.9 4.6v16.9h-4.6v-16.2c0-1.1-.1-2-.2-2.5-.1-.6-.3-1-.6-1.3-.4-.6-1-1.2-1.8-1.6s-1.8-.6-3.1-.6c-1.5 0-2.7.4-3.6 1-.4.3-.8.5-1.1.9-.3.3-.6.6-.8.8-.5.8-.8 1.8-1 2.8-.1 1.1-.2 2-.1 2.6v14.1h-4.6v-16.7c0-1.6-.5-2.9-1.4-4-.9-1-2.3-1.5-4.2-1.5-1.6 0-2.9.4-3.8 1.1s-1.5 1.2-1.8 1.7c-.5.7-.8 1.5-.9 2.5-.1.9-.2 1.8-.2 2.6v14.3h-4.5z"
+                  ></path>
+                  <path
+                    d="m236.2 82.9c-.1 2.6.5 4.8 1.7 6.5 1.1 1.7 2.9 2.6 5.3 2.6 1.5 0 2.8-.4 3.9-1.3 1-.8 1.6-2.2 1.8-4h4.6c0 .6-.2 1.4-.4 2.3-.3 1-.8 2-1.7 3-.2.3-.6.6-1 1-.5.4-1 .7-1.7 1.1s-1.5.6-2.4.8c-.9.3-2 .4-3.3.4-7.6-.2-11.3-4.5-11.3-12.9 0-2.5.3-4.8 1-6.8s2-3.7 3.8-5.1c1.2-.8 2.4-1.3 3.7-1.6 1.3-.2 2.2-.3 3-.3 2.7 0 4.8.6 6.3 1.6s2.5 2.3 3.1 3.9c.6 1.5 1 3.1 1.1 4.6.1 1.6.1 2.9 0 4h-17.5m12.8-3c0-.3 0-.7 0-1.1s0-.8-.1-1.2c-.1-.9-.4-1.7-.8-2.5s-1-1.5-1.8-2c-.9-.5-2-.8-3.4-.8-.8 0-1.5.1-2.3.3s-1.5.7-2.2 1.3-1.2 1.3-1.6 2.3-.7 2.2-.8 3.6z"
+                  ></path>
+                  <path
+                    d="m261.4 72.4-.1-2.9h4.6v4.1c.2-.3.4-.8.7-1.2.3-.5.8-1 1.3-1.5.6-.5 1.4-1 2.3-1.3s2-.5 3.4-.5c.6 0 1.4.1 2.4.2.9.2 1.9.5 2.9 1.1s1.8 1.4 2.5 2.5c.6 1.2 1 2.7 1 4.7v17.1h-4.6v-16c0-.9-.1-1.7-.2-2.4-.2-.7-.5-1.3-1.1-1.9-1.2-1.1-2.6-1.7-4.3-1.7s-3.1.6-4.3 1.8c-1.3 1.2-2 3.1-2 5.7v14.5h-4.6z"
+                  ></path>
+                  <path
+                    d="m288 69.4h4.3v-5.2l4.5-1.5v6.8h5.4v3.4h-5.4v15.1c0 .3 0 .6.1 1 0 .4.1.7.4 1.1.2.4.5.6 1 .8.4.3 1 .4 1.8.4 1 0 1.7-.1 2.2-.2v3.6c-.9.2-2.1.3-3.8.3-2.1 0-3.6-.4-4.6-1.2s-1.5-2.2-1.5-4.2v-16.8h-4.3v-3.4z"
+                  ></path>
+                  <path
+                    d="m323.3 94.6c-.3-1.2-.5-2.5-.4-3.7-.5 1-1.1 1.8-1.7 2.4-.7.6-1.4 1.1-2 1.4-1.4.5-2.7.8-3.7.8-2.8 0-4.9-.8-6.4-2.2s-2.2-3.1-2.2-5.2c0-1 .2-2.3.8-3.7s1.7-2.6 3.5-3.7c1.4-.7 2.9-1.2 4.5-1.5 1.6-.1 2.9-.2 3.9-.2s2.1 0 3.3.1c.1-2.9-.2-4.8-.9-5.6-.5-.6-1.1-1.1-1.9-1.3s-1.6-.4-2.3-.4c-1.1 0-2 .2-2.6.5-.7.3-1.2.7-1.5 1.2s-.5.9-.6 1.4-.2.9-.2 1.2h-4.6c.1-.7.2-1.4.4-2.3.2-.8.6-1.6 1.3-2.5.5-.6 1-1 1.7-1.3.6-.3 1.3-.6 2-.8 1.5-.4 2.8-.6 4.2-.6 1.8 0 3.6.3 5.2.9s2.8 1.6 3.4 2.9c.4.7.6 1.4.7 2s.1 1.2.1 1.8l-.2 12c0 1 .1 3.1.4 6.3zm-.5-12.2c-.7-.1-1.6-.1-2.6-.1-.5 0-1.2 0-2.1 0-1 .1-2 .3-3 .6s-1.9.8-2.6 1.5c-.8.7-1.2 1.7-1.2 3 0 .4.1.8.2 1.3s.4 1 .8 1.5.9.8 1.6 1.1 1.5.5 2.5.5c2.3 0 4.1-.9 5.2-2.7.5-.8.8-1.7 1-2.7.1-.9.2-2.2.2-4z"
+                  ></path>
+                  <path d="m336.4 58.6h4.6v36.1h-4.6z"></path>
+                  <path
+                    d="m364.1 58.5h11.7c2.1 0 3.9.1 5.5.4.8.2 1.5.4 2.2.9.7.4 1.3.9 1.8 1.6 1.7 1.9 2.6 4.2 2.6 7 0 2.7-.9 5.1-2.8 7.1-.8.9-2 1.7-3.6 2.2-1.6.6-3.9.9-6.9.9h-5.7v16.1h-4.8zm4.8 15.9h5.8c.8 0 1.7-.1 2.6-.2s1.8-.3 2.6-.7 1.5-1 2-1.9c.5-.8.8-2 .8-3.4s-.2-2.5-.7-3.3-1.1-1.3-1.9-1.7c-1.6-.5-3.1-.8-4.5-.7h-6.8v11.9z"
+                  ></path>
+                  <path
+                    d="m393.8 74.7c0-1.8-.1-3.5-.3-5.1h4.6l.1 4.9c.5-1.8 1.4-3 2.5-3.7s2.2-1.2 3.3-1.3c1.4-.2 2.4-.2 3.1-.1v4.6c-.2-.1-.5-.2-.9-.2-.3 0-.8 0-1.3 0-1.3 0-2.4.2-3.3.5-.9.4-1.5.9-2 1.6-.9 1.4-1.4 3.2-1.3 5.4v13.3h-4.6v-19.9z"
+                  ></path>
+                  <path
+                    d="m411.2 82.4c0-1.6.2-3.2.6-4.8s1.1-3 2-4.4c1-1.3 2.2-2.4 3.8-3.2s3.6-1.2 5.9-1.2c2.4 0 4.5.4 6.1 1.3 1.5.9 2.7 2 3.6 3.3s1.5 2.8 1.8 4.3c.2.8.3 1.5.4 2.2v2.2c0 3.7-1 6.9-3 9.5s-5.1 4-9.3 4c-4-.1-7-1.4-9-3.9-1.9-2.5-2.9-5.6-2.9-9.3m4.8-.3c0 2.7.6 5 1.8 6.9 1.2 2 3 3 5.6 3.1.9 0 1.8-.2 2.7-.5.8-.3 1.6-.9 2.3-1.7s1.3-1.9 1.8-3.2c.4-1.3.6-2.9.6-4.7-.1-6.4-2.5-9.6-7.1-9.6-.7 0-1.5.1-2.4.3-.8.3-1.7.8-2.5 1.6-.8.7-1.4 1.7-1.9 3-.7 1.1-.9 2.8-.9 4.8z"
+                  ></path>
+                  <path
+                    d="m439.8 69.4h4.3v-5.2l4.5-1.5v6.8h5.4v3.4h-5.4v15.1c0 .3 0 .6.1 1 0 .4.1.7.4 1.1.2.4.5.6 1 .8.4.3 1 .4 1.8.4 1 0 1.7-.1 2.2-.2v3.6c-.9.2-2.1.3-3.8.3-2.1 0-3.6-.4-4.6-1.2s-1.5-2.2-1.5-4.2v-16.8h-4.3v-3.4z"
+                  ></path>
+                  <path
+                    d="m462.9 82.9c-.1 2.6.5 4.8 1.7 6.5 1.1 1.7 2.9 2.6 5.3 2.6 1.5 0 2.8-.4 3.9-1.3 1-.8 1.6-2.2 1.8-4h4.6c0 .6-.2 1.4-.4 2.3-.3 1-.8 2-1.7 3-.2.3-.6.6-1 1-.5.4-1 .7-1.7 1.1s-1.5.6-2.4.8c-.9.3-2 .4-3.3.4-7.6-.2-11.3-4.5-11.3-12.9 0-2.5.3-4.8 1-6.8s2-3.7 3.8-5.1c1.2-.8 2.4-1.3 3.7-1.6 1.3-.2 2.2-.3 3-.3 2.7 0 4.8.6 6.3 1.6s2.5 2.3 3.1 3.9c.6 1.5 1 3.1 1.1 4.6.1 1.6.1 2.9 0 4h-17.5m12.9-3c0-.3 0-.7 0-1.1s0-.8-.1-1.2c-.1-.9-.4-1.7-.8-2.5s-1-1.5-1.8-2c-.9-.5-2-.8-3.4-.8-.8 0-1.5.1-2.3.3s-1.5.7-2.2 1.3-1.2 1.3-1.6 2.3-.7 2.2-.8 3.6z"
+                  ></path>
+                  <path
+                    d="m501.8 77.5c0-.3 0-.8-.1-1.4s-.3-1.1-.6-1.8c-.2-.6-.7-1.2-1.4-1.6s-1.6-.6-2.7-.6c-1.5 0-2.7.4-3.5 1.2-.9.8-1.5 1.7-1.9 2.8s-.6 2.2-.7 3.2c-.1 1.1-.2 1.8-.1 2.4 0 1.3.1 2.5.3 3.7s.5 2.3.9 3.3c.8 2 2.4 3 4.8 3.1 1.9 0 3.3-.7 4.1-1.9.8-1.1 1.2-2.3 1.2-3.6h4.6c-.2 2.5-1.1 4.6-2.7 6.3-1.7 1.8-4.1 2.7-7.1 2.7-.9 0-2.1-.2-3.6-.6-.7-.2-1.4-.6-2.2-1s-1.5-1-2.2-1.7c-.7-.9-1.4-2.1-2-3.6s-.9-3.5-.9-6.1.4-4.8 1.1-6.6c.7-1.7 1.6-3.1 2.7-4.2 1.1-1 2.3-1.8 3.6-2.2s2.5-.6 3.7-.6h1.6c.6.1 1.3.2 1.9.4.7.2 1.4.5 2.1 1 .7.4 1.3 1 1.8 1.7.9 1.1 1.4 2.1 1.7 3.1.2 1 .3 1.8.3 2.6z"
+                  ></path>
+                  <path
+                    d="m509.3 69.4h4.3v-5.2l4.5-1.5v6.8h5.4v3.4h-5.4v15.1c0 .3 0 .6.1 1 0 .4.1.7.4 1.1.2.4.5.6 1 .8.4.3 1 .4 1.8.4 1 0 1.7-.1 2.2-.2v3.6c-.9.2-2.1.3-3.8.3-2.1 0-3.6-.4-4.6-1.2s-1.5-2.2-1.5-4.2v-16.8h-4.3v-3.4z"
+                  ></path>
+                  <path
+                    d="m529.2 58.6h5.5v5.1h-5.5zm.5 10.9h4.6v25.1h-4.6z"
+                  ></path>
+                  <path
+                    d="m541.8 82.4c0-1.6.2-3.2.6-4.8s1.1-3 2-4.4c1-1.3 2.2-2.4 3.8-3.2s3.6-1.2 5.9-1.2c2.4 0 4.5.4 6.1 1.3 1.5.9 2.7 2 3.6 3.3s1.5 2.8 1.8 4.3c.2.8.3 1.5.4 2.2v2.2c0 3.7-1 6.9-3 9.5s-5.1 4-9.3 4c-4-.1-7-1.4-9-3.9-1.9-2.5-2.9-5.6-2.9-9.3m4.7-.3c0 2.7.6 5 1.8 6.9 1.2 2 3 3 5.6 3.1.9 0 1.8-.2 2.7-.5.8-.3 1.6-.9 2.3-1.7s1.3-1.9 1.8-3.2c.4-1.3.6-2.9.6-4.7-.1-6.4-2.5-9.6-7.1-9.6-.7 0-1.5.1-2.4.3-.8.3-1.7.8-2.5 1.6-.8.7-1.4 1.7-1.9 3-.6 1.1-.9 2.8-.9 4.8z"
+                  ></path>
+                  <path
+                    d="m574.3 72.4-.1-2.9h4.6v4.1c.2-.3.4-.8.7-1.2.3-.5.8-1 1.3-1.5.6-.5 1.4-1 2.3-1.3s2-.5 3.4-.5c.6 0 1.4.1 2.4.2.9.2 1.9.5 2.9 1.1s1.8 1.4 2.5 2.5c.6 1.2 1 2.7 1 4.7v17.1h-4.6v-16c0-.9-.1-1.7-.2-2.4-.2-.7-.5-1.3-1.1-1.9-1.2-1.1-2.6-1.7-4.3-1.7s-3.1.6-4.3 1.8c-1.3 1.2-2 3.1-2 5.7v14.5h-4.6z"
+                  ></path>
+                  <path
+                    d="m14.8 108.5h5.2l14.1 36.1h-5.3l-3.8-9.4h-16.2l-3.8 9.4h-5zm-4.4 22.7h13.3l-6.5-17.8z"
+                  ></path>
+                  <path
+                    d="m44.4 146.5c.1.7.2 1.4.4 1.9.2.6.5 1.1.9 1.6.8.9 2.3 1.4 4.4 1.5 1.6 0 2.8-.3 3.7-.9s1.5-1.4 1.9-2.4c.4-1.1.6-2.3.7-3.7s.1-2.9.1-4.6c-.5.9-1.1 1.7-1.8 2.3s-1.5 1-2.3 1.3c-1.7.4-3 .6-3.9.6-1.2 0-2.4-.2-3.8-.6s-2.6-1.2-3.7-2.5c-1-1.3-1.7-2.8-2.1-4.4s-.6-3.2-.6-4.8c0-4.3 1.1-7.4 3.2-9.5 2-2.1 4.6-3.1 7.6-3.1 1.3 0 2.3.1 3.2.4s1.6.6 2.1 1c.6.4 1.1.8 1.5 1.2.3.4.6.8.9 1.2v-3.4h4.4l-.1 4.5v15.7c0 2.9-.1 5.2-.2 6.7-.2 1.6-.5 2.8-1 3.7-1.1 1.9-2.6 3.2-4.6 3.7-1.9.6-3.8.8-5.6.8-2.4 0-4.3-.3-5.6-.8-1.4-.5-2.4-1.2-3-2s-1-1.7-1.2-2.7c-.2-.9-.3-1.8-.4-2.7zm5.3-5.8c1.4 0 2.5-.2 3.3-.7s1.5-1.1 2-1.8c.5-.6.9-1.4 1.2-2.5.3-1 .4-2.6.4-4.8 0-1.6-.2-2.9-.4-3.9-.3-1-.8-1.8-1.4-2.4-1.3-1.4-3-2.2-5.2-2.2-1.4 0-2.5.3-3.4 1s-1.6 1.5-2 2.4c-.4 1-.7 2-.9 3s-.2 2-.2 2.8c0 1 .1 1.9.3 2.9.2 1.1.5 2.1 1 3s1.2 1.6 2 2.2c.8.7 1.9 1 3.3 1z"
+                  ></path>
+                  <path
+                    d="m73.3 132.9c-.1 2.6.5 4.8 1.7 6.5 1.1 1.7 2.9 2.6 5.3 2.6 1.5 0 2.8-.4 3.9-1.3 1-.8 1.6-2.2 1.8-4h4.6c0 .6-.2 1.4-.4 2.3-.3 1-.8 2-1.7 3-.2.3-.6.6-1 1-.5.4-1 .7-1.7 1.1s-1.5.6-2.4.8c-.9.3-2 .4-3.3.4-7.6-.2-11.3-4.5-11.3-12.9 0-2.5.3-4.8 1-6.8s2-3.7 3.8-5.1c1.2-.8 2.4-1.3 3.7-1.6 1.3-.2 2.2-.3 3-.3 2.7 0 4.8.6 6.3 1.6s2.5 2.3 3.1 3.9c.6 1.5 1 3.1 1.1 4.6.1 1.6.1 2.9 0 4h-17.5m12.9-3c0-.3 0-.7 0-1.1s0-.8-.1-1.2c-.1-.9-.4-1.7-.8-2.5s-1-1.5-1.8-2.1c-.9-.5-2-.8-3.4-.8-.8 0-1.5.1-2.3.3s-1.5.7-2.2 1.3-1.2 1.3-1.6 2.3-.7 2.2-.8 3.7z"
+                  ></path>
+                  <path
+                    d="m98.6 122.4-.1-2.9h4.6v4.1c.2-.3.4-.8.7-1.2.3-.5.8-1 1.3-1.5.6-.5 1.4-1 2.3-1.3s2-.5 3.4-.5c.6 0 1.4.1 2.4.2.9.2 1.9.5 2.9 1.1s1.8 1.4 2.5 2.5c.6 1.2 1 2.7 1 4.7v17.1h-4.6v-16c0-.9-.1-1.7-.2-2.4-.2-.7-.5-1.3-1.1-1.9-1.2-1.1-2.6-1.7-4.3-1.7s-3.1.6-4.3 1.8c-1.3 1.2-2 3.1-2 5.7v14.5h-4.6z"
+                  ></path>
+                  <path
+                    d="m142.7 127.5c0-.3 0-.8-.1-1.4s-.3-1.1-.6-1.8c-.2-.6-.7-1.2-1.4-1.6s-1.6-.6-2.7-.6c-1.5 0-2.7.4-3.5 1.2-.9.8-1.5 1.7-1.9 2.8s-.6 2.2-.7 3.2c-.1 1.1-.2 1.8-.1 2.4 0 1.3.1 2.5.3 3.7s.5 2.3.9 3.3c.8 2 2.4 3 4.8 3.1 1.9 0 3.3-.7 4.1-1.9.8-1.1 1.2-2.3 1.2-3.6h4.6c-.2 2.5-1.1 4.6-2.7 6.3-1.7 1.8-4.1 2.7-7.1 2.7-.9 0-2.1-.2-3.6-.6-.7-.2-1.4-.6-2.2-1s-1.5-1-2.2-1.7c-.7-.9-1.4-2.1-2-3.6s-.9-3.5-.9-6.1.4-4.8 1.1-6.6c.7-1.7 1.6-3.1 2.7-4.2 1.1-1 2.3-1.8 3.6-2.2s2.5-.6 3.7-.6h1.6c.6.1 1.3.2 1.9.4.7.2 1.4.5 2.1 1 .7.4 1.3 1 1.8 1.7.9 1.1 1.4 2.1 1.7 3.1.2 1 .3 1.8.3 2.6z"
+                  ></path>
+                  <path
+                    d="m164.8 144.8-3.4 9.3h-4.7l3.8-9.6-10.3-25h5.2l7.6 19.8 7.7-19.8h5z"
+                  ></path>
+                </svg>
+              </span>
+            </a>
+            <button
+              type="button"
+              class="usa-menu-btn usa-button--outline usa-button--inverse l-header__menu-button"
+            >
+              Menu
+            </button>
+          </div>
+          <div class="l-header__search" id="header-search-drawer" hidden="true">
+            <form
+              class="usa-search usa-search--small usa-search--epa"
+              method="get"
+              action="https://search.epa.gov/epasearch"
+            >
+              <div role="search">
+                <label class="usa-sr-only" for="search-box">Search</label>
+                <input
+                  class="usa-input"
+                  id="search-box"
+                  type="search"
+                  name="querytext"
+                  placeholder="Search EPA.gov"
+                />
+                <button class="button" type="submit" aria-label="Search">
+                  <svg class="icon usa-search__submit-icon" aria-hidden="true">
+                    <use
+                      href="./images/sprite.artifact.svg#magnifying-glass"
+                    ></use>
+                  </svg>
+                  <span class="usa-search__submit-text">Search</span>
+                </button>
+                <input type="hidden" name="areaname" value="" />
+                <input type="hidden" name="areacontacts" value="" />
+                <input type="hidden" name="areasearchurl" value="" />
+                <input type="hidden" name="typeofsearch" value="epa" />
+                <input type="hidden" name="result_template" value="" />
               </div>
             </form>
           </div>
         </div>
-        <div class="row">
-          <div class="col-12">
-            <div id="loader" style="display: none;">
-              <div class="loader"></div>
-              <p class="loading-text">Loading...</p>
-            </div>
-            <p id="errorMessage" class="error-message">
-              There was an error with your query.
-            </p>
-            <div class="container" id="eContainer">
-              <h2 id="h3Facility">Facility Information</h2>
-              <p id="table-caption" style="display: none;">Table with facility information.</p>
-              <table class="table table-bordered" aria-label="Table with facility information."
-                aria-describedby="table-caption">
-                <tbody>
-                  <tr style="display: none;">
-                    <th scope="col">Date</th>
-                    <th scope="col">Lat/Long</th>
-                  </tr>
-                  <tr>
-                    <td id="tableStart" style="font-weight: bold">
-                      Start Date:
-                      <span id="tableStartSpan" style="font-weight: normal"></span>
-                    </td>
-                    <td id="tableLatitude" style="font-weight: bold">
-                      Latitude:
-                      <span id="tableLatitudeSpan" style="font-weight: normal"></span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td id="tableEnd" style="font-weight: bold">
-                      End Date:
-                      <span id="tableEndSpan" style="font-weight: normal"></span>
-                    </td>
-                    <td id="tableLongitude" style="font-weight: bold">
-                      Longitude:
-                      <span id="tableLongitudeSpan" style="font-weight: normal"></span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <h3 id="h3Results">Calculation Results</h3>
-              <h4 id="tableEI">
-                Rainfall erosivity factor (R Factor) =
-                <span id="eiValue" style="color:#d44600; font-weight: bold"> </span>
-              </h4>
-              <p id="conclusion"></p>
-              <p id="conclusion2" style="font-weight: bold"></p>
+      </div>
+      <div class="l-header__nav">
+        <nav
+          class="usa-nav usa-nav--epa"
+          role="navigation"
+          aria-label="Primary navigation"
+        >
+          <div class="usa-nav__inner">
+            <button type="button" class="usa-nav__close" aria-label="Close">
+              <svg class="icon icon--nav-close" aria-hidden="true" role="img">
+                <title>Primary navigation</title>
+                <use href="./images/sprite.artifact.svg#xmark"></use>
+              </svg>
+            </button>
+            <div class="usa-nav__menu">
+              <ul class="menu menu--main usa-accordion">
+                <li class="menu__item">
+                  <a
+                    href="https://www.epa.gov/environmental-topics"
+                    class="menu__link"
+                    >Environmental Topics</a
+                  >
+                </li>
+
+                <li class="menu__item">
+                  <a
+                    href="https://www.epa.gov/laws-regulations"
+                    class="menu__link"
+                    >Laws &amp; Regulations</a
+                  >
+                </li>
+
+                <li class="menu__item">
+                  <a
+                    href="https://www.epa.gov/report-violation"
+                    class="menu__link"
+                    >Report a Violation</a
+                  >
+                </li>
+
+                <li class="menu__item">
+                  <a href="https://www.epa.gov/aboutepa" class="menu__link"
+                    >About EPA</a
+                  >
+                </li>
+              </ul>
             </div>
           </div>
-        </div>
-
-        <div>
-          <span id="longitude"></span>
-        </div>
-        <div>
-          <span id="latitude"></span>
-        </div>
+        </nav>
       </div>
-    </div>
-  </section>
-  <footer class="main-footer clearfix" role="contentinfo">
-    <div class="main-footer__inner">
-      <div class="region-footer">
-        <div class="block-pane-epa-global-footer" id="block-pane-epa-global-footer">
-          <div class="row cols-3">
-            <div class="col size-1of3">
-              <div class="col__title">
-                Discover.
+    </header>
+
+    <main id="main-content" class="main" role="main" tabindex="-1">
+      <div class="l-page">
+        <div class="l-constrain">
+          <div class="l-page__header">
+            <div class="l-page__header-first">
+              <div class="web-area-title">
+                National Pollutant Discharge Elimination System (NPDES)
               </div>
-              <ul class="menu">
+            </div>
+            <div
+              class="l-page__header-last display-flex flex-align-end flex-column"
+            >
+              <a id="contactlink" href="mailto:cgp@epa.gov" class="header-link"
+                >CONTACT US</a
+              >
+              <div class="share-links">
+                <span id="sharing">SHARE</span>
+                <a
+                  href="https://www.facebook.com/sharer.php?u=https://www.epa.gov/npdes/rainfall-erosivity-factor-calculator-small-construction-sites&t=Rainfall%20Erosivity%20Factor%20Calculator%20for%20%20Small%20Construction%20Sites"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Share this page on Facebook"
+                >
+                  Share this page on Facebook
+                  <div class="fa fa-facebook"></div>
+                </a>
+                <a
+                  href="https://twitter.com/intent/tweet?original_referer=https://www.epa.gov/npdes/rainfall-erosivity-factor-calculator-small-construction-sites&text=Rainfall%20Erosivity%20Factor%20Calculator%20for%20%20Small%20Construction%20Sites&url=https://www.epa.gov/npdes/rainfall-erosivity-factor-calculator-small-construction-sites&via=EPA&count=none&lang=en"
+                  title="Tweet this page"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Tweet this page
+                  <div class="fa fa-twitter"></div>
+                </a>
+                <a
+                  href="https://pinterest.com/pin/create/button/?url=https://www.epa.gov/npdes/rainfall-erosivity-factor-calculator-small-construction-sites&description=Rainfall%20Erosivity%20Factor%20Calculator%20for%20%20Small%20Construction%20Sites&media=https://www.epa.gov/sites/all/themes/epa/img/epa-seal.png?"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Pin this page"
+                >
+                  Share this page on pinterest
+                  <div class="fa fa-pinterest"></div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!--googleon:all-->
+          <article class="article">
+            <h1 class="page-title">
+              Rainfall Erosivity Factor Calculator for Small Construction
+            </h1>
+            <div class="main-column">
+              <h2 class="lew-h2">Introduction</h2>
+              <p>
+                EPA’s stormwater regulations allow NPDES permitting authorities
+                to waive NPDES permitting requirements for stormwater discharges
+                from small construction sites if:
+              </p>
+
+              <ul>
                 <li>
-                  <a href="https://www.epa.gov/accessibility">Accessibility</a>
+                  the construction site disturbs less than five acres, and
                 </li>
                 <li>
-                  <a href="https://www.epa.gov/aboutepa/epas-administrator">EPA Administrator</a>
+                  the rainfall erosivity factor (“R” in the revised universal
+                  soil loss equation, or RUSLE) value is less than five during
+                  the period of construction activity.
                 </li>
+              </ul>
+              <p>
+                If your small construction project is located in an area where
+                EPA is the permitting authority and your R factor is less than
+                five, you qualify for a low erosivity waiver (LEW) from NPDES
+                stormwater permitting. If your small construction project does
+                not qualify for a waiver, then NPDES stormwater permit coverage
+                is required. Follow the steps below to calculate your R-Factor.
+              </p>
+              <p>
+                LEW certifications are submitted through the NPDES eReporting
+                Tool or “CGP-NeT”. Several states that are authorized to
+                implement the NPDES permitting program also accept LEWs. Check
+                with your state NPDES permitting authority for more information.
+              </p>
+
+              <ul>
                 <li>
-                  <a href="https://www.epa.gov/planandbudget">Budget &amp; Performance</a>
-                </li>
-                <li>
-                  <a href="https://www.epa.gov/contracts">Contracting</a>
-                </li>
-                <li>
-                  <a href="https://www.epa.gov/home/grants-and-other-funding-opportunities">Grants</a>
-                </li>
-                <li>
-                  <a href="https://19january2017snapshot.epa.gov">January 19, 2017 Web Snapshot</a>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://www.epa.gov/npdes/submitting-notice-intent-noi-notice-termination-not-or-low-erosivity-waiver-lew-under"
+                    >Submit your LEW through EPA’s eReporting Tool
+                  </a>
                 </li>
                 <li>
                   <a
-                    href="https://www.epa.gov/ocr/whistleblower-protections-epa-and-how-they-relate-non-disclosure-agreements-signed-epa-employees">No
-                    FEAR Act Data</a>
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://www.epa.gov/system/files/documents/2022-01/2022-cgp-final-appendix-b-areas-of-permit-cover.pdf"
+                    >List of states, Indian country, and territories where EPA
+                    is the permitting authority (pdf)
+                  </a>
                 </li>
-                <li><a href="https://www.epa.gov/privacy">Privacy</a></li>
+                <li>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://www.epa.gov/npdes/construction-rainfall-erosivity-waiver-fact-sheet"
+                    >Construction Rainfall Erosivity Waiver Fact Sheet</a
+                  >
+                </li>
+                <li>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://www.epa.gov/system/files/documents/2022-01/2022-cgp-final-appendix-c-waivers.pdf"
+                    >Small Construction Waivers and Instructions (pdf)</a
+                  >
+                </li>
               </ul>
-            </div>
-            <div class="col size-1of3">
-              <div class="col__title">
-                Connect.
+
+              <p>
+                The R-factor calculation can also be integrated directly into
+                custom applications using the
+                <a target="_blank" rel="noopener noreferrer" href="/api-docs/"
+                  >R-Factor web service</a
+                >.
+              </p>
+
+              <noscript>
+                <div class="alert alert-danger" role="alert">
+                  JavaScript must be enabled to use the Rainfall Erosivity
+                  Factor Calculator.
+                </div>
+              </noscript>
+
+              <form id="form" class="display-none">
+                <h2 class="lew-h2">
+                  Steps to Calculate an R Factor for your Small Construction
+                  Project
+                </h2>
+                <p class="note">
+                  <span
+                    class="usa-step-indicator__current-step display-flex flex-align-center flex-justify-center font-mono-lg margin-right-1"
+                    >1</span
+                  >
+                  Select the estimated start and end dates of construction by
+                  clicking the calendar icons below and using the dropdown
+                  calendar. The period of construction activity begins at
+                  initial earth disturbance and ends with final stabilization.
+                </p>
+
+                <div class="grid-row grid-gap-lg" id="date-pickers">
+                  <div class="tablet:grid-col">
+                    <label class="usa-label font-sans-2xs text-bold"
+                      >Start Date:
+                    </label>
+                    <input
+                      type="date"
+                      class="border border-gray-30 radius-md usa-input"
+                      id="startdatepicker"
+                      placeholder="YYYY-MM-DD"
+                    />
+                  </div>
+                  <div class="tablet:grid-col"></div>
+                  <div id="end-div" class="end-date tablet:grid-col">
+                    <label
+                      class="usa-label font-sans-2xs text-bold"
+                      for="enddatepicker"
+                      >End Date:
+                    </label>
+                    <input
+                      type="date"
+                      class="border border-gray-30 radius-md usa-input"
+                      id="enddatepicker"
+                      placeholder="YYYY-MM-DD"
+                    /><br />
+                  </div>
+                </div>
+
+                <p class="note">
+                  <span
+                    class="usa-step-indicator__current-step display-flex flex-align-center flex-justify-center font-mono-lg margin-right-1"
+                    >2</span
+                  >
+                  Locate your small construction project by entering the address
+                  in the search box or by clicking on the map.
+                </p>
+
+                <div
+                  class="grid-row grid-gap-lg flex-align-end"
+                  id="location-search"
+                >
+                  <div class="tablet:grid-col margin-bottom-2">
+                    <label
+                      class="usa-label font-sans-2xs text-bold"
+                      for="location"
+                      >Location:</label
+                    >
+                    <input
+                      class="border border-gray-30 radius-md usa-input"
+                      type="text"
+                      id="location"
+                      placeholder="Enter address or latitude/longitude"
+                    />
+                  </div>
+                  <div class="tablet:grid-col margin-bottom-2">
+                    <button id="mapViewButton" class="usa-button" type="button">
+                      Search
+                    </button>
+
+                    <span
+                      id="location-error"
+                      class="display-none text-secondary-vivid"
+                      >Invalid Location</span
+                    >
+                  </div>
+                </div>
+
+                <div class="margin-0 padding-0 width-full" id="viewDiv"></div>
+                <br />
+
+                <p class="note">
+                  <span
+                    class="usa-step-indicator__current-step display-flex flex-align-center flex-justify-center font-mono-lg margin-right-1"
+                    >3</span
+                  >
+                  Click the "Calculate R Factor" button below.
+                </p>
+                <div class="width-full margin-y-3">
+                  <button
+                    class="usa-button display-block margin-x-auto"
+                    type="submit"
+                    id="rButton"
+                    type="button"
+                  >
+                    Calculate R Factor
+                  </button>
+                </div>
+              </form>
+
+              <div id="loader" class="display-none">
+                <div class="loader"></div>
+                <p class="text-bold text-center">Loading...</p>
               </div>
-              <ul class="menu">
-                <li><a href="https://www.data.gov/">Data.gov</a></li>
-                <li>
-                  <a href="https://www.epa.gov/office-inspector-general/about-epas-office-inspector-general">Inspector
-                    General</a>
-                </li>
-                <li><a href="https://www.epa.gov/careers">Jobs</a></li>
-                <li><a href="https://www.epa.gov/newsroom">Newsroom</a></li>
-                <li>
-                  <a href="https://www.epa.gov/open">Open Government</a>
-                </li>
-                <li>
-                  <a href="https://www.regulations.gov/">Regulations.gov</a>
-                </li>
-                <li>
-                  <a href="https://www.epa.gov/newsroom/email-subscriptions">Subscribe</a>
-                </li>
-                <li><a href="https://www.usa.gov/">USA.gov</a></li>
-                <li><a href="https://www.whitehouse.gov/">White House</a></li>
-              </ul>
-            </div>
-            <div class="col size-1of3">
-              <div class="col__title">
-                Ask.
+              <p
+                id="errorMessage"
+                class="display-none text-center text-secondary-dark"
+              >
+                There was an error with your query.
+              </p>
+              <div
+                class="display-none padding-2 bg-accent-cool-lighter"
+                id="eContainer"
+              >
+                <h3>Facility Information</h3>
+                <div class="grid-container">
+                  <div class="grid-row bg-white">
+                    <div class="grid-col border border-gray-10 padding-1">
+                      <strong>Start Date:</strong>
+                      <span id="startDateSpan"></span>
+                    </div>
+                    <div class="grid-col border border-gray-10 padding-1">
+                      <strong>Latitude:</strong>
+                      <span id="latitudeSpan"></span>
+                    </div>
+                  </div>
+                  <div class="grid-row bg-white">
+                    <div class="grid-col border border-gray-10 padding-1">
+                      <strong>End Date:</strong>
+                      <span id="endDateSpan"></span>
+                    </div>
+                    <div class="grid-col border border-gray-10 padding-1">
+                      <strong>Longitude:</strong>
+                      <span id="longitudeSpan"></span>
+                    </div>
+                  </div>
+                </div>
+                <h3>Calculation Results</h3>
+                <h4>
+                  Rainfall erosivity factor (R Factor) =
+                  <strong
+                    class="font-sans-md text-bold text-secondary-vivid"
+                    id="eiValue"
+                  ></strong>
+                </h4>
+                <p id="conclusion"></p>
+                <p id="conclusion2" style="font-weight: bold"></p>
               </div>
-              <ul class="menu">
-                <li>
-                  <a href="https://www.epa.gov/home/forms/contact-us">Contact Us</a>
-                </li>
-                <li>
-                  <a href="https://www.epa.gov/home/epa-hotlines">Hotlines</a>
-                </li>
-                <li><a href="https://www.epa.gov/foia">FOIA Requests</a></li>
-                <li>
-                  <a href="https://www.epa.gov/home/frequent-questions-specific-epa-programstopics">Frequent
-                    Questions</a>
-                </li>
-              </ul>
-              <div class="col__title">
-                Follow.
-              </div>
-              <ul class="social-menu">
-                <li>
-                  <a class="menu-link social-facebook" href="https://www.facebook.com/EPA">Facebook</a>
-                </li>
-                <li>
-                  <a class="menu-link social-twitter" href="https://twitter.com/epa">Twitter</a>
-                </li>
-                <li>
-                  <a class="menu-link social-youtube" href="https://www.youtube.com/user/USEPAgov">YouTube</a>
-                </li>
-                <li>
-                  <a class="menu-link social-flickr" href="https://www.flickr.com/photos/usepagov">Flickr</a>
-                </li>
-                <li>
-                  <a class="menu-link social-instagram" href="https://www.instagram.com/epagov">Instagram</a>
-                </li>
-              </ul>
             </div>
+          </article>
+        </div>
+      </div>
+      <div class="l-page__footer">
+        <div class="l-constrain">
+          <div class="l-page__footer-contact">
+            For questions or comments, email EPA’s CGP staff at
+            <a href="mailto:cgp@epa.gov">cgp@epa.gov</a>.
+          </div>
+          <div class="l-page__footer-last-updated">
+            Last updated on January 4, 2024
           </div>
         </div>
       </div>
-    </div>
-  </footer>
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"
-    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-    integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"
-    integrity="sha512-3n19xznO0ubPpSwYCRRBgHh63DrV+bdZfHK52b1esvId4GsfwStQNPJFjeQos2h3JwCmZl0/LgLxSKMAI55hgw=="
-    crossorigin="anonymous"></script>
+    </main>
 
-  <script type="text/javascript">
-    $(function () {
-      if (!Modernizr.inputtypes.date) {
-        console.log("The 'date' input type is not supported, so using JQueryUI datepicker instead.");
-        $("#startdatepicker").datepicker({ dateFormat: "yy-mm-dd" });
-        $("#enddatepicker").datepicker({ dateFormat: "yy-mm-dd" });
+    <footer class="footer" role="contentinfo">
+      <div class="l-constrain">
+        <img
+          class="footer__epa-seal"
+          src="./images/epa-seal.svg"
+          alt="United States Environmental Protection Agency"
+          height="100"
+          width="100"
+        />
+        <div class="footer__content contextual-region">
+          <div class="footer__column">
+            <h2>Discover.</h2>
+
+            <ul class="menu menu--footer">
+              <li class="menu__item">
+                <a href="https://www.epa.gov/accessibility" class="menu__link"
+                  >Accessibility</a
+                >
+              </li>
+
+              <li class="menu__item">
+                <a href="https://www.epa.gov/planandbudget" class="menu__link"
+                  >Budget &amp; Performance</a
+                >
+              </li>
+
+              <li class="menu__item">
+                <a href="https://www.epa.gov/contracts" class="menu__link"
+                  >Contracting</a
+                >
+              </li>
+
+              <li class="menu__item">
+                <a
+                  href="https://www.epa.gov/home/wwwepagov-snapshots"
+                  class="menu__link"
+                  >EPA www Web Snapshots</a
+                >
+              </li>
+
+              <li class="menu__item">
+                <a href="https://www.epa.gov/grants" class="menu__link"
+                  >Grants</a
+                >
+              </li>
+
+              <li class="menu__item">
+                <a
+                  href="https://www.epa.gov/ocr/whistleblower-protections-epa-and-how-they-relate-non-disclosure-agreements-signed-epa-employees"
+                  class="menu__link"
+                  >No FEAR Act Data</a
+                >
+              </li>
+
+              <li class="menu__item">
+                <a href="https://www.epa.gov/privacy" class="menu__link"
+                  >Privacy</a
+                >
+              </li>
+
+              <li class="menu__item">
+                <a
+                  href="https://www.epa.gov/privacy/privacy-and-security-notice"
+                  class="menu__link"
+                  >Privacy and Security Notice</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="footer__column">
+            <h2>Connect.</h2>
+
+            <ul class="menu menu--footer">
+              <li class="menu__item">
+                <a href="https://www.data.gov/" class="menu__link">Data.gov</a>
+              </li>
+
+              <li class="menu__item">
+                <a
+                  href="https://www.epa.gov/office-inspector-general/about-epas-office-inspector-general"
+                  class="menu__link"
+                  >Inspector General</a
+                >
+              </li>
+
+              <li class="menu__item">
+                <a href="https://www.epa.gov/careers" class="menu__link"
+                  >Jobs</a
+                >
+              </li>
+
+              <li class="menu__item">
+                <a href="https://www.epa.gov/newsroom" class="menu__link"
+                  >Newsroom</a
+                >
+              </li>
+
+              <li class="menu__item">
+                <a href="https://www.epa.gov/data" class="menu__link"
+                  >Open Government</a
+                >
+              </li>
+
+              <li class="menu__item">
+                <a href="https://www.regulations.gov/" class="menu__link">
+                  Regulations.gov
+                  <svg class="icon icon--exit is-spaced-before" role="img">
+                    <title>Exit EPA's Website</title>
+                    <use href="./images/sprite.svg#launch"></use>
+                  </svg>
+                </a>
+              </li>
+
+              <li class="menu__item">
+                <a
+                  href="https://www.epa.gov/newsroom/email-subscriptions-epa-news-releases"
+                  class="menu__link"
+                  >Subscribe</a
+                >
+              </li>
+
+              <li class="menu__item">
+                <a href="https://www.usa.gov/" class="menu__link"
+                  >USA.gov
+                  <svg class="icon icon--exit is-spaced-before" role="img">
+                    <title>Exit EPA's Website</title>
+                    <use href="./images/sprite.svg#launch"></use>
+                  </svg>
+                </a>
+              </li>
+
+              <li class="menu__item">
+                <a href="https://www.whitehouse.gov/" class="menu__link"
+                  >White House
+                  <svg class="icon icon--exit is-spaced-before" role="img">
+                    <title>Exit EPA's Website</title>
+                    <use href="./images/sprite.svg#launch"></use>
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="footer__column">
+            <h2>Ask.</h2>
+
+            <ul class="menu menu--footer">
+              <li class="menu__item">
+                <a
+                  href="https://www.epa.gov/aboutepa/forms/contact-epa"
+                  class="menu__link"
+                  >Contact EPA</a
+                >
+              </li>
+
+              <li class="menu__item">
+                <a
+                  href="https://www.epa.gov/web-policies-and-procedures/epa-disclaimers"
+                  class="menu__link"
+                  >EPA Disclaimers</a
+                >
+              </li>
+
+              <li class="menu__item">
+                <a
+                  href="https://www.epa.gov/aboutepa/epa-hotlines"
+                  class="menu__link"
+                  >Hotlines</a
+                >
+              </li>
+
+              <li class="menu__item">
+                <a href="https://www.epa.gov/foia" class="menu__link"
+                  >FOIA Requests</a
+                >
+              </li>
+
+              <li class="menu__item">
+                <a
+                  href="https://www.epa.gov/aboutepa/frequent-questions-specific-epa-programstopics"
+                  class="menu__link"
+                  >Frequent Questions</a
+                >
+              </li>
+            </ul>
+
+            <h2>Follow.</h2>
+            <ul class="menu menu--social">
+              <li class="menu__item">
+                <a
+                  class="menu__link"
+                  aria-label="EPA’s Facebook"
+                  href="https://www.facebook.com/EPA"
+                >
+                  <svg class="icon icon--social" aria-hidden="true">
+                    <use
+                      href="./images/sprite.artifact.svg#facebook-square"
+                    ></use>
+                  </svg>
+                </a>
+              </li>
+              <li class="menu__item">
+                <a
+                  class="menu__link"
+                  aria-label="EPA’s Twitter"
+                  href="https://twitter.com/epa"
+                >
+                  <svg class="icon icon--social" aria-hidden="true">
+                    <use
+                      href="./images/sprite.artifact.svg#twitter-square"
+                    ></use>
+                  </svg>
+                </a>
+              </li>
+              <li class="menu__item">
+                <a
+                  class="menu__link"
+                  aria-label="EPA’s Youtube"
+                  href="https://www.youtube.com/user/USEPAgov"
+                >
+                  <svg class="icon icon--social" aria-hidden="true">
+                    <use
+                      href="./images/sprite.artifact.svg#youtube-square"
+                    ></use>
+                  </svg>
+                </a>
+              </li>
+              <li class="menu__item">
+                <a
+                  class="menu__link"
+                  aria-label="EPA’s Flickr"
+                  href="https://www.flickr.com/photos/usepagov"
+                >
+                  <svg class="icon icon--social" aria-hidden="true">
+                    <use
+                      href="./images/sprite.artifact.svg#flickr-square"
+                    ></use>
+                  </svg>
+                </a>
+              </li>
+              <li class="menu__item">
+                <a
+                  class="menu__link"
+                  aria-label="EPA’s Instagram"
+                  href="https://www.instagram.com/epagov"
+                >
+                  <svg class="icon icon--social" aria-hidden="true">
+                    <use
+                      href="./images/sprite.artifact.svg#instagram-square"
+                    ></use>
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <a href="#top" class="back-to-top" title="Back to top" aria-hidden="true">
+      <svg class="back-to-top__icon" role="img" aria-label="">
+        <use href="./images/sprite.artifact.svg#angle"></use>
+      </svg>
+    </a>
+    <script src="./js/once.min.js"></script>
+    <script src="./js/epa-common.min.js"></script>
+    <script src="./js/epa-scripts.min.js"></script>
+    <!-- EPA template script overrides-->
+    <script>
+      const searchButton = document.querySelector(
+        "[aria-controls='header-search-drawer']",
+      );
+      if (searchButton) {
+        searchButton.addEventListener('click', () => {
+          const expanded = searchButton.ariaExpanded === 'true';
+          searchButton.ariaExpanded = !expanded;
+          const drawer = document.querySelector('#header-search-drawer');
+          if (expanded) {
+            drawer.setAttribute('hidden', true);
+          } else {
+            drawer.removeAttribute('hidden');
+          }
+        });
       }
-    });
-  </script>
+    </script>
+    <!-- End EPA template script overrides-->
 
-  <script>
-    var dojoConfig = {
-      async: true,
-      packages: [
-        {
-          name: "app",
-          location: location.pathname.replace(/\/[^/]*$/, "") + "/js"
-        }
-      ]
-    };
-  </script>
+    <!-- Application scripts -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.min.js"
+      integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      var dojoConfig = {
+        async: true,
+        packages: [
+          {
+            name: 'app',
+            location: location.pathname.replace(/\/[^/]*$/, '') + '/js',
+          },
+        ],
+      };
+    </script>
+    <script src="https://js.arcgis.com/4.28/"></script>
+    <script>
+      require(['app/script'], function (script) {
+        script.init();
+      });
+    </script>
 
-  <script src="https://js.arcgis.com/4.17/"></script>
+    <style>
+      .menu--main .menu__link,
+      .menu--main .menu__link,
+      .menu--main .menu__link:visited {
+        color: #fff;
+      }
+      .menu--main .menu__link:hover:visited {
+        color: #005ea2;
+      }
+      .site-logo__svg {
+        fill: #fff;
+      }
 
-  <script>
-    require(["app/script"], function (script) {
-      script.init();
-    });
-  </script>
-</body>
-
+      #viewDiv {
+        height: 500px;
+      }
+    </style>
+  </body>
 </html>
