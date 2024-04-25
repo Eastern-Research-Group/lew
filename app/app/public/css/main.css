@@ -35,52 +35,6 @@
   }
 }
 
-.fa {
-  box-sizing: content-box;
-  padding: 4px;
-  font-size: 20px;
-  width: 20px;
-  text-align: center;
-  text-decoration: none;
-  margin: 5px 2px;
-  border-radius: 50%;
-}
-
-.fa-facebook {
-  background: white;
-  color: #0071bc;
-  border: 1px solid #0071bc;
-}
-
-.fa-twitter {
-  background: white;
-  color: #0071bc;
-  border: 1px solid #0071bc;
-}
-
-.fa-pinterest {
-  background: white;
-  color: #0071bc;
-  border: 1px solid #0071bc;
-}
-
-.fa-envelope {
-  background: white;
-  color: #0071bc;
-  border: 1px solid #0071bc;
-}
-
-.fa:visited {
-  color: #0071bc;
-}
-
-.fa:hover {
-  opacity: 0.8;
-  color: white;
-  background: #0071bc;
-  text-decoration: none;
-}
-
 .fat {
   display: inline-block;
   font-family: FontAwesome, Arial, Helvetica, sans-serif;
@@ -121,7 +75,48 @@
   padding: 0.25em;
 }
 
+.share-links {
+  align-items: center;
+  display: inline-flex;
+  margin-left: 1em;
+  padding-left: 0;
+}
+
 .share-links a {
-  text-decoration: none;
+  align-items: center;
+  display: inline-flex;
   font-size: 0;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.share-links a:hover {
+  text-decoration: none;
+}
+
+.share-links svg,
+.share-links div {
+  background: white;
+  border: 1px solid #0071bc;
+  border-radius: 50%;
+  box-sizing: content-box;
+  color: #0071bc;
+  font-size: 20px;
+  height: 20px;
+  margin: 5px 2px;
+  padding: 4px;
+  text-align: center;
+  width: 20px;
+}
+
+.share-links svg:hover,
+.share-links div:hover {
+  opacity: 0.8;
+  color: white;
+  background: #0071bc;
+}
+
+.share-links svg:visited,
+.share-links div:visited {
+  color: #0071bc;
 }
