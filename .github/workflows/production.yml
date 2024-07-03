@@ -31,7 +31,7 @@ jobs:
         working-directory: app
 
       - name: Remove unnecessary server app files
-        run: rm -rf prettier.config.js manifest-dev.yml manifest-staging.yml
+        run: rm -rf prettier.config.js manifest-dev.yml manifest-staging.yml app/tests
         working-directory: app
 
       - name: Create production artifact
