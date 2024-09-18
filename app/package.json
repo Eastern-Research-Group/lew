@@ -30,6 +30,7 @@
   "devDependencies": {
     "browser-sync": "^2.23.7",
     "chai": "4.3.10",
+    "chai-http": "^5.0.0",
     "husky": "8.0.3",
     "jshint": "2.13.6",
     "lint-staged": "15.2.0",
