@@ -1,0 +1,13 @@
+{
+  "all": true,
+  "include": [
+    "app/**/*.{ts,js}"
+  ],
+  "exclude": [
+    "**/node_modules/**",
+    "**/coverage/**",
+    "**/epa-template-files/**",
+    "**/tests/**",
+    "**/api-docs/**"
+  ]
+}

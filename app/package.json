@@ -9,7 +9,7 @@
   "scripts": {
     "start": "npm run start_local_cmd",
     "start_local_cmd": "cross-env NODE_ENV=local LOGGER_LEVEL=DEBUG nodemon --ignore 'app/tests' --inspect app/server.js",
-    "test": "cross-env NODE_ENV=production LOGGER_LEVEL=OFF mocha --timeout 20000 app/tests --recursive",
+    "test": "npx nyc --reporter=html cross-env NODE_ENV=production LOGGER_LEVEL=OFF mocha --timeout 20000 app/tests --recursive",
     "start:prod": "npm run start:fake_prod_cmd",
     "start:fake_prod_cmd": "cross-env NODE_ENV=production LOGGER_LEVEL=ERROR node app/server.js"
   },
@@ -37,6 +37,7 @@
     "nock": "13.4.0",
     "node-mocks-http": "1.14.0",
     "nodemon": "3.0.2",
+    "nyc": "^17.0.0",
     "prettier": "3.1.1"
   },
   "dependencies": {
