@@ -3,9 +3,6 @@
   "version": "2.4.0",
   "description": "Determine low erosivity waiver (LEW) factor",
   "main": "index.html",
-  "engines": {
-    "node": "20.x"
-  },
   "scripts": {
     "prepare": "cd .. && husky app/.husky || exit 0",
     "start": "npm run start_local_cmd",
