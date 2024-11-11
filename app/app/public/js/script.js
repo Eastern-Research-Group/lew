@@ -6,6 +6,9 @@ define(['app/esriMap'], function (esriMap) {
 
     document.getElementById('form').style.display = 'block';
 
+    /* v8 ignore start */
+    // We're ignoring as these are in support of legacy IE browsers
+
     // if browser is ie11, fix the responsiveness of the datepicker inputs
     if (!!window.MSInputMethodContext && !!document.documentMode) {
       const element = document.getElementById('responsivebr');
@@ -35,6 +38,8 @@ define(['app/esriMap'], function (esriMap) {
       };
     }
 
+    /* v8 ignore stop */
+    
     window.lew_latitude = 'empty';
     window.lew_longitude = 'empty';
 
@@ -171,6 +176,8 @@ define(['app/esriMap'], function (esriMap) {
         let endday = endDate.slice(8);
         let newendDate = endmonth + '/' + endday + '/' + endyear;
 
+        /* v8 ignore start */
+        // we don't run coverage against all the different environments, so ignore this block.
         let api = null;
         if (window.location.host.toLowerCase().startsWith('localhost')) {
           api = 'http://localhost:' + window.location.port + '/v1/rfactor';
@@ -185,9 +192,7 @@ define(['app/esriMap'], function (esriMap) {
         } else {
           api = 'https://api.epa.gov/lew/v1/rfactor';
         }
-
-        // old url
-        // let smartURL = window.location.protocol + "//" + window.location.host + "/v1/rfactor";
+        /* v8 ignore stop */
 
         let webservice =
           api +
