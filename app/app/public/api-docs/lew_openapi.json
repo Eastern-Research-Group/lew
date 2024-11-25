@@ -84,6 +84,38 @@
           }
         }
       }
+    },
+    "/v1/health": {
+      "get": {
+        "tags": ["Rainfall Erosivity"],
+        "summary": "Healthcheck",
+        "description": "Healthcheck.",
+        "operationId": "healthCheck",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Api-Key",
+            "description": "API key used to access EPA web service resources. The below default value key is used for testing purposes only. Web service consumers should <a target=\"_blank\" href=\"..\\api_key_signup.html\">obtain their own API key</a>",
+            "schema": {
+              "type": "string",
+              "default": "yCM9DKRltA4gTGovk2naSvodO5iUDBCT7FAJ3CF5"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthCheckOutput"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "externalDocs": {
@@ -142,7 +174,18 @@
             "example": 0.476
           }
         },
-        "required": ["factor"]
+        "required": ["rfactor"]
+      },
+      "HealthCheckOutput": {
+        "type": "object",
+        "title": "HealthCheck Output",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "UP"
+          }
+        },
+        "required": ["status"]
       }
     }
   }
