@@ -1,6 +1,6 @@
 {
   "name": "lew",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "description": "Determine low erosivity waiver (LEW) factor",
   "main": "index.html",
   "scripts": {
