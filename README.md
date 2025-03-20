@@ -16,6 +16,7 @@ As such, LEW provides a web application and associated web service that allows a
 ## Documentation
 - [Local Development Environment Setup](/docs/local_dev_setup.md), instructions for getting the application running on your device to support coding.
 - [How to contribute to the project](/docs/CONTRIBUTING.md), learn how to help improve the application. 
+- [Changelog](/docs/changelog.md), high-level information about the changes in each release.
 
 ## Disclaimer
 
