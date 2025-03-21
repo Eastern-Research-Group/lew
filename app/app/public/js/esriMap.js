@@ -3,14 +3,19 @@ define([
   'esri/views/MapView',
   'esri/Graphic',
   'esri/geometry/Point',
-], function (EsriMap, MapView, Graphic, Point) {
+  'esri/Basemap',
+], function (EsriMap, MapView, Graphic, Point, Basemap) {
   let map = null;
   let view = null;
 
   function init() {
     // Create the Map with an initial basemap
     map = new EsriMap({
-      basemap: 'topo-vector',
+      basemap: new Basemap({
+        portalItem: {
+          id: '668f436dc2dc4f2c83ceb0c064380590',
+        },
+      }),
     });
     // Create the MapView and reference the Map in the instance
     view = new MapView({
