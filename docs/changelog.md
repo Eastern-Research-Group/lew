@@ -1,5 +1,15 @@
 # Change Log
 
+## 2.5.0 (April 2025)
+
+### Changed
+
+- Updated to the US version of the ArcGIS topographic basemap.
+
+### Chores
+
+- Updated dependencies.
+
 ## 2.4.0 (November 2024)
 
 ### Changed
