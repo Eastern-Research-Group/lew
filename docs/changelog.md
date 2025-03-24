@@ -1,5 +1,29 @@
 # Change Log
 
+## 2.5.0 (April 2025)
+
+### Changed
+
+- Updated to the US version of the ArcGIS topographic basemap.
+
+### Chores
+
+- Updated dependencies.
+
+## 2.4.0 (November 2024)
+
+### Changed
+
+- Updated footer links in EPA template.
+
+### Chores
+
+- Added server side testing.
+
+- Updated dependencies.
+
+- Created a github action for building production.
+
 ## 2.3.0 (January 2024)
 
 ### Changed
