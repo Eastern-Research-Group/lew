@@ -8,7 +8,7 @@ const chai = require('chai');
 
 const rfactorContoller = require('../../server/controllers/rfactor');
 
-const colostateDomain = 'https://csip.engr.colostate.edu:9088';
+const colostateDomain = 'http://csip.engr.colostate.edu:8083';
 const r2climate = '/csip-misc/d/r2climate/2.0';
 
 function verifyStatus400(response, done) {
