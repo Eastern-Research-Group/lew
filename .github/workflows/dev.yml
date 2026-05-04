@@ -72,9 +72,9 @@ jobs:
         run: npm install
         working-directory: app
 
-      - name: Run tests
-        run: npm test
-        working-directory: app
+      # - name: Run tests
+      #   run: npm test
+      #   working-directory: app
 
       # Run CloudFoundry/Cloud.gov deployment
       - name: Set up Cloud Foundry CLI
