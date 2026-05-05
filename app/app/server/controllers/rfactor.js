@@ -187,6 +187,30 @@ function getClimateData(metadataObj, countyUrl) {
                 return;
               }
             }
+
+            const err_json = {
+              error_id: 72,
+              error_msg: 'EI_DAILY_AMOUNT attribute not found.',
+            };
+            log.error(
+              logger.formatLogMsg(metadataObj, err_json, {
+                countyURL: countyUrl,
+              }),
+            );
+            reject(err_json);
+            return;
+          } else {
+            const err_json = {
+              error_id: 73,
+              error_msg: 'XML is invalid.',
+            };
+            log.error(
+              logger.formatLogMsg(metadataObj, err_json, {
+                countyURL: countyUrl,
+              }),
+            );
+            reject(err_json);
+            return;
           }
         }
       })
